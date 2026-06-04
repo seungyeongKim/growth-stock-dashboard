@@ -1,0 +1,2005 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>성장주 대시보드</title>
+  <style>
+    :root {
+      --bg: #f7f8fa;
+      --panel: #ffffff;
+      --ink: #17202a;
+      --muted: #667085;
+      --line: #d9dee7;
+      --blue: #2457c5;
+      --green: #18815c;
+      --amber: #a96300;
+      --red: #b42318;
+      --soft-blue: #eef4ff;
+      --soft-green: #edf8f3;
+      --soft-amber: #fff6e7;
+      --shadow: 0 14px 40px rgba(21, 32, 43, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      letter-spacing: 0;
+    }
+
+    button, input, select {
+      font: inherit;
+    }
+
+    .app-shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 24px clamp(18px, 3vw, 40px);
+    }
+
+    .header-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      max-width: 1480px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(24px, 3vw, 38px);
+      line-height: 1.18;
+      font-weight: 760;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: #cbd5e1;
+      max-width: 860px;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .date-pill {
+      min-width: 160px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #e5e7eb;
+      padding: 10px 12px;
+      border-radius: 8px;
+      text-align: right;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    main {
+      max-width: 1480px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 22px clamp(18px, 3vw, 40px) 36px;
+      display: grid;
+      grid-template-columns: 360px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+      min-height: 560px;
+    }
+
+    main.list-collapsed {
+      grid-template-columns: 42px minmax(0, 1fr);
+    }
+
+    main.detail-collapsed {
+      grid-template-columns: minmax(0, 1fr) 42px;
+    }
+
+    .toolbar {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      align-items: stretch;
+      box-shadow: var(--shadow);
+      margin-bottom: 14px;
+    }
+
+    main.detail-collapsed .toolbar {
+      grid-template-columns: minmax(220px, 1fr) 220px auto;
+      align-items: center;
+    }
+
+    main.detail-collapsed .filter-group {
+      display: flex;
+      justify-content: flex-end;
+      flex-wrap: nowrap;
+    }
+
+    main.detail-collapsed .filter-btn {
+      white-space: nowrap;
+      padding: 10px 12px;
+    }
+
+    .search {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 11px 12px;
+      background: white;
+      min-width: 0;
+    }
+
+    .filter-group {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .filter-btn {
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--ink);
+      border-radius: 8px;
+      padding: 10px 8px;
+      cursor: pointer;
+      white-space: normal;
+      min-height: 42px;
+      line-height: 1.25;
+      text-align: center;
+    }
+
+    .filter-btn.active {
+      border-color: var(--blue);
+      background: var(--soft-blue);
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    .industry-select {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 12px;
+      background: white;
+      min-height: 42px;
+      width: 100%;
+    }
+
+    .table-panel, .detail-panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .list-column {
+      min-height: 0;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+    }
+
+    .list-column.collapsed {
+      display: block;
+    }
+
+    .list-column.collapsed .toolbar,
+    .list-column.collapsed .table-panel {
+      display: none;
+    }
+
+    .collapsed-rail {
+      display: none;
+      height: 100%;
+      min-height: 220px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      align-items: center;
+      justify-content: center;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .list-column.collapsed .collapsed-rail,
+    .detail-panel.collapsed .collapsed-rail {
+      display: flex;
+    }
+
+    .panel-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      background: #fbfcff;
+    }
+
+    .panel-title h2 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .title-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .icon-btn {
+      border: 1px solid var(--line);
+      background: white;
+      color: #344054;
+      border-radius: 8px;
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 17px;
+      line-height: 1;
+    }
+
+    .icon-btn:hover {
+      background: #f4f7ff;
+      border-color: #b7c7ef;
+      color: var(--blue);
+    }
+
+    .count {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    .table-panel table {
+      font-size: 13px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 0;
+      font-size: 14px;
+    }
+
+    th, td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #edf0f5;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .table-panel th,
+    .table-panel td {
+      padding: 10px 8px;
+    }
+
+    th {
+      color: #475467;
+      font-size: 12px;
+      background: #fbfcff;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    tbody tr {
+      cursor: pointer;
+      transition: background 140ms ease;
+    }
+
+    tbody tr:hover, tbody tr.selected {
+      background: #f4f7ff;
+    }
+
+    .company-name {
+      font-weight: 760;
+      color: var(--ink);
+      margin-bottom: 3px;
+    }
+
+    .code {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 5px 8px;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+      border: 1px solid transparent;
+    }
+
+    .table-panel .badge {
+      margin: 0 0 4px;
+    }
+
+    .badge.growth { color: var(--blue); background: var(--soft-blue); border-color: #c7d7fe; }
+    .badge.margin { color: var(--green); background: var(--soft-green); border-color: #bcebd8; }
+    .badge.watch { color: var(--amber); background: var(--soft-amber); border-color: #f8d89a; }
+
+    .num {
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+      font-weight: 700;
+    }
+
+    .soft {
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .detail-panel {
+      position: sticky;
+      top: 14px;
+      min-width: 0;
+    }
+
+    .detail-panel.collapsed {
+      display: block;
+      cursor: pointer;
+    }
+
+    .detail-panel.collapsed .panel-title,
+    .detail-panel.collapsed .detail-body {
+      display: none;
+    }
+
+    .detail-body {
+      padding: 16px;
+      min-height: 0;
+    }
+
+    .wide-only {
+      display: none;
+    }
+
+    main.detail-collapsed .wide-only {
+      display: table-cell;
+    }
+
+    main.detail-collapsed table {
+      min-width: 960px;
+    }
+
+    main.detail-collapsed .table-panel table {
+      font-size: 14px;
+    }
+
+    .detail-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .detail-head h2 {
+      margin: 0 0 4px;
+      font-size: 22px;
+    }
+
+    .rank {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .score {
+      min-width: 82px;
+      text-align: center;
+      border-radius: 8px;
+      background: #111827;
+      color: white;
+      padding: 10px;
+    }
+
+    .score strong {
+      display: block;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .score span {
+      font-size: 12px;
+      color: #cbd5e1;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin: 14px 0;
+    }
+
+    .stat {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+      background: #fbfcff;
+    }
+
+    .stat label {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 17px;
+    }
+
+    .history-table {
+      width: 100%;
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      font-size: 13px;
+    }
+
+    .history-table table {
+      min-width: 0;
+      font-size: 13px;
+    }
+
+    .history-table th,
+    .history-table td {
+      padding: 9px 8px;
+      text-align: right;
+    }
+
+    .history-table th:first-child,
+    .history-table td:first-child {
+      text-align: left;
+      font-weight: 700;
+    }
+
+    .data-caption {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+      margin-top: 8px;
+    }
+
+    .section {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section h3 {
+      margin: 0 0 8px;
+      font-size: 14px;
+    }
+
+    .section p, .section li {
+      color: #344054;
+      line-height: 1.58;
+      font-size: 14px;
+    }
+
+    .section ul {
+      margin: 8px 0 0;
+      padding-left: 18px;
+    }
+
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .research-box {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      background: #fbfcff;
+    }
+
+    .research-box h4 {
+      margin: 0 0 8px;
+      font-size: 13px;
+      color: #344054;
+    }
+
+    .research-box ul {
+      margin: 0;
+    }
+
+    .link-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .link-list a {
+      color: var(--blue);
+      text-decoration: none;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 9px 10px;
+      background: #fbfcff;
+      line-height: 1.4;
+      font-size: 13px;
+    }
+
+    .link-list a:hover {
+      text-decoration: underline;
+    }
+
+    .empty {
+      padding: 36px 16px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .note {
+      margin-top: 14px;
+      padding: 12px;
+      border-radius: 8px;
+      background: #fff7ed;
+      color: #7c2d12;
+      border: 1px solid #fed7aa;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 1180px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+
+      .detail-panel {
+        position: static;
+      }
+
+      table {
+        min-width: 520px;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .header-row {
+        flex-direction: column;
+      }
+
+      .date-pill {
+        text-align: left;
+      }
+
+      .toolbar {
+        grid-template-columns: 1fr;
+      }
+
+      main.detail-collapsed .toolbar {
+        grid-template-columns: 1fr;
+      }
+
+      main.detail-collapsed .filter-group {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        justify-content: stretch;
+      }
+
+      .filter-group {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .stat-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .research-grid {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        padding-top: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header>
+      <div class="header-row">
+        <div>
+          <h1>성장주 대시보드</h1>
+          <p class="subtitle">매출 증가율, 영업이익률, 순이익률을 1차 기준으로 걸러낸 후보군입니다. 회사별 성장 논리, 확인해야 할 리스크, 공시와 리포트 링크를 함께 모아 동료와 같은 화면에서 검토할 수 있게 구성했습니다.</p>
+        </div>
+        <div class="date-pill">
+          기준일<br />
+          <strong>2026-06-04</strong>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="list-column" id="listColumn">
+        <button class="collapsed-rail" id="openListBtn" type="button" title="목록 펼치기">목록 펼치기</button>
+        <div class="toolbar">
+          <input class="search" id="searchInput" type="search" placeholder="회사명, 종목코드, 업종 검색" />
+          <select class="industry-select" id="industrySelect" aria-label="업종 필터">
+            <option value="all">전체 업종</option>
+          </select>
+          <div class="filter-group" aria-label="재무 조건 필터">
+            <button class="filter-btn active" data-filter="all">전체</button>
+            <button class="filter-btn" data-filter="growth">매출증가</button>
+            <button class="filter-btn" data-filter="margin">이익률 높음</button>
+            <button class="filter-btn" data-filter="combo">매출증가 + 이익률</button>
+          </div>
+        </div>
+
+        <div class="table-panel">
+          <div class="panel-title">
+            <h2>후보 리스트</h2>
+            <div class="title-actions">
+              <span class="count" id="resultCount"></span>
+              <button class="icon-btn" id="collapseListBtn" type="button" title="목록 접기" aria-label="목록 접기">‹</button>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>회사</th>
+                  <th class="wide-only">산업</th>
+                  <th>핵심수치</th>
+                  <th class="wide-only">매출증가액</th>
+                  <th class="wide-only">이익률</th>
+                  <th>조건</th>
+                  <th class="wide-only">핵심내용</th>
+                </tr>
+              </thead>
+              <tbody id="companyRows"></tbody>
+            </table>
+          </div>
+          <div class="empty" id="emptyState" hidden>조건에 맞는 회사가 없습니다.</div>
+        </div>
+      </section>
+
+      <aside class="detail-panel" id="detailPanel" aria-live="polite">
+        <button class="collapsed-rail" id="openDetailBtn" type="button" title="상세보기 펼치기">상세보기 펼치기</button>
+        <div class="panel-title">
+          <h2>회사 상세</h2>
+          <div class="title-actions">
+            <button class="icon-btn" id="collapseDetailBtn" type="button" title="상세보기 접기" aria-label="상세보기 접기">›</button>
+          </div>
+        </div>
+        <div class="detail-body" id="detailBody"></div>
+      </aside>
+    </main>
+  </div>
+
+  <script>
+    const companies = [
+      {
+        rank: 1,
+        name: "실리콘투",
+        code: "257720",
+        industry: "K뷰티 유통",
+        revenueGrowth: 61.4,
+        opMargin: 18.4,
+        netMargin: 15.1,
+        score: 92,
+        thesis: "한국 인디 뷰티 브랜드를 해외 B2B와 B2C 채널에 연결하는 플랫폼 성격이 강합니다. 미국, 유럽, 중동 등 법인 확장과 물류 역량 강화가 매출 성장의 핵심입니다.",
+        watch: ["재고와 매출채권 증가가 현금흐름을 압박하는지 확인", "물류비와 관세 부담이 영업이익률을 훼손하는지 확인", "특정 국가나 인기 브랜드 의존도 점검"],
+        facts: "2025년 매출 1조 1,163억원, 영업이익 2,054억원 수준으로 알려졌고 전년 대비 매출은 약 61% 증가했습니다.",
+        links: [
+          ["기업현황 - WiseReport", "https://comp.wisereport.co.kr/company/c1010001.aspx?cmp_cd=257720"],
+          ["알파스퀘어 종목 요약", "https://alphasquare.co.kr/home/stock-summary?code=257720"],
+          ["재무분석 참고", "https://www.bosoop.com/28543615-9bb9-4ddd-8e06-09e2075f3226/"]
+        ]
+      },
+      {
+        rank: 2,
+        name: "파마리서치",
+        code: "214450",
+        industry: "의료기기/스킨부스터",
+        revenueGrowth: 53.2,
+        opMargin: 40.0,
+        netMargin: 31.4,
+        score: 94,
+        thesis: "리쥬란 중심의 의료기기와 화장품 수요가 국내외에서 확대되고 있습니다. 높은 매출총이익률과 제품 브랜드력이 이익률을 지지합니다.",
+        watch: ["해외 허가 국가 확대 속도", "마케팅비와 연구개발비 증가가 마진을 낮추는지 확인", "스킨부스터 경쟁 심화 여부"],
+        facts: "2025년 연결 매출 5,357억원, 영업이익 2,142억원, 영업이익률 40%를 발표했습니다.",
+        links: [
+          ["회사 보도자료", "https://pharmaresearch.com/sub/press/view.html?idx=390"],
+          ["알파스퀘어 종목 요약", "https://alphasquare.co.kr/home/stock-summary?code=214450"],
+          ["기업현황 - WiseReport", "https://comp.wisereport.co.kr/company/c1010001.aspx?cmp_cd=214450"]
+        ]
+      },
+      {
+        rank: 3,
+        name: "산일전기",
+        code: "062040",
+        industry: "변압기/전력기기",
+        revenueGrowth: 50.3,
+        opMargin: 36.2,
+        netMargin: 30.1,
+        score: 95,
+        thesis: "미국 전력망 투자, 데이터센터 전력 수요, 신재생 연계 변압기 수요가 동시에 작동합니다. 생산능력 확대가 매출 인식으로 이어지는지가 핵심입니다.",
+        watch: ["북미 관세와 납기 지연", "고마진 수주가 유지되는지 확인", "고객사 집중도와 환율 민감도"],
+        facts: "2025년 매출 5,019억원, 영업이익 1,816억원, 순이익 1,511억원 수준의 잠정 실적을 공시했습니다.",
+        links: [
+          ["2025 실적 보도", "https://news.nate.com/view/20260205n38339"],
+          ["기업현황 - FnGuide", "https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?MenuYn=Y&NewMenuID=101&ReportGB=&cID=&gicode=A062040&pGB=1&stkGb=701"],
+          ["전력기기 리포트", "https://www.hankyung.com/koreamarket/consensus/pdf/2026-03-83e13a2071e6a0efc984099b7c5bc5de"]
+        ]
+      },
+      {
+        rank: 4,
+        name: "클래시스",
+        code: "214150",
+        industry: "미용 의료기기",
+        revenueGrowth: 38.6,
+        opMargin: 50.7,
+        netMargin: 39.2,
+        score: 93,
+        thesis: "장비 판매와 소모품 반복 매출이 결합된 구조입니다. 브라질 등 해외 직접 영업 전환과 신제품 확장이 중장기 매출 성장의 핵심입니다.",
+        watch: ["브라질 법인 인수 효과가 실제 손익으로 이어지는지 확인", "중국, 미국, 유럽 허가와 출시 속도", "높은 밸류에이션 부담"],
+        facts: "2025년 매출 3,368억원, 영업이익 1,706억원, 순이익 1,320억원 수준으로 확인됩니다.",
+        links: [
+          ["알파스퀘어 종목 요약", "https://alphasquare.co.kr/home/stock-summary?code=214150"],
+          ["2025 실적 보도", "https://www.venturesquare.net/1039139/"],
+          ["기업현황 - WiseReport", "https://comp.wisereport.co.kr/company/c1010001.aspx?cmp_cd=214150"]
+        ]
+      },
+      {
+        rank: 5,
+        name: "리노공업",
+        code: "058470",
+        industry: "반도체 테스트 소켓",
+        revenueGrowth: 33.9,
+        opMargin: 47.5,
+        netMargin: 40.8,
+        score: 90,
+        thesis: "AI 반도체와 고성능 AP 개발 과정에서 테스트 소켓 수요가 늘어나는 구조입니다. 다품종 소량, 고난도 제품 비중이 높은 마진을 설명합니다.",
+        watch: ["PER 부담", "고객사 개발 사이클 둔화", "신공장 투자 후 가동률과 감가상각 부담"],
+        facts: "2025년 매출 3,725억원, 영업이익 1,770억원, 순이익 1,520억원 수준입니다.",
+        links: [
+          ["알파스퀘어 재무", "https://alphasquare.co.kr/home/financial-information?code=058470"],
+          ["메리츠 리포트 요약", "https://consensus.hankyung.com/analysis/downpdf?report_idx=649209"],
+          ["알파스퀘어 종목 요약", "https://alphasquare.co.kr/home/stock-summary?code=058470"]
+        ]
+      },
+      {
+        rank: 6,
+        name: "한미반도체",
+        code: "042700",
+        industry: "HBM 장비",
+        revenueGrowth: 3.2,
+        opMargin: 43.6,
+        netMargin: 37.1,
+        score: 84,
+        thesis: "HBM 생산용 TC 본더 수요가 핵심입니다. 글로벌 AI 반도체 투자가 이어질 경우 고객사 증설과 함께 장비 수요가 확대될 수 있습니다.",
+        watch: ["고객사 발주 타이밍에 따른 분기 변동성", "HBM 투자 사이클 둔화", "이미 높은 시장 기대 반영 여부"],
+        facts: "2025년 매출 5,767억원, 영업이익 2,514억원 수준으로 분석 자료에 언급됩니다.",
+        links: [
+          ["한미반도체 분석", "https://yitesport.tistory.com/83"],
+          ["공정가치연구소", "https://fairvalueresearch.net/listedcompanyInfo/listedcompanySearch.php?stock=042700"],
+          ["관련 보도", "https://biz.chosun.com/industry/business-venture/2025/01/06/UDQLT4PZUVBPVHFOY4T3AVJB7U/"]
+        ]
+      },
+      {
+        rank: 7,
+        name: "삼성바이오로직스",
+        code: "207940",
+        industry: "CDMO",
+        revenueGrowth: 22.9,
+        opMargin: 45.4,
+        netMargin: 25.0,
+        score: 88,
+        thesis: "글로벌 항체의약품 CDMO 수요와 대형 공장 가동률 상승이 성장 동력입니다. 순수 CDMO 체제로 전환되며 사업 해석이 더 단순해졌습니다.",
+        watch: ["대형주라 성장 기대가 이미 반영됐는지", "환율과 글로벌 고객사 수주", "신규 공장 램프업 속도"],
+        facts: "2025년 연결 기준 매출 4조 5,570억원, 영업이익 2조 692억원 수준의 최대 실적이 언급됩니다.",
+        links: [
+          ["StockStep 분석", "https://www.stockstep.kr/stocks/207940"],
+          ["IBK 리포트", "https://file.alphasquare.co.kr/media/pdfs/market-report/%EC%82%BC%EC%84%B1%EB%B0%94%EC%9D%B4%EC%98%A4%EB%A1%9C%EC%A7%81%EC%8A%A4%EC%B6%94%EA%B0%8020260423IBK%ED%88%AC%EC%9E%90%EC%A6%9D%EA%B6%8C."],
+          ["기업정보", "https://www.caesarstock.com/company/207940"]
+        ]
+      },
+      {
+        rank: 8,
+        name: "알테오젠",
+        code: "196170",
+        industry: "바이오 플랫폼",
+        revenueGrowth: 110.0,
+        opMargin: 49.5,
+        netMargin: 66.8,
+        score: 82,
+        thesis: "SC 제형 전환 플랫폼의 상업화와 기술료, 로열티 구조가 실적 레벨을 크게 바꿀 수 있습니다. 자산이 가벼운 플랫폼 모델이라 이익률이 높게 나올 수 있습니다.",
+        watch: ["기술료와 파생상품 손익 등 일회성/비영업 요인 분리", "핵심 제품 상업화 속도", "바이오 특유의 밸류에이션 변동성"],
+        facts: "2025년 매출 2,159억원, 영업이익 1,069억원, 순이익 1,443억원을 발표했습니다.",
+        links: [
+          ["2025 실적 보도", "https://www.medicaltimes.com/Users/News/NewsView.html%3FID%3D1167503"],
+          ["재무분석 참고", "https://contents.premium.naver.com/study21/finance21/contents/260324234807776co"],
+          ["동아일보 기사", "https://www.donga.com/news/Economy/article/all/20251114/132770191/1"]
+        ]
+      },
+      {
+        rank: 9,
+        name: "HD현대일렉트릭",
+        code: "267260",
+        industry: "전력기기",
+        revenueGrowth: 22.8,
+        opMargin: 24.4,
+        netMargin: 17.9,
+        score: 89,
+        thesis: "북미와 중동의 초고압 전력기기 수요, 데이터센터 전력 병목, 노후 전력망 교체가 동시에 작동합니다. 수주잔고가 실적 가시성을 높입니다.",
+        watch: ["이미 대형 수혜주로 인식된 밸류에이션", "수주 마진 하락 가능성", "납기와 연결 매출 인식 시차"],
+        facts: "2025년 매출 4조 795억원, 영업이익 9,953억원, 순이익 7,318억원 수준입니다.",
+        links: [
+          ["알파스퀘어 재무", "https://alphasquare.co.kr/home/financial-information?code=267260"],
+          ["데이터뉴스 분석", "https://www.datanews.co.kr/news/article.html?no=143147"],
+          ["전력기기 리포트", "https://www.hankyung.com/koreamarket/consensus/pdf/2026-03-83e13a2071e6a0efc984099b7c5bc5de"]
+        ]
+      },
+      {
+        rank: 10,
+        name: "휴젤",
+        code: "145020",
+        industry: "톡신/필러",
+        revenueGrowth: 12.0,
+        opMargin: 47.4,
+        netMargin: 33.9,
+        score: 83,
+        thesis: "보툴리눔 톡신과 필러의 글로벌 허가 확대가 핵심입니다. 제품 경쟁력과 해외 판매망이 안정적으로 작동하면 높은 이익률을 유지할 수 있습니다.",
+        watch: ["미국 등 신규 시장 침투 속도", "경쟁사 가격 경쟁", "규제와 소송 리스크"],
+        facts: "2025년 매출 4,251억원, 영업이익 2,016억원, 순이익 1,440억원으로 잠정 집계됐습니다.",
+        links: [
+          ["2025 실적 보도", "https://www.medicaltimes.com/Users/News/NewsView.html?ID=1167296"],
+          ["기업 리서치 참고", "https://static.roa.ai/research/company/20250314_company_965191000.pdf"],
+          ["기업현황 검색", "https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?gicode=A145020"]
+        ]
+      },
+      {
+        rank: 11,
+        name: "티씨케이",
+        code: "064760",
+        industry: "반도체 소재",
+        revenueGrowth: 9.3,
+        opMargin: 27.8,
+        netMargin: 23.2,
+        score: 78,
+        thesis: "SiC 링 등 반도체 공정용 소모성 소재의 품질 경쟁력이 장점입니다. 업황 회복과 고단화, 미세화 공정 확대가 수요를 뒷받침할 수 있습니다.",
+        watch: ["매출 성장률이 아직 높지 않음", "반도체 고객사의 투자 사이클", "소재 단가 경쟁"],
+        facts: "2025년 매출 3,013억원, 영업이익 839억원, 순이익 699억원 수준입니다.",
+        links: [
+          ["알파스퀘어 재무", "https://alphasquare.co.kr/home/financial-information?code=064760"],
+          ["기업현황 - FnGuide", "https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?gicode=A064760"],
+          ["종목 요약", "https://alphasquare.co.kr/home/stock-summary?code=064760"]
+        ]
+      },
+      {
+        rank: 12,
+        name: "인크로스",
+        code: "216050",
+        industry: "디지털 광고/커머스",
+        revenueGrowth: 3.4,
+        opMargin: 22.8,
+        netMargin: 23.7,
+        score: 71,
+        thesis: "광고와 커머스 사업의 비용 구조 개선이 이익률을 지지합니다. AI 마케팅 도구와 검색광고, 커머스 결합이 성장 포인트입니다.",
+        watch: ["매출 성장률이 낮음", "광고 경기 민감도", "티딜 등 커머스 사업의 지속성"],
+        facts: "2025년 매출 505억원, 영업이익 115억원, 순이익 120억원 수준입니다.",
+        links: [
+          ["알파스퀘어 재무", "https://alphasquare.co.kr/home/financial-information?code=216050"],
+          ["2025 실적 보도", "https://www.venturesquare.net/1038073/"],
+          ["알파스퀘어 종목 요약", "https://alphasquare.co.kr/home/stock-summary?code=216050"]
+        ]
+      },
+      {
+        rank: 13,
+        name: "펌텍코리아",
+        code: "251970",
+        industry: "화장품 용기",
+        revenueGrowth: 10.2,
+        opMargin: 15.2,
+        netMargin: 10.8,
+        score: 76,
+        thesis: "K뷰티 브랜드 수출 확대의 후방 수혜를 받는 용기 업체입니다. 펌프 용기와 기능성 패키징 수요가 안정적인 매출 기반을 만듭니다.",
+        watch: ["자회사 수익성 훼손", "원재료 가격과 재고 부담", "주요 고객사 주문 둔화"],
+        facts: "2025년 매출 3,720억원, 영업이익 565억원, 순이익 401억원 수준으로 언급됩니다.",
+        links: [
+          ["알파스퀘어 종목 요약", "https://alphasquare.co.kr/home/stock-summary?code=251970"],
+          ["재무분석 참고", "https://contents.premium.naver.com/study21/finance21/contents/260404204118466ls"],
+          ["메리츠 리포트", "https://www.hanaroetf.com/_upload/public/fund-content/ooq9oD4KCQ5A5iiO/j5kiLJIRMVriylPr.pdf"]
+        ]
+      },
+      {
+        rank: 14,
+        name: "바디텍메드",
+        code: "206640",
+        industry: "진단기기",
+        revenueGrowth: 8.0,
+        opMargin: 17.9,
+        netMargin: 12.0,
+        score: 74,
+        thesis: "현장진단 장비 설치 대수가 늘어나면 이후 카트리지와 소모품 매출이 따라오는 구조입니다. MENA, 아프리카, 국내에서 사상 최대 매출이 언급됩니다.",
+        watch: ["선제 투자로 마진이 낮아지는지", "지역별 매출 지속성", "팬데믹 이후 진단 수요 정상화 영향"],
+        facts: "2025년 매출 1,620억원, 영업이익 289억원, 영업이익률 17.9%를 발표했습니다.",
+        links: [
+          ["2025 실적 보도", "https://www.hankyung.com/amp/202602204582P"],
+          ["기업 리포트", "https://stock.pstatic.net/stock-research/company/21/20241224_company_943812000.pdf"],
+          ["기업현황 검색", "https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?gicode=A206640"]
+        ]
+      },
+      {
+        rank: 15,
+        name: "케어젠",
+        code: "214370",
+        industry: "펩타이드/바이오",
+        revenueGrowth: 4.0,
+        opMargin: 28.0,
+        netMargin: 27.6,
+        score: 70,
+        thesis: "펩타이드 기반 원료와 제품 포트폴리오가 고마진을 만듭니다. 기능성 원료와 해외 판매 확대가 성장 변수입니다.",
+        watch: ["매출 성장률이 충분히 높은지 재확인", "품목별 매출 집중도", "바이오 원료 규제와 인증"],
+        facts: "2025년 매출 728억원, 영업이익 204억원, 순이익 201억원을 공시했습니다.",
+        links: [
+          ["2025 실적 보도", "https://www.yakup.com/news/index.html?cat=12&mode=view&nid=324579"],
+          ["기업현황 검색", "https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?gicode=A214370"],
+          ["종목 검색", "https://alphasquare.co.kr/home/stock-summary?code=214370"]
+        ]
+      },
+      {
+        rank: 16,
+        name: "토비스",
+        code: "051360",
+        industry: "산업용 모니터/디스플레이",
+        revenueGrowth: 36.5,
+        opMargin: 10.0,
+        netMargin: 10.0,
+        score: 77,
+        thesis: "카지노용 산업 모니터와 차량용 디스플레이 수요가 실적 레벨업을 이끌 수 있습니다. 자동차 고객사 다변화가 중장기 성장 포인트입니다.",
+        watch: ["자동차 디스플레이 신규 고객 매출 인식 시점", "카지노 투자 사이클", "마진 10% 이상 유지 여부"],
+        facts: "리서치 자료에서 2025년에도 가파른 실적 성장과 낮은 예상 PER이 언급됐습니다.",
+        links: [
+          ["한국IR협의회 리포트", "https://file.alphasquare.co.kr/media/pdfs/market-report/%ED%86%A0%EB%B9%84%EC%8A%A42026%EB%85%8420251217%ED%95%9C%EA%B5%ADIR%ED%98%91%EC%9D%98%ED%9A%8C."],
+          ["알파스퀘어 리포트", "https://file.alphasquare.co.kr/media/pdfs/company-report/_24075445-051360.pdf"],
+          ["기업현황 검색", "https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?gicode=A051360"]
+        ]
+      },
+      {
+        rank: 17,
+        name: "일승",
+        code: "333430",
+        industry: "조선 기자재/환경장비",
+        revenueGrowth: 15.0,
+        opMargin: 21.4,
+        netMargin: 27.0,
+        score: 73,
+        thesis: "조선 업황 개선과 선박 환경장비 수요가 성장 논리입니다. 규모가 작아 매출 레버리지가 크게 나타날 수 있습니다.",
+        watch: ["소형주 변동성", "수주 지속성과 고객사 편중", "일회성 순이익 여부"],
+        facts: "2025년 매출 507억원, 영업이익 109억원, 순이익 137억원 수준입니다.",
+        links: [
+          ["알파스퀘어 재무", "https://alphasquare.co.kr/home/financial-information?code=333430"],
+          ["한국경제 기업재무", "https://markets.hankyung.com/stock/333430/financial-summary"],
+          ["기업현황 검색", "https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?gicode=A333430"]
+        ]
+      },
+      {
+        rank: 18,
+        name: "안랩",
+        code: "053800",
+        industry: "보안 소프트웨어",
+        revenueGrowth: 8.0,
+        opMargin: 12.4,
+        netMargin: 19.2,
+        score: 72,
+        thesis: "국내 보안 SW 기반에 사우디 합작법인과 제로트러스트 제품군이 해외 성장 옵션을 제공합니다. 안정형 소프트웨어 후보입니다.",
+        watch: ["비영업 금융수익이 순이익률에 미친 영향", "해외 매출이 실제 반복 매출로 커지는지", "성장률이 낮은 안정주 성격"],
+        facts: "2025년 매출 2,677억원, 영업이익 333억원, 당기순이익 515억원을 발표했습니다.",
+        links: [
+          ["회사 블로그 실적 발표", "https://blog.ahnlab.com/m/2947"],
+          ["관련 보도", "https://www.etoday.co.kr/news/view/2556427"],
+          ["재무분석 참고", "https://contents.premium.naver.com/study21/finance21/contents/260331105507120up"]
+        ]
+      },
+      {
+        rank: 19,
+        name: "더블유게임즈",
+        code: "192080",
+        industry: "게임",
+        revenueGrowth: 12.2,
+        opMargin: 32.7,
+        netMargin: 25.6,
+        score: 75,
+        thesis: "소셜카지노의 현금창출력에 아이게이밍과 캐주얼 게임 확장이 더해지는 구조입니다. 이익률은 높지만 성장성 검증이 중요합니다.",
+        watch: ["본업 소셜카지노 성장 둔화", "신사업 매출 비중 확대 여부", "영업외이익 영향을 분리해 볼 필요"],
+        facts: "2025년 추정 매출 7,106억원, 영업이익률 32.7%, 순이익률 25.6%가 리포트에 제시됐습니다.",
+        links: [
+          ["유진투자증권 게임 리포트", "https://www.eugenefn.com/common/files/amail/20250313_192080_uihoon0607_301.pdf"],
+          ["한화투자증권 리포트", "https://file.alphasquare.co.kr/media/pdfs/market-report/%EC%9D%B8%ED%84%B0%EB%84%B7%ED%8F%AC%ED%83%88%EC%8B%A4%EC%B2%B4%ED%99%94%EC%9D%9820251112%ED%95%9C%ED%99%94%ED%88%AC%EC%9E%90%EC%A6%9D%EA%B6%8C."],
+          ["기업현황 검색", "https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?gicode=A192080"]
+        ]
+      },
+      {
+        rank: 20,
+        name: "브이티",
+        code: "018290",
+        industry: "K뷰티 브랜드",
+        revenueGrowth: 1.3,
+        opMargin: 19.0,
+        netMargin: 13.0,
+        score: 69,
+        thesis: "리들샷 등 브랜드 인지도와 글로벌 확장이 성장 논리입니다. 다만 연결 기준 매출 성장률이 낮아 고성장 필터에는 약하게 걸립니다.",
+        watch: ["연결 기준 성장 둔화", "종속회사 실적이 화장품 본업을 희석하는지", "일본 이후 미국/중국/유럽 확장 성과"],
+        facts: "2025년 연결 매출 4,372억원, 영업이익 829억원이 보도됐고 별도 매출은 19.3% 증가로 언급됩니다.",
+        links: [
+          ["2025 실적 보도", "https://view.asiae.co.kr/en/article/2026031918254078846"],
+          ["기업현황 - WiseReport", "https://comp.wisereport.co.kr/company/c1010001.aspx?cmp_cd=018290"],
+          ["2분기 실적 참고", "https://en.topdaily.kr/articles/8281"]
+        ]
+      }
+    ];
+
+    const financialHistory = {
+      "257720": [
+        { year: 2023, revenue: 3429, growth: 107.5, opMargin: 13.8, netMargin: 11.2 },
+        { year: 2024, revenue: 6915, growth: 101.7, opMargin: 19.8, netMargin: 15.9 },
+        { year: 2025, revenue: 11163, growth: 61.4, opMargin: 18.4, netMargin: 15.1 }
+      ],
+      "214450": [
+        { year: 2023, revenue: 2610, growth: 31.0, opMargin: 35.4, netMargin: 26.8 },
+        { year: 2024, revenue: 3497, growth: 34.0, opMargin: 34.8, netMargin: 27.2 },
+        { year: 2025, revenue: 5357, growth: 53.2, opMargin: 40.0, netMargin: 31.4 }
+      ],
+      "062040": [
+        { year: 2023, revenue: 2145, growth: 28.6, opMargin: 19.7, netMargin: 14.8 },
+        { year: 2024, revenue: 3339, growth: 55.7, opMargin: 28.5, netMargin: 22.6 },
+        { year: 2025, revenue: 5019, growth: 50.3, opMargin: 36.2, netMargin: 30.1 }
+      ],
+      "214150": [
+        { year: 2023, revenue: 1801, growth: 27.2, opMargin: 50.5, netMargin: 41.3 },
+        { year: 2024, revenue: 2430, growth: 34.9, opMargin: 50.2, netMargin: 39.0 },
+        { year: 2025, revenue: 3368, growth: 38.6, opMargin: 50.7, netMargin: 39.2 }
+      ],
+      "058470": [
+        { year: 2023, revenue: 2556, growth: -20.5, opMargin: 45.0, netMargin: 39.1 },
+        { year: 2024, revenue: 2782, growth: 8.8, opMargin: 44.7, netMargin: 38.8 },
+        { year: 2025, revenue: 3725, growth: 33.9, opMargin: 47.5, netMargin: 40.8 }
+      ],
+      "042700": [
+        { year: 2023, revenue: 1590, growth: -51.5, opMargin: 21.7, netMargin: 43.0 },
+        { year: 2024, revenue: 5589, growth: 251.5, opMargin: 45.0, netMargin: 37.4 },
+        { year: 2025, revenue: 5767, growth: 3.2, opMargin: 43.6, netMargin: 37.1 }
+      ],
+      "207940": [
+        { year: 2023, revenue: 36946, growth: 23.1, opMargin: 30.2, netMargin: 24.4 },
+        { year: 2024, revenue: 37079, growth: 0.4, opMargin: 33.1, netMargin: 26.1 },
+        { year: 2025, revenue: 45570, growth: 22.9, opMargin: 45.4, netMargin: 25.0 }
+      ],
+      "196170": [
+        { year: 2023, revenue: 965, growth: 237.0, opMargin: -10.8, netMargin: -4.9 },
+        { year: 2024, revenue: 1028, growth: 6.5, opMargin: 2.3, netMargin: 10.4 },
+        { year: 2025, revenue: 2159, growth: 110.0, opMargin: 49.5, netMargin: 66.8 }
+      ],
+      "267260": [
+        { year: 2023, revenue: 27028, growth: 28.4, opMargin: 11.8, netMargin: 7.6 },
+        { year: 2024, revenue: 33223, growth: 22.9, opMargin: 20.1, netMargin: 14.1 },
+        { year: 2025, revenue: 40795, growth: 22.8, opMargin: 24.4, netMargin: 17.9 }
+      ],
+      "145020": [
+        { year: 2023, revenue: 3197, growth: 13.5, opMargin: 37.4, netMargin: 29.6 },
+        { year: 2024, revenue: 3787, growth: 18.5, opMargin: 42.1, netMargin: 31.2 },
+        { year: 2025, revenue: 4251, growth: 12.0, opMargin: 47.4, netMargin: 33.9 }
+      ],
+      "064760": [
+        { year: 2023, revenue: 2282, growth: -26.0, opMargin: 24.8, netMargin: 22.4 },
+        { year: 2024, revenue: 2757, growth: 20.8, opMargin: 27.1, netMargin: 23.0 },
+        { year: 2025, revenue: 3013, growth: 9.3, opMargin: 27.8, netMargin: 23.2 }
+      ],
+      "216050": [
+        { year: 2023, revenue: 468, growth: -12.0, opMargin: 23.1, netMargin: 21.4 },
+        { year: 2024, revenue: 488, growth: 4.3, opMargin: 20.5, netMargin: 21.0 },
+        { year: 2025, revenue: 505, growth: 3.4, opMargin: 22.8, netMargin: 23.7 }
+      ],
+      "251970": [
+        { year: 2023, revenue: 2836, growth: 19.5, opMargin: 12.0, netMargin: 8.7 },
+        { year: 2024, revenue: 3376, growth: 19.0, opMargin: 14.1, netMargin: 10.2 },
+        { year: 2025, revenue: 3720, growth: 10.2, opMargin: 15.2, netMargin: 10.8 }
+      ],
+      "206640": [
+        { year: 2023, revenue: 1376, growth: 18.1, opMargin: 14.0, netMargin: 11.0 },
+        { year: 2024, revenue: 1500, growth: 9.0, opMargin: 16.0, netMargin: 11.8 },
+        { year: 2025, revenue: 1620, growth: 8.0, opMargin: 17.9, netMargin: 12.0 }
+      ],
+      "214370": [
+        { year: 2023, revenue: 792, growth: 14.5, opMargin: 45.0, netMargin: 38.0 },
+        { year: 2024, revenue: 700, growth: -11.6, opMargin: 23.0, netMargin: 24.5 },
+        { year: 2025, revenue: 728, growth: 4.0, opMargin: 28.0, netMargin: 27.6 }
+      ],
+      "051360": [
+        { year: 2023, revenue: 5729, growth: 72.4, opMargin: 5.9, netMargin: 3.8 },
+        { year: 2024, revenue: 6791, growth: 18.5, opMargin: 8.7, netMargin: 6.3 },
+        { year: 2025, revenue: 9270, growth: 36.5, opMargin: 10.0, netMargin: 10.0 }
+      ],
+      "333430": [
+        { year: 2023, revenue: 372, growth: 12.5, opMargin: 8.6, netMargin: 7.5 },
+        { year: 2024, revenue: 441, growth: 18.5, opMargin: 15.4, netMargin: 16.2 },
+        { year: 2025, revenue: 507, growth: 15.0, opMargin: 21.4, netMargin: 27.0 }
+      ],
+      "053800": [
+        { year: 2023, revenue: 2392, growth: 5.7, opMargin: 11.0, netMargin: 18.0 },
+        { year: 2024, revenue: 2478, growth: 3.6, opMargin: 10.5, netMargin: 17.5 },
+        { year: 2025, revenue: 2677, growth: 8.0, opMargin: 12.4, netMargin: 19.2 }
+      ],
+      "192080": [
+        { year: 2023, revenue: 5823, growth: -5.8, opMargin: 30.0, netMargin: 19.0 },
+        { year: 2024, revenue: 6333, growth: 8.8, opMargin: 31.0, netMargin: 22.0 },
+        { year: 2025, revenue: 7106, growth: 12.2, opMargin: 32.7, netMargin: 25.6 }
+      ],
+      "018290": [
+        { year: 2023, revenue: 2955, growth: 24.8, opMargin: 16.3, netMargin: 11.0 },
+        { year: 2024, revenue: 4316, growth: 46.1, opMargin: 26.0, netMargin: 17.0 },
+        { year: 2025, revenue: 4372, growth: 1.3, opMargin: 19.0, netMargin: 13.0 }
+      ]
+    };
+
+    const researchDetails = {
+      "257720": {
+        business: ["K뷰티 브랜드를 해외 도매, 소매, 온라인 채널로 연결하는 유통 플랫폼", "미국, 유럽, 중동 등 해외 법인과 물류 거점 확장이 경쟁력", "인디 브랜드 확산기에 재고 조달, 통관, 현지 유통을 대신 수행"],
+        growthDrivers: ["K뷰티 수출 확대와 인디 브랜드 글로벌 침투", "해외 법인 매출 비중 상승에 따른 플랫폼 레버리지", "브랜드 수가 늘어날수록 유통망 가치가 커지는 구조"],
+        evidence: ["2025년 매출이 전년 대비 60% 이상 증가", "높은 외형 성장에도 영업이익률 10% 중후반 유지", "해외 채널 확장 속도가 실적 성장의 핵심 변수"],
+        checks: ["재고와 매출채권 증가가 영업현금흐름을 갉아먹는지", "인기 브랜드 편중이 있는지", "관세, 물류비, 환율 변화가 마진에 미치는 영향"],
+        sourceNote: "기업현황, 알파스퀘어, 공개 재무분석 자료 기준"
+      },
+      "214450": {
+        business: ["리쥬란 중심의 PN/PDRN 의료기기, 화장품, 관절강 주사제 사업", "스킨부스터 브랜드 인지도를 화장품과 해외 채널로 확장", "강릉 5공장 착공으로 주력 제품 수요 증가에 대응"],
+        growthDrivers: ["리쥬란 내수와 인바운드 피부과 소비 증가", "미국, 유럽, 아시아 채널 확장", "화장품과 의료기기 브랜드 시너지"],
+        evidence: ["2025년 매출 5,357억원, 영업이익률 40% 수준", "리쥬란 화장품 매출 증가와 해외 채널 확장이 다수 보도", "2026년 생산능력 확대 투자가 진행 중"],
+        checks: ["리쥬란 성장 둔화 논란이 실제 매출로 어떻게 확인되는지", "해외 확장 과정의 판관비 증가", "회계 기준 변경과 미국 자회사 변수"],
+        sourceNote: "회사 보도자료, 조선비즈, 코메디닷컴, 증권 리포트 보도 기준"
+      },
+      "062040": {
+        business: ["특수변압기, 리액터, 전력변환 장치 제조", "북미 전력망과 데이터센터 전력 수요에 노출", "중소형 전력기기 중 수익성 레벨업이 가장 강한 축"],
+        growthDrivers: ["북미 특수변압기 수요 강세", "AI 데이터센터와 전력망 교체 투자", "수주잔고가 매출로 인식되는 구간"],
+        evidence: ["KB증권은 2026년 매출 6,687억원, 영업이익률 37%를 전망", "2025년 영업이익률 36%대로 이미 고마진 확인", "전력기기 공급 부족이 장기화되는 환경"],
+        checks: ["수주 단가가 유지되는지", "북미 관세와 납기 리스크", "생산능력 확장 속도와 고객사 편중"],
+        sourceNote: "뉴스핌 KB증권 리포트 브리핑, FnGuide, 실적 공시 보도 기준"
+      },
+      "214150": {
+        business: ["슈링크, 볼뉴머 등 에너지 기반 미용 의료기기와 소모품 판매", "장비 판매 이후 카트리지와 팁 매출이 반복되는 구조", "브라질 등 핵심 시장 직영 전환 추진"],
+        growthDrivers: ["볼뉴머 글로벌 확산", "브라질, 일본, 유럽, 미국 지역 매출 레벨업", "중국과 미국 진출, 신규 장비 쿼드세이와 리팟"],
+        evidence: ["2025년 영업이익률 50% 이상", "회사 측은 2026년 최대 5,100억원 매출 목표를 언급", "LS증권 리포트는 브라질 회복과 미국, 유럽 성장을 핵심으로 봄"],
+        checks: ["브라질 직영 전환 효과", "신제품 매출 기여 시점", "미용기기 업종 밸류에이션 부담"],
+        sourceNote: "조선비즈, LS증권 리포트, 알파스퀘어 기준"
+      },
+      "058470": {
+        business: ["반도체 테스트 소켓과 핀 제조", "고성능 칩 개발 단계에서 필요한 다품종 소량 테스트 부품", "부산 중심의 연구, 생산 통합 체계"],
+        growthDrivers: ["AI 반도체와 고성능 AP 개발 증가", "패키징 고도화로 테스트 난이도와 소켓 단가 상승", "신공장 가동에 따른 생산능력 확대"],
+        evidence: ["한국IR협의회는 2026년 출시 AP와 AI 가속기의 고도화가 수요와 단가를 이끌 수 있다고 분석", "뉴스핌은 2026년 영업이익 2,000억원 돌파 전망을 인용", "소켓은 수율에 중요해 가격 저항이 낮은 부품으로 평가"],
+        checks: ["주요 고객 신제품 사이클", "최대주주 지분 매각 등 오버행", "높은 밸류에이션과 기대 반영도"],
+        sourceNote: "조선비즈, 뉴스핌, 한국IR협의회 리포트 기준"
+      },
+      "042700": {
+        business: ["HBM 제조 핵심 장비인 TC 본더와 후공정 장비 제조", "SK하이닉스 등 주요 메모리 고객사 HBM 투자에 직접 노출", "HBM 세대 전환 때 장비 교체와 증설 수요 발생"],
+        growthDrivers: ["HBM4 양산과 16단 고단화", "와이드 TC 본더, 하이브리드 본더 등 차세대 장비", "주요 고객사 CAPA 확대"],
+        evidence: ["2026년 SK하이닉스에 TC 본더 공급 공시가 보도", "리딩투자증권은 HBM4 발주와 CAPA 확대에 따른 실적 재가속을 전망", "업계는 HBM 시장 성장 자체는 분명하다고 평가"],
+        checks: ["HBM 투자 사이클 변동", "TC 본더 경쟁 심화", "매출이 고객사 발주 타이밍에 크게 흔들리는 구조"],
+        sourceNote: "조선비즈, 머니투데이, 리딩투자증권 리포트 기준"
+      },
+      "207940": {
+        business: ["글로벌 바이오의약품 CDMO", "대형 바이오리액터 기반 위탁생산과 공정개발", "5공장과 미국 록빌 공장까지 생산능력 확장"],
+        growthDrivers: ["항체의약품 CDMO 수요 증가", "5공장 가동과 수주 잔고 확대", "ADC, CRO, 오가노이드 등 포트폴리오 확장"],
+        evidence: ["2025년 영업이익 2조원 돌파 보도", "5공장 준공으로 송도 총 생산능력이 크게 확대", "순수 CDMO 경쟁력 강화가 2026년 성장축으로 언급"],
+        checks: ["대형주 특유의 밸류에이션 부담", "공장 램프업 속도", "수주잔고와 실제 매출 인식 시차"],
+        sourceNote: "조선비즈, 더파마뉴스, IBK 리포트 기준"
+      },
+      "196170": {
+        business: ["ALT-B4 기반 SC 제형 전환 플랫폼", "정맥주사 의약품을 피하주사 형태로 바꾸는 기술", "마일스톤과 로열티가 실적을 크게 바꿀 수 있는 자산가벼운 모델"],
+        growthDrivers: ["키트루다SC 허가와 판매 개시", "글로벌 빅파마 계약 확대", "ADC와 이중항체 등 적용 범위 확장 가능성"],
+        evidence: ["대신증권은 키트루다SC 관련 마일스톤과 로열티 본격화를 언급", "2025년 순이익률이 비정상적으로 높아질 만큼 기술료 영향이 큼", "플랫폼 검증 후 수익 확장 국면으로 평가"],
+        checks: ["로열티율과 상업화 속도", "기술료와 비영업 손익을 본업 수익성과 분리", "바이오 플랫폼 밸류에이션 변동성"],
+        sourceNote: "글로벌이코노믹 대신증권 보도, 메디컬타임즈, 동아일보 기준"
+      },
+      "267260": {
+        business: ["초고압 변압기, 차단기, 배전기기, 회전기기 제조", "북미와 중동 전력망 투자에 강하게 노출", "AI 데이터센터 전력 병목의 대표 수혜주"],
+        growthDrivers: ["북미 초고압 변압기 수주", "미국 현지 생산법인 증설", "데이터센터향 배전기기와 온사이트 발전 수요"],
+        evidence: ["KB증권은 1Q26 북미 신규 수주 13.2억달러를 언급", "2026년 수주 42억달러와 매출 4.3조원 목표 공시 보도", "미국 앨라배마 제2공장 기공식 보도"],
+        checks: ["이미 높은 주가 반영도", "수주 마진 하락 가능성", "납기와 생산 슬롯 병목"],
+        sourceNote: "뉴스핌 KB증권 브리핑, 세계일보, 공정공시 보도 기준"
+      },
+      "145020": {
+        business: ["보툴리눔 톡신, 필러, 웰라쥬 등 미용 의료 제품", "톡신의 글로벌 허가 확대와 필러 판매망이 핵심", "높은 영업이익률을 유지하는 수출형 미용 의료 기업"],
+        growthDrivers: ["미국, 중국, 유럽 톡신 시장 침투", "글로벌 미용 시술 수요 증가", "제품 포트폴리오 다변화"],
+        evidence: ["2025년 영업이익률 47% 수준", "매출과 순이익 모두 안정적 성장", "톡신과 필러의 해외 판매 확대가 중장기 논리"],
+        checks: ["미국 시장 침투 속도", "경쟁사 가격 경쟁", "규제, 소송, 품질 이슈"],
+        sourceNote: "메디컬타임즈, 기업 리서치 자료 기준"
+      },
+      "064760": {
+        business: ["SiC 포커스링 등 반도체 식각 공정 소모성 부품", "반도체 공정 미세화와 고단화에 따른 교체 수요", "소모품 성격이라 업황 회복 시 매출 회복 탄력이 있음"],
+        growthDrivers: ["낸드와 첨단공정 회복", "SiC 링 수요 확대", "B4C 포커스링과 SiC 웨이퍼 등 차세대 소재"],
+        evidence: ["2026년에도 SiC 핵심 기술력과 수급 안정성이 언급", "하나증권은 반도체 업황 반등 때 주목할 소재기업으로 평가", "2025년에도 영업이익률 20% 후반 유지"],
+        checks: ["매출 성장률이 아직 낮음", "고객사 감산과 설비투자 사이클", "후발 경쟁사의 단가 압박"],
+        sourceNote: "재경일보, BusinessPost 하나증권 보도, 알파스퀘어 기준"
+      },
+      "216050": {
+        business: ["디지털 광고 미디어렙, 커머스, AI 마케팅 솔루션", "스텔라이즈 등 AI 기반 광고 운영 도구 개발", "SK그룹 계열 기반과 외부 광고주 확장이 공존"],
+        growthDrivers: ["AI 마케팅 솔루션 고도화", "DOOH, 콘텐츠, 커머스 연계", "신규 커머스 고객사 확보"],
+        evidence: ["2026년 1분기 광고 사업 성장과 AI 마케팅 강화 보도", "인크로스는 2026 트렌드 핵심으로 콘텐츠와 AI를 제시", "이익률은 높지만 매출 성장률은 낮은 안정형 후보"],
+        checks: ["광고 경기 민감도", "AI 솔루션이 실제 매출로 이어지는지", "티딜 등 커머스 사업 지속성"],
+        sourceNote: "벤처스퀘어, ZDNet Korea, 알파스퀘어 기준"
+      },
+      "251970": {
+        business: ["화장품 펌프, 튜브, 용기 전문 제조", "K뷰티 인디 브랜드의 제품 출시와 해외 확산을 후방에서 지원", "자체 모델 금형과 고객 대응력이 강점"],
+        growthDrivers: ["K뷰티 인디 브랜드 성장", "해외 고객사와 글로벌 파트너 확대", "4공장과 6공장 증설에 따른 생산능력 확대"],
+        evidence: ["FnGuide는 K-Beauty 확산과 점유율 확대를 핵심으로 제시", "DB증권은 인디 브랜드 시장 성장의 직접 수혜로 평가", "KB증권은 용기, 튜브 제공 기업으로 수혜를 언급"],
+        checks: ["원재료 가격", "자회사 수익성", "고객사 주문 둔화와 재고 부담"],
+        sourceNote: "FnGuide, 이데일리, KB증권 보도 기준"
+      },
+      "206640": {
+        business: ["현장진단 장비와 카트리지", "장비 설치 후 반복 소모품 매출이 따라오는 구조", "MENA, 아프리카, 국내 매출 확대가 중요"],
+        growthDrivers: ["장비 설치 대수 확대", "소모품 카트리지 매출 증가", "신흥국 진단 수요와 병원 채널 확장"],
+        evidence: ["2025년 매출 1,620억원과 영업이익률 17.9% 발표", "회사 보도에서 MENA, 아프리카, 국내 매출 호조가 언급", "반복 매출 모델이라 설치 기반 확대가 중요"],
+        checks: ["지역별 매출 지속성", "선제 투자에 따른 비용 증가", "진단 수요 정상화와 경쟁"],
+        sourceNote: "한국경제 보도, 기업 리포트 기준"
+      },
+      "214370": {
+        business: ["펩타이드 기반 원료, 건강기능식품, 바이오 소재", "펩타이드 설계와 대량생산 기술이 핵심", "고마진 포트폴리오와 글로벌 IP 확장이 성장 논리"],
+        growthDrivers: ["코글루타이드 미국 시장 진출", "Luxidase 기반 제품 매출 확대", "화성 펩타이드 공장과 스마트팩토리 전환"],
+        evidence: ["2026년 1분기 영업이익률 45% 보도", "회사 대표는 2026년을 글로벌 성장 전환의 원년으로 언급", "2025년 수익성은 좋지만 매출 성장률 확인이 필요"],
+        checks: ["제품별 매출 집중도", "미국 진출 속도", "기능성 원료 규제와 인증"],
+        sourceNote: "한스경제/다음 보도, 한국경제 컨센서스, 실적 보도 기준"
+      },
+      "051360": {
+        business: ["카지노 모니터와 차량용 전장 디스플레이", "사업 분할 후 토비스는 카지노, 네오뷰는 전장에 집중", "전장 디스플레이는 SDV와 차량 내 디스플레이 확대 수혜"],
+        growthDrivers: ["카지노 디스플레이 시장 성장", "차량용 디스플레이 수요 확대", "분할을 통한 사업 가치 재평가"],
+        evidence: ["2026년 분할신설 네오뷰 재상장 예심 통과 보도", "회사 인터뷰에서 SDV 흐름과 디스플레이 수요 확대 언급", "한국IR협의회 리포트는 2026년 성장 재개를 언급"],
+        checks: ["분할 후 지배구조와 주주가치", "카지노 투자 사이클", "전장 고객사 매출 인식 시점"],
+        sourceNote: "한국경제, 조선비즈 인터뷰, 한국IR협의회 리포트 기준"
+      },
+      "333430": {
+        business: ["조선 기자재와 선박 환경장비", "조선 업황 개선과 친환경 규제에 노출", "규모가 작아 수주와 매출 레버리지가 크게 나타날 수 있음"],
+        growthDrivers: ["조선사 수주잔고 증가", "선박 환경 규제에 따른 장비 수요", "소형주 특유의 실적 레버리지"],
+        evidence: ["2025년 매출과 이익률이 함께 개선된 후보", "조선 기자재 밸류체인 회복과 맞물린 성장 논리", "순이익률이 높아 일회성 여부 확인이 중요"],
+        checks: ["수주 지속성", "고객사 편중", "일회성 이익과 환율 영향"],
+        sourceNote: "알파스퀘어, 한국경제 기업재무, FnGuide 기준"
+      },
+      "053800": {
+        business: ["엔드포인트, 네트워크, 클라우드 보안 소프트웨어", "국내 보안 기반에 제로트러스트와 해외 합작법인 옵션", "안정적인 현금창출형 보안 기업"],
+        growthDrivers: ["제로트러스트 보안 수요", "사우디 합작법인과 중동 시장", "AI와 클라우드 보안 제품 확장"],
+        evidence: ["2025년 매출 2,677억원, 영업이익 333억원 발표", "순이익률은 금융수익 영향도 있어 분리 필요", "해외 매출이 반복 매출로 커지면 재평가 가능"],
+        checks: ["매출 성장률이 낮은 안정주 성격", "해외 법인의 실제 매출 기여", "보안 예산과 공공 조달 사이클"],
+        sourceNote: "안랩 공식 블로그, 이투데이, 재무분석 자료 기준"
+      },
+      "192080": {
+        business: ["소셜카지노 게임과 아이게이밍, 캐주얼 게임", "높은 현금창출력에 인수 기업 성과를 더하는 구조", "주주환원과 M&A가 밸류에이션 정상화 변수"],
+        growthDrivers: ["슈퍼네이션 아이게이밍 성장", "팍시게임즈와 캐주얼 사업 확대", "비용 효율화와 인수 기업 연결 효과"],
+        evidence: ["교보증권은 2026년 매출 성장과 비용 효율화 효과를 전망", "하나증권 산업전망은 슈퍼네이션과 팍시게임즈 고성장을 언급", "대신증권은 2026년 매출 14.7%, 영업이익 21.9% 성장을 추정"],
+        checks: ["소셜카지노 본업 성장 정체", "신사업 마케팅비", "게임 규제와 지역별 라이선스"],
+        sourceNote: "BusinessPost 교보증권 보도, 하나증권 산업전망, 대신증권 리포트 기준"
+      },
+      "018290": {
+        business: ["리들샷 중심의 K뷰티 브랜드", "일본 성공 경험을 미국, 러시아, 유럽, 중동으로 확장", "화장품 부문 수출 비중이 높은 글로벌 확장형 기업"],
+        growthDrivers: ["리들샷 글로벌 채널 확대", "미국 얼타, 세포라 등 오프라인 채널 기대", "중국, 유럽, 중동 신규 시장 확장"],
+        evidence: ["더벨은 화장품 부문 수출 비중 79%와 미국, 러시아 성과 가시화를 보도", "아시아경제는 2025년 매출 4,372억원과 글로벌 확장을 언급", "다만 연결 매출 성장률 둔화로 고성장 재확인이 필요"],
+        checks: ["연결 기준 성장 둔화", "마케팅비가 매출로 연결되는지", "리들샷 이후 후속 제품 경쟁력"],
+        sourceNote: "더벨, 아시아경제, 공개 리포트 분석 기준"
+      }
+    };
+
+    const checkResults = {
+      "257720": {
+        updatedAt: "2026-06-04",
+        items: ["하나증권 자료 기준 1Q26 매출과 영업이익이 각각 전년 대비 60%대 성장하며 성장 지속은 확인됨", "재고자산과 매출채권 충당률이 낮게 유지됐다는 분석이 있어 단기 신용 리스크는 통제 중으로 판단", "유럽 초기 할인 판매로 매출총이익률 하락 가능성이 언급돼, 고성장보다 마진 방어가 다음 핵심"],
+        conclusion: "성장성은 확인됐고, 다음 분기에는 유럽/중동/멕시코 확장과 매출총이익률을 같이 봐야 함"
+      },
+      "214450": {
+        updatedAt: "2026-06-04",
+        items: ["1Q26 매출 1,461억원, 영업이익 573억원으로 시장 기대를 상회했다는 자료가 확인됨", "화장품 부문은 50%대 성장으로 전사 실적을 견인했지만, 의료기기 성장률 둔화 우려가 남아 있음", "리쥬란 서유럽 로드쇼와 2분기 의료기기 수출 회복 기대가 확인 포인트"],
+        conclusion: "고마진 체력은 유지됐지만, 리쥬란 의료기기 성장 재가속 여부를 2Q26에서 확인해야 함"
+      },
+      "062040": {
+        updatedAt: "2026-06-04",
+        items: ["1Q26 매출 1,503억원, 순이익 459억원 수준으로 컨센서스를 소폭 상회한 자료가 확인됨", "KB증권은 2026년 매출 6,687억원, 영업이익률 37%를 전망해 고마진 지속 가능성을 제시", "전력망 변압기 관세 논의 마무리와 북미 특수변압기 수요가 성장 가속 요인으로 언급됨"],
+        conclusion: "수익성은 확인됐고, 신규 공급계약과 수주잔고 증가 속도를 계속 추적할 필요"
+      },
+      "214150": {
+        updatedAt: "2026-06-04",
+        items: ["2025년 영업이익률 50% 이상은 확인됐고, 2026년에도 40%대 중후반 마진 전망이 제시됨", "브라질 MedSystems 인수 마무리 시점 때문에 1Q26 매출 인식은 제한적이었다는 리포트가 있음", "2분기부터 브라질 직영 전환 효과와 중국/미국/유럽 진출 모멘텀이 본격 확인될 전망"],
+        conclusion: "1Q26만으로 판단하기보다 2Q26부터 해외 직영 전환 효과를 확인해야 함"
+      },
+      "058470": {
+        updatedAt: "2026-06-04",
+        items: ["AI 가속기와 2026년 AP 고도화가 테스트 소켓 수요와 단가를 밀어올릴 수 있다는 리포트 논리가 유지됨", "신공장 가동률과 고객사 신제품 사이클이 실적 가시성의 핵심으로 남아 있음", "최대주주 지분 매각 관련 오버행과 높은 밸류에이션 부담은 여전히 해소되지 않음"],
+        conclusion: "사업 퀄리티는 좋지만, 주가 반영도와 오버행을 함께 봐야 하는 고품질 고평가 후보"
+      },
+      "042700": {
+        updatedAt: "2026-06-04",
+        items: ["2026년 1월 SK하이닉스향 HBM TC본더 96.5억원 수주가 확인됨", "HBM4 16단과 와이드 TC본더, 하이브리드 본더 개발 이슈는 성장 옵션으로 유효", "다만 한화세미텍 경쟁, 마이크론 HBM4 초기 공급 불확실성 등 고객사/경쟁 리스크가 커짐"],
+        conclusion: "HBM 장비 성장성은 살아 있지만, 독점성 약화와 고객사 발주 변동을 더 엄격하게 봐야 함"
+      },
+      "207940": {
+        updatedAt: "2026-06-04",
+        items: ["1Q26 실적은 견고하다는 평가가 있었지만 수주 정체와 목표가 하향 리포트도 확인됨", "5공장, 미국 록빌 공장, 6공장 착공 여부가 중장기 성장 판단의 핵심 변수", "대형주라 성장 논리가 명확해도 주가에는 상당 부분 반영됐을 가능성이 있음"],
+        conclusion: "안정 성장주는 맞지만, 신규 수주 회복과 5공장 선행 수주 확인 전까지 공격적 성장 후보로 보기엔 신중"
+      },
+      "196170": {
+        updatedAt: "2026-06-04",
+        items: ["1Q26 매출 716억원, 영업이익 393억원으로 플랫폼 수익성이 재확인됨", "2025년 급성장은 키트루다SC 상업화 마일스톤과 라이선스 수익 영향이 커 일회성/반복성 구분이 필요", "시장의 관심은 2분기 이후 MSD 키트루다SC 관련 마일스톤과 향후 로열티 규모로 이동"],
+        conclusion: "성장성은 강하지만, 매출의 반복성은 아직 확인 중인 바이오 플랫폼 후보"
+      },
+      "267260": {
+        updatedAt: "2026-06-04",
+        items: ["1Q26 매출 1조365억원, 영업이익 2,583억원, 영업이익률 24.9%로 이익 성장 확인", "1분기 누적 수주 18억달러, 수주잔고 증가와 미국 앨라배마 제2공장 착공이 확인됨", "배전기기 일부 매출 이연과 중동 지정학 리스크는 단기 변수"],
+        conclusion: "수주와 이익률 모두 확인됐고, 관세/납기보다 주가 반영도가 더 큰 체크포인트"
+      },
+      "145020": {
+        updatedAt: "2026-06-04",
+        items: ["1Q26 매출 1,166억원, 영업이익 476억원, 순이익 406억원으로 역대 1분기 최대 실적 확인", "미국·중국·유럽·브라질 주요 4대 시장에서 약 210억원 매출 신장이 확인됨", "영업이익률은 40%대 초반으로 높지만 전년 대비 하락해 해외 직접판매 투자비를 계속 봐야 함"],
+        conclusion: "글로벌 침투는 확인됐고, 미국 직판 전환 후 ASP와 판관비 효율이 다음 관전 포인트"
+      },
+      "064760": {
+        updatedAt: "2026-06-04",
+        items: ["1Q26 매출 954억원, 순이익 251억원 수준으로 전년 대비 성장 확인", "NAND V9, 2나노 GAA, SiC 링 수요 증가와 중국 신규 매출 기대가 리포트에 언급됨", "후발 경쟁과 고객사 투자 사이클 리스크는 남아 있지만 1Q26 턴어라운드는 확인됨"],
+        conclusion: "보류 후보에서 회복 후보로 상향 검토 가능, 단 반도체 사이클 의존도는 계속 체크"
+      },
+      "216050": {
+        updatedAt: "2026-06-04",
+        items: ["1Q26 매출 104억원으로 광고 사업 성장과 신규 커머스 고객 확보가 확인됨", "스텔라이즈 고도화와 신규 AI 마케팅 솔루션 개발 계획이 확인됨", "절대 매출 규모와 성장률은 낮아 고성장주보다는 고마진 안정형에 가까움"],
+        conclusion: "이익률은 좋지만 투자 우선순위는 낮음. AI 솔루션 매출화가 확인되면 재평가"
+      },
+      "251970": {
+        updatedAt: "2026-06-04",
+        items: ["4공장 가동으로 생산능력 약 30% 확대 계획이 확인됨", "증권가에서 2026년 매출 4,502억원, 영업이익 677억원 전망이 제시됨", "원재료와 자회사 수익성 우려는 남지만 K뷰티 후방 수혜 논리는 강화됨"],
+        conclusion: "화려하진 않지만 K뷰티 곡괭이형 후보로 유지, 4공장 효율화 효과 확인 필요"
+      },
+      "206640": {
+        updatedAt: "2026-06-04",
+        items: ["2025년 최대 매출 이후 장비 설치 기반과 카트리지 반복 매출 구조가 계속 핵심", "MENA, 아프리카, 국내 매출 호조가 2025년 실적에서 확인됐고 2026년에도 지역 확장 여부가 중요", "선제 투자와 진단 수요 정상화가 단기 마진 변수"],
+        conclusion: "반복 매출 구조는 매력적이나, 2026년 지역별 매출 지속성을 추가 확인해야 함"
+      },
+      "214370": {
+        updatedAt: "2026-06-04",
+        items: ["1Q26 매출 227억원, 영업이익 102억원으로 영업이익률 45% 수준 회복이 확인됨", "코글루타이드 FDA NDI 승인과 Luxidase 상업화가 성장 옵션으로 확인됨", "과거 공급계약 종료는 회사 설명상 현재 매출 기반에는 영향이 작다고 밝혔으나, 실제 발주 전환을 봐야 함"],
+        conclusion: "펩타이드 플랫폼 성장 옵션은 강해졌고, 실제 PO·선적·반복 매출 전환이 핵심"
+      },
+      "051360": {
+        updatedAt: "2026-06-04",
+        items: ["2026년 5월 전장 디스플레이 사업부 인적분할과 네오뷰 재상장 예심 통과가 확인됨", "존속 토비스는 카지노 모니터, 신설 네오뷰는 전장 디스플레이로 사업 가치 분리가 진행 중", "분할 후 비교 기준과 주주가치 평가가 바뀌므로 과거 재무 추세 해석에 주의 필요"],
+        conclusion: "성장 논리보다 분할 이벤트가 더 중요한 구간. 분할 후 재무를 새로 봐야 함"
+      },
+      "333430": {
+        updatedAt: "2026-06-04",
+        items: ["1Q26 연결 매출 120.8억원 공시는 확인됐지만 영업이익과 수주 질에 대한 공개 정보는 제한적", "조선 기자재 업황 회복 논리는 유지되나 회사별 수주잔고와 고객사 편중 확인이 아직 필요", "순이익률이 높았던 2025년 실적의 반복성은 추가 검증 필요"],
+        conclusion: "정보 부족으로 우선순위 하향. 다음에는 DART 분기보고서와 수주 공시를 직접 봐야 함"
+      },
+      "053800": {
+        updatedAt: "2026-06-04",
+        items: ["1Q26 매출 590억원, 영업이익 19억원, 순이익 39억원으로 전년 대비 증가 확인", "사우디 합작사를 중심으로 해외 매출 확대가 실적 개선 요인으로 언급됨", "영업이익률은 아직 낮아 해외 매출이 반복 매출로 커지는지 확인 필요"],
+        conclusion: "보안 안정주는 맞지만 고성장 후보로 보려면 중동 매출의 규모와 반복성을 더 확인해야 함"
+      },
+      "192080": {
+        updatedAt: "2026-06-04",
+        items: ["1Q26 매출, 영업이익, 순이익 모두 두 자릿수 성장했다는 보도가 확인됨", "DTC 비중 확대와 슈퍼네이션·팍시게임즈 흑자 전환으로 전 사업부문이 이익에 기여한 것으로 보도됨", "소셜카지노 본업 성장 정체와 게임 규제 리스크는 여전히 남아 있음"],
+        conclusion: "현금창출력과 신사업 흑자 전환은 긍정적. 성장주보다는 저평가 현금흐름주 성격"
+      },
+      "018290": {
+        updatedAt: "2026-06-04",
+        items: ["1Q26 매출 1,143억원, 영업이익 173억원, 순이익 184억원으로 확인됨", "유럽·중동 성장과 미국 마케팅 투자가 확인됐지만 KB증권은 2026년 실적 성장 제한을 이유로 목표가를 하향", "리들샷 외 PDRN 등 후속 제품군 확장은 긍정적이나 연결 매출 성장 둔화가 부담"],
+        conclusion: "브랜드 확장성은 있지만 고성장 필터에서는 후순위. 마케팅 투자 회수 여부가 관건"
+      }
+    };
+
+    const remainingChecks = {
+      "257720": ["유럽 초기 할인 판매가 2026년 연간 매출총이익률을 얼마나 낮추는지", "재고와 매출채권 증가가 2Q26 이후 영업현금흐름에 미치는 영향", "미국 외 지역 확장이 특정 브랜드 의존도를 낮추는지"],
+      "214450": ["2Q26 리쥬란 의료기기 수출 회복 여부", "해외 확장 과정에서 판관비율이 다시 높아지는지", "화장품 고성장이 의료기기 성장 둔화를 연간으로 상쇄하는지"],
+      "062040": ["2Q26 이후 신규 공급계약과 수주잔고 증가 속도", "북미 관세 이슈가 실제 수익성에 미치는 영향", "고마진 특수변압기 수주 비중 유지 여부"],
+      "214150": ["브라질 직영 전환 효과가 2Q26 이후 매출로 확인되는지", "중국 볼뉴머 인허가와 미국·태국 쿼드세이 출시 성과", "높은 밸류에이션을 정당화할 신제품 매출 기여"],
+      "058470": ["최대주주 지분 매각 관련 오버행 해소 여부", "2027년 신공장 램프업과 감가상각 부담", "AI 가속기와 AP 신제품 사이클이 연간 주문으로 이어지는지"],
+      "042700": ["HBM4 장비 발주가 2Q26 이후에도 이어지는지", "경쟁사 진입으로 TC 본더 마진이 낮아지는지", "SK하이닉스 외 고객 다변화 가능성"],
+      "207940": ["5공장 선행 수주 가시화", "신규 수주 회복 여부", "대형주 밸류에이션 대비 이익 성장률"],
+      "196170": ["키트루다SC 상업화 이후 로열티 규모와 반복성", "마일스톤과 본업 반복 매출의 구분", "추가 빅파마 계약 또는 기존 계약 확장 여부"],
+      "267260": ["주가에 수주 호황이 얼마나 반영됐는지", "수주 마진 하락 가능성", "미국 공장 증설과 납기 병목 해소 속도"],
+      "145020": ["3Q26 이후 미국 직판 매출이 판관비 증가를 상쇄하는지", "중국·유럽·브라질 매출 증가 지속성", "경쟁사 가격 경쟁과 규제 리스크"],
+      "064760": ["1Q26 회복이 연간 성장으로 이어지는지", "고객사 설비투자 사이클", "후발 경쟁사의 단가 압박"],
+      "216050": ["AI 마케팅 솔루션이 하반기 실제 매출로 연결되는지", "티딜 등 커머스 사업의 지속성", "광고 경기 둔화 시 이익률 방어력"],
+      "251970": ["4공장 정상화가 2Q26 이후 원가율 개선으로 확인되는지", "자회사 수익성 개선 여부", "K뷰티 고객사 주문 둔화와 재고 부담"],
+      "206640": ["MENA·아프리카·국내 매출 호조의 2026년 지속성", "장비 설치 기반이 카트리지 반복 매출로 전환되는 속도", "선제 투자 이후 영업이익률 방어"],
+      "214370": ["코글루타이드와 Luxidase의 실제 PO·선적 확인", "고마진 제품 매출의 반복성", "미국 진출 관련 인증·규제 진행 상황"],
+      "051360": ["분할 후 토비스와 네오뷰의 별도 재무", "카지노 모니터와 전장 디스플레이 각각의 수주잔고", "분할 이후 주주가치와 밸류에이션 재평가"],
+      "333430": ["DART 분기보고서 기준 수주잔고와 고객사 편중", "2025년 높은 순이익률의 반복 가능성", "조선 기자재 수주가 실제 매출로 이어지는 속도"],
+      "053800": ["사우디 합작법인의 실제 반복 매출 규모", "제로트러스트 제품군 매출 기여", "영업이익률이 10%대 이상으로 회복되는지"],
+      "192080": ["슈퍼네이션·팍시게임즈 흑자 전환 지속성", "소셜카지노 본업 매출 둔화 여부", "아이게이밍 규제와 마케팅비 증가"],
+      "018290": ["미국·유럽 사업성이 하반기 매출로 증명되는지", "리들샷 이후 PDRN 등 후속 제품 매출", "연결 기준 매출 성장률 재가속 여부"]
+    };
+
+    const quickCheckUpdates = {
+      "257720": ["SK증권 2026년 2월 리포트에서 4Q25 재고자산이 전분기 대비 약 400억원 증가한 점과 매출원가율 상승이 언급됨", "2026년 연간 영업이익률 추정치는 19% 안팎으로 제시되어 고마진 구조 자체는 유지 전망"],
+      "214450": ["1Q26 품목별 매출은 의료기기 내수 584억원·수출 211억원, 화장품 내수 153억원·수출 269억원으로 확인됨", "의료기기 내수 순액 인식 회계 변경과 1분기 비수기 영향은 이미 리포트에서 확인됨"],
+      "062040": ["1Q26 매출 1,503억원, 영업이익 555억원, 순이익 459억원으로 고마진 실적은 확인됨", "북미 특수변압기 수요와 2026년 영업이익률 37% 전망이 확인되어 수익성 가설은 유지"],
+      "214150": ["1Q26 매출 872억원, 영업이익 372억원, 영업이익률 42.7%로 확인됨", "MedSystems 인수는 3월 10일 마무리되어 1Q26 브라질 매출 인식이 제한적이었다는 리포트가 확인됨"],
+      "058470": ["1Q26 매출 998억원, 영업이익 473억원으로 전년 대비 각각 27.2%, 35.4% 성장 확인", "신한투자증권은 AI 수요에 힘입은 구조적 성장 구간으로 보고 2026년 매출 4,472억원, 영업이익 2,216억원을 전망"],
+      "042700": ["2026년 1월 SK하이닉스향 TC본더 공급 공시와 1Q26 TC본더 수출 V자 회복 조짐이 확인됨", "한화세미텍의 존재감 확대와 HBM4 TC본더 경쟁 심화도 확인되어 독점성 리스크는 실제 체크포인트로 격상"],
+      "207940": ["삼성증권은 1Q26 실적은 견고하지만 수주 정체를 이유로 목표가를 하향했고, 5공장 선행 수주를 핵심 변수로 제시", "신영증권은 40% 중반대 영업이익률 시현 가능성을 긍정적으로 보면서도 5공장 수주와 6공장 착공 확인을 요구"],
+      "196170": ["1Q26 매출 716억원, 영업이익 393억원으로 플랫폼 수익성은 확인됨", "시장의 관심은 2Q26부터 본격화될 MSD 키트루다SC 마일스톤 수령 규모로 이동했다는 보도가 확인됨"],
+      "267260": ["1Q26 매출 1조365억원, 영업이익 2,583억원, 북미 매출 전년 대비 26.6% 증가 확인", "1Q26 수주잔고 78.9억달러, 연간 수주 가이던스의 42.6%를 1분기에 달성했다는 리포트가 확인됨"],
+      "145020": ["1Q26 국내 매출은 3개 분기 만에 반등했고 미국 직접판매와 파트너 전략 병행 계획이 확인됨", "하나증권은 3분기부터 미국 직판 매출이 늘어난 판관비를 상쇄하며 수익성 개선을 기대"],
+      "064760": ["1Q26 실적 회복과 NAND V9, 2나노 GAA, SiC 링 수요 증가 논리가 확인됨", "다만 후발 경쟁과 고객사 투자 사이클은 공개자료만으로 해소되지 않음"],
+      "216050": ["1Q26 매출 104억원과 광고 사업 성장, 신규 커머스 고객 확보가 확인됨", "스텔라이즈 고도화와 신규 AI 마케팅 솔루션 개발 계획은 확인됐지만 실제 매출 기여는 아직 미확인"],
+      "251970": ["메리츠증권은 1Q26 리포트에서 원재료 공급 불확실성 완화는 긍정적이나 4공장 정상화 효과 확인이 필요하다고 제시", "4공장 가동과 6공장 상반기 준공 계획은 공개 기사로 확인됨"],
+      "206640": ["2025년 최대 매출과 MENA·아프리카·국내 호조는 확인됐으나 2026년 1Q 지역별 반복 매출 자료는 제한적", "장비 설치 기반이 카트리지 매출로 전환되는지는 다음 분기 실적 설명자료 확인 필요"],
+      "214370": ["1Q26 영업이익률 45% 수준 회복과 코글루타이드 FDA NDI 승인, Luxidase 상업화 기대는 확인됨", "실제 PO·선적과 반복 매출 전환은 아직 공개자료로 확인되지 않음"],
+      "051360": ["차량용 전장 디스플레이 사업부를 네오뷰로 인적분할하고 2026년 7월 1일 분할 예정인 점 확인", "존속 토비스는 카지노 디스플레이, 신설 네오뷰는 전장 디스플레이를 담당하는 구조로 확인됨"],
+      "333430": ["1Q26 연결 매출 120.8억원은 확인됐으나 수주잔고와 고객사 편중 자료는 공개 검색만으로 제한적", "소형 조선 기자재 후보라 DART 분기보고서 직접 확인 우선순위가 높음"],
+      "053800": ["1Q26 매출 591억원, 영업이익 19억원으로 전년 대비 매출 3.3%, 영업이익 84.4% 증가 확인", "사우디 합작법인 Rakeen 중심 해외 매출 증가가 실적에 긍정적 영향을 줬다는 회사 코멘트 확인"],
+      "192080": ["1Q26 연결 매출 2,050억원, 영업이익 685억원으로 분기 최대 실적 확인", "팍시게임즈와 슈퍼네이션이 모두 흑자 전환해 전 사업 부문이 영업이익에 기여한 구조가 확인됨"],
+      "018290": ["메리츠증권은 상반기까지 매출 증가와 영업이익 감소가 이어질 수 있다고 분석", "PDRN 라인 매출 비중이 2025년 4분기 20%를 넘었고, 미국·유럽 사업성 검증과 후속 히트제품이 핵심이라고 제시"]
+    };
+
+    const remainingCheckResearch = {
+      "257720": {
+        checked: ["유럽 진출 초기 할인 판매로 매출총이익률이 전년 대비 낮아졌다는 2026년 5월 리포트 확인", "2Q26에도 매출과 영업이익의 고성장 전망은 유지되는 것으로 확인"],
+        still: ["유럽 할인 판매가 연간 마진을 얼마나 낮출지는 2Q~3Q26 실적 확인 필요", "재고와 매출채권이 영업현금흐름에 미치는 영향은 분기보고서 누적 추적 필요"]
+      },
+      "214450": {
+        checked: ["1Q26 의료기기 수출은 저점 통과 가능성이 제시됐고, 4월 유럽 유통사향 추가 선적이 확인됨", "화장품 내수와 수출 모두 강한 성장 전망이 제시되어 의료기기 둔화 보완 논리는 유지"],
+        still: ["2Q26 의료기기 수출 반등 폭", "화장품 고성장이 연간으로 의료기기 성장 둔화를 상쇄하는지"]
+      },
+      "062040": {
+        checked: ["KB증권 리포트에서 북미 특수변압기 수요 강세와 2026년 영업이익률 37% 전망 확인", "2026년 신규 수주와 수주잔고 확대 기대가 리포트에 반영됨"],
+        still: ["북미 관세 이슈가 실제 수익성에 미치는 영향", "고마진 특수변압기 수주 비중이 연말까지 유지되는지"]
+      },
+      "214150": {
+        checked: ["MedSystems 인수 종료 후 브라질 실적은 2Q26부터 계단식으로 확인될 가능성이 제시됨", "미국 쿼드세이 3월 출시, 9월 볼뉴머 중국 허가 예정이 리포트에 반영됨"],
+        still: ["브라질 직영 전환이 매출과 마진에 미치는 실제 효과", "중국 볼뉴머 허가와 미국 쿼드세이 판매 속도"]
+      },
+      "058470": {
+        checked: ["1Q26 매출과 영업이익이 모두 성장했고, AI 테스트 소켓 수요 증가가 실적 개선 요인으로 분석됨", "2026년 매출과 영업이익 성장 전망이 상향된 리포트 확인"],
+        still: ["신공장 램프업은 2027년 이후 확인 과제", "오버행과 고객사 신제품 주문 지속성은 계속 추적"]
+      },
+      "042700": {
+        checked: ["SK하이닉스향 HBM4 TC본더 발주 재개가 확인됨", "한화세미텍이 SK하이닉스 공급망에 진입하며 경쟁 심화가 실제 리스크로 확인됨"],
+        still: ["HBM4 장비 발주가 2Q26 이후에도 이어지는지", "경쟁 심화가 한미반도체의 장비 마진과 수주 점유율에 미치는 영향"]
+      },
+      "207940": {
+        checked: ["1Q26 실적은 견고하지만 수주 정체가 리포트에서 지적됨", "록빌 공장 매출 인식은 3Q26부터, 5공장 선행 수주와 6공장 착공이 핵심 변수로 확인됨"],
+        still: ["5공장 선행 수주 가시화", "신규 수주 회복과 신규 모달리티 확장 성과"]
+      },
+      "196170": {
+        checked: ["1Q26 성과는 ALT-B4 플랫폼 수요를 확인한 사례로 회사가 설명", "시장 관심은 2Q26 이후 키트루다SC 관련 마일스톤과 로열티 규모로 이동"],
+        still: ["키트루다SC 로열티의 반복 매출 규모", "추가 빅파마 계약 또는 기존 계약 확장 여부"]
+      },
+      "267260": {
+        checked: ["1Q26 북미 신규 수주 13.2억달러와 수주잔고 확대가 확인됨", "미국 앨라배마 제2공장 착공과 울산공장 증설 계획이 확인됨"],
+        still: ["수주 마진 하락 가능성", "증설이 실제 납기 병목을 얼마나 완화하는지"]
+      },
+      "145020": {
+        checked: ["1Q26 미국·중국·유럽·브라질 4대 시장 매출 증가 확인", "북남미 지역 매출이 전년 대비 크게 증가했고 미국 직판 체제 구축 방향이 확인됨"],
+        still: ["미국 직판 후 판관비 증가를 매출과 ASP 상승이 상쇄하는 시점", "중국·유럽·브라질 성장의 분기 지속성"]
+      },
+      "064760": {
+        checked: ["1Q26 실적 회복과 고다층 NAND 전환, SiC 링 수요 부활 논리가 확인됨", "반도체 소모품 수요 회복은 확인됐지만 경쟁과 고객사 투자 사이클 리스크는 남음"],
+        still: ["1Q26 회복이 연간 성장으로 이어지는지", "후발 경쟁사의 단가 압박 여부"]
+      },
+      "216050": {
+        checked: ["1Q26 광고 사업 성장과 신규 커머스 고객 확보가 확인됨", "스텔라이즈 고도화와 신규 AI 마케팅 솔루션 개발 계획은 확인됨"],
+        still: ["AI 솔루션이 실제 매출로 연결되는지", "광고 경기 둔화 때 이익률이 방어되는지"]
+      },
+      "251970": {
+        checked: ["메리츠증권 리포트에서 1Q26 4공장 정상화 확인 필요가 명시됨", "원재료 공급 불확실성 완화는 긍정적이나 4공장 효과는 아직 확인 전으로 판단"],
+        still: ["4공장 정상화가 2Q26 이후 원가율과 펌프사업부 매출 개선으로 나타나는지", "자회사 수익성 개선 여부"]
+      },
+      "206640": {
+        checked: ["2025년 MENA·아프리카·국내 호조와 장비 설치 기반 성장 논리는 확인됨", "2026년 1Q 지역별 반복 매출을 확인할 수 있는 공개자료는 제한적"],
+        still: ["MENA·아프리카 매출 지속성", "장비 설치 기반이 카트리지 반복 매출로 전환되는 속도"]
+      },
+      "214370": {
+        checked: ["1Q26 매출과 영업이익률 회복, 코글루타이드와 Myoki 물량 반영, Luxidase 상업화 시작이 확인됨", "해당 물량은 실제 매출로 이어질 가능성이 높은 준비 재고로 회사가 설명"],
+        still: ["실제 PO와 선적 확인", "고마진 제품 매출의 반복성"]
+      },
+      "051360": {
+        checked: ["토비스는 2026년 7월 1일 인적분할 예정이고, 7월 20일 변경상장·재상장 일정이 확인됨", "존속 토비스는 카지노·산업용 모니터, 신설 네오뷰는 차량용 전장 디스플레이 담당 구조로 확인"],
+        still: ["분할 후 별도 재무", "각 사업부별 수주잔고와 고객사 공개"]
+      },
+      "333430": {
+        checked: ["1Q26 연결 매출 120.8억원 수준은 확인됐지만 수주잔고와 고객사 편중 자료는 공개자료로 제한적", "조선 기자재 업황 회복 논리는 유지되나 회사별 수주 질 확인은 부족"],
+        still: ["DART 분기보고서 기반 수주잔고와 고객사 편중 확인", "2025년 높은 순이익률의 반복 가능성"]
+      },
+      "053800": {
+        checked: ["1Q26 매출과 영업이익 증가, 사우디 합작법인 Rakeen 중심 해외 매출 증가 효과가 확인됨", "제로트러스트 제품군은 성장 옵션으로 남아 있으나 매출 기여 규모는 아직 제한적으로 공개됨"],
+        still: ["사우디 합작법인의 반복 매출 규모", "제로트러스트 제품군의 실제 매출 기여"]
+      },
+      "192080": {
+        checked: ["1Q26 분기 최대 실적, 슈퍼네이션과 팍시게임즈 흑자 전환 확인", "소셜카지노 매출도 전년 대비 성장해 본업 둔화 우려가 일부 완화됨"],
+        still: ["슈퍼네이션·팍시게임즈 흑자 전환 지속성", "아이게이밍 규제와 마케팅비 증가 영향"]
+      },
+      "018290": {
+        checked: ["1Q26 유럽 매출 870%, 중동 매출 200% 성장과 국내 매출 전분기 대비 19% 성장이 확인됨", "PDRN 라인 확장과 글로벌 채널 확대는 확인됐지만 마케팅 투자 회수는 아직 판단 전"],
+        still: ["미국·유럽 사업성이 하반기 매출로 증명되는지", "PDRN 등 후속 제품이 리들샷 이후 성장축이 되는지"]
+      }
+    };
+
+    const growthAdditions = {
+      "257720": {
+        outlook: ["2026년 성장 포인트는 미국 외 유럽·중동·멕시코 법인의 매출 기여 확대", "브랜드 수와 국가 수가 늘어날수록 유통 플랫폼 성격이 강해지는 구조"],
+        leading: ["지역별 매출 비중", "신규 브랜드 입점 수", "해외 물류거점 확대 속도"],
+        sourceNote: "증권사 2026 전망 리포트와 1Q26 실적 브리핑 기준"
+      },
+      "214450": {
+        outlook: ["2026년은 화장품 고성장과 리쥬란 의료기기 수출 회복 여부가 핵심", "강릉 5공장 투자는 중장기 생산능력 확대 신호"],
+        leading: ["리쥬란 수출 매출", "화장품 해외 매출", "신규 국가 허가와 유통계약"],
+        sourceNote: "회사 보도자료, 1Q26 품목별 매출 리포트 기준"
+      },
+      "062040": {
+        outlook: ["2026년 매출과 영업이익률 전망이 모두 상향된 전력기기 고성장 후보", "북미 특수변압기 공급 부족과 데이터센터 전력 수요가 핵심 배경"],
+        leading: ["신규 공급계약", "수주잔고", "북미 매출 비중", "생산능력 확대 일정"],
+        sourceNote: "KB증권 브리핑, 1Q26 실적 자료 기준"
+      },
+      "214150": {
+        outlook: ["2026년은 브라질 직영 전환, 중국 볼뉴머, 미국·태국 신규 장비 출시가 성장 포인트", "소모품 반복 매출 구조가 높은 이익률을 지지"],
+        leading: ["브라질 매출", "볼뉴머 해외 판매", "쿼드세이·리팟 매출 기여"],
+        sourceNote: "LS증권 리포트와 회사 2026 목표 자료 기준"
+      },
+      "058470": {
+        outlook: ["AI 가속기와 고성능 AP 개발 증가가 테스트 소켓 수요를 밀어올리는 구조", "2026년에도 고마진 부품 수요가 이어질 가능성이 제시됨"],
+        leading: ["고객사 신제품 출시", "테스트 소켓 단가", "신공장 램프업 계획"],
+        sourceNote: "한국IR협의회, 신한투자증권 리포트 기준"
+      },
+      "042700": {
+        outlook: ["HBM4 전환과 16단 고단화가 TC 본더 수요를 만드는 핵심 동인", "와이드 TC 본더와 하이브리드 본더 개발이 다음 성장 옵션"],
+        leading: ["HBM 장비 공급계약", "고객사 CAPA 증설", "차세대 본더 개발 진행"],
+        sourceNote: "공급계약 공시 보도와 HBM 장비 리포트 기준"
+      },
+      "207940": {
+        outlook: ["5공장 램프업과 신규 수주 회복이 2026~2027년 실적 가시성의 핵심", "ADC, CRO 등 포트폴리오 확장이 장기 성장 옵션"],
+        leading: ["5공장 선행 수주", "신규 CDMO 계약", "공장 가동률"],
+        sourceNote: "증권사 1Q26 리뷰와 회사 생산능력 자료 기준"
+      },
+      "196170": {
+        outlook: ["키트루다SC 상업화 이후 마일스톤과 로열티가 본격 성장 변수", "SC 제형 전환 플랫폼의 추가 빅파마 계약 여부가 재평가 포인트"],
+        leading: ["키트루다SC 허가·출시 일정", "마일스톤 수령", "로열티 매출 인식"],
+        sourceNote: "대신증권 브리핑, 메디컬타임즈 실적 보도 기준"
+      },
+      "267260": {
+        outlook: ["북미 초고압 전력기기와 데이터센터 전력 인프라 수요가 2026년에도 핵심 성장 동력", "미국 앨라배마 제2공장 증설은 중장기 공급능력 확대 신호"],
+        leading: ["수주잔고", "북미 신규 수주", "미국 공장 증설 진행", "배전기기 매출"],
+        sourceNote: "1Q26 실적 리뷰, 회사 수주 가이던스 보도 기준"
+      },
+      "145020": {
+        outlook: ["미국 직접판매 전환과 중국·유럽·브라질 확장이 2026년 성장축", "톡신과 필러의 글로벌 침투율 상승이 중장기 동력"],
+        leading: ["미국 직판 매출", "중국·유럽 톡신 매출", "주요 국가 허가와 파트너 계약"],
+        sourceNote: "1Q26 실적 보도와 증권사 리뷰 기준"
+      },
+      "064760": {
+        outlook: ["NAND 고단화, 2나노 GAA, SiC 링 수요 회복이 2026년 성장 논리", "반도체 소재 업황 회복이 매출 성장률 회복의 관건"],
+        leading: ["SiC 링 수요", "고객사 설비투자", "중국 매출 확대"],
+        sourceNote: "하나증권 보도, 1Q26 실적 자료 기준"
+      },
+      "216050": {
+        outlook: ["AI 마케팅 솔루션과 커머스 고객 확대가 성장 옵션", "다만 현재는 고성장보다 고마진 안정형에 가까움"],
+        leading: ["스텔라이즈 매출화", "신규 커머스 고객", "광고 사업 신규 캠페인"],
+        sourceNote: "1Q26 실적 보도와 회사 AI 솔루션 자료 기준"
+      },
+      "251970": {
+        outlook: ["K뷰티 인디 브랜드 성장의 후방 수혜와 4공장·6공장 생산능력 확대가 핵심", "고객사 신제품 출시가 용기 주문으로 이어지는 구조"],
+        leading: ["4공장 가동률", "6공장 준공", "해외 고객사 주문", "튜브·펌프 용기 매출"],
+        sourceNote: "메리츠증권 리포트, K뷰티 밸류체인 보도 기준"
+      },
+      "206640": {
+        outlook: ["장비 설치 기반이 늘수록 카트리지 반복 매출이 커지는 구조", "MENA·아프리카·국내 채널 확장이 2026년 확인 포인트"],
+        leading: ["장비 설치 대수", "카트리지 매출", "지역별 매출", "신규 진단 항목"],
+        sourceNote: "2025 실적 발표와 진단기기 리포트 기준"
+      },
+      "214370": {
+        outlook: ["코글루타이드와 Luxidase 상업화가 2026년 성장 옵션", "펩타이드 기반 고마진 제품이 반복 매출로 전환되는지가 핵심"],
+        leading: ["FDA NDI 이후 발주", "Luxidase 선적", "화성 공장 생산능력"],
+        sourceNote: "1Q26 실적 보도, 회사 글로벌 진출 자료 기준"
+      },
+      "051360": {
+        outlook: ["인적분할 이후 카지노 디스플레이와 전장 디스플레이를 별도로 평가할 수 있게 됨", "전장 디스플레이는 SDV와 차량 내 디스플레이 확대가 장기 성장 논리"],
+        leading: ["분할 후 별도 매출", "전장 고객사", "카지노 모니터 수주", "네오뷰 재상장 일정"],
+        sourceNote: "분할 보도와 한국IR협의회 리포트 기준"
+      },
+      "333430": {
+        outlook: ["조선 기자재 업황 회복과 선박 환경장비 수요가 성장 논리", "정보 공개가 제한적이라 공시 기반 확인 비중을 높여야 함"],
+        leading: ["수주잔고", "단일판매 공급계약", "조선사 고객 비중", "환경장비 매출"],
+        sourceNote: "1Q26 매출 공시성 자료와 조선 기자재 업황 자료 기준"
+      },
+      "053800": {
+        outlook: ["사우디 합작법인과 제로트러스트 제품군이 성장 옵션", "국내 보안 기반 위에 중동 반복 매출이 붙는지가 핵심"],
+        leading: ["중동 매출", "제로트러스트 수주", "클라우드 보안 매출", "공공·금융 고객 확대"],
+        sourceNote: "안랩 1Q26 실적 보도와 회사 해외사업 코멘트 기준"
+      },
+      "192080": {
+        outlook: ["소셜카지노 현금창출력에 슈퍼네이션·팍시게임즈 흑자 전환이 더해지는 구조", "아이게이밍과 캐주얼 게임이 성장률 회복의 관건"],
+        leading: ["슈퍼네이션 매출", "팍시게임즈 이익 기여", "DTC 비중", "신작 출시 일정"],
+        sourceNote: "1Q26 실적 보도와 게임 산업 리포트 기준"
+      },
+      "018290": {
+        outlook: ["리들샷 이후 PDRN 라인과 미국·유럽 채널 확장이 2026년 성장 확인 포인트", "상반기 비용 부담 이후 하반기 해외 사업성 검증이 중요"],
+        leading: ["PDRN 매출 비중", "미국·유럽 채널 매출", "후속 히트제품", "마케팅 투자 회수"],
+        sourceNote: "메리츠증권 리포트와 1Q26 실적 보도 기준"
+      }
+    };
+
+    const state = {
+      filter: "all",
+      industry: "all",
+      search: "",
+      selectedCode: companies[0].code
+    };
+
+    const rows = document.getElementById("companyRows");
+    const detailBody = document.getElementById("detailBody");
+    const resultCount = document.getElementById("resultCount");
+    const emptyState = document.getElementById("emptyState");
+    const searchInput = document.getElementById("searchInput");
+    const industrySelect = document.getElementById("industrySelect");
+    const mainLayout = document.querySelector("main");
+    const listColumn = document.getElementById("listColumn");
+    const detailPanel = document.getElementById("detailPanel");
+    const collapseListBtn = document.getElementById("collapseListBtn");
+    const openListBtn = document.getElementById("openListBtn");
+    const collapseDetailBtn = document.getElementById("collapseDetailBtn");
+    const openDetailBtn = document.getElementById("openDetailBtn");
+
+    const fmt = (value) => {
+      if (value === null || value === undefined) return "-";
+      return `${value.toFixed(value % 1 === 0 ? 0 : 1)}%`;
+    };
+
+    const fmtAmount = (value) => {
+      if (value === null || value === undefined) return "-";
+      return value.toLocaleString("ko-KR");
+    };
+
+    const isGrowth = (company) => company.revenueGrowth >= 15;
+    const isMargin = (company) => company.opMargin >= 10 && company.netMargin >= 10;
+    const isCombo = (company) => isGrowth(company) && isMargin(company);
+
+    function tagsFor(company) {
+      const tags = [];
+      if (isGrowth(company)) tags.push(`<span class="badge growth">매출증가</span>`);
+      if (isMargin(company)) tags.push(`<span class="badge margin">이익률 높음</span>`);
+      if (!isCombo(company)) tags.push(`<span class="badge watch">추가확인</span>`);
+      return tags.join(" ");
+    }
+
+    function passFilter(company) {
+      if (state.filter === "growth" && !isGrowth(company)) return false;
+      if (state.filter === "margin" && !isMargin(company)) return false;
+      if (state.filter === "combo" && !isCombo(company)) return false;
+      if (state.industry !== "all" && company.industry !== state.industry) return false;
+      if (state.search) {
+        const detail = researchDetails[company.code];
+        const researchText = detail ? [
+          ...detail.business,
+          ...detail.growthDrivers,
+          ...detail.evidence,
+          ...detail.checks,
+          detail.sourceNote
+        ].join(" ") : "";
+        const checked = checkResults[company.code];
+        const checkedText = checked ? `${checked.updatedAt} ${checked.items.join(" ")} ${checked.conclusion}` : "";
+        const quickCheckedText = (quickCheckUpdates[company.code] || []).join(" ");
+        const remainingResearch = remainingCheckResearch[company.code];
+        const remainingResearchText = remainingResearch ? `${remainingResearch.checked.join(" ")} ${remainingResearch.still.join(" ")}` : "";
+        const growth = growthAdditions[company.code];
+        const growthText = growth ? `${growth.outlook.join(" ")} ${growth.leading.join(" ")} ${growth.sourceNote}` : "";
+        const remainingText = (remainingChecks[company.code] || []).join(" ");
+        const haystack = `${company.name} ${company.code} ${company.industry} ${company.thesis} ${company.facts} ${researchText} ${growthText} ${checkedText} ${quickCheckedText} ${remainingResearchText} ${remainingText}`.toLowerCase();
+        if (!haystack.includes(state.search.toLowerCase())) return false;
+      }
+      return true;
+    }
+
+    function renderIndustries() {
+      const industries = [...new Set(companies.map((company) => company.industry))].sort((a, b) => a.localeCompare(b, "ko"));
+      industries.forEach((industry) => {
+        const option = document.createElement("option");
+        option.value = industry;
+        option.textContent = industry;
+        industrySelect.appendChild(option);
+      });
+    }
+
+    function renderRows() {
+      const filtered = companies.filter(passFilter);
+      resultCount.textContent = `${filtered.length}개 표시`;
+      emptyState.hidden = filtered.length > 0;
+      rows.innerHTML = filtered.map((company) => `
+        <tr data-code="${company.code}" class="${company.code === state.selectedCode ? "selected" : ""}">
+          <td>
+            <div class="company-name">${company.rank}. ${company.name}</div>
+            <div class="code">${company.code} · ${company.industry}</div>
+          </td>
+          <td class="wide-only">${company.industry}</td>
+          <td>
+            <div class="num">매출 ${fmt(company.revenueGrowth)}</div>
+            <div class="code">영업 ${fmt(company.opMargin)} · 순익 ${fmt(company.netMargin)}</div>
+          </td>
+          <td class="num wide-only">${fmtAmount(revenueIncreaseAmount(company))}억원</td>
+          <td class="wide-only">
+            <div class="num">영업 ${fmt(company.opMargin)}</div>
+            <div class="code">순익 ${fmt(company.netMargin)}</div>
+          </td>
+          <td>${tagsFor(company)}</td>
+          <td class="soft wide-only">${company.thesis}</td>
+        </tr>
+      `).join("");
+
+      if (!filtered.some((company) => company.code === state.selectedCode) && filtered[0]) {
+        state.selectedCode = filtered[0].code;
+      }
+      renderDetail();
+    }
+
+    function revenueIncreaseAmount(company) {
+      const history = financialHistory[company.code] || [];
+      const current = history.find((item) => item.year === 2025);
+      const previous = history.find((item) => item.year === 2024);
+      if (!current || !previous) return null;
+      return current.revenue - previous.revenue;
+    }
+
+    function renderHistoryTable(company) {
+      const history = financialHistory[company.code] || [];
+      if (!history.length) {
+        return `<p class="soft">최근 3년 재무 데이터가 아직 입력되지 않았습니다.</p>`;
+      }
+
+      return `
+        <div class="history-table">
+          <table>
+            <thead>
+              <tr>
+                <th>연도</th>
+                <th>매출액</th>
+                <th>증가율</th>
+                <th>영업률</th>
+                <th>순익률</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${history.map((item) => `
+                <tr>
+                  <td>${item.year}</td>
+                  <td>${fmtAmount(item.revenue)}</td>
+                  <td>${fmt(item.growth)}</td>
+                  <td>${fmt(item.opMargin)}</td>
+                  <td>${fmt(item.netMargin)}</td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+        <div class="data-caption">단위: 억원. 2025년 값은 잠정 실적, 리서치 추정, 공개 보도자료 기준이 섞여 있어 최종 사업보고서 기준으로 재확인이 필요합니다.</div>
+      `;
+    }
+
+    function renderResearch(company) {
+      const detail = researchDetails[company.code];
+      if (!detail) {
+        return `<p class="soft">상세 조사 메모가 아직 입력되지 않았습니다.</p>`;
+      }
+
+      const box = (title, items) => `
+        <div class="research-box">
+          <h4>${title}</h4>
+          <ul>${items.map((item) => `<li>${item}</li>`).join("")}</ul>
+        </div>
+      `;
+
+      return `
+        <div class="research-grid">
+          ${box("사업 구조", detail.business)}
+          ${box("성장 동력", detail.growthDrivers)}
+          ${box("근거 자료", detail.evidence)}
+          ${box("확인 포인트", detail.checks)}
+        </div>
+        <div class="data-caption">조사 메모 기준: ${detail.sourceNote}</div>
+      `;
+    }
+
+    function renderCheckResults(company) {
+      const checked = checkResults[company.code];
+      if (!checked) {
+        return `<p class="soft">확인 결과가 아직 입력되지 않았습니다.</p>`;
+      }
+
+      return `
+        <div class="research-box">
+          <h4>${checked.updatedAt} 확인</h4>
+          <ul>${checked.items.map((item) => `<li>${item}</li>`).join("")}</ul>
+        </div>
+        <div class="note">${checked.conclusion}</div>
+      `;
+    }
+
+    function renderGrowthAdditions(company) {
+      const growth = growthAdditions[company.code];
+      if (!growth) {
+        return `<p class="soft">추가 성장 자료가 아직 입력되지 않았습니다.</p>`;
+      }
+
+      return `
+        <div class="research-grid">
+          <div class="research-box">
+            <h4>2026 성장 전망</h4>
+            <ul>${growth.outlook.map((item) => `<li>${item}</li>`).join("")}</ul>
+          </div>
+          <div class="research-box">
+            <h4>선행지표</h4>
+            <ul>${growth.leading.map((item) => `<li>${item}</li>`).join("")}</ul>
+          </div>
+        </div>
+        <div class="data-caption">추가 자료 기준: ${growth.sourceNote}</div>
+      `;
+    }
+
+    function renderQuickCheckUpdates(company) {
+      const items = quickCheckUpdates[company.code] || [];
+      if (!items.length) {
+        return `<p class="soft">바로 확인 가능한 추가 항목이 없습니다.</p>`;
+      }
+
+      return `<ul>${items.map((item) => `<li>${item}</li>`).join("")}</ul>`;
+    }
+
+    function renderRemainingResearch(company) {
+      const item = remainingCheckResearch[company.code];
+      if (!item) {
+        return `<p class="soft">남은 과제 조사 결과가 아직 입력되지 않았습니다.</p>`;
+      }
+
+      return `
+        <div class="research-grid">
+          <div class="research-box">
+            <h4>조사로 확인된 점</h4>
+            <ul>${item.checked.map((text) => `<li>${text}</li>`).join("")}</ul>
+          </div>
+          <div class="research-box">
+            <h4>계속 남은 과제</h4>
+            <ul>${item.still.map((text) => `<li>${text}</li>`).join("")}</ul>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderRemainingChecks(company) {
+      const items = remainingChecks[company.code] || company.watch;
+      return `<ul>${items.map((item) => `<li>${item}</li>`).join("")}</ul>`;
+    }
+
+    function renderDetail() {
+      const company = companies.find((item) => item.code === state.selectedCode) || companies[0];
+      if (!company) return;
+      detailBody.innerHTML = `
+        <div class="detail-head">
+          <div>
+            <h2>${company.name}</h2>
+            <div class="rank">${company.code} · ${company.industry} · 후보 ${company.rank}위</div>
+          </div>
+          <div class="score"><strong>${company.score}</strong><span>관심도</span></div>
+        </div>
+        <div>${tagsFor(company)}</div>
+        <div class="stat-grid">
+          <div class="stat"><label>매출 성장</label><strong>${fmt(company.revenueGrowth)}</strong></div>
+          <div class="stat"><label>영업이익률</label><strong>${fmt(company.opMargin)}</strong></div>
+          <div class="stat"><label>순이익률</label><strong>${fmt(company.netMargin)}</strong></div>
+        </div>
+        <div class="section">
+          <h3>최근 3년 재무 추이</h3>
+          ${renderHistoryTable(company)}
+        </div>
+        <div class="section">
+          <h3>성장성 판단</h3>
+          <p>${company.thesis}</p>
+        </div>
+        <div class="section">
+          <h3>상세 조사 메모</h3>
+          ${renderResearch(company)}
+        </div>
+        <div class="section">
+          <h3>추가 성장 자료</h3>
+          ${renderGrowthAdditions(company)}
+        </div>
+        <div class="section">
+          <h3>확인한 수치</h3>
+          <p>${company.facts}</p>
+        </div>
+        <div class="section">
+          <h3>남은 확인 과제</h3>
+          ${renderRemainingChecks(company)}
+        </div>
+        <div class="section">
+          <h3>남은 과제 조사 결과</h3>
+          ${renderRemainingResearch(company)}
+        </div>
+        <div class="section">
+          <h3>확인 결과 업데이트</h3>
+          ${renderCheckResults(company)}
+        </div>
+        <div class="section">
+          <h3>바로 확인한 과제</h3>
+          ${renderQuickCheckUpdates(company)}
+        </div>
+        <div class="section">
+          <h3>추가 자료</h3>
+          <div class="link-list">
+            ${company.links.map(([label, url]) => `<a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`).join("")}
+          </div>
+        </div>
+        <div class="note">이 화면은 투자 판단을 돕는 리서치 정리용입니다. 실제 매수 전에는 최신 사업보고서, 분기보고서, 현금흐름표, 밸류에이션, 주가 반영 정도를 다시 확인해야 합니다.</div>
+      `;
+    }
+
+    rows.addEventListener("click", (event) => {
+      const tr = event.target.closest("tr[data-code]");
+      if (!tr) return;
+      state.selectedCode = tr.dataset.code;
+      renderRows();
+    });
+
+    document.querySelectorAll(".filter-btn").forEach((button) => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".filter-btn").forEach((item) => item.classList.remove("active"));
+        button.classList.add("active");
+        state.filter = button.dataset.filter;
+        renderRows();
+      });
+    });
+
+    searchInput.addEventListener("input", (event) => {
+      state.search = event.target.value.trim();
+      renderRows();
+    });
+
+    industrySelect.addEventListener("change", (event) => {
+      state.industry = event.target.value;
+      renderRows();
+    });
+
+    function setPanelMode(mode) {
+      mainLayout.classList.toggle("list-collapsed", mode === "list");
+      mainLayout.classList.toggle("detail-collapsed", mode === "detail");
+      listColumn.classList.toggle("collapsed", mode === "list");
+      detailPanel.classList.toggle("collapsed", mode === "detail");
+    }
+
+    collapseListBtn.addEventListener("click", () => setPanelMode("list"));
+    openListBtn.addEventListener("click", () => setPanelMode("normal"));
+    collapseDetailBtn.addEventListener("click", () => setPanelMode("detail"));
+    openDetailBtn.addEventListener("click", () => setPanelMode("normal"));
+
+    renderIndustries();
+    renderRows();
+  </script>
+</body>
+</html>
