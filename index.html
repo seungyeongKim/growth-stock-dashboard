@@ -490,6 +490,19 @@
       margin-top: 8px;
     }
 
+    .status-tag {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--amber);
+      background: var(--soft-amber);
+      border: 1px solid #f8d89a;
+      white-space: nowrap;
+    }
+
     .section {
       margin-top: 16px;
       padding-top: 14px;
@@ -1648,6 +1661,527 @@
       }
     };
 
+    const industryIndicators = {
+      "K뷰티 유통": ["국가별 K뷰티 수출액", "해외 법인 매출 비중", "브랜드 입점 수", "재고 회전"],
+      "의료기기/스킨부스터": ["리쥬란 수출 매출", "화장품 해외 매출", "국가별 허가", "피부과 채널 침투"],
+      "변압기/전력기기": ["북미 변압기 수주", "수주잔고", "생산능력 증설", "데이터센터 전력 투자"],
+      "미용 의료기기": ["소모품 매출 비중", "국가별 허가", "직영 전환 효과", "신제품 판매 속도"],
+      "반도체 테스트 소켓": ["고객사 신제품 출시", "AI 가속기 테스트 수요", "소켓 단가", "신공장 램프업"],
+      "HBM 장비": ["HBM4 투자", "TC 본더 발주", "고객사 CAPA", "경쟁사 장비 진입"],
+      "CDMO": ["신규 수주", "공장 가동률", "선행 수주", "신규 모달리티 계약"],
+      "바이오 플랫폼": ["마일스톤 수령", "로열티 매출", "허가 일정", "추가 파트너 계약"],
+      "전력기기": ["북미 초고압 수주", "수주잔고", "현지 공장 증설", "배전기기 매출"],
+      "톡신/필러": ["국가별 톡신 매출", "미국 직판 매출", "허가 국가 확대", "판관비 효율"],
+      "반도체 소재": ["SiC 링 수요", "고객사 설비투자", "중국 매출", "소모품 교체 수요"],
+      "디지털 광고/커머스": ["AI 솔루션 매출화", "신규 광고주", "커머스 고객사", "광고 경기"],
+      "화장품 용기": ["4공장 가동률", "K뷰티 고객 주문", "해외 고객사", "튜브·펌프 용기 매출"],
+      "진단기기": ["장비 설치 대수", "카트리지 매출", "지역별 매출", "신규 진단 항목"],
+      "펩타이드/바이오": ["FDA NDI 이후 발주", "Luxidase 선적", "고마진 제품 반복 매출", "생산능력"],
+      "산업용 모니터/디스플레이": ["분할 후 별도 재무", "전장 고객사", "카지노 모니터 수주", "재상장 일정"],
+      "조선 기자재/환경장비": ["수주잔고", "단일판매 공급계약", "조선사 고객 비중", "환경장비 매출"],
+      "보안 소프트웨어": ["중동 매출", "제로트러스트 수주", "클라우드 보안 매출", "공공·금융 고객"],
+      "게임": ["슈퍼네이션 매출", "팍시게임즈 이익", "DTC 비중", "신작 출시"],
+      "K뷰티 브랜드": ["PDRN 매출 비중", "미국·유럽 채널 매출", "후속 히트제품", "마케팅 투자 회수"]
+    };
+
+    const watchlistMeta = {
+      "257720": {
+        confidence: "중상",
+        sourceType: "증권사 리포트 + 실적 브리핑",
+        nextCheck: "2026년 2분기 실적 발표 후",
+        catalysts: ["유럽·중동·멕시코 법인 매출 확인", "유럽 할인 판매 이후 매출총이익률 확인", "신규 브랜드 입점 추이"],
+        conviction: "성장성은 강하지만 마진과 운전자본 부담을 같이 봐야 함"
+      },
+      "214450": {
+        confidence: "상",
+        sourceType: "회사 발표 + 품목별 실적 리포트",
+        nextCheck: "2026년 2분기 실적 발표 후",
+        catalysts: ["리쥬란 의료기기 수출 반등", "화장품 해외 매출 지속", "강릉 5공장 투자 진행"],
+        conviction: "고마진과 브랜드력은 확인됐고, 의료기기 수출 회복이 핵심"
+      },
+      "062040": {
+        confidence: "상",
+        sourceType: "실적 공시성 자료 + 증권사 리포트",
+        nextCheck: "2026년 2분기 수주 공시와 실적 발표 후",
+        catalysts: ["북미 특수변압기 신규 수주", "수주잔고 증가", "관세 영향 확인"],
+        conviction: "전력기기 내 성장과 이익률 가시성이 높은 후보"
+      },
+      "214150": {
+        confidence: "상",
+        sourceType: "증권사 리포트 + 회사 목표 자료",
+        nextCheck: "2026년 2분기 실적, 2026년 9월 중국 볼뉴머 허가 전후",
+        catalysts: ["브라질 직영 전환 매출", "쿼드세이 미국 판매", "볼뉴머 중국 허가"],
+        conviction: "높은 이익률은 강점이고, 해외 직영 전환 효과가 다음 판단 축"
+      },
+      "058470": {
+        confidence: "중상",
+        sourceType: "실적 자료 + 반도체 부품 리포트",
+        nextCheck: "2026년 2분기 실적과 고객사 신제품 사이클 확인",
+        catalysts: ["AI 가속기 테스트 수요", "고성능 AP 출시", "2027년 신공장 램프업 준비"],
+        conviction: "고품질 고마진 기업이지만 사이클과 기대 반영도를 같이 봐야 함"
+      },
+      "042700": {
+        confidence: "중",
+        sourceType: "공급계약 보도 + 장비 산업 리포트",
+        nextCheck: "2026년 2분기 HBM 장비 발주 확인",
+        catalysts: ["HBM4 TC 본더 발주", "와이드 TC 본더 개발", "경쟁사 공급망 진입 영향"],
+        conviction: "성장 촉매는 강하지만 경쟁 심화로 변동성이 큰 후보"
+      },
+      "207940": {
+        confidence: "상",
+        sourceType: "공식 실적 + 증권사 리뷰",
+        nextCheck: "2026년 3분기 록빌 공장 매출 인식 전후",
+        catalysts: ["5공장 선행 수주", "신규 CDMO 계약", "6공장 착공 여부"],
+        conviction: "안정 성장주는 맞지만 신규 수주 회복 확인이 필요"
+      },
+      "196170": {
+        confidence: "중",
+        sourceType: "실적 보도 + 이벤트 기반 리포트",
+        nextCheck: "키트루다SC 허가·출시 및 2Q26 마일스톤 확인 후",
+        catalysts: ["키트루다SC 마일스톤", "로열티 매출 인식", "추가 빅파마 계약"],
+        conviction: "업사이드는 크지만 이벤트 의존도가 높음"
+      },
+      "267260": {
+        confidence: "상",
+        sourceType: "실적 리뷰 + 수주 가이던스 + 공장 증설 보도",
+        nextCheck: "2026년 2분기 수주잔고와 미국 공장 증설 업데이트 후",
+        catalysts: ["북미 초고압 수주", "앨라배마 제2공장", "배전기기·데이터센터 전력 수요"],
+        conviction: "성장 가시성은 매우 높고, 관건은 수주 마진 유지"
+      },
+      "145020": {
+        confidence: "상",
+        sourceType: "실적 보도 + 증권사 리뷰",
+        nextCheck: "2026년 3분기 미국 직판 매출 확인 후",
+        catalysts: ["미국 직판 매출", "중국·유럽·브라질 성장", "톡신 허가 국가 확대"],
+        conviction: "글로벌 침투는 확인됐고 판관비 회수 시점이 핵심"
+      },
+      "064760": {
+        confidence: "중상",
+        sourceType: "1Q26 실적 자료 + 소재 업황 리포트",
+        nextCheck: "2026년 2분기 반도체 소재 수요 확인 후",
+        catalysts: ["NAND 고단화", "SiC 링 수요", "중국 매출 확대"],
+        conviction: "턴어라운드 후보지만 고객사 투자 사이클 의존도가 있음"
+      },
+      "216050": {
+        confidence: "중",
+        sourceType: "회사 실적 보도 + AI 솔루션 발표",
+        nextCheck: "2026년 하반기 AI 솔루션 매출 기여 확인 후",
+        catalysts: ["스텔라이즈 매출화", "신규 커머스 고객", "광고 경기 회복"],
+        conviction: "안정형에 가깝고 고성장 확인은 아직 부족"
+      },
+      "251970": {
+        confidence: "중상",
+        sourceType: "증권사 리포트 + 공장 증설 보도",
+        nextCheck: "2026년 2분기 4공장 정상화 효과 확인 후",
+        catalysts: ["4공장 가동률", "6공장 준공", "K뷰티 고객 주문 증가"],
+        conviction: "K뷰티 후방 수혜는 명확하고 생산 효율 확인이 필요"
+      },
+      "206640": {
+        confidence: "중",
+        sourceType: "2025 실적 발표 + 진단기기 리포트",
+        nextCheck: "2026년 2분기 지역별 매출과 카트리지 매출 확인 후",
+        catalysts: ["장비 설치 대수", "카트리지 반복 매출", "MENA·아프리카 매출"],
+        conviction: "반복 매출 구조는 좋지만 2026년 지속성 확인이 필요"
+      },
+      "214370": {
+        confidence: "중",
+        sourceType: "1Q26 실적 보도 + 회사 글로벌 진출 자료",
+        nextCheck: "코글루타이드·Luxidase PO와 선적 공시성 자료 확인 후",
+        catalysts: ["FDA NDI 이후 발주", "Luxidase 선적", "고마진 제품 반복 매출"],
+        conviction: "옵션은 커졌지만 실제 반복 매출 전환을 확인해야 함"
+      },
+      "051360": {
+        confidence: "중상",
+        sourceType: "거래소 예심 보도 + 분할 일정 보도",
+        nextCheck: "2026년 7월 20일 변경상장·재상장 전후",
+        catalysts: ["네오뷰 재상장", "분할 후 별도 재무", "전장 고객사 공개"],
+        conviction: "지금은 실적보다 분할 후 재평가 이벤트가 중요"
+      },
+      "333430": {
+        confidence: "낮음",
+        sourceType: "제한적 공시성 자료 + 업황 자료",
+        nextCheck: "다음 DART 분기보고서와 수주 공시 확인 후",
+        catalysts: ["수주잔고", "조선사 고객 비중", "환경장비 매출"],
+        conviction: "정보 부족으로 우선순위는 낮고 공시 확인이 먼저"
+      },
+      "053800": {
+        confidence: "중",
+        sourceType: "회사 실적 보도 + 해외사업 코멘트",
+        nextCheck: "2026년 2분기 중동 매출과 제로트러스트 매출 확인 후",
+        catalysts: ["사우디 합작법인", "제로트러스트 수주", "클라우드 보안 매출"],
+        conviction: "보안 안정주는 맞지만 고성장 확인은 아직 부족"
+      },
+      "192080": {
+        confidence: "중상",
+        sourceType: "1Q26 실적 보도 + 게임 리포트",
+        nextCheck: "2026년 2분기 슈퍼네이션·팍시게임즈 지속성 확인 후",
+        catalysts: ["슈퍼네이션 흑자 지속", "팍시게임즈 이익 기여", "DTC 비중 확대"],
+        conviction: "현금창출력과 신사업 흑자 전환은 긍정적"
+      },
+      "018290": {
+        confidence: "중",
+        sourceType: "1Q26 실적 보도 + 증권사 리포트",
+        nextCheck: "2026년 하반기 미국·유럽 매출 확인 후",
+        catalysts: ["PDRN 매출 비중", "미국·유럽 채널", "후속 히트제품"],
+        conviction: "브랜드 확장성은 있으나 비용 부담 이후 회수가 관건"
+      }
+    };
+
+    const evidenceDeepDive = {
+      "257720": {
+        title: "해외 채널 확장과 마진 확인",
+        points: ["증권사 리포트에서 유럽 초기 할인 판매로 매출총이익률 하락 가능성이 언급됐지만, 연간 고성장 전망은 유지됨", "성장성 판단은 단순 매출 증가보다 국가별 매출 비중과 신규 브랜드 입점 속도를 같이 봐야 함", "유통 플랫폼형 사업이라 해외 물류거점과 법인 매출 증가가 선행지표"],
+        sourceLevel: "증권사 리포트 중심, 분기보고서로 재확인 필요",
+        links: [["기업현황 - WiseReport", "https://comp.wisereport.co.kr/company/c1010001.aspx?cmp_cd=257720"], ["알파스퀘어 종목 요약", "https://alphasquare.co.kr/home/stock-summary?code=257720"]]
+      },
+      "214450": {
+        title: "리쥬란 수출 회복과 화장품 해외 채널",
+        points: ["하나증권은 의료기기 수출이 1분기를 저점으로 반등하고 화장품 내수·수출 모두 강한 성장을 전망", "유럽 유통사향 추가 선적과 미국 올리브영 입점은 해외 채널 확장의 구체적 근거", "스킨부스터 경쟁 심화가 있지만 리쥬란은 기전 차별성과 브랜드력으로 방어 가능성이 제시됨"],
+        sourceLevel: "회사 발표 + 증권사 리포트 + 언론 보도",
+        links: [["파마리서치 2025 실적", "https://pharmaresearch.com/sub/press/view.html?idx=390"], ["파마리서치 전망 보도", "https://www.ajunews.com/amp/20260423081433495"], ["미국 올리브영 입점", "https://www.ajunews.com/view/20260602135553303"]]
+      },
+      "062040": {
+        title: "북미 특수변압기 수요와 수주 가시성",
+        points: ["KB증권은 2026년 매출 6,687억원, 영업이익 2,476억원, 영업이익률 37%를 전망", "신재생·ESS·데이터센터향 특수변압기 수요 강세가 핵심 성장 논리", "수주잔고와 북미 신규 계약이 실적 선행지표"],
+        sourceLevel: "증권사 리포트 브리핑 + 실적 공시성 보도",
+        links: [["KB증권 리포트 브리핑", "https://www.newspim.com/news/view/20260311000129"], ["FnGuide 기업현황", "https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?MenuYn=Y&NewMenuID=101&ReportGB=&cID=&gicode=A062040&pGB=1&stkGb=701"]]
+      },
+      "214150": {
+        title: "브라질 직영 전환과 글로벌 장비 출시",
+        points: ["하나증권은 브라질 유통사 인수로 2026년 외형 성장과 영업력 강화가 가능하다고 분석", "볼뉴머와 울트라포머MPT 유럽 승인이 확인되어 유럽 진출이 본격화되는 구간", "미국·태국·일본 쿼드세이/리팟 출시와 중국 볼뉴머 허가가 촉매"],
+        sourceLevel: "증권사 리포트 보도 + 회사 목표 자료",
+        links: [["브라질·유럽 성장 보도", "https://www.businesspost.co.kr/BP?command=article_view&num=428262"], ["장비 출시 모멘텀", "https://www.businesspost.co.kr/BP?command=mobile_view&num=407289"], ["알파스퀘어 종목 요약", "https://alphasquare.co.kr/home/stock-summary?code=214150"]]
+      },
+      "058470": {
+        title: "AI 반도체 테스트 소켓 수요",
+        points: ["1Q26 매출 998억원, 영업이익 473억원으로 테스트 소켓 중심 실적 성장이 확인됨", "HPC/AI향 차세대 칩 프로젝트 참여가 성장 근거", "소켓은 수율에 중요해 가격 저항이 낮은 고부가 부품이라는 산업 논리가 유지됨"],
+        sourceLevel: "증권사 리포트 + 한국IR협의회성 분석 + 언론 보도",
+        links: [["리노공업 리포트 PDF", "https://consensus.hankyung.com/analysis/downpdf?report_idx=649209"], ["조선비즈 기업 해부", "https://biz.chosun.com/industry/business-venture/2026/04/23/JO5HTRE5EBGXBO7TSZ46AS3CQQ/"], ["알파스퀘어 재무", "https://alphasquare.co.kr/home/financial-information?code=058470"]]
+      },
+      "042700": {
+        title: "HBM4 TC 본더 발주와 경쟁 구도",
+        points: ["SK하이닉스향 96.5억원 규모 TC 본더 공급 계약이 확인됨", "HBM4 16단 양산을 앞두고 TC 본더 수요는 커지지만 한화세미텍과의 경쟁도 심화", "와이드 TC 본더와 하이브리드 본더가 차세대 성장 옵션"],
+        sourceLevel: "공급계약 보도 + 산업 기사",
+        links: [["SK하이닉스향 공급계약", "https://biz.chosun.com/it-science/ict/2026/01/14/FMAISQWWSNE7NJX2WO4P3KOGTI/"], ["TC본더 경쟁 기사", "https://www.mt.co.kr/amp/industry/2026/01/18/2026011610390474790"], ["HBM4 장비 경쟁", "https://www.fnnews.com/news/202602100651292459"]]
+      },
+      "207940": {
+        title: "5공장·록빌 공장·신규 수주",
+        points: ["1Q26 매출과 영업이익은 고성장을 기록했지만 리포트에서는 신규 수주 회복이 필요하다고 지적", "록빌 공장 매출 인식, 5공장 수주 가시성, 6공장 착공 방향성이 성장 청사진의 핵심", "CDMO는 수주잔고와 공장 가동률이 실적 선행지표"],
+        sourceLevel: "실적 리뷰 + 증권사 리포트 보도",
+        links: [["삼성바이오 1Q26 리뷰", "https://www.hankyung.com/article/202604243819i"], ["IBK 리포트", "https://file.alphasquare.co.kr/media/pdfs/market-report/%EC%82%BC%EC%84%B1%EB%B0%94%EC%9D%B4%EC%98%A4%EB%A1%9C%EC%A7%81%EC%8A%A4%EC%B6%94%EA%B0%8020260423IBK%ED%88%AC%EC%9E%90%EC%A6%9D%EA%B6%8C."]]
+      },
+      "196170": {
+        title: "키트루다SC 마일스톤과 로열티",
+        points: ["대신증권은 키트루다SC 허가·판매 개시 이후 마일스톤과 로열티 수익 본격화를 전망", "2026~2028년 플랫폼 수익 확대 전망이 제시됐지만 이벤트 의존도가 큼", "성장성 판단은 매출의 반복성, 로열티율, 추가 빅파마 계약 여부가 핵심"],
+        sourceLevel: "증권사 신규 커버리지 보도 + 실적 보도",
+        links: [["대신증권 커버리지 보도", "https://www.g-enews.com/article/Securities/2026/05/20260520075911608044093b5d4e_1"], ["2025 실적 보도", "https://www.medicaltimes.com/Users/News/NewsView.html%3FID%3D1167503"]]
+      },
+      "267260": {
+        title: "북미 수주 모멘텀과 전력 인프라 슈퍼사이클",
+        points: ["BNK투자증권 리포트 브리핑에서 1Q26 신규 수주 17.97억달러, 북미 수주 13.15억달러가 확인됨", "수주잔고 78.9억달러, 북미 잔고 70% 근접이라는 자료는 중장기 매출 가시성을 높임", "AI 데이터센터 온사이트 전력 공급과 배전기기 확대 전략이 추가 성장 축"],
+        sourceLevel: "증권사 리포트 브리핑 + 실적 리뷰",
+        links: [["BNK 리포트 브리핑", "https://www.newspim.com/news/view/20260429001348"], ["신한투자증권 요약", "https://okokokokokok.tistory.com/3645"], ["IBK 리포트 PDF", "https://m.ibks.com/iko/IKO01/download.do?attatchCd=ATTATCH1&menuCode=IKO010201&seq=4726"]]
+      },
+      "145020": {
+        title: "글로벌 톡신·필러 침투",
+        points: ["하나증권 1Q26 리뷰에서 지역별 톡신·필러 매출 전망이 제시됨", "미국 직판 매출, 중국·유럽·브라질 성장, 허가 국가 확대가 선행지표", "직판 전환에 따른 판관비 증가를 매출 성장과 ASP가 상쇄하는지가 핵심"],
+        sourceLevel: "증권사 리포트 PDF + 실적 보도",
+        links: [["하나증권 휴젤 리포트", "https://file.hanaw.com/download/research/FileServer/WEB/info/small_cap/2026/05/08/Hugel_260508.pdf"], ["2025 실적 보도", "https://www.medicaltimes.com/Users/News/NewsView.html?ID=1167296"]]
+      },
+      "064760": {
+        title: "SiC 링과 NAND 고단화 회복",
+        points: ["NAND 고단화와 2나노 GAA 전환은 식각 부품·소모품 수요 회복 근거", "1Q26 실적 회복은 확인됐지만 고객사 설비투자와 후발 경쟁은 남은 변수", "SiC 링 수요와 중국 매출 확대가 성장 선행지표"],
+        sourceLevel: "소재 업황 리포트 + 1Q26 실적 자료",
+        links: [["알파스퀘어 재무", "https://alphasquare.co.kr/home/financial-information?code=064760"], ["FnGuide 기업현황", "https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?gicode=A064760"], ["NAND 로드맵 참고", "https://www.techinsights.com/blog/nand-technology-roadmap-0"]]
+      },
+      "216050": {
+        title: "AI 마케팅 솔루션 매출화",
+        points: ["1Q26 매출 104억원과 광고 사업 성장, 신규 커머스 고객 확보가 확인됨", "하반기 스텔라이즈 고도화와 신규 AI 마케팅 솔루션 개발 계획이 회사 코멘트로 확인됨", "다만 아직은 AI 솔루션이 실제 매출로 얼마나 연결되는지가 미확인"],
+        sourceLevel: "회사 실적 발표 보도",
+        links: [["인크로스 1Q26 실적", "https://www.venturesquare.net/1081911/"], ["알파스퀘어 재무", "https://alphasquare.co.kr/home/financial-information?code=216050"]]
+      },
+      "251970": {
+        title: "K뷰티 후방 수혜와 공장 증설",
+        points: ["K뷰티 인디 브랜드 성장의 후방 수혜가 핵심 논리", "4공장 정상화와 6공장 준공은 생산능력 확대 선행지표", "원재료 공급 불확실성 완화는 긍정적이나 실제 원가율 개선은 다음 실적에서 확인 필요"],
+        sourceLevel: "증권사 리포트 + 산업 보도",
+        links: [["펌텍코리아 종목 요약", "https://alphasquare.co.kr/home/stock-summary?code=251970"], ["펌텍코리아 리포트", "https://www.hanaroetf.com/_upload/public/fund-content/ooq9oD4KCQ5A5iiO/j5kiLJIRMVriylPr.pdf"], ["뉴스핌 리포트 브리핑", "https://www.newspim.com/news/view/20260511000126"]]
+      },
+      "206640": {
+        title: "장비 설치 기반과 카트리지 반복 매출",
+        points: ["장비 설치 대수가 늘면 카트리지 매출이 뒤따르는 반복 매출 구조가 핵심", "MENA·아프리카·국내 매출 호조는 2025년 실적에서 확인", "2026년 지역별 반복 매출 자료가 제한적이라 다음 분기 실적 설명자료가 필요"],
+        sourceLevel: "실적 보도 + 기업 리포트",
+        links: [["2025 실적 보도", "https://www.hankyung.com/amp/202602204582P"], ["기업 리포트", "https://stock.pstatic.net/stock-research/company/21/20241224_company_943812000.pdf"]]
+      },
+      "214370": {
+        title: "코글루타이드·Luxidase 상업화",
+        points: ["1Q26 매출과 영업이익률 회복, 코글루타이드와 Luxidase 상업화 기대가 확인됨", "성장성 판단은 실제 PO, 선적, 반복 매출 전환 여부가 핵심", "고마진 제품이 반복 매출로 전환되면 이익 레버리지가 커질 수 있음"],
+        sourceLevel: "1Q26 실적 보도 + 회사 글로벌 진출 자료",
+        links: [["2025 실적 보도", "https://www.yakup.com/news/index.html?cat=12&mode=view&nid=324579"], ["FnGuide 기업현황", "https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?gicode=A214370"]]
+      },
+      "051360": {
+        title: "토비스·네오뷰 분할 이벤트",
+        points: ["2026년 7월 인적분할과 변경상장·재상장 일정이 확인됨", "존속 토비스는 카지노·산업용 모니터, 신설 네오뷰는 전장 디스플레이로 평가 기준이 달라짐", "분할 후 별도 재무와 전장 고객사 공개가 성장성 판단의 핵심"],
+        sourceLevel: "거래소 예심/분할 보도 + IR 리포트",
+        links: [["한국IR협의회 리포트", "https://file.alphasquare.co.kr/media/pdfs/market-report/%ED%86%A0%EB%B9%84%EC%8A%A42026%EB%85%8420251217%ED%95%9C%EA%B5%ADIR%ED%98%91%EC%9D%98%ED%9A%8C."], ["알파스퀘어 리포트", "https://file.alphasquare.co.kr/media/pdfs/company-report/_24075445-051360.pdf"]]
+      },
+      "333430": {
+        title: "조선 기자재 수주 질 확인 필요",
+        points: ["조선 기자재 업황 회복과 환경장비 수요는 성장 논리로 유효", "다만 수주잔고, 고객사 편중, 수주 질에 대한 공개자료가 부족함", "성장성 판단에는 다음 DART 분기보고서와 단일판매 공급계약 공시 확인이 우선"],
+        sourceLevel: "제한적 공시성 자료 + 업황 자료, 신뢰도 낮음",
+        links: [["알파스퀘어 재무", "https://alphasquare.co.kr/home/financial-information?code=333430"], ["한국경제 기업재무", "https://markets.hankyung.com/stock/333430/financial-summary"]]
+      },
+      "053800": {
+        title: "사우디 합작법인과 제로트러스트",
+        points: ["1Q26 매출과 영업이익 증가, 사우디 합작법인 중심 해외 매출 효과가 확인됨", "제로트러스트와 클라우드 보안 제품군이 성장 옵션", "다만 고성장 판단에는 반복 매출 규모와 제품별 매출 기여 확인이 필요"],
+        sourceLevel: "회사 실적 보도 + 해외사업 코멘트",
+        links: [["안랩 공식 블로그", "https://blog.ahnlab.com/m/2947"], ["관련 보도", "https://www.etoday.co.kr/news/view/2556427"]]
+      },
+      "192080": {
+        title: "아이게이밍·캐주얼 게임 흑자 전환",
+        points: ["1Q26 분기 최대 실적과 슈퍼네이션·팍시게임즈 흑자 전환이 확인됨", "소셜카지노 본업도 성장해 본업 둔화 우려가 일부 완화", "성장주보다는 현금창출력과 신사업 이익 기여를 같이 보는 후보"],
+        sourceLevel: "실적 보도 + 게임 산업 리포트",
+        links: [["게임 리포트", "https://www.eugenefn.com/common/files/amail/20250313_192080_uihoon0607_301.pdf"], ["한화투자증권 리포트", "https://file.alphasquare.co.kr/media/pdfs/market-report/%EC%9D%B8%ED%84%B0%EB%84%B7%ED%8F%AC%ED%83%88%EC%8B%A4%EC%B2%B4%ED%99%94%EC%9D%9820251112%ED%95%9C%ED%99%94%ED%88%AC%EC%9E%90%EC%A6%9D%EA%B6%8C."]]
+      },
+      "018290": {
+        title: "PDRN과 미국·유럽 채널 검증",
+        points: ["1Q26 유럽·중동 매출 고성장과 PDRN 라인 확장이 확인됨", "상반기 비용 부담 이후 하반기 미국·유럽 사업성이 성장성 판단의 핵심", "리들샷 이후 후속 히트제품이 필요한 구간"],
+        sourceLevel: "1Q26 실적 보도 + 증권사 리포트",
+        links: [["2025 실적 보도", "https://view.asiae.co.kr/en/article/2026031918254078846"], ["브이티 1Q26 보도", "https://www.meconomynews.com/news/articleView.html?idxno=131158"]]
+      }
+    };
+
+    const valuationEssentials = {
+      "257720": {
+        profitMetric: "2027E 순이익",
+        multipleMetric: "2027E PER",
+        required: ["현재 시가총액", "2026E·2027E 순이익", "2025~2027E 순이익 CAGR", "2027E PER", "기준 시나리오 업사이드"],
+        method: "유통 플랫폼 성격이라 순이익 성장률과 PER을 같이 본다. 운전자본 부담이 커지면 순이익보다 현금흐름 확인을 별도 과제로 둔다.",
+        cheapRule: "2027E PER이 20배 안팎 이하이고 순이익 CAGR이 25% 이상이면 미래 가치 대비 매력 구간으로 검토",
+        status: "컨센서스와 리포트 추정치 확보 필요"
+      },
+      "214450": {
+        profitMetric: "2027E 순이익",
+        multipleMetric: "2027E PER",
+        required: ["현재 시가총액", "2026E·2027E 순이익", "의료기기·화장품 부문별 성장률", "2027E PER", "마진 유지 시나리오"],
+        method: "고마진 의료기기 기업이라 순이익 기준 PER이 가장 직관적이다. 화장품 고성장이 의료기기 둔화를 상쇄하는지 같이 본다.",
+        cheapRule: "영업이익률 35% 이상 유지 가정에서 2027E PER이 20배대 초중반이면 매력 검토",
+        status: "증권사 추정치 기반 계산 가능"
+      },
+      "062040": {
+        profitMetric: "2027E 영업이익",
+        multipleMetric: "2027E EV/영업이익",
+        required: ["현재 시가총액", "2026E·2027E 영업이익", "수주잔고", "2027E EV/영업이익", "마진 하락 시나리오"],
+        method: "수주 기반 제조업이라 영업이익과 수주잔고가 핵심이다. 순이익보다 영업이익 기반 가치평가가 안정적이다.",
+        cheapRule: "2027E EV/영업이익이 10~12배 이하이고 수주잔고 증가가 유지되면 저평가 검토",
+        status: "2026E 전망은 있음, 2027E 추정치 추가 확보 필요"
+      },
+      "214150": {
+        profitMetric: "2027E 순이익",
+        multipleMetric: "2027E PER",
+        required: ["현재 시가총액", "2026E·2027E 순이익", "소모품 매출 비중", "해외 매출 성장률", "2027E PER"],
+        method: "소모품 반복매출과 높은 마진을 반영해 PER을 보되, 해외 직영 전환 효과가 실제 매출로 확인되어야 한다.",
+        cheapRule: "영업이익률 40% 이상 유지와 해외 매출 성장 지속 전제에서 2027E PER 20배대면 매력 검토",
+        status: "증권사 목표 실적과 해외 이벤트 일정 기반 계산 가능"
+      },
+      "058470": {
+        profitMetric: "2027E 순이익",
+        multipleMetric: "2027E PER",
+        required: ["현재 시가총액", "2026E·2027E 순이익", "AI 테스트 소켓 성장률", "2027E PER", "신공장 효과"],
+        method: "고마진 부품 기업이라 순이익 PER을 본다. 다만 신공장 효과가 2027년 이후라 2027E 추정의 신뢰도를 따로 표시해야 한다.",
+        cheapRule: "순이익 CAGR 20% 이상에서 2027E PER이 20배 이하로 내려오면 매력 검토",
+        status: "2026E 추정은 비교적 가능, 2027E는 직접 추정 필요"
+      },
+      "042700": {
+        profitMetric: "2027E 영업이익",
+        multipleMetric: "2027E EV/영업이익",
+        required: ["현재 시가총액", "2026E·2027E 영업이익", "HBM4 장비 발주", "고객사별 매출", "2027E EV/영업이익"],
+        method: "장비 발주 변동성이 커서 PER보다 영업이익 기반 시나리오가 낫다. 보수 시나리오에서 HBM 발주 공백을 반영한다.",
+        cheapRule: "HBM4 발주 지속 가정에서 2027E EV/영업이익 10배 이하이면 매력, 15배 이상이면 신중",
+        status: "수주 변동성이 커 직접 시나리오 필요"
+      },
+      "207940": {
+        profitMetric: "2027E 영업이익",
+        multipleMetric: "2027E EV/영업이익",
+        required: ["현재 시가총액", "2026E·2027E 영업이익", "신규 수주", "5공장 가동률", "2027E EV/영업이익"],
+        method: "CDMO는 공장 가동률과 수주잔고가 미래 이익을 결정한다. 5공장 선행 수주 여부를 시나리오에 반영한다.",
+        cheapRule: "신규 수주 회복 없이도 2027E EV/영업이익이 업종 평균 이하라면 매력 검토",
+        status: "컨센서스 기반 계산 가능"
+      },
+      "196170": {
+        profitMetric: "2027E 로열티 포함 순이익",
+        multipleMetric: "2027E PER",
+        required: ["현재 시가총액", "키트루다SC 마일스톤", "로열티 매출", "2027E 순이익", "이벤트별 시나리오"],
+        method: "일반 PER보다 이벤트 시나리오가 중요하다. 마일스톤 일회성과 로열티 반복성을 분리해 계산한다.",
+        cheapRule: "반복 로열티 기준 2027E PER이 25배 이하로 내려오면 매력, 일회성 마일스톤만으로 낮아지면 판단보류",
+        status: "이벤트 의존도가 커 시나리오 직접 작성 필요"
+      },
+      "267260": {
+        profitMetric: "2027E 영업이익",
+        multipleMetric: "2027E EV/영업이익",
+        required: ["현재 시가총액", "2026E·2027E 영업이익", "수주잔고", "수주 마진", "2027E EV/영업이익"],
+        method: "전력기기 수주잔고가 매출 가시성을 높이므로 영업이익 기반으로 본다. 수주 마진 하락 시나리오를 반드시 넣는다.",
+        cheapRule: "수주잔고 증가가 유지되고 2027E EV/영업이익 10~12배 이하이면 매력 검토",
+        status: "자료 충분, 시나리오 계산 우선순위 높음"
+      },
+      "145020": {
+        profitMetric: "2027E 순이익",
+        multipleMetric: "2027E PER",
+        required: ["현재 시가총액", "2026E·2027E 순이익", "미국 직판 매출", "판관비율", "2027E PER"],
+        method: "톡신·필러는 순이익 기준 PER이 적합하다. 미국 직판 전환 후 판관비 회수 여부를 보수·기준 시나리오로 나눈다.",
+        cheapRule: "미국 직판 매출 증가에도 순이익률 30% 이상 유지되고 2027E PER 20배대면 매력 검토",
+        status: "증권사 추정치와 지역 매출 자료 기반 계산 가능"
+      },
+      "064760": {
+        profitMetric: "2027E 영업이익",
+        multipleMetric: "2027E EV/영업이익",
+        required: ["현재 시가총액", "2026E·2027E 영업이익", "SiC 링 수요", "고객사 투자", "2027E EV/영업이익"],
+        method: "반도체 소재 회복주는 업황 민감도가 있어 영업이익 기준으로 본다. 고객사 투자 사이클에 따라 보수 시나리오를 둔다.",
+        cheapRule: "업황 회복 가정에서 2027E EV/영업이익 8~10배 이하이면 매력 검토",
+        status: "컨센서스 보강 필요"
+      },
+      "216050": {
+        profitMetric: "2027E 영업이익",
+        multipleMetric: "2027E PER 또는 EV/영업이익",
+        required: ["현재 시가총액", "2026E·2027E 영업이익", "AI 솔루션 매출", "커머스 매출", "2027E PER"],
+        method: "성장률이 낮아 보수적으로 본다. AI 솔루션 매출이 확인되기 전에는 높은 멀티플을 주기 어렵다.",
+        cheapRule: "AI 매출 없이도 2027E PER이 낮고 배당·현금창출력이 받쳐주면 안정형으로 검토",
+        status: "고성장 판단 자료 부족"
+      },
+      "251970": {
+        profitMetric: "2027E 영업이익",
+        multipleMetric: "2027E PER",
+        required: ["현재 시가총액", "2026E·2027E 영업이익", "4공장 효과", "고객 주문", "2027E PER"],
+        method: "K뷰티 후방 수혜주라 영업이익 성장률과 PER을 같이 본다. 생산능력 확대가 원가율 개선으로 이어지는지 반영한다.",
+        cheapRule: "영업이익 CAGR 15~20% 이상에서 2027E PER 12~15배 이하이면 매력 검토",
+        status: "증권사 추정치 기반 계산 가능"
+      },
+      "206640": {
+        profitMetric: "2027E 영업이익",
+        multipleMetric: "2027E PER",
+        required: ["현재 시가총액", "2026E·2027E 영업이익", "카트리지 매출", "장비 설치 대수", "2027E PER"],
+        method: "장비 설치 기반이 반복 매출로 전환되는지가 핵심이다. 카트리지 매출 비중이 없으면 판단 신뢰도가 낮다.",
+        cheapRule: "반복 매출 증가가 확인되고 2027E PER 12~15배 이하이면 매력 검토",
+        status: "반복 매출 자료 추가 필요"
+      },
+      "214370": {
+        profitMetric: "2027E 순이익",
+        multipleMetric: "2027E PER",
+        required: ["현재 시가총액", "2026E·2027E 순이익", "PO·선적", "고마진 제품 반복 매출", "2027E PER"],
+        method: "고마진 바이오 소재는 실제 선적과 반복 매출 전환 전까지 보수적으로 봐야 한다.",
+        cheapRule: "반복 매출 기준 2027E PER 15배 이하이면 매력, 일회성 매출이면 판단보류",
+        status: "직접 추정 필요"
+      },
+      "051360": {
+        profitMetric: "분할 후 2027E 영업이익",
+        multipleMetric: "분할 후 EV/영업이익",
+        required: ["분할 후 시가총액", "토비스·네오뷰 별도 영업이익", "전장 고객사", "카지노 수주", "분할 후 멀티플"],
+        method: "분할 전 숫자로 판단하면 왜곡된다. 분할 후 존속·신설 법인 별도 재무로 다시 계산해야 한다.",
+        cheapRule: "분할 후 전장사업 성장률 대비 멀티플이 낮을 때만 매력 검토",
+        status: "분할 후 재산정 필요"
+      },
+      "333430": {
+        profitMetric: "2027E 영업이익",
+        multipleMetric: "2027E PER",
+        required: ["현재 시가총액", "2026E·2027E 영업이익", "수주잔고", "고객사 편중", "2027E PER"],
+        method: "정보가 부족해 직접 추정 신뢰도가 낮다. 공시 기반 수주와 이익 반복성이 확인되기 전까지 보류한다.",
+        cheapRule: "수주잔고와 반복 이익이 확인되고 2027E PER 10배 이하일 때만 검토",
+        status: "판단 자료 부족"
+      },
+      "053800": {
+        profitMetric: "2027E 영업이익",
+        multipleMetric: "2027E PER",
+        required: ["현재 시가총액", "2026E·2027E 영업이익", "중동 매출", "제로트러스트 매출", "2027E PER"],
+        method: "보안 SW 안정주는 성장률이 낮으면 높은 멀티플을 주기 어렵다. 해외 반복 매출 규모가 핵심이다.",
+        cheapRule: "중동·제로트러스트 매출 성장 없이도 2027E PER이 낮으면 안정형, 성장주 판단은 보류",
+        status: "해외 반복 매출 자료 추가 필요"
+      },
+      "192080": {
+        profitMetric: "2027E 순이익",
+        multipleMetric: "2027E PER",
+        required: ["현재 시가총액", "2026E·2027E 순이익", "슈퍼네이션 이익", "팍시게임즈 이익", "2027E PER"],
+        method: "게임주는 순이익과 현금창출력이 중요하다. 신사업 흑자 전환 지속성을 기준 시나리오에 넣는다.",
+        cheapRule: "신사업 흑자 지속 가정에서 2027E PER 8~10배 이하이면 저평가 검토",
+        status: "실적 자료 기반 계산 가능"
+      },
+      "018290": {
+        profitMetric: "2027E 순이익",
+        multipleMetric: "2027E PER",
+        required: ["현재 시가총액", "2026E·2027E 순이익", "PDRN 매출", "미국·유럽 매출", "2027E PER"],
+        method: "브랜드주는 히트제품 지속성과 마케팅 회수 여부가 핵심이다. 비용 부담을 반영해 보수 시나리오를 반드시 둔다.",
+        cheapRule: "PDRN과 해외 채널 성장 확인 후 2027E PER 15배 이하이면 매력 검토",
+        status: "하반기 실적 확인 전 판단 신뢰도 중간"
+      }
+    };
+
+    const valuationData = {
+      "145020": { name: "휴젤", sourceDate: "2026-06-05 FnGuide", marketCap: "30,945", revenue2025: "4,251", revenue2026E: "5,209", revenue2027E: "6,300", op2025: "2,009", op2026E: "2,171", op2027E: "2,768", net2025: "1,409", net2026E: "1,739", net2027E: "2,228", per12m: "15.60", per2026E: "17.8", per2027E: "13.9" },
+      "192080": { name: "더블유게임즈", sourceDate: "2026-06-05 FnGuide", marketCap: "14,885", revenue2025: "7,199", revenue2026E: "8,368", revenue2027E: "8,959", op2025: "2,321", op2026E: "2,836", op2027E: "3,121", net2025: "1,313", net2026E: "1,941", net2027E: "2,193", per12m: "7.20", per2026E: "7.7", per2027E: "6.8" },
+      "196170": { name: "알테오젠", sourceDate: "2026-06-05 FnGuide", marketCap: "185,677", revenue2025: "2,159", revenue2026E: "4,674", revenue2027E: "8,068", op2025: "1,069", op2026E: "2,859", op2027E: "5,060", net2025: "1,417", net2026E: "2,776", net2027E: "4,421", per12m: "51.99", per2026E: "66.9", per2027E: "42.0" },
+      "206640": { name: "바디텍메드", sourceDate: "2026-06-05 FnGuide", marketCap: "2,329", revenue2025: "1,621", revenue2026E: null, revenue2027E: null, op2025: "289", op2026E: null, op2027E: null, net2025: "237", net2026E: null, net2027E: null, per12m: null, per2026E: null, per2027E: null },
+      "207940": { name: "삼성바이오로직스", sourceDate: "2026-06-05 FnGuide", marketCap: "624,928", revenue2025: "45,570", revenue2026E: "54,273", revenue2027E: "62,868", op2025: "20,692", op2026E: "25,051", op2027E: "28,932", net2025: "17,844", net2026E: "19,656", net2027E: "22,460", per12m: "29.68", per2026E: "31.8", per2027E: "27.8" },
+      "214150": { name: "클래시스", sourceDate: "2026-06-05 FnGuide", marketCap: "28,378", revenue2025: "3,368", revenue2026E: "4,671", revenue2027E: "5,878", op2025: "1,706", op2026E: "2,196", op2027E: "2,898", net2025: "1,319", net2026E: "1,774", net2027E: "2,283", per12m: "13.99", per2026E: "16.0", per2027E: "12.4" },
+      "214370": { name: "케어젠", sourceDate: "2026-06-05 FnGuide", marketCap: "45,389", revenue2025: "728", revenue2026E: null, revenue2027E: null, op2025: "204", op2026E: null, op2027E: null, net2025: "201", net2026E: null, net2027E: null, per12m: null, per2026E: null, per2027E: null },
+      "214450": { name: "파마리서치", sourceDate: "2026-06-05 FnGuide", marketCap: "30,805", revenue2025: "5,363", revenue2026E: "6,613", revenue2027E: "7,987", op2025: "2,144", op2026E: "2,665", op2027E: "3,290", net2025: "1,651", net2026E: "2,157", net2027E: "2,634", per12m: "14.31", per2026E: "14.3", per2027E: "11.7" },
+      "216050": { name: "인크로스", sourceDate: "2026-06-05 FnGuide", marketCap: "673", revenue2025: "505", revenue2026E: null, revenue2027E: null, op2025: "115", op2026E: null, op2027E: null, net2025: "120", net2026E: null, net2027E: null, per12m: null, per2026E: null, per2027E: null },
+      "251970": { name: "펌텍코리아", sourceDate: "2026-06-05 FnGuide", marketCap: "4,396", revenue2025: "3,720", revenue2026E: "4,123", revenue2027E: "4,656", op2025: "565", op2026E: "636", op2027E: "740", net2025: "344", net2026E: "453", net2027E: "489", per12m: "9.33", per2026E: "9.7", per2027E: "9.0" },
+      "257720": { name: "실리콘투", sourceDate: "2026-06-05 FnGuide", marketCap: "23,739", revenue2025: "11,163", revenue2026E: "15,427", revenue2027E: "19,514", op2025: "2,054", op2026E: "2,730", op2027E: "3,487", net2025: "1,686", net2026E: "2,173", net2027E: "2,778", per12m: "9.59", per2026E: "10.9", per2027E: "8.5" },
+      "267260": { name: "HD현대일렉트릭", sourceDate: "2026-06-05 FnGuide", marketCap: "360,111", revenue2025: "40,795", revenue2026E: "46,975", revenue2027E: "54,808", op2025: "9,953", op2026E: "12,539", op2027E: "15,513", net2025: "7,326", net2026E: "9,833", net2027E: "12,078", per12m: "32.87", per2026E: "36.6", per2027E: "29.8" },
+      "333430": { name: "일승", sourceDate: "2026-06-05 FnGuide", marketCap: "1,266", revenue2025: "507", revenue2026E: null, revenue2027E: null, op2025: "109", op2026E: null, op2027E: null, net2025: "75", net2026E: null, net2027E: null, per12m: null, per2026E: null, per2027E: null },
+      "062040": { name: "산일전기", sourceDate: "2026-06-05 FnGuide", marketCap: "68,120", revenue2025: "5,019", revenue2026E: "6,762", revenue2027E: "8,756", op2025: "1,786", op2026E: "2,518", op2027E: "3,355", net2025: "1,489", net2026E: "2,103", net2027E: "2,711", per12m: "28.30", per2026E: "32.4", per2027E: "25.1" },
+      "058470": { name: "리노공업", sourceDate: "2026-06-05 FnGuide", marketCap: "75,907", revenue2025: "3,725", revenue2026E: null, revenue2027E: null, op2025: "1,770", op2026E: null, op2027E: null, net2025: "1,520", net2026E: null, net2027E: null, per12m: "36.49", per2026E: null, per2027E: null },
+      "042700": { name: "한미반도체", sourceDate: "2026-06-05 FnGuide", marketCap: "289,749", revenue2025: "5,767", revenue2026E: "7,850", revenue2027E: "10,985", op2025: "2,514", op2026E: "3,694", op2027E: "5,719", net2025: "2,140", net2026E: "3,373", net2027E: "5,238", per12m: "67.30", per2026E: "85.9", per2027E: "55.3" },
+      "064760": { name: "티씨케이", sourceDate: "2026-06-05 FnGuide", marketCap: "30,632", revenue2025: "3,013", revenue2026E: null, revenue2027E: null, op2025: "839", op2026E: null, op2027E: null, net2025: "699", net2026E: null, net2027E: null, per12m: "25.47", per2026E: null, per2027E: null },
+      "051360": { name: "토비스", sourceDate: "2026-06-05 FnGuide", marketCap: "2,572", revenue2025: "6,403", revenue2026E: null, revenue2027E: null, op2025: "572", op2026E: null, op2027E: null, net2025: "431", net2026E: null, net2027E: null, per12m: null, per2026E: null, per2027E: null },
+      "053800": { name: "안랩", sourceDate: "2026-06-05 FnGuide", marketCap: "6,665", revenue2025: "2,677", revenue2026E: null, revenue2027E: null, op2025: "333", op2026E: null, op2027E: null, net2025: "543", net2026E: null, net2027E: null, per12m: null, per2026E: null, per2027E: null },
+      "018290": { name: "브이티", sourceDate: "2026-06-05 FnGuide", marketCap: "4,427", revenue2025: "4,372", revenue2026E: "4,761", revenue2027E: "5,386", op2025: "829", op2026E: "681", op2027E: "864", net2025: "609", net2026E: "488", net2027E: "641", per12m: "7.85", per2026E: "9.1", per2027E: "6.9" }
+    };
+
+    const estimateReliability = {
+      "257720": { level: "중", backlog: "수주형 사업은 아니며 국가별 매출과 입점 브랜드 수가 추정 근거", capacity: "해외 법인·물류 거점 확장이 매출 처리 능력", recurring: "브랜드와 유통망이 쌓이는 플랫폼형 반복 거래", diversification: "미국 외 유럽·중동·멕시코 확장이 확인 포인트", revision: "마진 추정은 유럽 할인 판매 변수로 변동 가능" },
+      "214450": { level: "중상", backlog: "수주잔고보다 품목별 매출과 국가별 유통계약이 중요", capacity: "강릉 5공장 투자가 중장기 생산능력 근거", recurring: "리쥬란 의료기기와 화장품 브랜드 반복 구매 구조", diversification: "의료기기·화장품·의약품으로 품목 다변화", revision: "의료기기 수출 회복 여부에 따라 추정치 신뢰도 변화" },
+      "062040": { level: "상", backlog: "북미 특수변압기 수주와 수주잔고가 추정 신뢰도의 핵심", capacity: "생산능력 확대와 납기 슬롯이 매출 인식 한계", recurring: "수주잔고가 매출로 전환되는 구조", diversification: "데이터센터·신재생·ESS 등 전방 수요 다변화", revision: "영업이익률 30%대 유지 전망이 제시되어 신뢰도 높음" },
+      "214150": { level: "상", backlog: "수주형은 아니지만 장비 설치 기반과 소모품 매출이 선행지표", capacity: "브라질 직영 전환과 해외 유통망 확대가 성장 기반", recurring: "장비-소모품 구조로 반복 매출 가시성 높음", diversification: "브라질·유럽·미국·중국·태국으로 지역 다변화", revision: "중국 허가와 브라질 매출 반영 시 추정치 상향 가능" },
+      "058470": { level: "중상", backlog: "수주잔고보다 고객사 신제품 개발 사이클과 테스트 수요가 중요", capacity: "신공장 램프업이 2027년 이후 성장 변수", recurring: "테스트 소켓·핀은 고객사 개발 프로젝트마다 반복 수요", diversification: "글로벌 반도체 고객 기반이 넓은 편", revision: "AI 가속기 테스트 수요가 실적 추정 상향 요인" },
+      "042700": { level: "중", backlog: "HBM TC본더 발주 공시가 직접 근거", capacity: "장비 생산능력보다 고객사 투자 타이밍이 더 중요", recurring: "장비 매출은 발주 사이클형으로 반복성 낮음", diversification: "SK하이닉스 의존도와 고객 다변화 여부가 관건", revision: "HBM4 발주와 경쟁사 진입에 따라 추정 변동성 큼" },
+      "207940": { level: "중상", backlog: "CDMO 신규 수주와 선행 수주가 핵심", capacity: "5공장·록빌 공장·6공장 일정이 추정 근거", recurring: "장기 위탁생산 계약 기반 반복 매출", diversification: "글로벌 빅파마 고객과 신규 모달리티 확장", revision: "신규 수주 정체가 해소되어야 추정 신뢰도 상승" },
+      "196170": { level: "중", backlog: "수주잔고보다 마일스톤과 로열티 계약 구조가 핵심", capacity: "자산가벼운 플랫폼 모델이라 생산능력 제약은 낮음", recurring: "일회성 마일스톤과 반복 로열티를 분리해야 함", diversification: "파트너 계약 수와 적응증 확장이 중요", revision: "키트루다SC 허가·출시 이벤트에 따라 추정치 변동 큼" },
+      "267260": { level: "상", backlog: "수주잔고와 북미 신규 수주가 매우 강한 추정 근거", capacity: "앨라배마 제2공장과 국내 증설이 매출 상단을 결정", recurring: "장기 납기 수주가 실적 가시성을 높임", diversification: "북미·중동·데이터센터·배전기기 수요", revision: "수주잔고 증가와 마진 유지가 추정 신뢰도 핵심" },
+      "145020": { level: "중상", backlog: "수주잔고보다 국가별 매출과 허가 진척이 중요", capacity: "톡신 생산과 직판 채널 구축이 성장 기반", recurring: "톡신·필러는 병의원 반복 수요가 존재", diversification: "미국·중국·유럽·브라질 4대 시장 성장", revision: "미국 직판 매출이 판관비를 상쇄하면 추정 신뢰도 상승" },
+      "064760": { level: "중", backlog: "소모품 수요와 고객사 설비투자가 핵심", capacity: "소재 생산능력과 고객 인증이 제약", recurring: "SiC 링 등 소모품 교체 수요", diversification: "주요 반도체 고객사와 중국 매출 확대", revision: "반도체 투자 사이클에 따라 추정 변동성 있음" },
+      "216050": { level: "낮음", backlog: "수주형 근거가 약하고 광고 경기 민감도가 큼", capacity: "AI 솔루션 개발은 확인됐지만 매출화는 미확인", recurring: "광고·커머스 반복 고객은 있으나 성장 가시성 낮음", diversification: "광고와 커머스 사업으로 분산", revision: "AI 솔루션 매출 확인 전 추정 신뢰도 낮음" },
+      "251970": { level: "중상", backlog: "고객 주문과 K뷰티 신제품 출시가 추정 근거", capacity: "4공장·6공장 증설이 생산능력 근거", recurring: "화장품 용기 주문은 브랜드 신제품 사이클에 반복", diversification: "인디 브랜드와 해외 고객 확대", revision: "공장 정상화와 원가율 개선 확인 시 추정 신뢰도 상승" },
+      "206640": { level: "중", backlog: "장비 설치 대수와 카트리지 매출이 추정 근거", capacity: "진단 장비 공급과 지역 채널 확장", recurring: "장비 설치 후 카트리지 반복 매출 구조", diversification: "MENA·아프리카·국내 지역 매출", revision: "지역별 반복 매출 데이터가 부족해 추가 확인 필요" },
+      "214370": { level: "중", backlog: "PO·선적 확인이 핵심이나 공개자료 제한", capacity: "화성 공장과 펩타이드 생산능력", recurring: "고마진 제품 반복 매출 전환 여부가 핵심", diversification: "코글루타이드·Luxidase 등 제품 다변화", revision: "실제 선적 전까지 추정 신뢰도 중간 이하" },
+      "051360": { level: "중", backlog: "분할 후 사업별 수주와 고객사가 핵심", capacity: "카지노 모니터와 전장 디스플레이 생산역량 분리", recurring: "전장 고객사 납품은 반복 가능성, 카지노는 투자 사이클형", diversification: "카지노와 전장으로 사업 분리 예정", revision: "분할 후 별도 재무 확인 전 추정 신뢰도 제한" },
+      "333430": { level: "낮음", backlog: "수주잔고와 고객사 편중 자료가 부족", capacity: "생산능력 자료 부족", recurring: "조선 기자재 수주가 반복되는지 확인 필요", diversification: "조선 업황 의존도 높음", revision: "공시 기반 자료 확인 전 추정 신뢰도 낮음" },
+      "053800": { level: "중", backlog: "보안 계약과 해외 반복 매출 자료가 필요", capacity: "SW 사업이라 생산능력 제약은 낮음", recurring: "보안 솔루션은 유지보수·구독형 반복 매출 가능", diversification: "국내 보안 기반과 사우디 합작법인", revision: "중동 매출 규모 확인 전 성장 추정 신뢰도 중간" },
+      "192080": { level: "중상", backlog: "게임은 수주보다 실제 매출과 잔존율이 중요", capacity: "디지털 서비스라 생산능력 제약 낮음", recurring: "소셜카지노와 아이게이밍은 반복 결제 구조", diversification: "소셜카지노·아이게이밍·캐주얼 게임", revision: "신사업 흑자 지속 확인 시 추정 신뢰도 상승" },
+      "018290": { level: "중", backlog: "국가별 채널 매출과 후속 제품 매출이 핵심", capacity: "브랜드와 유통채널 확장이 성장 기반", recurring: "브랜드 반복 구매가 있으나 히트제품 의존도 존재", diversification: "리들샷·PDRN·미국·유럽·중동 채널", revision: "마케팅 투자 회수 전 추정 신뢰도 중간" }
+    };
+
+    const competitivePosition = {
+      "257720": { peers: ["글로벌 K뷰티 유통사", "온라인 역직구 플랫폼", "화장품 도매상"], edge: ["해외 법인·물류망", "인디 브랜드 소싱", "다국가 B2B 유통"], pricing: "유통업이라 가격 결정력은 중간, 플랫폼 규모가 커질수록 협상력 개선", lockIn: "브랜드와 해외 바이어가 동시에 늘어날수록 네트워크 효과", barrier: "물류·통관·현지 채널 운영 노하우", verdict: "중상" },
+      "214450": { peers: ["휴젤", "메디톡스", "클래시스", "국내 스킨부스터 업체"], edge: ["리쥬란 브랜드", "PN/PDRN 기반 제품", "화장품 확장성"], pricing: "브랜드력이 있어 가격 방어력 양호", lockIn: "병의원·소비자 인지도 기반 반복 구매", barrier: "제품 기전·브랜드·해외 허가", verdict: "상" },
+      "062040": { peers: ["HD현대일렉트릭", "효성중공업", "제룡전기", "일진전기"], edge: ["특수변압기 고마진", "북미 수요 노출", "중소형사 대비 수익성 레벨업"], pricing: "공급 부족 구간에서 가격 결정력 강함", lockIn: "전력기기는 납기와 품질 인증이 중요해 공급자 변경이 쉽지 않음", barrier: "고전압 설계·품질 인증·납기 신뢰도", verdict: "상" },
+      "214150": { peers: ["제이시스메디칼", "원텍", "루트로닉 계열", "글로벌 미용기기 업체"], edge: ["장비-소모품 반복 구조", "슈링크·볼뉴머 브랜드", "브라질 직영 전환"], pricing: "소모품 비중이 높아 마진 방어력 강함", lockIn: "장비 설치 후 카트리지·팁 반복 사용", barrier: "인허가·브랜드·소모품 생태계", verdict: "상" },
+      "058470": { peers: ["ISC", "티에스이", "글로벌 테스트 소켓 업체"], edge: ["다품종 소량 대응", "숙련 인력", "글로벌 고객 기반"], pricing: "고난도 테스트 부품은 가격 저항이 낮음", lockIn: "고객사 개발 단계에 맞춘 커스텀 부품이라 락인 높음", barrier: "정밀가공 기술·품질 신뢰·짧은 리드타임", verdict: "상" },
+      "042700": { peers: ["한화세미텍", "Besi", "ASMPT", "글로벌 본딩 장비 업체"], edge: ["TC 본더 선도 경험", "HBM 고객사 레퍼런스", "차세대 본더 개발"], pricing: "HBM 투자 구간에서는 강하나 경쟁 진입 시 약화 가능", lockIn: "고객사 공정 검증 이후 교체 비용 존재", barrier: "장비 성능·수율·고객사 인증", verdict: "중상" },
+      "207940": { peers: ["Lonza", "WuXi Biologics", "Fujifilm Diosynth", "Catalent"], edge: ["대형 생산능력", "글로벌 빅파마 레퍼런스", "품질·납기 신뢰"], pricing: "대형 CDMO는 품질과 슬롯이 가격 결정력의 원천", lockIn: "CDMO 공정 이전 비용이 높아 락인 강함", barrier: "규제 대응·대형 설비·품질 시스템", verdict: "상" },
+      "196170": { peers: ["Halozyme", "SC 제형 플랫폼 업체", "바이오 기술수출 기업"], edge: ["ALT-B4 플랫폼", "빅파마 계약", "로열티 옵션"], pricing: "플랫폼 검증 후 로열티 조건이 핵심", lockIn: "상업화 제품에 적용되면 장기 로열티 가능", barrier: "특허·기술 검증·파트너 계약", verdict: "중상" },
+      "267260": { peers: ["효성중공업", "LS ELECTRIC", "GE Vernova", "Hitachi Energy", "Siemens Energy"], edge: ["북미 초고압 수주", "765kV 기술", "수주잔고와 증설"], pricing: "전력기기 공급 부족으로 가격 결정력 강함", lockIn: "전력망 장비는 인증과 납기 신뢰가 핵심", barrier: "초고압 설계·품질 인증·현지 생산능력", verdict: "상" },
+      "145020": { peers: ["메디톡스", "대웅제약", "AbbVie", "Evolus"], edge: ["톡신·필러 포트폴리오", "글로벌 허가", "미국 직판 전환"], pricing: "브랜드와 허가 시장에서는 가격 방어 가능하나 경쟁 심화 존재", lockIn: "병의원 채널과 반복 시술 수요", barrier: "규제 허가·품질 관리·유통망", verdict: "상" },
+      "064760": { peers: ["하나머티리얼즈", "월덱스", "원익QnC", "글로벌 식각 부품 업체"], edge: ["SiC 링 기술", "반도체 고객 인증", "소모품 교체 수요"], pricing: "품질 인증 제품은 가격 방어력 양호", lockIn: "고객사 공정 인증 후 변경 비용 존재", barrier: "소재 기술·고객 인증·품질 안정성", verdict: "중상" },
+      "216050": { peers: ["나스미디어", "FSN", "디지털 광고대행사"], edge: ["SK 계열 기반", "AI 마케팅 솔루션", "커머스 연계"], pricing: "광고업은 경기와 경쟁 영향이 커 가격 결정력 제한", lockIn: "광고주 관계와 데이터 운영 역량", barrier: "기술 장벽은 아직 높지 않음", verdict: "보통" },
+      "251970": { peers: ["연우", "삼화", "화장품 용기 업체"], edge: ["펌프·튜브 용기", "K뷰티 인디 브랜드 대응", "공장 증설"], pricing: "고객 대응력과 금형·품질로 일부 가격 방어 가능", lockIn: "브랜드별 용기 개발 후 반복 주문 가능", barrier: "금형·품질·납기 대응력", verdict: "중상" },
+      "206640": { peers: ["에스디바이오센서", "씨젠", "글로벌 POCT 업체"], edge: ["현장진단 장비 설치 기반", "카트리지 반복 매출", "신흥국 채널"], pricing: "진단기기는 경쟁이 있어 가격 결정력 중간", lockIn: "장비 설치 후 카트리지 사용으로 락인 발생", barrier: "인허가·장비 설치 기반·진단 항목", verdict: "중" },
+      "214370": { peers: ["펩타이드 원료 업체", "기능성 소재 업체", "글로벌 바이오 소재사"], edge: ["펩타이드 설계·생산", "코글루타이드·Luxidase 옵션", "고마진 구조"], pricing: "기능성 원료는 차별화 시 가격 방어 가능", lockIn: "제품 인증과 고객 제형 적용 후 반복 가능", barrier: "특허·원료 인증·생산 노하우", verdict: "중" },
+      "051360": { peers: ["카지노 모니터 업체", "차량용 디스플레이 업체", "전장 부품사"], edge: ["카지노 디스플레이 경험", "전장 사업 분할", "고객사 다변화 옵션"], pricing: "전장 부품은 고객사 단가 압박 존재", lockIn: "전장 고객사 납품 승인 후 반복 가능", barrier: "품질 인증·고객사 승인·납기", verdict: "중상" },
+      "333430": { peers: ["조선 기자재 업체", "선박 환경장비 업체"], edge: ["환경장비 수요 노출", "조선 업황 회복 수혜"], pricing: "자료 부족으로 판단 제한", lockIn: "조선사 납품 레퍼런스가 중요", barrier: "선급 인증·납품 레퍼런스", verdict: "낮음" },
+      "053800": { peers: ["이글루코퍼레이션", "윈스", "지니언스", "글로벌 보안 SW"], edge: ["국내 보안 브랜드", "중동 합작법인", "제로트러스트 제품군"], pricing: "보안 SW는 유지보수와 구독 구조에서 가격 방어 가능", lockIn: "보안 시스템은 교체 비용과 운영 리스크가 있어 락인 존재", barrier: "보안 기술·공공/금융 레퍼런스·인증", verdict: "중" },
+      "192080": { peers: ["넷마블", "컴투스", "소셜카지노 업체", "아이게이밍 업체"], edge: ["소셜카지노 현금창출력", "슈퍼네이션", "팍시게임즈 흑자 전환"], pricing: "게임은 콘텐츠 경쟁이 강해 가격 결정력보다 유저 잔존율이 핵심", lockIn: "라이브 서비스와 결제 유저 기반", barrier: "운영 노하우·라이선스·마케팅 효율", verdict: "중상" },
+      "018290": { peers: ["에이피알", "클리오", "아이패밀리에스씨", "K뷰티 브랜드"], edge: ["리들샷 브랜드", "PDRN 라인", "글로벌 채널 확장"], pricing: "히트제품 구간에서는 가격 방어 가능하나 경쟁 제품 출시에 취약", lockIn: "브랜드 충성도와 반복 구매", barrier: "브랜드·제품 기획·해외 채널", verdict: "중" }
+    };
+
     const state = {
       filter: "all",
       industry: "all",
@@ -1712,8 +2246,19 @@
         const remainingResearchText = remainingResearch ? `${remainingResearch.checked.join(" ")} ${remainingResearch.still.join(" ")}` : "";
         const growth = growthAdditions[company.code];
         const growthText = growth ? `${growth.outlook.join(" ")} ${growth.leading.join(" ")} ${growth.sourceNote}` : "";
+        const meta = watchlistMeta[company.code];
+        const metaText = meta ? `${meta.confidence} ${meta.sourceType} ${meta.nextCheck} ${meta.catalysts.join(" ")} ${meta.conviction}` : "";
+        const deep = evidenceDeepDive[company.code];
+        const deepText = deep ? `${deep.title} ${deep.points.join(" ")} ${deep.sourceLevel}` : "";
+        const valuation = valuationEssentials[company.code];
+        const valuationText = valuation ? `${valuation.profitMetric} ${valuation.multipleMetric} ${valuation.required.join(" ")} ${valuation.method} ${valuation.cheapRule} ${valuation.status}` : "";
+        const reliability = estimateReliability[company.code];
+        const reliabilityText = reliability ? `${reliability.level} ${reliability.backlog} ${reliability.capacity} ${reliability.recurring} ${reliability.diversification} ${reliability.revision}` : "";
+        const competitive = competitivePosition[company.code];
+        const competitiveText = competitive ? `${competitive.peers.join(" ")} ${competitive.edge.join(" ")} ${competitive.pricing} ${competitive.lockIn} ${competitive.barrier} ${competitive.verdict}` : "";
+        const indicatorsText = (industryIndicators[company.industry] || []).join(" ");
         const remainingText = (remainingChecks[company.code] || []).join(" ");
-        const haystack = `${company.name} ${company.code} ${company.industry} ${company.thesis} ${company.facts} ${researchText} ${growthText} ${checkedText} ${quickCheckedText} ${remainingResearchText} ${remainingText}`.toLowerCase();
+        const haystack = `${company.name} ${company.code} ${company.industry} ${company.thesis} ${company.facts} ${researchText} ${growthText} ${metaText} ${deepText} ${valuationText} ${reliabilityText} ${competitiveText} ${indicatorsText} ${checkedText} ${quickCheckedText} ${remainingResearchText} ${remainingText}`.toLowerCase();
         if (!haystack.includes(state.search.toLowerCase())) return false;
       }
       return true;
@@ -1863,6 +2408,244 @@
       `;
     }
 
+    function renderWatchlistMeta(company) {
+      const meta = watchlistMeta[company.code];
+      const indicators = industryIndicators[company.industry] || [];
+      if (!meta) {
+        return `<p class="soft">워치리스트 관리 정보가 아직 입력되지 않았습니다.</p>`;
+      }
+
+      return `
+        <div class="research-grid">
+          <div class="research-box">
+            <h4>자료 신뢰도</h4>
+            <ul>
+              <li>신뢰도: ${meta.confidence}</li>
+              <li>주요 근거: ${meta.sourceType}</li>
+              <li>확신도 메모: ${meta.conviction}</li>
+            </ul>
+          </div>
+          <div class="research-box">
+            <h4>다음 확인일</h4>
+            <ul><li>${meta.nextCheck}</li></ul>
+          </div>
+          <div class="research-box">
+            <h4>성장 촉매 캘린더</h4>
+            <ul>${meta.catalysts.map((item) => `<li>${item}</li>`).join("")}</ul>
+          </div>
+          <div class="research-box">
+            <h4>업종 선행지표</h4>
+            <ul>${indicators.map((item) => `<li>${item}</li>`).join("")}</ul>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderEvidenceDeepDive(company) {
+      const evidence = evidenceDeepDive[company.code];
+      if (!evidence) {
+        return `<p class="soft">보강된 리서치·공시 근거가 아직 입력되지 않았습니다.</p>`;
+      }
+
+      return `
+        <div class="research-box">
+          <h4>${evidence.title}</h4>
+          <ul>${evidence.points.map((item) => `<li>${item}</li>`).join("")}</ul>
+        </div>
+        <div class="data-caption">근거 수준: ${evidence.sourceLevel}</div>
+        <div class="link-list">
+          ${evidence.links.map(([label, url]) => `<a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`).join("")}
+        </div>
+      `;
+    }
+
+    function renderValuationEssentials(company) {
+      const valuation = valuationEssentials[company.code];
+      if (!valuation) {
+        return `<p class="soft">미래가치 판단 자료가 아직 입력되지 않았습니다.</p>`;
+      }
+
+      const data = valuationData[company.code] || {};
+      const hasValue = (value) => value !== null && value !== undefined && value !== "";
+      const asNumber = (value) => hasValue(value) ? Number(String(value).replace(/,/g, "")) : null;
+      const estimatePair = (first, second, unit = "억원") => {
+        if (!hasValue(first) && !hasValue(second)) return null;
+        return `2026E ${hasValue(first) ? first : "확인 필요"}${unit} / 2027E ${hasValue(second) ? second : "확인 필요"}${unit}`;
+      };
+      const cagr = (start, end) => {
+        const startNumber = asNumber(start);
+        const endNumber = asNumber(end);
+        if (!startNumber || !endNumber || startNumber <= 0 || endNumber <= 0) return null;
+        const rate = (Math.pow(endNumber / startNumber, 1 / 2) - 1) * 100;
+        return `약 ${rate.toFixed(1)}%`;
+      };
+      const marginPath = () => {
+        const revenue2025 = asNumber(data.revenue2025);
+        const revenue2027 = asNumber(data.revenue2027E);
+        const op2025 = asNumber(data.op2025);
+        const op2027 = asNumber(data.op2027E);
+        if (!revenue2025 || !revenue2027 || !op2025 || !op2027) return null;
+        return `영업이익률 2025 ${((op2025 / revenue2025) * 100).toFixed(1)}% -> 2027E ${((op2027 / revenue2027) * 100).toFixed(1)}%`;
+      };
+      const opMultiple = () => {
+        const marketCap = asNumber(data.marketCap);
+        const op2027 = asNumber(data.op2027E);
+        if (!marketCap || !op2027) return null;
+        return `시총/2027E 영업이익 ${((marketCap / op2027)).toFixed(1)}배`;
+      };
+      const rowFor = (item) => {
+        let value = null;
+        let source = "추가 확인 필요";
+        if (item.includes("현재 시가총액") && hasValue(data.marketCap)) {
+          value = `${data.marketCap}억원`;
+          source = "FnGuide 확인";
+        } else if (item.includes("2026E·2027E 순이익")) {
+          value = estimatePair(data.net2026E, data.net2027E);
+          source = value ? "FnGuide 컨센서스" : source;
+        } else if (item.includes("2026E·2027E 영업이익")) {
+          value = estimatePair(data.op2026E, data.op2027E);
+          source = value ? "FnGuide 컨센서스" : source;
+        } else if (item.includes("2025~2027E 순이익 CAGR")) {
+          value = cagr(data.net2025, data.net2027E);
+          source = value ? "계산값" : source;
+        } else if (item.includes("2025~2027E 영업이익 CAGR")) {
+          value = cagr(data.op2025, data.op2027E);
+          source = value ? "계산값" : source;
+        } else if (item.includes("2027E PER") && hasValue(data.per2027E)) {
+          value = `${data.per2027E}배`;
+          source = "계산값";
+        } else if (item.includes("2027E EV/영업이익")) {
+          value = opMultiple();
+          source = value ? "EV 대체 계산" : source;
+        } else if (item.includes("마진")) {
+          value = marginPath();
+          source = value ? "계산값" : source;
+        }
+        return {
+          metric: item,
+          value: value || "자료 확보 필요",
+          source
+        };
+      };
+      const baseRows = [
+        { metric: "2025 실제 매출/영업이익/순이익", value: hasValue(data.revenue2025) ? `${data.revenue2025} / ${data.op2025 || "확인 필요"} / ${data.net2025 || "확인 필요"}억원` : "자료 확보 필요", source: hasValue(data.revenue2025) ? "FnGuide 확인" : "추가 확인 필요" },
+        { metric: "2026E·2027E 매출", value: estimatePair(data.revenue2026E, data.revenue2027E), source: hasValue(data.revenue2026E) || hasValue(data.revenue2027E) ? "FnGuide 컨센서스" : "추가 확인 필요" },
+        { metric: "12M PER", value: hasValue(data.per12m) ? `${data.per12m}배` : "자료 확보 필요", source: hasValue(data.per12m) ? "FnGuide 확인" : "추가 확인 필요" }
+      ];
+      const dataRows = [
+        ...valuation.required.map(rowFor),
+        ...baseRows.filter((row) => row.value && row.value !== "자료 확보 필요")
+      ];
+      const dataSource = data.sourceDate || "시장 데이터 확인 필요";
+
+      return `
+        <div class="research-grid">
+          <div class="research-box">
+            <h4>필수 입력값</h4>
+            <ul>${valuation.required.map((item) => `<li>${item}</li>`).join("")}</ul>
+          </div>
+          <div class="research-box">
+            <h4>판단 기준</h4>
+            <ul>
+              <li>핵심 이익 지표: ${valuation.profitMetric}</li>
+              <li>핵심 밸류에이션: ${valuation.multipleMetric}</li>
+              <li>자료 상태: ${valuation.status}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="section">
+          <h3>미래가치 데이터 현황</h3>
+          <div class="history-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>필수값</th>
+                  <th>현재 데이터</th>
+                  <th>상태</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${dataRows.map((row) => `
+                  <tr>
+                    <td>${row.metric}</td>
+                    <td>${row.value}</td>
+                    <td><span class="status-tag">${row.source}</span></td>
+                  </tr>
+                `).join("")}
+              </tbody>
+            </table>
+          </div>
+          <div class="data-caption">데이터 기준: ${dataSource}. PER은 현재 시가총액을 2026E/2027E 순이익으로 나눈 값입니다. EV/영업이익은 순차입금 자료를 제외하고 시가총액/영업이익으로 대체 표시했습니다.</div>
+        </div>
+        <div class="section">
+          <h3>계산 방식</h3>
+          <p>${valuation.method}</p>
+        </div>
+        <div class="note">${valuation.cheapRule}</div>
+      `;
+    }
+
+    function renderEstimateReliability(company) {
+      const reliability = estimateReliability[company.code];
+      if (!reliability) {
+        return `<p class="soft">추정치 신뢰도 자료가 아직 입력되지 않았습니다.</p>`;
+      }
+
+      return `
+        <div class="research-grid">
+          <div class="research-box">
+            <h4>신뢰도: ${reliability.level}</h4>
+            <ul>
+              <li>${reliability.backlog}</li>
+              <li>${reliability.capacity}</li>
+              <li>${reliability.recurring}</li>
+            </ul>
+          </div>
+          <div class="research-box">
+            <h4>흔들릴 수 있는 부분</h4>
+            <ul>
+              <li>${reliability.diversification}</li>
+              <li>${reliability.revision}</li>
+            </ul>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderCompetitivePosition(company) {
+      const competitive = competitivePosition[company.code];
+      if (!competitive) {
+        return `<p class="soft">업종 내 경쟁력 자료가 아직 입력되지 않았습니다.</p>`;
+      }
+
+      return `
+        <div class="research-grid">
+          <div class="research-box">
+            <h4>주요 경쟁 구도</h4>
+            <ul>${competitive.peers.map((item) => `<li>${item}</li>`).join("")}</ul>
+          </div>
+          <div class="research-box">
+            <h4>차별점</h4>
+            <ul>${competitive.edge.map((item) => `<li>${item}</li>`).join("")}</ul>
+          </div>
+          <div class="research-box">
+            <h4>가격 결정력·락인</h4>
+            <ul>
+              <li>${competitive.pricing}</li>
+              <li>${competitive.lockIn}</li>
+            </ul>
+          </div>
+          <div class="research-box">
+            <h4>진입장벽</h4>
+            <ul>
+              <li>${competitive.barrier}</li>
+              <li>경쟁력 판단: ${competitive.verdict}</li>
+            </ul>
+          </div>
+        </div>
+      `;
+    }
+
     function renderQuickCheckUpdates(company) {
       const items = quickCheckUpdates[company.code] || [];
       if (!items.length) {
@@ -1929,6 +2712,26 @@
         <div class="section">
           <h3>추가 성장 자료</h3>
           ${renderGrowthAdditions(company)}
+        </div>
+        <div class="section">
+          <h3>워치리스트 관리</h3>
+          ${renderWatchlistMeta(company)}
+        </div>
+        <div class="section">
+          <h3>리서치·공시 근거 보강</h3>
+          ${renderEvidenceDeepDive(company)}
+        </div>
+        <div class="section">
+          <h3>미래가치 필수 판단</h3>
+          ${renderValuationEssentials(company)}
+        </div>
+        <div class="section">
+          <h3>추정치 신뢰도</h3>
+          ${renderEstimateReliability(company)}
+        </div>
+        <div class="section">
+          <h3>업종 내 경쟁력</h3>
+          ${renderCompetitivePosition(company)}
         </div>
         <div class="section">
           <h3>확인한 수치</h3>
