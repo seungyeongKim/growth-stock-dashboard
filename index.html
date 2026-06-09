@@ -2238,11 +2238,18 @@
       "018290": { peers: ["에이피알", "클리오", "아이패밀리에스씨", "K뷰티 브랜드"], edge: ["리들샷 브랜드", "PDRN 라인", "글로벌 채널 확장"], pricing: "히트제품 구간에서는 가격 방어 가능하나 경쟁 제품 출시에 취약", lockIn: "브랜드 충성도와 반복 구매", barrier: "브랜드·제품 기획·해외 채널", verdict: "중" }
     };
 
+    function sortByReviewPriority(items) {
+      return [...items].sort((a, b) => {
+        if (b.score !== a.score) return b.score - a.score;
+        return a.rank - b.rank;
+      });
+    }
+
     const state = {
       filter: "all",
       industry: "all",
       search: "",
-      selectedCode: companies[0].code
+      selectedCode: sortByReviewPriority(companies)[0].code
     };
 
     const rows = document.getElementById("companyRows");
@@ -2333,13 +2340,13 @@
     }
 
     function renderRows() {
-      const filtered = companies.filter(passFilter);
+      const filtered = sortByReviewPriority(companies.filter(passFilter));
       resultCount.textContent = `${filtered.length}개 표시`;
       emptyState.hidden = filtered.length > 0;
-      rows.innerHTML = filtered.map((company) => `
+      rows.innerHTML = filtered.map((company, index) => `
         <tr data-code="${company.code}" class="${company.code === state.selectedCode ? "selected" : ""}">
           <td>
-            <div class="company-name">${company.rank}. ${company.name}</div>
+            <div class="company-name">${index + 1}. ${company.name}</div>
             <div class="code">${company.code} · ${company.industry}</div>
           </td>
           <td class="wide-only">${company.industry}</td>
