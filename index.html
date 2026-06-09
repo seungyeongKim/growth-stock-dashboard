@@ -662,7 +662,7 @@
         <div class="date-pill">
           기준일<br />
           <strong>2026-06-04</strong>
-          <span>업데이트 2026-06-05</span>
+          <span>업데이트 2026-06-09</span>
         </div>
       </div>
     </header>
@@ -1958,6 +1958,54 @@
       }
     };
 
+    const companyDeepReviews = {
+      "257720": {
+        updatedAt: "2026-06-09",
+        title: "실리콘투 심층 검토: 계속 돈을 벌 수 있는 구조인지",
+        verdict: "현재까지는 매출 성장과 이익률 방어가 동시에 확인된다. 다만 사입형 유통 플랫폼이라 재고와 매출채권이 빠르게 늘면 회계상 이익과 실제 현금 회수 사이에 간격이 생길 수 있으므로, 다음 분기부터는 마진보다 운전자본 회전을 더 엄격하게 봐야 한다.",
+        metrics: [
+          ["1Q26 실적", "매출 3,466억원(+41.1% YoY), 영업이익 645억원(+35.2%), 순이익 543억원(+40.1%)"],
+          ["2Q26 전망", "메리츠증권은 2Q26 매출 +46%, 영업이익 757억원(+45%) 가능성을 제시"],
+          ["2026E/2027E", "메리츠 추정 매출 1조5,979억원/2조558억원, 영업이익 2,908억원/3,844억원"],
+          ["마진 기준", "회사 설명 기준 연간 GPM 30% 이상, OPM 15~20% 방어가 핵심"],
+          ["삼성증권 추정", "GPM 2025 31.1% -> 2026E 30.2% -> 2027E 31.0%, OPM 18.4% -> 17.2% -> 16.8%"],
+          ["운전자본", "2026/03 재고자산 3,392억원, 매출채권 979억원으로 2025/12 대비 재고와 채권 모두 증가"]
+        ],
+        earningPower: [
+          "1Q26 매출·영업이익·순이익이 모두 전년 대비 35~41% 성장했고 영업이익은 시장 전망을 소폭 상회했다.",
+          "유럽 매출은 1Q26 1,618억원(+99% YoY), 북미 매출은 643억원(+42% YoY)로 핵심 지역 성장이 확인됐다.",
+          "북미 신규 브랜드와 SKU 확대, 유럽 내 브랜드 순위 재편이 확인되어 단일 히트 브랜드 의존도만으로 성장하는 구조는 아니다.",
+          "멕시코 법인 매출 본격화와 2027년 중남미 성장 가능성이 추가 성장 옵션으로 제시됐다."
+        ],
+        marginDurability: [
+          "유럽 초기 할인 판매 때문에 매출총이익률이 낮아졌지만, 리포트들은 연간 GPM 30% 이상과 OPM 15~20% 방어 가능성을 핵심 가정으로 둔다.",
+          "삼성증권 추정치상 매출이 커져도 2026E~2028E 영업이익률은 16%대 중후반으로 유지되는 그림이다.",
+          "유통 플랫폼 특성상 브랜드·SKU·국가가 늘어날수록 물류와 바이어 네트워크가 고정비 레버리지로 작동할 수 있다."
+        ],
+        breakPoints: [
+          "GPM이 30% 밑으로 내려가고 OPM이 15% 아래로 밀리면 할인 판매와 물류비 부담이 구조화됐다고 봐야 한다.",
+          "재고자산과 매출채권 증가율이 매출 성장률보다 계속 높으면 이익의 질이 약해질 수 있다.",
+          "최대 고객사 또는 핵심 브랜드가 유통을 내재화하면 매출 성장률과 마진이 동시에 흔들릴 수 있다.",
+          "유럽 성장 이후 중동·중남미·아시아가 이어받지 못하면 2027년 성장률 둔화가 빨라질 수 있다."
+        ],
+        nextChecks: [
+          "2Q26 매출이 전년 대비 40%대 성장에 가까운지",
+          "분기 GPM 30% 이상, OPM 15~20% 범위가 유지되는지",
+          "재고자산과 매출채권이 매출 증가 속도보다 빠르게 불어나지 않는지",
+          "신규 브랜드와 SKU 확대가 특정 고객 이탈 우려를 상쇄하는지",
+          "멕시코 법인과 중남미 매출이 실제 숫자로 잡히기 시작하는지"
+        ],
+        sources: [
+          ["1Q26 잠정실적 보도", "https://www.fnnews.com/ampNews/202605121129328111"],
+          ["메리츠증권 2026.05.18 리포트", "https://consensus.hankyung.com/analysis/downpdf?report_idx=649467"],
+          ["삼성증권 2026.04.16 리포트", "https://www.samsungpop.com/common.do?cmd=down&contentType=application%2Fpdf&fileName=2010%2F2026041508085551K_02_01.pdf&inlineYn=Y&saveKey=research.pdf"],
+          ["다올투자증권 코멘트 보도", "https://v.daum.net/v/1efhYpiPIE?f=p"],
+          ["지역별 매출·리스크 보도", "https://www.fnnews.com/ampNews/202603180625076295"],
+          ["밸류라인 재무상태표", "https://www.valueline.co.kr/finance/balancesheet/257720"]
+        ]
+      }
+    };
+
     const valuationEssentials = {
       "257720": {
         profitMetric: "2027E 순이익",
@@ -2258,6 +2306,8 @@
         const metaText = meta ? `${meta.confidence} ${meta.sourceType} ${meta.nextCheck} ${meta.catalysts.join(" ")} ${meta.conviction}` : "";
         const deep = evidenceDeepDive[company.code];
         const deepText = deep ? `${deep.title} ${deep.points.join(" ")} ${deep.sourceLevel}` : "";
+        const companyDeep = companyDeepReviews[company.code];
+        const companyDeepText = companyDeep ? `${companyDeep.title} ${companyDeep.verdict} ${companyDeep.metrics.flat().join(" ")} ${companyDeep.earningPower.join(" ")} ${companyDeep.marginDurability.join(" ")} ${companyDeep.breakPoints.join(" ")} ${companyDeep.nextChecks.join(" ")}` : "";
         const valuation = valuationEssentials[company.code];
         const valuationText = valuation ? `${valuation.profitMetric} ${valuation.multipleMetric} ${valuation.required.join(" ")} ${valuation.method} ${valuation.cheapRule} ${valuation.status}` : "";
         const reliability = estimateReliability[company.code];
@@ -2266,7 +2316,7 @@
         const competitiveText = competitive ? `${competitive.peers.join(" ")} ${competitive.edge.join(" ")} ${competitive.pricing} ${competitive.lockIn} ${competitive.barrier} ${competitive.verdict}` : "";
         const indicatorsText = (industryIndicators[company.industry] || []).join(" ");
         const remainingText = (remainingChecks[company.code] || []).join(" ");
-        const haystack = `${company.name} ${company.code} ${company.industry} ${company.thesis} ${company.facts} ${researchText} ${growthText} ${metaText} ${deepText} ${valuationText} ${reliabilityText} ${competitiveText} ${indicatorsText} ${checkedText} ${quickCheckedText} ${remainingResearchText} ${remainingText}`.toLowerCase();
+        const haystack = `${company.name} ${company.code} ${company.industry} ${company.thesis} ${company.facts} ${researchText} ${growthText} ${metaText} ${deepText} ${companyDeepText} ${valuationText} ${reliabilityText} ${competitiveText} ${indicatorsText} ${checkedText} ${quickCheckedText} ${remainingResearchText} ${remainingText}`.toLowerCase();
         if (!haystack.includes(state.search.toLowerCase())) return false;
       }
       return true;
@@ -2463,6 +2513,53 @@
         <div class="data-caption">근거 수준: ${evidence.sourceLevel}</div>
         <div class="link-list">
           ${evidence.links.map(([label, url]) => `<a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`).join("")}
+        </div>
+      `;
+    }
+
+    function renderCompanyDeepReview(company) {
+      const review = companyDeepReviews[company.code];
+      if (!review) return "";
+
+      const box = (title, items) => `
+        <div class="research-box">
+          <h4>${title}</h4>
+          <ul>${items.map((item) => `<li>${item}</li>`).join("")}</ul>
+        </div>
+      `;
+
+      return `
+        <div class="section">
+          <h3>${review.title}</h3>
+          <div class="note">${review.verdict}</div>
+          <div class="history-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>확인 항목</th>
+                  <th>확보한 자료</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${review.metrics.map(([label, value]) => `
+                  <tr>
+                    <td>${label}</td>
+                    <td>${value}</td>
+                  </tr>
+                `).join("")}
+              </tbody>
+            </table>
+          </div>
+          <div class="research-grid">
+            ${box("돈을 계속 벌 근거", review.earningPower)}
+            ${box("이익률 방어 근거", review.marginDurability)}
+            ${box("깨지면 안 되는 조건", review.breakPoints)}
+            ${box("다음 확인 자료", review.nextChecks)}
+          </div>
+          <div class="data-caption">심층 검토 업데이트: ${review.updatedAt}</div>
+          <div class="link-list">
+            ${review.sources.map(([label, url]) => `<a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`).join("")}
+          </div>
         </div>
       `;
     }
@@ -2729,6 +2826,7 @@
           <h3>리서치·공시 근거 보강</h3>
           ${renderEvidenceDeepDive(company)}
         </div>
+        ${renderCompanyDeepReview(company)}
         <div class="section">
           <h3>미래가치 필수 판단</h3>
           ${renderValuationEssentials(company)}
