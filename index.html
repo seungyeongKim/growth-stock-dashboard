@@ -662,7 +662,7 @@
         <div class="date-pill">
           기준일<br />
           <strong>2026-06-04</strong>
-          <span>업데이트 2026-06-11</span>
+          <span>업데이트 2026-06-22</span>
         </div>
       </div>
     </header>
@@ -1692,6 +1692,50 @@
       "K뷰티 브랜드": ["PDRN 매출 비중", "미국·유럽 채널 매출", "후속 히트제품", "마케팅 투자 회수"]
     };
 
+    const growthLensFramework = {
+      title: "두 가지 성장주 렌즈",
+      updatedAt: "2026-06-22",
+      visibleGrowth: {
+        title: "재무로 보이는 성장주",
+        fit: "우리 대시보드의 기본 방식입니다. 매출 증가, 영업이익률, 순이익률, 부채 부담, Forward PER처럼 이미 숫자로 확인되는 회사를 고릅니다.",
+        strengths: [
+          "분석 난이도가 낮고 검증 가능성이 높습니다.",
+          "스토리보다 실제 실적이 뒷받침됩니다.",
+          "동료와 같이 볼 때 기준이 명확합니다."
+        ],
+        weaknesses: [
+          "좋은 실적이 이미 주가에 반영됐을 가능성이 있습니다.",
+          "업황 전환 초입이나 제품 믹스 변화는 늦게 잡힐 수 있습니다.",
+          "SK하이닉스처럼 이익 폭발 전에 움직이는 종목은 놓칠 수 있습니다."
+        ],
+        bestUse: "후보를 추리고 손실 가능성을 줄이는 1차 필터"
+      },
+      hiddenGrowth: {
+        title: "재무 전에 보이는 성장주",
+        fit: "SK하이닉스형 렌즈입니다. 아직 재무에 모두 반영되기 전 수요 병목, 가격 상승, 수주, 증설, 고객사 투자, 고마진 제품 믹스를 먼저 봅니다.",
+        strengths: [
+          "재무가 좋아지기 전에 종목을 찾을 가능성이 높습니다.",
+          "업황 전환과 이익 레버리지를 먼저 포착할 수 있습니다.",
+          "HBM, 변압기, 장비, 소재처럼 병목 자산을 가진 기업에 강합니다."
+        ],
+        weaknesses: [
+          "추정과 가정이 많아 틀릴 가능성이 높습니다.",
+          "공시·리포트·산업 데이터를 계속 추적해야 합니다.",
+          "스토리에 취하면 아직 돈을 못 버는 회사를 과대평가할 수 있습니다."
+        ],
+        bestUse: "재무 필터를 통과한 후보의 업사이드를 더 일찍 판단하는 2차 렌즈"
+      },
+      recommendation: "우리가 분석하기에는 둘 중 하나만 고르기보다, 재무로 보이는 성장주를 기본 필터로 삼고 재무 전에 보이는 성장 신호를 추가 점수로 쓰는 방식이 가장 좋습니다. 순서는 재무 성장 확인 -> 선행지표 확인 -> 밸류에이션 확인입니다.",
+      addedChecks: [
+        "업황 전환: 가격 상승, 재고 감소, 공급 부족, 고객사 투자 증가",
+        "병목 자산: 대체 공급자 수, 인증·기술 장벽, 생산 리드타임",
+        "고객사 CAPEX: 데이터센터, 전력망, 생산라인, 병원·미용기기 설치 기반",
+        "수주·계약·CAPA: 수주잔고, 장기계약, 증설, 장비 발주, 납기",
+        "이익 레버리지: 고마진 제품 비중, ASP 상승, 고정비 레버리지",
+        "시장 반영도: 컨센서스 상향 전인지, 리포트 수가 적은지, Forward PER이 성장률 대비 과도하지 않은지"
+      ]
+    };
+
     const watchlistMeta = {
       "257720": {
         confidence: "중상",
@@ -2372,8 +2416,9 @@
         const competitive = competitivePosition[company.code];
         const competitiveText = competitive ? `${competitive.peers.join(" ")} ${competitive.edge.join(" ")} ${competitive.pricing} ${competitive.lockIn} ${competitive.barrier} ${competitive.verdict}` : "";
         const indicatorsText = (industryIndicators[company.industry] || []).join(" ");
+        const growthLensText = `${growthLensFramework.title} ${growthLensFramework.visibleGrowth.title} ${growthLensFramework.hiddenGrowth.title} ${growthLensFramework.recommendation} ${growthLensFramework.addedChecks.join(" ")}`;
         const remainingText = (remainingChecks[company.code] || []).join(" ");
-        const haystack = `${company.name} ${company.code} ${company.industry} ${company.thesis} ${company.facts} ${researchText} ${growthText} ${metaText} ${deepText} ${companyDeepText} ${valuationText} ${reliabilityText} ${competitiveText} ${indicatorsText} ${checkedText} ${quickCheckedText} ${remainingResearchText} ${remainingText}`.toLowerCase();
+        const haystack = `${company.name} ${company.code} ${company.industry} ${company.thesis} ${company.facts} ${researchText} ${growthText} ${metaText} ${deepText} ${companyDeepText} ${valuationText} ${reliabilityText} ${competitiveText} ${indicatorsText} ${growthLensText} ${checkedText} ${quickCheckedText} ${remainingResearchText} ${remainingText}`.toLowerCase();
         if (!haystack.includes(state.search.toLowerCase())) return false;
       }
       return true;
@@ -2460,6 +2505,34 @@
           </table>
         </div>
         <div class="data-caption">단위: 억원. 2025년 값은 잠정 실적, 리서치 추정, 공개 보도자료 기준이 섞여 있어 최종 사업보고서 기준으로 재확인이 필요합니다.</div>
+      `;
+    }
+
+    function renderGrowthLensFramework() {
+      const lens = growthLensFramework;
+      const lensBox = (data) => `
+        <div class="research-box">
+          <h4>${data.title}</h4>
+          <p>${data.fit}</p>
+          <ul>
+            <li>강점: ${data.strengths.join(" / ")}</li>
+            <li>약점: ${data.weaknesses.join(" / ")}</li>
+            <li>활용: ${data.bestUse}</li>
+          </ul>
+        </div>
+      `;
+
+      return `
+        <div class="research-grid">
+          ${lensBox(lens.visibleGrowth)}
+          ${lensBox(lens.hiddenGrowth)}
+        </div>
+        <div class="note">${lens.recommendation}</div>
+        <div class="research-box">
+          <h4>추가할 선행지표</h4>
+          <ul>${lens.addedChecks.map((item) => `<li>${item}</li>`).join("")}</ul>
+        </div>
+        <div class="data-caption">프레임 업데이트: ${lens.updatedAt}</div>
       `;
     }
 
@@ -2862,6 +2935,10 @@
         <div class="section">
           <h3>최근 3년 재무 추이</h3>
           ${renderHistoryTable(company)}
+        </div>
+        <div class="section">
+          <h3>${growthLensFramework.title}</h3>
+          ${renderGrowthLensFramework()}
         </div>
         <div class="section">
           <h3>성장성 판단</h3>
