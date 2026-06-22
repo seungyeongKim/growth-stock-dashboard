@@ -2508,31 +2508,53 @@
       `;
     }
 
-    function renderGrowthLensFramework() {
-      const lens = growthLensFramework;
-      const lensBox = (data) => `
-        <div class="research-box">
-          <h4>${data.title}</h4>
-          <p>${data.fit}</p>
-          <ul>
-            <li>강점: ${data.strengths.join(" / ")}</li>
-            <li>약점: ${data.weaknesses.join(" / ")}</li>
-            <li>활용: ${data.bestUse}</li>
-          </ul>
-        </div>
-      `;
+    function renderCompanyGrowthLens(company) {
+      const indicators = industryIndicators[company.industry] || [];
+      const valuation = valuationData[company.code] || {};
+      const deepReview = companyDeepReviews[company.code];
+      const visibleSignals = [
+        `매출 성장률 ${fmt(company.revenueGrowth)}`,
+        `영업이익률 ${fmt(company.opMargin)}`,
+        `순이익률 ${fmt(company.netMargin)}`,
+        valuation.per2027E ? `2027E PER ${valuation.per2027E}배` : "Forward PER 추가 확인"
+      ];
+      const hiddenSignals = deepReview
+        ? deepReview.nextChecks.slice(0, 4)
+        : indicators.slice(0, 4).map((item) => `${item} 추적`);
+      const visibleScore = (company.revenueGrowth >= 30 ? 2 : 1)
+        + (company.opMargin >= 20 ? 2 : 1)
+        + (company.netMargin >= 15 ? 1 : 0);
+      const hiddenScore = indicators.length >= 4 ? 3 : 2;
+      const lensType = visibleScore >= 4 && hiddenScore >= 3
+        ? "재무 성장 + 선행지표 혼합형"
+        : visibleScore >= 4
+          ? "재무로 보이는 성장 중심"
+          : "선행지표 확인이 더 중요한 후보";
 
       return `
         <div class="research-grid">
-          ${lensBox(lens.visibleGrowth)}
-          ${lensBox(lens.hiddenGrowth)}
+          <div class="research-box">
+            <h4>이 종목의 렌즈: ${lensType}</h4>
+            <p>${company.name}은 공통 설명보다 아래 신호를 중심으로 봅니다.</p>
+            <ul>
+              <li>재무 확인 강도: ${visibleScore >= 4 ? "높음" : "중간"}</li>
+              <li>선행지표 필요도: ${hiddenScore >= 3 ? "높음" : "중간"}</li>
+            </ul>
+          </div>
+          <div class="research-box">
+            <h4>재무로 보이는 신호</h4>
+            <ul>${visibleSignals.map((item) => `<li>${item}</li>`).join("")}</ul>
+          </div>
+          <div class="research-box">
+            <h4>재무 전에 확인할 신호</h4>
+            <ul>${hiddenSignals.map((item) => `<li>${item}</li>`).join("")}</ul>
+          </div>
+          <div class="research-box">
+            <h4>분석 결론</h4>
+            <p>${growthLensFramework.recommendation}</p>
+          </div>
         </div>
-        <div class="note">${lens.recommendation}</div>
-        <div class="research-box">
-          <h4>추가할 선행지표</h4>
-          <ul>${lens.addedChecks.map((item) => `<li>${item}</li>`).join("")}</ul>
-        </div>
-        <div class="data-caption">프레임 업데이트: ${lens.updatedAt}</div>
+        <div class="data-caption">렌즈 프레임 업데이트: ${growthLensFramework.updatedAt}</div>
       `;
     }
 
@@ -2937,8 +2959,8 @@
           ${renderHistoryTable(company)}
         </div>
         <div class="section">
-          <h3>${growthLensFramework.title}</h3>
-          ${renderGrowthLensFramework()}
+          <h3>성장 렌즈 적용</h3>
+          ${renderCompanyGrowthLens(company)}
         </div>
         <div class="section">
           <h3>성장성 판단</h3>
