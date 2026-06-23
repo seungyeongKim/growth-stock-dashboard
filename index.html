@@ -2969,14 +2969,31 @@
         if (!startNumber || !endNumber || startNumber <= 0 || endNumber <= 0) return "확인 필요";
         return `${((Math.pow(endNumber / startNumber, 1 / 2) - 1) * 100).toFixed(1)}%`;
       };
+      const diff = (start, end) => {
+        const startNumber = asNumber(start);
+        const endNumber = asNumber(end);
+        if (startNumber === null || endNumber === null) return "확인 필요";
+        return `${fmtAmount(Math.round(endNumber - startNumber))}억원`;
+      };
+      const assumption = futureValueAssumptions[company.code] || {};
+      const fairMultiple = asNumber(assumption.fairMultiple);
+      const marketCap = asNumber(data.marketCap);
+      const net2027 = asNumber(data.net2027E);
+      const requiredNetIncome = fairMultiple && marketCap ? marketCap / fairMultiple : null;
+      const netIncomeBuffer = requiredNetIncome && net2027 ? `${(((net2027 / requiredNetIncome) - 1) * 100).toFixed(1)}%` : "확인 필요";
       const rows = [
         { metric: "현재 시가총액", value: valueWithUnit(data.marketCap), source: hasValue(data.marketCap) ? "FnGuide" : "확인 필요" },
         { metric: "2025 매출 / 영업이익 / 순이익", value: `${valueWithUnit(data.revenue2025)} / ${valueWithUnit(data.op2025)} / ${valueWithUnit(data.net2025)}`, source: hasValue(data.revenue2025) ? "FnGuide" : "확인 필요" },
         { metric: "2026E 매출 / 영업이익 / 순이익", value: `${valueWithUnit(data.revenue2026E)} / ${valueWithUnit(data.op2026E)} / ${valueWithUnit(data.net2026E)}`, source: hasValue(data.revenue2026E) ? "FnGuide 컨센서스" : "확인 필요" },
         { metric: "2027E 매출 / 영업이익 / 순이익", value: `${valueWithUnit(data.revenue2027E)} / ${valueWithUnit(data.op2027E)} / ${valueWithUnit(data.net2027E)}`, source: hasValue(data.revenue2027E) ? "FnGuide 컨센서스" : "확인 필요" },
+        { metric: "2025→2027E 매출 증가액", value: diff(data.revenue2025, data.revenue2027E), source: hasValue(data.revenue2027E) ? "계산값" : "확인 필요" },
+        { metric: "2025→2027E 영업이익 증가액", value: diff(data.op2025, data.op2027E), source: hasValue(data.op2027E) ? "계산값" : "확인 필요" },
+        { metric: "2025→2027E 순이익 증가액", value: diff(data.net2025, data.net2027E), source: hasValue(data.net2027E) ? "계산값" : "확인 필요" },
         { metric: "2025~2027E 매출 CAGR", value: cagr(data.revenue2025, data.revenue2027E), source: hasValue(data.revenue2027E) ? "계산값" : "확인 필요" },
         { metric: "2025~2027E 영업이익 CAGR", value: cagr(data.op2025, data.op2027E), source: hasValue(data.op2027E) ? "계산값" : "확인 필요" },
         { metric: "2027E 영업이익률", value: ratio(data.op2027E, data.revenue2027E), source: hasValue(data.op2027E) ? "계산값" : "확인 필요" },
+        { metric: "현재 시총이 요구하는 2027E 순이익", value: requiredNetIncome ? `${fmtAmount(Math.round(requiredNetIncome))}억원` : "확인 필요", source: fairMultiple ? `적정 PER ${fairMultiple}배 가정` : "확인 필요" },
+        { metric: "컨센서스 순이익 여유", value: netIncomeBuffer, source: netIncomeBuffer !== "확인 필요" ? "계산값" : "확인 필요" },
         { metric: "2027E PER", value: hasValue(data.per2027E) ? `${data.per2027E}배` : "확인 필요", source: hasValue(data.per2027E) ? "계산값" : "확인 필요" }
       ];
 
@@ -3125,15 +3142,23 @@
         return (num / den) * 100;
       };
       const formatPercent = (value) => value === null || Number.isNaN(value) ? "확인 필요" : `${value.toFixed(1)}%`;
+      const formatAmount = (value) => value === null || Number.isNaN(value) ? "확인 필요" : `${fmtAmount(Math.round(value))}억원`;
       const fairMultiple = asNumber(assumption.fairMultiple);
       const marketCap = asNumber(data.marketCap);
       const futureNetIncome = asNumber(data.net2027E);
       const fairMarketCap = fairMultiple && futureNetIncome ? futureNetIncome * fairMultiple : null;
       const expectedReturn = fairMarketCap && marketCap ? ((fairMarketCap / marketCap) - 1) * 100 : null;
+      const requiredNetIncome = fairMultiple && marketCap ? marketCap / fairMultiple : null;
+      const netIncomeBuffer = requiredNetIncome && futureNetIncome ? ((futureNetIncome / requiredNetIncome) - 1) * 100 : null;
+      const revenueIncrease = asNumber(data.revenue2027E) !== null && asNumber(data.revenue2025) !== null ? asNumber(data.revenue2027E) - asNumber(data.revenue2025) : null;
+      const opIncrease = asNumber(data.op2027E) !== null && asNumber(data.op2025) !== null ? asNumber(data.op2027E) - asNumber(data.op2025) : null;
+      const netIncrease = asNumber(data.net2027E) !== null && asNumber(data.net2025) !== null ? asNumber(data.net2027E) - asNumber(data.net2025) : null;
+      const opMargin2025 = ratioValue(data.op2025, data.revenue2025);
       const revenueCagr = cagrValue(data.revenue2025, data.revenue2027E);
       const opCagr = cagrValue(data.op2025, data.op2027E);
       const netCagr = cagrValue(data.net2025, data.net2027E);
       const opMargin2027 = ratioValue(data.op2027E, data.revenue2027E);
+      const marginChange = opMargin2025 !== null && opMargin2027 !== null ? opMargin2027 - opMargin2025 : null;
       const per2027 = asNumber(data.per2027E);
       const reliabilityScore = reliability?.level === "상" ? 2 : reliability?.level === "중상" ? 1.5 : reliability?.level === "중" ? 1 : 0.5;
       let score = 0;
@@ -3153,10 +3178,16 @@
             : "추가 근거 필요";
       const rows = [
         { metric: "미래가치 대비 여유", value: formatPercent(expectedReturn), check: expectedReturn !== null && expectedReturn >= 50 ? "충분" : expectedReturn !== null && expectedReturn >= 15 ? "보통" : "부족/확인" },
+        { metric: "현재 시총이 요구하는 2027E 순이익", value: formatAmount(requiredNetIncome), check: fairMultiple ? `적정 PER ${fairMultiple}배 기준` : "확인 필요" },
+        { metric: "컨센서스 순이익 여유", value: formatPercent(netIncomeBuffer), check: netIncomeBuffer !== null && netIncomeBuffer >= 50 ? "여유 큼" : netIncomeBuffer !== null && netIncomeBuffer >= 15 ? "여유 있음" : netIncomeBuffer !== null ? "여유 작음" : "확인 필요" },
+        { metric: "2025→2027E 매출 증가액", value: formatAmount(revenueIncrease), check: revenueIncrease !== null && revenueIncrease > 0 ? "성장 반영" : "확인 필요" },
+        { metric: "2025→2027E 영업이익 증가액", value: formatAmount(opIncrease), check: opIncrease !== null && opIncrease > 0 ? "이익 레버리지" : "확인 필요" },
+        { metric: "2025→2027E 순이익 증가액", value: formatAmount(netIncrease), check: netIncrease !== null && netIncrease > 0 ? "순이익 성장" : "확인 필요" },
         { metric: "매출 성장 속도", value: formatPercent(revenueCagr), check: revenueCagr !== null && revenueCagr >= 20 ? "강함" : revenueCagr !== null && revenueCagr >= 10 ? "보통" : "확인 필요" },
         { metric: "이익 성장 속도", value: formatPercent(opCagr), check: opCagr !== null && opCagr >= 20 ? "강함" : opCagr !== null && opCagr >= 10 ? "보통" : "확인 필요" },
         { metric: "순이익 성장 속도", value: formatPercent(netCagr), check: netCagr !== null && netCagr >= 20 ? "강함" : netCagr !== null && netCagr >= 10 ? "보통" : "확인 필요" },
         { metric: "2027E 영업이익률", value: formatPercent(opMargin2027), check: opMargin2027 !== null && opMargin2027 >= 15 ? "높음" : opMargin2027 !== null && opMargin2027 >= 10 ? "보통" : "확인 필요" },
+        { metric: "영업이익률 변화", value: marginChange === null ? "확인 필요" : `${marginChange >= 0 ? "+" : ""}${marginChange.toFixed(1)}%p`, check: marginChange !== null && marginChange > 0 ? "마진 개선" : marginChange !== null ? "마진 둔화" : "확인 필요" },
         { metric: "2027E PER", value: hasValue(data.per2027E) ? `${data.per2027E}배` : "확인 필요", check: per2027 !== null && netCagr !== null && per2027 <= netCagr ? "성장률 대비 부담 낮음" : "비교 필요" },
         { metric: "추정치 신뢰도", value: reliability?.level || "확인 필요", check: reliability?.backlog || "수주·CAPA·반복 매출 근거 확인 필요" },
         { metric: "차별점", value: competitive?.edge?.[0] || "확인 필요", check: competitive?.pricing || "동일 업종 내 가격 결정력 확인 필요" }
