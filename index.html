@@ -3105,6 +3105,106 @@
       `;
     }
 
+    function renderBuyReadiness(company) {
+      const data = valuationData[company.code] || {};
+      const assumption = futureValueAssumptions[company.code] || {};
+      const reliability = estimateReliability[company.code];
+      const competitive = competitivePosition[company.code];
+      const hasValue = (value) => value !== null && value !== undefined && value !== "";
+      const asNumber = (value) => hasValue(value) ? Number(String(value).replace(/,/g, "")) : null;
+      const cagrValue = (start, end) => {
+        const startNumber = asNumber(start);
+        const endNumber = asNumber(end);
+        if (!startNumber || !endNumber || startNumber <= 0 || endNumber <= 0) return null;
+        return (Math.pow(endNumber / startNumber, 1 / 2) - 1) * 100;
+      };
+      const ratioValue = (numerator, denominator) => {
+        const num = asNumber(numerator);
+        const den = asNumber(denominator);
+        if (!num || !den) return null;
+        return (num / den) * 100;
+      };
+      const formatPercent = (value) => value === null || Number.isNaN(value) ? "확인 필요" : `${value.toFixed(1)}%`;
+      const fairMultiple = asNumber(assumption.fairMultiple);
+      const marketCap = asNumber(data.marketCap);
+      const futureNetIncome = asNumber(data.net2027E);
+      const fairMarketCap = fairMultiple && futureNetIncome ? futureNetIncome * fairMultiple : null;
+      const expectedReturn = fairMarketCap && marketCap ? ((fairMarketCap / marketCap) - 1) * 100 : null;
+      const revenueCagr = cagrValue(data.revenue2025, data.revenue2027E);
+      const opCagr = cagrValue(data.op2025, data.op2027E);
+      const netCagr = cagrValue(data.net2025, data.net2027E);
+      const opMargin2027 = ratioValue(data.op2027E, data.revenue2027E);
+      const per2027 = asNumber(data.per2027E);
+      const reliabilityScore = reliability?.level === "상" ? 2 : reliability?.level === "중상" ? 1.5 : reliability?.level === "중" ? 1 : 0.5;
+      let score = 0;
+      if (expectedReturn !== null && expectedReturn >= 50) score += 2;
+      else if (expectedReturn !== null && expectedReturn >= 15) score += 1;
+      if (revenueCagr !== null && revenueCagr >= 20) score += 1;
+      if (opCagr !== null && opCagr >= 20) score += 1;
+      if (opMargin2027 !== null && opMargin2027 >= 15) score += 1;
+      if (per2027 !== null && netCagr !== null && netCagr > 0 && per2027 <= netCagr) score += 1;
+      score += reliabilityScore;
+      const decision = expectedReturn === null || netCagr === null
+        ? "데이터 보강 후 판단"
+        : score >= 7
+          ? "우선 검토 후보"
+          : score >= 5
+            ? "관찰하며 매수 타이밍 검토"
+            : "추가 근거 필요";
+      const rows = [
+        { metric: "미래가치 대비 여유", value: formatPercent(expectedReturn), check: expectedReturn !== null && expectedReturn >= 50 ? "충분" : expectedReturn !== null && expectedReturn >= 15 ? "보통" : "부족/확인" },
+        { metric: "매출 성장 속도", value: formatPercent(revenueCagr), check: revenueCagr !== null && revenueCagr >= 20 ? "강함" : revenueCagr !== null && revenueCagr >= 10 ? "보통" : "확인 필요" },
+        { metric: "이익 성장 속도", value: formatPercent(opCagr), check: opCagr !== null && opCagr >= 20 ? "강함" : opCagr !== null && opCagr >= 10 ? "보통" : "확인 필요" },
+        { metric: "순이익 성장 속도", value: formatPercent(netCagr), check: netCagr !== null && netCagr >= 20 ? "강함" : netCagr !== null && netCagr >= 10 ? "보통" : "확인 필요" },
+        { metric: "2027E 영업이익률", value: formatPercent(opMargin2027), check: opMargin2027 !== null && opMargin2027 >= 15 ? "높음" : opMargin2027 !== null && opMargin2027 >= 10 ? "보통" : "확인 필요" },
+        { metric: "2027E PER", value: hasValue(data.per2027E) ? `${data.per2027E}배` : "확인 필요", check: per2027 !== null && netCagr !== null && per2027 <= netCagr ? "성장률 대비 부담 낮음" : "비교 필요" },
+        { metric: "추정치 신뢰도", value: reliability?.level || "확인 필요", check: reliability?.backlog || "수주·CAPA·반복 매출 근거 확인 필요" },
+        { metric: "차별점", value: competitive?.edge?.[0] || "확인 필요", check: competitive?.pricing || "동일 업종 내 가격 결정력 확인 필요" }
+      ];
+
+      return `
+        <div class="research-grid">
+          <div class="research-box">
+            <h4>매수 검토 강도: ${decision}</h4>
+            <ul>
+              <li>점수: ${score.toFixed(1)} / 8.0</li>
+              <li>핵심 기준: 미래가치 대비 여유, 성장률, 이익률, 추정치 신뢰도, 업종 내 차별점</li>
+              <li>주의: 이 표는 매수 결론이 아니라 우선 검토 순서를 정하는 자료입니다.</li>
+            </ul>
+          </div>
+          <div class="research-box">
+            <h4>가장 먼저 확인할 리스크</h4>
+            <ul>
+              <li>${assumption.caution || "미래가치 가정이 흔들릴 조건 확인 필요"}</li>
+              <li>${reliability?.revision || "컨센서스 상향/하향 여부 확인 필요"}</li>
+              <li>${competitive?.threat || "경쟁 심화와 가격 결정력 약화 여부 확인 필요"}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="history-table">
+          <table>
+            <thead>
+              <tr>
+                <th>판단 자료</th>
+                <th>현재 값</th>
+                <th>해석</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rows.map((row) => `
+                <tr>
+                  <td>${row.metric}</td>
+                  <td>${row.value}</td>
+                  <td><span class="status-tag">${row.check}</span></td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+        <div class="data-caption">판단 기준: ${data.sourceDate || "확인 필요"} 재무·컨센서스와 대시보드의 적정 PER 가정. 추정치는 실제 실적, 수주, 마진, 경쟁 상황에 따라 달라질 수 있습니다.</div>
+      `;
+    }
+
     function renderWatchlistMeta(company) {
       const meta = watchlistMeta[company.code];
       const indicators = industryIndicators[company.industry] || [];
@@ -3524,6 +3624,10 @@
           ${renderEvidenceDeepDive(company)}
         </div>
         ${renderCompanyDeepReview(company)}
+        <div class="section">
+          <h3>매수 검토 판단 자료</h3>
+          ${renderBuyReadiness(company)}
+        </div>
         <div class="section">
           <h3>미래가치 필수 판단</h3>
           ${renderValuationEssentials(company)}
