@@ -2952,6 +2952,62 @@
       `;
     }
 
+    function renderGrowthEvidenceData(company) {
+      const data = valuationData[company.code] || {};
+      const hasValue = (value) => value !== null && value !== undefined && value !== "";
+      const asNumber = (value) => hasValue(value) ? Number(String(value).replace(/,/g, "")) : null;
+      const valueWithUnit = (value, unit = "억원") => hasValue(value) ? `${value}${unit}` : "확인 필요";
+      const ratio = (numerator, denominator) => {
+        const num = asNumber(numerator);
+        const den = asNumber(denominator);
+        if (!num || !den) return "확인 필요";
+        return `${((num / den) * 100).toFixed(1)}%`;
+      };
+      const cagr = (start, end) => {
+        const startNumber = asNumber(start);
+        const endNumber = asNumber(end);
+        if (!startNumber || !endNumber || startNumber <= 0 || endNumber <= 0) return "확인 필요";
+        return `${((Math.pow(endNumber / startNumber, 1 / 2) - 1) * 100).toFixed(1)}%`;
+      };
+      const rows = [
+        { metric: "현재 시가총액", value: valueWithUnit(data.marketCap), source: hasValue(data.marketCap) ? "FnGuide" : "확인 필요" },
+        { metric: "2025 매출 / 영업이익 / 순이익", value: `${valueWithUnit(data.revenue2025)} / ${valueWithUnit(data.op2025)} / ${valueWithUnit(data.net2025)}`, source: hasValue(data.revenue2025) ? "FnGuide" : "확인 필요" },
+        { metric: "2026E 매출 / 영업이익 / 순이익", value: `${valueWithUnit(data.revenue2026E)} / ${valueWithUnit(data.op2026E)} / ${valueWithUnit(data.net2026E)}`, source: hasValue(data.revenue2026E) ? "FnGuide 컨센서스" : "확인 필요" },
+        { metric: "2027E 매출 / 영업이익 / 순이익", value: `${valueWithUnit(data.revenue2027E)} / ${valueWithUnit(data.op2027E)} / ${valueWithUnit(data.net2027E)}`, source: hasValue(data.revenue2027E) ? "FnGuide 컨센서스" : "확인 필요" },
+        { metric: "2025~2027E 매출 CAGR", value: cagr(data.revenue2025, data.revenue2027E), source: hasValue(data.revenue2027E) ? "계산값" : "확인 필요" },
+        { metric: "2025~2027E 영업이익 CAGR", value: cagr(data.op2025, data.op2027E), source: hasValue(data.op2027E) ? "계산값" : "확인 필요" },
+        { metric: "2027E 영업이익률", value: ratio(data.op2027E, data.revenue2027E), source: hasValue(data.op2027E) ? "계산값" : "확인 필요" },
+        { metric: "2027E PER", value: hasValue(data.per2027E) ? `${data.per2027E}배` : "확인 필요", source: hasValue(data.per2027E) ? "계산값" : "확인 필요" }
+      ];
+
+      return `
+        <div class="section">
+          <h3>확보된 성장성 데이터</h3>
+          <div class="history-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>항목</th>
+                  <th>데이터</th>
+                  <th>근거</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${rows.map((row) => `
+                  <tr>
+                    <td>${row.metric}</td>
+                    <td>${row.value}</td>
+                    <td><span class="status-tag">${row.source}</span></td>
+                  </tr>
+                `).join("")}
+              </tbody>
+            </table>
+          </div>
+          <div class="data-caption">데이터 기준: ${data.sourceDate || "확인 필요"}. 컨센서스가 없는 종목은 확인 필요로 남겨두었습니다.</div>
+        </div>
+      `;
+    }
+
     function renderGrowthEvidenceSources(company) {
       const common = growthEvidenceSources.common.sources;
       const industryItems = growthEvidenceSources.byIndustry[company.industry] || [];
@@ -2984,6 +3040,7 @@
             </ul>
           </div>
         </div>
+        ${renderGrowthEvidenceData(company)}
         <div class="data-caption">자료원 프레임 업데이트: ${growthEvidenceSources.common.updatedAt}</div>
       `;
     }
