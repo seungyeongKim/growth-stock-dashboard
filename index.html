@@ -2893,6 +2893,17 @@
       }
     };
 
+    const ownerScenarioAssumptions = {
+      "058470": { annualGrowth: 15, basis: "2025 매출 +33.9%보다 낮은 연 15% 적용" },
+      "064760": { annualGrowth: 8, basis: "2024 매출 +20.8%, 2025 +9.3% 흐름에서 연 8% 적용" },
+      "216050": { annualGrowth: 3, basis: "2024 매출 +4.3%, 2025 +3.4%의 저성장 흐름 반영" },
+      "206640": { annualGrowth: 8, basis: "2024 매출 +9.0%, 2025 +8.0%의 안정 성장률 적용" },
+      "214370": { annualGrowth: 4, basis: "2024 역성장 후 2025 매출 +4.0% 회복만 반영" },
+      "051360": { annualGrowth: 10, basis: "최근 고성장에도 사업분할과 사이클 변동을 반영해 연 10%로 제한" },
+      "333430": { annualGrowth: 10, basis: "2024 매출 +18.5%, 2025 +15.0%보다 낮은 연 10% 적용" },
+      "053800": { annualGrowth: 6, basis: "2024 매출 +3.6%, 2025 +8.0%의 중간 수준 적용" }
+    };
+
     const competitivePosition = {
       "257720": { peers: ["글로벌 K뷰티 유통사", "온라인 역직구 플랫폼", "화장품 도매상"], edge: ["해외 법인·물류망", "인디 브랜드 소싱", "다국가 B2B 유통"], pricing: "유통업이라 가격 결정력은 중간, 플랫폼 규모가 커질수록 협상력 개선", lockIn: "브랜드와 해외 바이어가 동시에 늘어날수록 네트워크 효과", barrier: "물류·통관·현지 채널 운영 노하우", verdict: "중상" },
       "214450": { peers: ["휴젤", "메디톡스", "클래시스", "국내 스킨부스터 업체"], edge: ["리쥬란 브랜드", "PN/PDRN 기반 제품", "화장품 확장성"], pricing: "브랜드력이 있어 가격 방어력 양호", lockIn: "병의원·소비자 인지도 기반 반복 구매", barrier: "제품 기전·브랜드·해외 허가", verdict: "상" },
@@ -2987,6 +2998,66 @@
         if (bProfile.score !== aProfile.score) return bProfile.score - aProfile.score;
         return a.rank - b.rank;
       });
+    }
+
+    function investmentSentenceProfile(company) {
+      const data = valuationData[company.code] || {};
+      const profile = longTermProfile(company);
+      const assumption = futureValueAssumptions[company.code] || {};
+      const reliability = estimateReliability[company.code];
+      const officialSources = officialSourceRegistry[company.code];
+      const deepReview = companyDeepReviews[company.code];
+      const ownerScenario = ownerScenarioAssumptions[company.code];
+      const numberOf = (value) => value !== null && value !== undefined && value !== ""
+        ? Number(String(value).replace(/,/g, ""))
+        : null;
+      const actualNet2025 = numberOf(data.net2025);
+      const consensusNet2027 = numberOf(data.net2027E);
+      const ownerNet2027 = !consensusNet2027 && actualNet2025 && ownerScenario
+        ? actualNet2025 * Math.pow(1 + ownerScenario.annualGrowth / 100, 2)
+        : null;
+      const net2027 = consensusNet2027 || ownerNet2027;
+      const fairMultiple = numberOf(assumption.fairMultiple);
+      const marketCap = numberOf(data.marketCap);
+      const conservativeMargin = net2027 && fairMultiple && marketCap
+        ? (((net2027 * 0.8 * fairMultiple * 0.8) / marketCap) - 1) * 100
+        : null;
+      const growthReason = [
+        reliability?.backlog,
+        reliability?.capacity,
+        reliability?.recurring
+      ].filter(Boolean).join(", ");
+      const assumptionCaution = assumption.caution && !assumption.caution.includes("FnGuide 2027E")
+        ? assumption.caution
+        : null;
+      const breakCondition = ownerScenario
+        ? officialSources?.checks?.[0] || reliability?.revision || assumptionCaution
+        : assumptionCaution || reliability?.revision || officialSources?.checks?.[0] || null;
+      const missing = [];
+      if (!growthReason) missing.push("구체적인 성장 근거");
+      if (!net2027) missing.push("2027E 순이익 또는 공식 실적 기반 자체 시나리오");
+      if (!fairMultiple) missing.push("적정 PER 가정");
+      if (conservativeMargin === null) missing.push("보수적 안전마진");
+      if (!breakCondition) missing.push("재검토 조건");
+
+      const officialEvidence = Boolean(deepReview || officialSources);
+      const status = missing.length
+        ? "미완성"
+        : !ownerScenario && officialEvidence && ["상", "중상"].includes(reliability?.level)
+          ? "완성"
+          : "조건부 완성";
+      const sentence = missing.length
+        ? `${company.name}은 투자 문장을 아직 완성할 수 없습니다. 부족한 항목: ${missing.join(", ")}.`
+        : `${topicName(company.name)} ${growthReason} 때문에 2027년 순이익이 ${fmtAmount(Math.round(net2027))}억원까지 증가할 가능성이 있으며, 보수적으로 순이익을 20% 낮추고 PER ${((fairMultiple || 0) * 0.8).toFixed(1)}배를 적용하면 현재 시가총액 대비 안전마진은 ${conservativeMargin.toFixed(1)}%입니다. ${ownerScenario ? `2027년 순이익은 컨센서스가 아니라 2025 실제 순이익에 연 ${ownerScenario.annualGrowth}%를 적용한 자체 시나리오입니다. ` : ""}재검토 조건은 '${breakCondition}'입니다.`;
+      const reason = status === "완성"
+        ? "필요한 숫자와 공식 운영 근거가 확보됨"
+        : status === "조건부 완성"
+          ? ownerScenario
+            ? `공식 실적 기반 자체 시나리오: ${ownerScenario.basis}`
+            : "숫자는 갖췄지만 공식 운영 근거를 한 단계 더 확인해야 함"
+          : "미래 이익 또는 가격 계산에 필요한 검증 수치가 부족함";
+
+      return { status, sentence, missing, reason, net2027, conservativeMargin, ownerScenario };
     }
 
     const state = {
@@ -3109,6 +3180,7 @@
           </td>
           <td>
             <div class="num">${longTermProfile(company).label}</div>
+            <div class="code">투자 문장 ${investmentSentenceProfile(company).status}</div>
             <div class="code">${tagsFor(company)}</div>
           </td>
           <td class="soft wide-only">${company.thesis}</td>
@@ -3405,6 +3477,7 @@
       const meta = watchlistMeta[company.code];
       const officialSources = officialSourceRegistry[company.code];
       const deepReview = companyDeepReviews[company.code];
+      const sentenceProfile = investmentSentenceProfile(company);
       const hasValue = (value) => value !== null && value !== undefined && value !== "";
       const growthText = profile.revenueCagr !== null && profile.netCagr !== null
         ? `2025~2027E 매출 CAGR ${profile.revenueCagr.toFixed(1)}%, 순이익 CAGR ${profile.netCagr.toFixed(1)}%, 2027E 영업이익률 ${profile.opMargin?.toFixed(1) || "확인 필요"}%`
@@ -3458,6 +3531,11 @@
             <h4>자료 상태</h4>
             <p>${sourceStatus} · ${data.sourceDate || "기준일 확인 필요"}</p>
           </div>
+        </div>
+        <div class="note">
+          <strong>투자 문장 ${sentenceProfile.status}</strong><br />
+          ${sentenceProfile.sentence}<br />
+          <span class="soft">${sentenceProfile.reason}</span>
         </div>
       `;
     }
