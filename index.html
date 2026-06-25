@@ -662,7 +662,7 @@
         <div class="date-pill">
           기준일<br />
           <strong>2026-06-04</strong>
-          <span>업데이트 2026-06-24</span>
+          <span>업데이트 2026-06-25</span>
         </div>
       </div>
     </header>
@@ -2904,6 +2904,29 @@
       "053800": { annualGrowth: 6, basis: "2024 매출 +3.6%, 2025 +8.0%의 중간 수준 적용" }
     };
 
+    const growthLayerAssumptions = {
+      "257720": { coreShare: 0.75, core: "기존 미국·유럽 유통망과 입점 브랜드의 반복 거래", expansion: "중동·멕시코 법인과 물류거점 확대", option: "신규 국가와 대형 브랜드 추가 입점" },
+      "214450": { coreShare: 0.8, core: "국내 리쥬란 반복 시술과 이미 발생한 의료기기·화장품 수출", expansion: "유럽 재주문과 제5공장 생산능력 확대", option: "사우디·브라질 등 신규 국가의 본격 매출" },
+      "062040": { coreShare: 0.85, core: "2025년 말 수주잔고와 기존 북미 특수변압기 계약", expansion: "2공장 증설과 데이터센터·BESS 고객 확대", option: "추가 대형 계약과 2차 증설" },
+      "214150": { coreShare: 0.75, core: "기존 슈링크·볼뉴머 장비와 소모품 반복 매출", expansion: "브라질 직영 전환과 기존 해외 시장 확장", option: "중국 볼뉴머 허가와 미국 신제품 성공" },
+      "058470": { coreShare: 0.8, core: "기존 반도체 고객의 테스트 소켓·핀 반복 수요", expansion: "AI 가속기·고성능 AP 테스트 수요와 신공장", option: "신규 대형 고객과 차세대 패키징 수요" },
+      "042700": { coreShare: 0.55, core: "기존 HBM 고객의 확인된 TC 본더 발주", expansion: "HBM4 투자와 와이드 TC 본더", option: "하이브리드 본더 성공과 고객 다변화" },
+      "207940": { coreShare: 0.8, core: "기존 장기 CDMO 계약과 현재 가동 공장 매출", expansion: "5공장·록빌 공장 가동률 상승", option: "6공장과 신규 모달리티 대형 계약" },
+      "196170": { coreShare: 0.45, core: "기존 계약에서 확인된 마일스톤과 초기 로열티", expansion: "키트루다SC 상업화 로열티 확대", option: "추가 빅파마 계약과 적응증 확장" },
+      "267260": { coreShare: 0.85, core: "현재 수주잔고와 북미·중동 전력기기 계약", expansion: "앨라배마 제2공장과 국내 증설", option: "데이터센터 신규 대형 수주와 추가 증설" },
+      "145020": { coreShare: 0.75, core: "기존 톡신·필러의 국내외 반복 시술 매출", expansion: "미국 직판과 중국·유럽·브라질 판매 확대", option: "신규 국가 허가와 신제품 성공" },
+      "064760": { coreShare: 0.75, core: "기존 고객의 SiC Ring 교체 수요", expansion: "고다층 NAND·GAA 전환과 중국 매출", option: "신규 고객 인증과 반도체 투자 급증" },
+      "216050": { coreShare: 0.85, core: "기존 광고·커머스 고객의 반복 집행", expansion: "신규 광고주와 커머스 고객 확대", option: "AI 마케팅 솔루션의 유료 매출화" },
+      "251970": { coreShare: 0.8, core: "기존 K뷰티 고객의 펌프·튜브 용기 반복 주문", expansion: "4공장 정상화와 해외 고객 확대", option: "신규 대형 브랜드 수주와 추가 공장 효과" },
+      "206640": { coreShare: 0.8, core: "설치 장비에서 발생하는 카트리지 반복 매출", expansion: "MENA·아프리카 채널과 장비 설치 확대", option: "신규 진단 항목의 대규모 채택" },
+      "214370": { coreShare: 0.55, core: "기존 펩타이드 원료와 기존 제품 매출", expansion: "확인된 PO·선적과 생산능력 활용", option: "코글루타이드·Luxidase 대규모 반복 주문" },
+      "051360": { coreShare: 0.75, core: "기존 카지노 모니터와 전장 고객 납품", expansion: "전장 디스플레이 고객·차종 확대", option: "분할 후 신규 고객과 카지노 투자 사이클 확대" },
+      "333430": { coreShare: 0.7, core: "기존 조선 기자재와 환경장비 수주", expansion: "조선 업황 회복에 따른 반복 수주", option: "신규 조선사 고객과 대형 환경장비 계약" },
+      "053800": { coreShare: 0.85, core: "국내 보안 솔루션·유지보수·구독 매출", expansion: "클라우드·제로트러스트와 해외 고객 확대", option: "사우디 합작법인의 대형 매출 발생" },
+      "192080": { coreShare: 0.8, core: "기존 소셜카지노의 반복 결제 매출", expansion: "아이게이밍·캐주얼 게임 이익 확대", option: "신작 흥행과 추가 인수 효과" },
+      "018290": { coreShare: 0.65, core: "기존 리들샷과 국내외 반복 구매", expansion: "PDRN 라인과 미국·유럽 채널 확대", option: "후속 대형 히트제품과 신규 지역 급성장" }
+    };
+
     const competitivePosition = {
       "257720": { peers: ["글로벌 K뷰티 유통사", "온라인 역직구 플랫폼", "화장품 도매상"], edge: ["해외 법인·물류망", "인디 브랜드 소싱", "다국가 B2B 유통"], pricing: "유통업이라 가격 결정력은 중간, 플랫폼 규모가 커질수록 협상력 개선", lockIn: "브랜드와 해외 바이어가 동시에 늘어날수록 네트워크 효과", barrier: "물류·통관·현지 채널 운영 노하우", verdict: "중상" },
       "214450": { peers: ["휴젤", "메디톡스", "클래시스", "국내 스킨부스터 업체"], edge: ["리쥬란 브랜드", "PN/PDRN 기반 제품", "화장품 확장성"], pricing: "브랜드력이 있어 가격 방어력 양호", lockIn: "병의원·소비자 인지도 기반 반복 구매", barrier: "제품 기전·브랜드·해외 허가", verdict: "상" },
@@ -3630,6 +3653,94 @@
       `;
     }
 
+    function renderGrowthLayers(company) {
+      const data = valuationData[company.code] || {};
+      const assumption = futureValueAssumptions[company.code] || {};
+      const layer = growthLayerAssumptions[company.code];
+      const sentenceProfile = investmentSentenceProfile(company);
+      const numberOf = (value) => value !== null && value !== undefined && value !== ""
+        ? Number(String(value).replace(/,/g, ""))
+        : null;
+      const marketCap = numberOf(data.marketCap);
+      const fairMultiple = numberOf(assumption.fairMultiple);
+      const totalNet2027 = sentenceProfile.net2027;
+      const coreNet2027 = totalNet2027 && layer ? totalNet2027 * layer.coreShare : null;
+      const coreMultiple = fairMultiple ? fairMultiple * 0.8 : null;
+      const coreValue = coreNet2027 && coreMultiple ? coreNet2027 * coreMultiple : null;
+      const coreMargin = coreValue && marketCap ? ((coreValue / marketCap) - 1) * 100 : null;
+      const optionShare = layer ? (1 - layer.coreShare) * 100 : null;
+      const verdict = coreMargin === null
+        ? "계산 보류"
+        : coreMargin >= 20
+          ? "성장 옵션 없이도 가격 여유 있음"
+          : coreMargin >= 0
+            ? "기본 사업으로 현재 가격을 간신히 설명"
+            : coreMargin >= -20
+              ? "일부 확장 성장이 필요"
+              : "기본 사업 가치 대비 현재 가격 부담이 큼";
+
+      return `
+        <div class="research-grid">
+          <div class="research-box">
+            <h4>기본 성장</h4>
+            <p>${layer?.core || "기존 사업의 반복 매출 근거 확인 필요"}</p>
+          </div>
+          <div class="research-box">
+            <h4>확장 성장</h4>
+            <p>${layer?.expansion || "현재 사업의 고객·지역·생산능력 확대 근거 확인 필요"}</p>
+          </div>
+          <div class="research-box">
+            <h4>선택적 성장 옵션</h4>
+            <p>${layer?.option || "신규 국가·제품·계약의 추가 가치 확인 필요"}</p>
+          </div>
+        </div>
+        <div class="history-table">
+          <table>
+            <thead>
+              <tr>
+                <th>판단 항목</th>
+                <th>값</th>
+                <th>의미</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>기본 사업 이익 비중 가정</td>
+                <td>${layer ? `${(layer.coreShare * 100).toFixed(0)}%` : "확인 필요"}</td>
+                <td>신규 국가·신제품·대형 계약을 제외하고 남는 2027년 이익 비중</td>
+              </tr>
+              <tr>
+                <td>기본 사업 2027 순이익</td>
+                <td>${coreNet2027 ? `${fmtAmount(Math.round(coreNet2027))}억원` : "계산 보류"}</td>
+                <td>${sentenceProfile.ownerScenario ? "공식 실적 기반 자체 시나리오에서 옵션 제외" : "FnGuide 2027E 컨센서스에서 옵션 제외"}</td>
+              </tr>
+              <tr>
+                <td>기본 사업 적용 PER</td>
+                <td>${coreMultiple ? `${coreMultiple.toFixed(1)}배` : "계산 보류"}</td>
+                <td>기준 PER에서 20% 할인</td>
+              </tr>
+              <tr>
+                <td>이벤트 실패 시 적정 시총</td>
+                <td>${coreValue ? `${fmtAmount(Math.round(coreValue))}억원` : "계산 보류"}</td>
+                <td>기본 사업 순이익 × 할인 PER</td>
+              </tr>
+              <tr>
+                <td>현재 가격 대비 여유</td>
+                <td><span class="status-tag">${coreMargin === null ? "계산 보류" : `${coreMargin.toFixed(1)}%`}</span></td>
+                <td>${verdict}</td>
+              </tr>
+              <tr>
+                <td>성장 옵션 의존 비중</td>
+                <td>${optionShare === null ? "확인 필요" : `${optionShare.toFixed(0)}%`}</td>
+                <td>이 비중이 높을수록 신규 이벤트 실패 영향이 큼</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note">기본 사업 비중은 회사가 공개한 별도 실적이 아니라 수주·반복 매출·이벤트 의존도를 토대로 둔 보수 가정입니다. 투자 판단 전에는 사업부·국가별 실제 매출로 다시 검증해야 합니다.</div>
+      `;
+    }
+
     function renderLongTermOwnership(company) {
       const data = valuationData[company.code] || {};
       const assumption = futureValueAssumptions[company.code] || {};
@@ -4344,6 +4455,10 @@
         <div class="section">
           <h3>장기 보유 매력도</h3>
           ${renderLongTermOwnership(company)}
+        </div>
+        <div class="section">
+          <h3>기본 사업과 성장 옵션 분리</h3>
+          ${renderGrowthLayers(company)}
         </div>
         <div class="section">
           <h3>검증 자료 현황</h3>
