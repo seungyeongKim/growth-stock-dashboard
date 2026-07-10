@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
@@ -2279,6 +2279,59 @@
       }
     };
 
+    function buildSupplementalCompanyReview(company) {
+      const detail = companyDetails[company.code] || {};
+      const evidence = evidenceDeepDive[company.code];
+      const reliability = estimateReliability[company.code] || {};
+      const competitive = competitivePosition[company.code] || {};
+      const valuation = valuationEssentials?.[company.code] || {};
+      const data = valuationData[company.code] || {};
+      const fmt = (value) => value ? `${value}억원` : "확인 필요";
+      const title = `${company.name} 보강 검토: 성장 근거가 실제 이익으로 이어지는지`;
+      const sourceLinks = evidence?.links || [["FnGuide 기업정보", `https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?gicode=A${company.code}`]];
+      return {
+        updatedAt: "2026-07-10",
+        title,
+        verdict: `${company.name}은(는) ${detail.growthDrivers?.[0] || company.thesis}를 성장 논리로 볼 수 있다. 다만 매수 판단은 성장 스토리보다 2026~2027년 매출·이익 추정, 반복 매출 또는 수주·CAPA 근거, 그리고 현재 시가총액 대비 보수적 안전마진이 함께 맞는지로 확인해야 한다.`,
+        metrics: [
+          ["확인한 성장 근거", evidence ? evidence.points.join(" / ") : (detail.evidence || []).join(" / ")],
+          ["2025 실제 실적", `매출 ${fmt(data.revenue2025)}, 영업이익 ${fmt(data.op2025)}, 순이익 ${fmt(data.net2025)}`],
+          ["2027E 또는 자체 시나리오", data.revenue2027E ? `매출 ${fmt(data.revenue2027E)}, 영업이익 ${fmt(data.op2027E)}, 순이익 ${fmt(data.net2027E)}` : "2027E 컨센서스가 부족해 보수적 자체 시나리오로만 관리"],
+          ["미래 매출 선행지표", reliability.backlog || detail.growthDrivers?.[1] || "수주·고객·국가별 매출 자료 추가 확인 필요"],
+          ["공급·생산·반복성", reliability.capacity || reliability.recurring || "CAPA·가동률·재주문 또는 반복 매출 자료 추가 확인 필요"],
+          ["차별점", competitive.edge?.join(" · ") || "동일 업종 내 차별점 추가 확인 필요"]
+        ],
+        earningPower: [
+          reliability.backlog || detail.growthDrivers?.[0] || "매출을 끌어올릴 선행지표 추가 확인 필요",
+          reliability.recurring || detail.growthDrivers?.[1] || "반복 매출 또는 재주문 구조 추가 확인 필요",
+          detail.evidence?.[0] || "최근 실적에서 매출 증가와 이익률 유지 여부 확인 필요",
+          `미래가치 판단은 ${valuation.profitMetric || "2027E 이익"}와 ${valuation.multipleMetric || "현재 멀티플"}을 함께 봐야 한다.`
+        ],
+        marginDurability: [
+          reliability.capacity || "생산능력·공급능력 자료가 마진 방어의 핵심 확인 항목",
+          competitive.pricing || "가격 결정력 또는 제품 믹스 자료 추가 확인 필요",
+          competitive.barrier || "경쟁 진입장벽을 공식 자료와 실적에서 재확인 필요",
+          detail.evidence?.[1] || "영업이익률이 성장 과정에서 유지되는지 분기마다 확인"
+        ],
+        breakPoints: [
+          futureValueAssumptions[company.code]?.caution || "컨센서스 하향 또는 핵심 성장 지표 둔화",
+          detail.checks?.[0] || "성장 선행지표가 실제 매출로 이어지지 않는 경우",
+          detail.checks?.[1] || "마진 훼손이나 비용 증가가 반복되는 경우",
+          "단일 성장 옵션이 실패했을 때 기본 사업 가치만으로 현재 시가총액을 설명하지 못하는 경우"
+        ],
+        nextChecks: [
+          reliability.backlog ? "수주잔고·신규수주가 매출 증가보다 먼저 유지되는지" : "분기 매출 증가율이 둔화되지 않는지",
+          reliability.capacity ? "증설·CAPA가 실제 매출과 마진으로 연결되는지" : "생산능력·가동률 또는 공급능력 자료 확보",
+          reliability.recurring ? "반복 매출·재주문 지표가 유지되는지" : "반복 매출, 고객 유지율, 재주문 또는 소모품 비중 확인",
+          "2027E 순이익 또는 보수적 자체 시나리오가 현재 시가총액 대비 안전마진을 유지하는지"
+        ],
+        sources: sourceLinks
+      };
+    }
+
+    function getCompanyReview(company) {
+      return companyDeepReviews[company.code] || buildSupplementalCompanyReview(company);
+    }
     const valuationEssentials = {
       "257720": {
         profitMetric: "2027E 순이익",
@@ -3029,7 +3082,7 @@
       const assumption = futureValueAssumptions[company.code] || {};
       const reliability = estimateReliability[company.code];
       const officialSources = officialSourceRegistry[company.code];
-      const deepReview = companyDeepReviews[company.code];
+      const deepReview = getCompanyReview(company);
       const ownerScenario = ownerScenarioAssumptions[company.code];
       const numberOf = (value) => value !== null && value !== undefined && value !== ""
         ? Number(String(value).replace(/,/g, ""))
@@ -3151,7 +3204,7 @@
         const metaText = meta ? `${meta.confidence} ${meta.sourceType} ${meta.nextCheck} ${meta.catalysts.join(" ")} ${meta.conviction}` : "";
         const deep = evidenceDeepDive[company.code];
         const deepText = deep ? `${deep.title} ${deep.points.join(" ")} ${deep.sourceLevel}` : "";
-        const companyDeep = companyDeepReviews[company.code];
+        const companyDeep = getCompanyReview(company);
         const companyDeepText = companyDeep ? `${companyDeep.title} ${companyDeep.verdict} ${companyDeep.metrics.flat().join(" ")} ${companyDeep.earningPower.join(" ")} ${companyDeep.marginDurability.join(" ")} ${companyDeep.breakPoints.join(" ")} ${companyDeep.nextChecks.join(" ")}` : "";
         const valuation = valuationEssentials[company.code];
         const valuationText = valuation ? `${valuation.profitMetric} ${valuation.multipleMetric} ${valuation.required.join(" ")} ${valuation.method} ${valuation.cheapRule} ${valuation.status}` : "";
@@ -3268,7 +3321,7 @@
     function renderCompanyGrowthLens(company) {
       const indicators = industryIndicators[company.industry] || [];
       const valuation = valuationData[company.code] || {};
-      const deepReview = companyDeepReviews[company.code];
+      const deepReview = getCompanyReview(company);
       const revenueIncrease = revenueIncreaseAmount(company);
       const visibleSignals = [
         `매출 성장률 ${fmt(company.revenueGrowth)}`,
@@ -3397,7 +3450,7 @@
     function renderGrowthEvidenceSources(company) {
       const common = growthEvidenceSources.common.sources;
       const industryItems = growthEvidenceSources.byIndustry[company.industry] || [];
-      const deepReview = companyDeepReviews[company.code];
+      const deepReview = getCompanyReview(company);
       const priorityItems = deepReview
         ? deepReview.nextChecks.slice(0, 4)
         : industryItems.slice(0, 4);
@@ -3499,7 +3552,7 @@
       const assumption = futureValueAssumptions[company.code] || {};
       const meta = watchlistMeta[company.code];
       const officialSources = officialSourceRegistry[company.code];
-      const deepReview = companyDeepReviews[company.code];
+      const deepReview = getCompanyReview(company);
       const sentenceProfile = investmentSentenceProfile(company);
       const hasValue = (value) => value !== null && value !== undefined && value !== "";
       const growthText = profile.revenueCagr !== null && profile.netCagr !== null
@@ -3568,7 +3621,7 @@
       const reliability = estimateReliability[company.code];
       const competitive = competitivePosition[company.code];
       const meta = watchlistMeta[company.code];
-      const deepReview = companyDeepReviews[company.code];
+      const deepReview = getCompanyReview(company);
       const officialSources = officialSourceRegistry[company.code];
       const hasValue = (value) => value !== null && value !== undefined && value !== "";
       const verifiedFields = [
@@ -3989,7 +4042,7 @@
     }
 
     function renderCompanyDeepReview(company) {
-      const review = companyDeepReviews[company.code];
+      const review = getCompanyReview(company);
       if (!review) return "";
 
       const box = (title, items) => `
@@ -4553,3 +4606,4 @@
   </script>
 </body>
 </html>
+
