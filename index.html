@@ -2280,7 +2280,7 @@
     };
 
     function buildSupplementalCompanyReview(company) {
-      const detail = companyDetails[company.code] || {};
+      const detail = researchDetails[company.code] || {};
       const evidence = evidenceDeepDive[company.code];
       const reliability = estimateReliability[company.code] || {};
       const competitive = competitivePosition[company.code] || {};
@@ -4606,4 +4606,5 @@
   </script>
 </body>
 </html>
+
 
