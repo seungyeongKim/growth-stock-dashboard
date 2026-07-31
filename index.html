@@ -1695,7 +1695,7 @@
     const growthEvidenceSources = {
       common: {
         title: "성장성 추가 확인 자료",
-        updatedAt: "2026-06-23",
+        updatedAt: "2026-07-31",
         sources: [
           { name: "DART 정기보고서", use: "제품별 매출, 지역별 매출, 수주상황, 생산능력, 설비투자, 주요 고객 의존도 확인", signal: "실적이 어느 사업부와 지역에서 실제로 커지는지 확인" },
           { name: "K-stat 수출 데이터", use: "품목별·국가별 수출 증가율 확인", signal: "기업 매출보다 먼저 수출 수요가 살아나는지 확인" },
@@ -1730,7 +1730,7 @@
 
     const growthLensFramework = {
       title: "성장 렌즈 프레임",
-      updatedAt: "2026-06-22",
+      updatedAt: "2026-07-31",
       visibleGrowth: {
         title: "재무로 보이는 성장주",
         fit: "우리 대시보드의 기본 방식입니다. 매출 증가, 영업이익률, 순이익률, 부채 부담, Forward PER처럼 이미 숫자로 확인되는 회사를 고릅니다.",
@@ -3900,6 +3900,78 @@
       `;
     }
 
+    function renderDataGapAudit(company) {
+      const data = valuationData[company.code] || {};
+      const reliability = estimateReliability[company.code];
+      const competitive = competitivePosition[company.code];
+      const leading = growthLeadingIndicators[company.code];
+      const officialSources = officialSourceRegistry[company.code];
+      const sentence = investmentSentenceProfile(company);
+      const profile = longTermProfile(company);
+      const hasValue = (value) => value !== null && value !== undefined && value !== "";
+      const gaps = [];
+      const addGap = (priority, item, reason, nextAction) => gaps.push({ priority, item, reason, nextAction });
+
+      if (!hasValue(data.net2027E)) {
+        addGap("높음", "2027E 순이익 컨센서스", "미래가치와 안전마진 계산이 자체 시나리오에 의존함", "FnGuide 컨센서스 또는 복수 리포트 2027E 순이익 확보");
+      }
+      if (!hasValue(data.revenue2027E) || !hasValue(data.op2027E)) {
+        addGap("높음", "2027E 매출·영업이익", "성장률과 이익 레버리지 검증이 불완전함", "다음 리포트에서 2027E 매출·영업이익 갱신");
+      }
+      if (!leading?.confirmed?.length) {
+        addGap("높음", "성장 선행지표 근거", "성장 스토리가 실제 매출로 이어지는 중간 증거가 약함", "수주잔고·재주문·설치대수·국가별 매출 중 해당 업종 핵심 지표 확보");
+      }
+      if (leading?.nextData?.length) {
+        addGap("중간", "다음 분기 확인 지표", `${leading.nextData.slice(0, 3).join(" · ")} 확인 전`, "다음 분기 실적 발표 후 선행지표 업데이트");
+      }
+      if (!officialSources && ["낮음", "중"].includes(reliability?.level)) {
+        addGap("중간", "공식자료 경로", "리포트·기사 중심 자료라 공식 공시 재확인이 필요함", "DART 사업보고서·분기보고서·회사 IR 링크 추가");
+      }
+      if (!competitive?.edge?.length || competitive?.verdict === "낮음") {
+        addGap("중간", "업종 내 차별점", "시장이 커져도 이 회사가 몫을 가져갈 근거가 약함", "경쟁사 대비 점유율·마진·고객사·인증 자료 보강");
+      }
+      if (!profile.dataComplete) {
+        addGap("높음", "장기보유 점수 입력값", "장기보유 점수가 데이터 보강 필요 상태로 표시됨", "2027E 추정치와 적정 PER 가정 재검증");
+      }
+      if (sentence.status !== "완성") {
+        addGap("중간", "투자 문장 완성도", sentence.reason, "컨센서스·공식 운영지표·재검토 조건을 같이 보강");
+      }
+      if (!gaps.length) {
+        addGap("관리", "정기 업데이트", "핵심 입력값은 채워졌지만 추정치는 계속 바뀜", "다음 분기 실적과 컨센서스 변화 확인");
+      }
+
+      const priorityRank = { "높음": 0, "중간": 1, "관리": 2 };
+      const sorted = gaps.sort((a, b) => (priorityRank[a.priority] ?? 9) - (priorityRank[b.priority] ?? 9)).slice(0, 6);
+      const highCount = gaps.filter((gap) => gap.priority === "높음").length;
+      const midCount = gaps.filter((gap) => gap.priority === "중간").length;
+      const status = highCount ? "매수 전 보강 필요" : midCount ? "관찰하며 보강" : "정기 점검";
+
+      return `
+        <div class="note">자료 상태: ${status}. 이 칸은 대시보드 안의 빈값과 약한 근거를 자동으로 모아 다음 조사 순서를 정합니다.</div>
+        <div class="history-table">
+          <table>
+            <thead>
+              <tr>
+                <th>우선순위</th>
+                <th>보강할 자료</th>
+                <th>왜 필요한가</th>
+                <th>다음 작업</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${sorted.map((gap) => `
+                <tr>
+                  <td><span class="status-tag">${gap.priority}</span></td>
+                  <td>${gap.item}</td>
+                  <td>${gap.reason}</td>
+                  <td>${gap.nextAction}</td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+      `;
+    }
     function renderBuyReadiness(company) {
       const data = valuationData[company.code] || {};
       const assumption = futureValueAssumptions[company.code] || {};
@@ -4709,6 +4781,10 @@
           ${renderVerifiedCompanyCoverage(company)}
         </div>
         <div class="section">
+          <h3>자료 보강 우선순위</h3>
+          ${renderDataGapAudit(company)}
+        </div>
+        <div class="section">
           <h3>보조 점검 자료</h3>
           ${renderBuyReadiness(company)}
         </div>
@@ -4797,6 +4873,7 @@
   </script>
 </body>
 </html>
+
 
 
 
