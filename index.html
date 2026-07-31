@@ -2906,6 +2906,63 @@
       "192080": { primary: "신사업 매출·잔존율·마케팅 효율", confirmed: ["1Q26 분기 최대 실적과 슈퍼네이션·팍시게임즈 흑자 전환", "소셜카지노와 아이게이밍은 반복 결제 구조", "낮은 PER과 현금창출력이 하방을 일부 방어"], nextData: ["슈퍼네이션·팍시게임즈 분기 이익", "마케팅비율", "유저 잔존율", "영업현금흐름"], judgment: "성장주보다는 저평가 현금창출형에 가까우며 신사업 이익 지속성이 관건" },
       "018290": { primary: "미국·유럽 채널 매출·후속 제품 재구매", confirmed: ["1Q26 유럽·중동 매출 고성장과 PDRN 라인 확장", "리들샷 성공 경험을 미국·유럽 채널로 확장하는 논리", "브랜드 반복 구매 가능성"], nextData: ["PDRN 매출 비중", "미국·유럽 채널 매출", "마케팅비율", "리들샷 이후 후속 제품 판매"], judgment: "해외 채널 매출과 마케팅비 회수가 확인되기 전까지는 조건부 성장 후보" }
     };
+    const additionalGrowthCandidates = [
+      {
+        name: "에이피알",
+        code: "278470",
+        industry: "K뷰티 브랜드/뷰티 디바이스",
+        priority: "편입 우선 검토",
+        financial: "2025년 매출 1조5,273억원, 영업이익 3,654억원. 매출 +111%, 영업이익 +198%, 영업이익률 약 24%로 현재 재무 조건이 강함.",
+        growthReason: "미국 오프라인 채널, 글로벌 뷰티 디바이스 수요, 공급 부족 해소가 다음 성장 선행지표.",
+        caution: "이미 고성장이 주가에 반영됐을 가능성이 커서 2026E PER과 재고·물류·생산능력 병목을 반드시 확인해야 함.",
+        nextCheck: "2Q26 미국·유럽 매출, 생산 쇼티지 해소, 영업이익률 20%대 유지, 2026년 매출 2조원 가이던스 달성 가능성",
+        sources: [["2025 실적 보도", "https://economist.co.kr/article/view/ecn202602040025"], ["생산 쇼티지·가이던스", "https://thebell.co.kr/front/newsview.asp?code=0401&key=202602040737312820107852"], ["현대차증권 1Q26 리뷰", "https://www.hmsec.com/mobile/research/research01_view.do?serialNo=35911"]]
+      },
+      {
+        name: "SK하이닉스",
+        code: "000660",
+        industry: "AI 메모리/HBM",
+        priority: "대형 성장주 비교군 편입",
+        financial: "2025년 연간 매출 97조1,467억원, 영업이익 47조2,063억원 보도. 2025년 2분기 공식 실적도 매출 22조2,320억원, 영업이익률 41%로 매우 강함.",
+        growthReason: "HBM3E·HBM4 리더십, AI 데이터센터 투자, 고객사 선점이 성장 선행지표.",
+        caution: "이미 시장 대표 성장주라 저평가 후보라기보다 우리가 찾는 조건의 기준점으로 쓰는 편이 적합.",
+        nextCheck: "HBM 출하·ASP, 빅테크 고객 공급계약, 메모리 가격 사이클, 2027년 HBM4 양산 가시성",
+        sources: [["SK하이닉스 2Q25 공식 실적", "https://news.skhynix.co.kr/2q-2025-business-results/"], ["2026 HBM 시장 전망", "https://news.skhynix.co.kr/2026-market-outlook/"], ["2025 연간 실적 보도", "https://www.mt.co.kr/amp/industry/2026/01/28/2026012814441529904"]]
+      },
+      {
+        name: "RF시스템즈",
+        code: "474610",
+        industry: "방산 RF/레이다 부품",
+        priority: "소형 성장 후보 관찰",
+        financial: "2025년 매출 382억원(+16.8%), 영업이익 41억원(+140.6%), 영업이익률 10.6%로 성장주 최소 재무 조건을 통과.",
+        growthReason: "LIG넥스원 레이다 안테나 조립체 공급계약과 2026~2027년 매출 가이던스가 선행지표.",
+        caution: "소형주라 수주 지속성, 고객 편중, 공시 기반 수주잔고 확인 전에는 편입보다 관찰이 적합.",
+        nextCheck: "수주잔고, 단일판매 공급계약, 방산 고객 다변화, 2026E 매출 450억원 이상 달성 여부",
+        sources: [["하나증권 브리핑", "https://www.newspim.com/news/view/20260319000085"], ["FnGuide Snapshot", "https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?gicode=A474610"], ["한국경제 종목정보", "https://markets.hankyung.com/stock/474610"]]
+      },
+      {
+        name: "코스맥스",
+        code: "192820",
+        industry: "K뷰티 ODM",
+        priority: "조건부 관찰",
+        financial: "2025년 매출 2조3,988억원(+10.7%), 영업이익 1,958억원(+11.6%). 다만 영업이익률은 약 8.2%로 우리 10% 기준에는 미달.",
+        growthReason: "K뷰티 ODM 수요, 한국·중국·미국 법인 회복, 하이드로겔 마스크 등 생산 라인 확대가 선행지표.",
+        caution: "현재 재무 기준상 이익률 10% 미만이라 성장주 조건 통과보다는 ODM 업종 비교군으로 관리.",
+        nextCheck: "미국 법인 흑자전환, 2026E OPM 9~10% 접근 여부, 글로벌 고객사 주문과 CAPA 가동률",
+        sources: [["2025 실적 보도", "https://www.ajunews.com/view/20260223161906954"], ["하나증권 리포트 요약", "https://www.stockinfo7.com/stock/report/view/132466"], ["코스맥스 턴어라운드 보도", "https://m.newspim.com/newsamp/view/20260105000084"]]
+      },
+      {
+        name: "제룡전기",
+        code: "033100",
+        industry: "변압기/전력기기",
+        priority: "가격·수주 재확인",
+        financial: "2025년 매출은 2,240억원으로 전년 대비 감소했지만 영업이익 670억원 수준으로 수익성은 높음.",
+        growthReason: "미국 변압기 수출, 수주잔고, 생산 효율화가 2026년 성장 전환의 핵심.",
+        caution: "2025 매출 성장 조건은 미달이므로 산일전기·HD현대일렉트릭보다 우선 편입하기 전에 수주잔고와 2026E 회복을 공식자료로 확인해야 함.",
+        nextCheck: "2026년 신규수주, 수주잔고 3,000억원대 유지 여부, 영업이익 1,000억원 이상 전망의 근거",
+        sources: [["제룡전기 재무평가", "https://www.catch.co.kr/Comp/CompInfo/265594?Tab=1&mobile="], ["서울경제 종목정보", "https://mv2.sedaily.com/Stock/033100"], ["수주잔고 분석 참고", "https://eduinfom.com/invest/18862/"]]
+      }
+    ];
     const officialSourceRegistry = {
       "058470": {
         status: "공식 IR 경로 확인",
@@ -4042,6 +4099,106 @@
         <div class="data-caption">재무 데이터 기준: ${data.sourceDate || "확인 필요"}. FnGuide 재조회는 2026-07-31에 시도했지만 원본 응답 파싱이 실패해, 마지막 정상 스냅샷을 유지했습니다.</div>
       `;
     }
+    function renderCandidateRecheckSummary() {
+      const rows = sortByReviewPriority(companies).map((company) => {
+        const fit = growthConditionSummary(company);
+        const profile = longTermProfile(company);
+        const sentence = investmentSentenceProfile(company);
+        const group = fit.passed >= 6 ? "우선 검토" : fit.passed >= 4 ? "조건부" : "재검토";
+        const valueText = profile.conservativeMargin === null
+          ? "가격 계산 보류"
+          : `보수 안전마진 ${profile.conservativeMargin.toFixed(1)}%`;
+        return { company, fit, profile, sentence, group, valueText };
+      });
+      const counts = rows.reduce((acc, row) => {
+        acc[row.group] = (acc[row.group] || 0) + 1;
+        return acc;
+      }, {});
+      return `
+        <div class="research-grid">
+          <div class="research-box">
+            <h4>기존 20개 재점검</h4>
+            <ul>
+              <li>우선 검토: ${counts["우선 검토"] || 0}개</li>
+              <li>조건부: ${counts["조건부"] || 0}개</li>
+              <li>재검토: ${counts["재검토"] || 0}개</li>
+            </ul>
+          </div>
+          <div class="research-box">
+            <h4>이번 점검 기준</h4>
+            <ul>
+              <li>현재 재무: 매출 성장률 15% 이상, 영업·순이익률 10% 이상</li>
+              <li>미래 가치: 2027E 순이익 또는 명시적 자체 시나리오와 현재 시총 비교</li>
+              <li>지속성: 선행지표, 경쟁우위, 보수 시나리오까지 함께 확인</li>
+            </ul>
+          </div>
+        </div>
+        <div class="history-table">
+          <table>
+            <thead>
+              <tr>
+                <th>구분</th>
+                <th>종목</th>
+                <th>성장조건</th>
+                <th>현재 재무</th>
+                <th>미래가치 점검</th>
+                <th>매수 전 확인</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rows.map(({ company, fit, sentence, group, valueText }) => `
+                <tr>
+                  <td><span class="status-tag">${group}</span></td>
+                  <td><strong>${company.name}</strong><br><span class="muted">${company.code} · ${company.industry}</span></td>
+                  <td>${fit.passed}/7 · ${fit.label}</td>
+                  <td>매출 ${fmt(company.revenueGrowth)} · 영업 ${fmt(company.opMargin)} · 순익 ${fmt(company.netMargin)}</td>
+                  <td>${valueText}</td>
+                  <td>${sentence.missing.length ? sentence.missing.slice(0, 2).join(" · ") : "다음 분기 실적·컨센서스 변화"}</td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+        <div class="data-caption">재점검은 매수 추천이 아니라 후보 우선순위 정리입니다. 실제 편입 전에는 최신 공시, 실적 발표, 컨센서스 변화를 다시 확인해야 합니다.</div>
+      `;
+    }
+
+    function renderAdditionalGrowthCandidates() {
+      return `
+        <div class="note">추가 후보는 아직 본 후보 20개에 편입한 종목이 아니라, 성장 조건을 추가로 검증할 관찰군입니다. 공식 실적·리포트·공시로 재무와 선행지표가 충분히 확인되면 본 후보에 편입해 비교합니다.</div>
+        <div class="history-table">
+          <table>
+            <thead>
+              <tr>
+                <th>종목</th>
+                <th>우선도</th>
+                <th>확인된 재무 신호</th>
+                <th>성장 논리</th>
+                <th>주의점</th>
+                <th>다음 확인</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${additionalGrowthCandidates.map((item) => `
+                <tr>
+                  <td><strong>${item.name}</strong><br><span class="muted">${item.code} · ${item.industry}</span></td>
+                  <td><span class="status-tag">${item.priority}</span></td>
+                  <td>${item.financial}</td>
+                  <td>${item.growthReason}</td>
+                  <td>${item.caution}</td>
+                  <td>${item.nextCheck}</td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+        <div class="link-list">
+          ${additionalGrowthCandidates.flatMap((item) => item.sources.map(([label, url]) => `
+            <a href="${url}" target="_blank" rel="noopener noreferrer">${item.name} · ${label}</a>
+          `)).join("")}
+        </div>
+      `;
+    }
     function renderDataGapAudit(company) {
       const data = valuationData[company.code] || {};
       const reliability = estimateReliability[company.code];
@@ -4882,6 +5039,14 @@
           ${renderGrowthStockFit(company)}
         </div>
         <div class="section">
+          <h3>기존 후보 전체 재점검</h3>
+          ${renderCandidateRecheckSummary()}
+        </div>
+        <div class="section">
+          <h3>추가 후보 관찰군</h3>
+          ${renderAdditionalGrowthCandidates()}
+        </div>
+        <div class="section">
           <h3>성장 렌즈 적용</h3>
           ${renderCompanyGrowthLens(company)}
         </div>
@@ -5019,6 +5184,10 @@
   </script>
 </body>
 </html>
+
+
+
+
 
 
 
