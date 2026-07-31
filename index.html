@@ -3258,6 +3258,33 @@
       });
     }
 
+    function growthConditionSummary(company) {
+      const data = valuationData[company.code] || {};
+      const leading = growthLeadingIndicators[company.code];
+      const reliability = estimateReliability[company.code];
+      const competitive = competitivePosition[company.code];
+      const profile = longTermProfile(company);
+      const sentence = investmentSentenceProfile(company);
+      const hasValue = (value) => value !== null && value !== undefined && value !== "";
+      const numberOf = (value) => hasValue(value) ? Number(String(value).replace(/,/g, "")) : null;
+      const net2027 = numberOf(data.net2027E);
+      const marketCap = numberOf(data.marketCap);
+      const fairMultiple = numberOf(futureValueAssumptions[company.code]?.fairMultiple);
+      const expectedReturn = net2027 && marketCap && fairMultiple ? (((net2027 * fairMultiple) / marketCap) - 1) * 100 : null;
+      const ownerScenario = ownerScenarioAssumptions[company.code];
+      const checks = [
+        company.revenueGrowth >= 15 && company.opMargin >= 10 && company.netMargin >= 10,
+        hasValue(data.net2027E) || Boolean(ownerScenario),
+        Boolean(leading?.confirmed?.length),
+        Boolean(competitive?.edge?.length >= 3 && competitive?.pricing && competitive?.lockIn),
+        ["상", "중상"].includes(reliability?.level) || Boolean(ownerScenario && leading?.confirmed?.length),
+        expectedReturn !== null && expectedReturn >= 15,
+        profile.conservativeMargin !== null ? profile.conservativeMargin >= 0 : sentence.status !== "미완성"
+      ];
+      const passed = checks.filter(Boolean).length;
+      const label = passed >= 6 ? "우선 통과" : passed >= 4 ? "조건부" : "재검토";
+      return { passed, total: checks.length, label };
+    }
     function renderRows() {
       const filtered = sortByReviewPriority(companies.filter(passFilter));
       resultCount.textContent = `${filtered.length}개 표시`;
@@ -3266,7 +3293,7 @@
         <tr data-code="${company.code}" class="${company.code === state.selectedCode ? "selected" : ""}">
           <td>
             <div class="company-name">${index + 1}. ${company.name}</div>
-            <div class="code">${company.code} · ${company.industry} · 장기보유 ${longTermProfile(company).dataComplete ? longTermProfile(company).score.toFixed(0) : "보강 필요"}</div>
+            <div class="code">${company.code} · ${company.industry} · 성장조건 ${growthConditionSummary(company).passed}/${growthConditionSummary(company).total} ${growthConditionSummary(company).label}</div>
           </td>
           <td class="wide-only">${company.industry}</td>
           <td>
@@ -3900,6 +3927,121 @@
       `;
     }
 
+    function renderGrowthStockFit(company) {
+      const data = valuationData[company.code] || {};
+      const profile = longTermProfile(company);
+      const reliability = estimateReliability[company.code];
+      const competitive = competitivePosition[company.code];
+      const leading = growthLeadingIndicators[company.code];
+      const sentence = investmentSentenceProfile(company);
+      const hasValue = (value) => value !== null && value !== undefined && value !== "";
+      const numberOf = (value) => hasValue(value) ? Number(String(value).replace(/,/g, "")) : null;
+      const net2027 = numberOf(data.net2027E);
+      const marketCap = numberOf(data.marketCap);
+      const fairMultiple = numberOf(futureValueAssumptions[company.code]?.fairMultiple);
+      const expectedReturn = net2027 && marketCap && fairMultiple ? (((net2027 * fairMultiple) / marketCap) - 1) * 100 : null;
+      const ownerScenario = ownerScenarioAssumptions[company.code];
+      const formatPercent = (value) => value === null || Number.isNaN(value) ? "확인 필요" : `${value.toFixed(1)}%`;
+      const rows = [
+        {
+          condition: "현재 재무가 이미 좋은가",
+          test: "2025 매출증가율 15% 이상, 영업이익률·순이익률 10% 이상",
+          value: `매출 ${fmt(company.revenueGrowth)} · 영업 ${fmt(company.opMargin)} · 순익 ${fmt(company.netMargin)}`,
+          pass: company.revenueGrowth >= 15 && company.opMargin >= 10 && company.netMargin >= 10,
+          failText: "현재 재무 조건 미흡"
+        },
+        {
+          condition: "앞으로도 커질 숫자가 있는가",
+          test: "2027E 매출·영업이익·순이익 또는 명시적 자체 시나리오 존재",
+          value: hasValue(data.net2027E) ? `2027E 순이익 ${data.net2027E}억원` : ownerScenario ? `자체 시나리오 연 ${ownerScenario.annualGrowth}%` : "확인 필요",
+          pass: hasValue(data.net2027E) || Boolean(ownerScenario),
+          failText: "미래 이익 추정치 부족"
+        },
+        {
+          condition: "성장이 실제 매출로 이어질 선행지표가 있는가",
+          test: "수주·CAPA·재주문·설치대수·국가별 매출 등",
+          value: leading?.primary || "확인 필요",
+          pass: Boolean(leading?.confirmed?.length),
+          failText: "선행지표 근거 부족"
+        },
+        {
+          condition: "경쟁사보다 가져갈 몫이 있는가",
+          test: "차별점 3개 이상과 가격 결정력·락인 근거",
+          value: competitive?.edge?.join(" · ") || "확인 필요",
+          pass: Boolean(competitive?.edge?.length >= 3 && competitive?.pricing && competitive?.lockIn),
+          failText: "경쟁력 검증 부족"
+        },
+        {
+          condition: "추정치를 믿을 운영 근거가 있는가",
+          test: "추정치 신뢰도 중상 이상 또는 공식 실적 기반 자체 시나리오",
+          value: reliability?.level || "확인 필요",
+          pass: ["상", "중상"].includes(reliability?.level) || Boolean(ownerScenario && leading?.confirmed?.length),
+          failText: "추정치 신뢰도 보강 필요"
+        },
+        {
+          condition: "현재 가격이 미래가치보다 싼가",
+          test: "적정 PER x 2027E 순이익 기준 기대수익률 15% 이상",
+          value: expectedReturn === null ? "계산 보류" : formatPercent(expectedReturn),
+          pass: expectedReturn !== null && expectedReturn >= 15,
+          failText: "가격 여유 부족 또는 계산 보류"
+        },
+        {
+          condition: "보수적으로 봐도 버틸 수 있는가",
+          test: "보수적 안전마진 0% 이상 또는 핵심 조건 명확",
+          value: profile.conservativeMargin === null ? sentence.reason : formatPercent(profile.conservativeMargin),
+          pass: profile.conservativeMargin !== null ? profile.conservativeMargin >= 0 : sentence.status !== "미완성",
+          failText: "보수 시나리오 취약"
+        }
+      ];
+      const passCount = rows.filter((row) => row.pass).length;
+      const missing = rows.filter((row) => !row.pass).map((row) => row.failText);
+      const verdict = passCount >= 6
+        ? "성장주 조건 우선 통과"
+        : passCount >= 4
+          ? "조건부 성장 후보"
+          : "성장주 조건 재검토";
+      const financialGood = rows[0].pass ? "현재 재무 양호" : "현재 재무 재점검 필요";
+
+      return `
+        <div class="research-grid">
+          <div class="research-box">
+            <h4>${verdict}</h4>
+            <ul>
+              <li>통과 조건: ${passCount} / ${rows.length}</li>
+              <li>현재 재무 판정: ${financialGood}</li>
+              <li>투자 문장 상태: ${sentence.status}</li>
+            </ul>
+          </div>
+          <div class="research-box">
+            <h4>매수 전 남은 핵심</h4>
+            <ul>${(missing.length ? missing : ["다음 분기 실적과 컨센서스 변화 정기 점검"]).slice(0, 4).map((item) => `<li>${item}</li>`).join("")}</ul>
+          </div>
+        </div>
+        <div class="history-table">
+          <table>
+            <thead>
+              <tr>
+                <th>성장주 조건</th>
+                <th>검사 기준</th>
+                <th>현재 값</th>
+                <th>판정</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rows.map((row) => `
+                <tr>
+                  <td>${row.condition}</td>
+                  <td>${row.test}</td>
+                  <td>${row.value}</td>
+                  <td><span class="status-tag">${row.pass ? "통과" : "보강"}</span></td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+        <div class="data-caption">재무 데이터 기준: ${data.sourceDate || "확인 필요"}. FnGuide 재조회는 2026-07-31에 시도했지만 원본 응답 파싱이 실패해, 마지막 정상 스냅샷을 유지했습니다.</div>
+      `;
+    }
     function renderDataGapAudit(company) {
       const data = valuationData[company.code] || {};
       const reliability = estimateReliability[company.code];
@@ -4736,6 +4878,10 @@
           ${renderExecutiveSummary(company)}
         </div>
         <div class="section">
+          <h3>성장주 조건 재점검</h3>
+          ${renderGrowthStockFit(company)}
+        </div>
+        <div class="section">
           <h3>성장 렌즈 적용</h3>
           ${renderCompanyGrowthLens(company)}
         </div>
@@ -4873,6 +5019,8 @@
   </script>
 </body>
 </html>
+
+
 
 
 
