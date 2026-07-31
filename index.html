@@ -661,8 +661,8 @@
         </div>
         <div class="date-pill">
           기준일<br />
-          <strong>2026-06-04</strong>
-          <span>업데이트 2026-06-25</span>
+          <strong>2026-07-31</strong>
+          <span>업데이트 2026-07-31</span>
         </div>
       </div>
     </header>
@@ -2884,6 +2884,28 @@
       "018290": { level: "중", backlog: "국가별 채널 매출과 후속 제품 매출이 핵심", capacity: "브랜드와 유통채널 확장이 성장 기반", recurring: "브랜드 반복 구매가 있으나 히트제품 의존도 존재", diversification: "리들샷·PDRN·미국·유럽·중동 채널", revision: "마케팅 투자 회수 전 추정 신뢰도 중간" }
     };
 
+    const growthLeadingIndicators = {
+      "257720": { primary: "국가별 매출·신규 브랜드·SKU 증가", confirmed: ["1Q26 유럽과 북미 매출 고성장이 확인된 상태", "해외 법인과 물류 거점 확장이 매출 처리 능력의 선행지표", "재고자산과 매출채권 증가는 성장과 동시에 현금 회수 리스크를 보여주는 지표"], nextData: ["지역별 매출 성장률", "입점 브랜드 수와 SKU 증가", "재고자산·매출채권 회전일수", "GPM 30% 이상 유지 여부"], judgment: "매출 선행지표는 비교적 명확하지만, 운전자본 부담이 커지면 성장의 질을 낮춰야 함" },
+      "214450": { primary: "의료기기 수출·국가별 허가·재주문", confirmed: ["1Q26 전체 수출 588억원, 의료기기 수출 211억원이 공식 자료로 확인", "CE MDR·SFDA·MEDSAFE 등 허가와 브라질 공급계약이 해외 매출 파이프라인", "강릉 5공장 착공으로 2027년 이후 생산능력 확대 경로가 있음"], nextData: ["의료기기 국가별 매출", "초도 선적 이후 재주문", "제5공장 준공·GMP·상업생산 일정", "영업이익률 35~40% 유지 여부"], judgment: "수출이 실제 매출로 찍히기 시작했으므로 재주문과 CAPA 전환이 다음 핵심" },
+      "062040": { primary: "신규수주·수주잔고·납기별 매출 전환", confirmed: ["2025년 신규수주 5,660억원과 연말 수주잔고 4,489억원 확인", "4Q25 신규수주 1,767억원으로 전년 대비 증가", "BESS·데이터센터향 공급계약이 특수변압기 수요를 뒷받침"], nextData: ["분기 신규수주", "분기 말 수주잔고", "수주잔고/다음해 매출 비율", "특수변압기 매출 비중과 영업이익률"], judgment: "성장 선행지표는 강하지만 현재 가격이 이미 높은 기대를 반영하는지 함께 봐야 함" },
+      "214150": { primary: "설치 장비 대수·소모품 매출·해외 직영 매출", confirmed: ["브라질 직영 전환과 유럽 승인 자료가 해외 확장 근거", "장비 판매 후 카트리지·팁 매출이 반복되는 구조", "중국·미국·태국·일본 신규 출시가 성장 옵션"], nextData: ["소모품 매출 비중", "브라질 직영 전환 후 매출과 판관비율", "국가별 장비 설치 대수", "신제품 허가 후 초도 판매"], judgment: "반복 매출 구조가 좋아 성장성 점수는 높지만, 해외 직영 비용 회수 확인이 필요" },
+      "058470": { primary: "고객사 신제품 개발 사이클·테스트 소켓 수요", confirmed: ["1Q26 매출 998억원과 영업이익 473억원 보도", "AI·HPC 칩 고도화가 테스트 소켓 단가와 수요를 높이는 논리", "공식 IR 경로와 재무정보 경로 확인"], nextData: ["테스트 소켓 매출 성장률", "고객사 신제품 대응 코멘트", "신공장 가동률", "2027E 컨센서스 확보"], judgment: "사업의 질은 좋지만 미래가치 계산에는 2027E 추정치와 신공장 효과 확인이 더 필요" },
+      "042700": { primary: "HBM 장비 공급계약·고객사 CAPEX", confirmed: ["SK하이닉스향 TC 본더 공급계약 보도 확인", "HBM4·16단 고단화가 장비 수요를 만드는 구조", "차세대 와이드 TC 본더와 하이브리드 본더가 옵션"], nextData: ["신규 공급계약 공시", "수주잔고", "고객사별 매출 비중", "경쟁사 장비 채택 여부"], judgment: "성장 방향은 강하지만 발주 사이클형이라 수주 공백 시나리오를 반드시 반영해야 함" },
+      "207940": { primary: "CDMO 신규 수주·수주잔고·공장 가동률", confirmed: ["5공장과 록빌 공장이 성장 설비 근거", "CDMO 장기 계약 구조가 매출 가시성을 높임", "대형 고객 기반과 신규 모달리티 확장 가능성"], nextData: ["분기 신규 수주", "수주잔고", "5공장 가동률", "록빌 공장 매출 인식"], judgment: "공장 증설보다 신규 수주 회복이 먼저 확인돼야 미래가치 신뢰도가 올라감" },
+      "196170": { primary: "허가·마일스톤·반복 로열티", confirmed: ["키트루다SC 관련 마일스톤과 로열티 전망이 핵심", "ALT-B4 플랫폼은 자산가벼운 확장 모델", "기술료 영향으로 실적 변동성이 큼"], nextData: ["키트루다SC 허가·출시 일정", "마일스톤과 로열티 매출 분리", "반복 로열티 규모", "추가 기술이전 계약"], judgment: "성장 옵션은 크지만 일회성 기술료와 반복 로열티를 분리하기 전까지는 보수적으로 봐야 함" },
+      "267260": { primary: "북미 신규수주·수주잔고·수주 마진", confirmed: ["1Q26 신규 수주와 북미 수주 브리핑 확인", "수주잔고 78.9억달러 언급으로 매출 가시성 높음", "앨라배마 제2공장과 국내 증설이 CAPA 근거"], nextData: ["분기 신규수주", "북미 수주 비중", "수주 마진 코멘트", "공장 증설 진행률"], judgment: "수주 가시성은 매우 좋지만 신규 수주 마진 하락 여부가 핵심 리스크" },
+      "145020": { primary: "국가별 톡신 매출·허가·직판 비용 회수", confirmed: ["미국·중국·유럽·브라질 확장이 성장 논리", "톡신·필러는 반복 시술 수요가 있음", "2025년 높은 수익성이 확인됨"], nextData: ["미국 직판 매출", "국가별 톡신·필러 매출", "판관비율", "순이익률 30% 이상 유지 여부"], judgment: "해외 매출이 판관비 증가를 흡수하는지 확인되면 성장 신뢰도가 올라감" },
+      "064760": { primary: "고객사 가동률·SiC 링 소모품 주문", confirmed: ["SiC 링과 NAND 고단화 수요 논리", "소모품 교체 수요는 반복성이 있음", "공식 홈페이지와 DART 확인 경로 확보"], nextData: ["SiC 링 매출", "주요 고객사 투자·가동률", "고객 인증", "2027E 컨센서스 확보"], judgment: "업황 회복주라 선행지표가 고객사 투자 사이클에 크게 의존" },
+      "216050": { primary: "AI 솔루션 매출화·신규 광고주", confirmed: ["1Q26 광고 사업 성장과 AI 마케팅 고도화 계획 확인", "공식 IR·공시 경로 확보", "광고와 커머스 사업으로 분산"], nextData: ["AI 솔루션 독립 매출", "계약 고객 수", "커머스 반복 매출", "매출 성장률 두 자릿수 회복 여부"], judgment: "현재는 안정형에 가깝고 AI 매출이 숫자로 확인돼야 성장주로 볼 수 있음" },
+      "251970": { primary: "K뷰티 고객 주문·공장 가동률·원가율", confirmed: ["K뷰티 인디 브랜드 성장의 후방 수혜 논리", "4공장·6공장 증설이 생산능력 근거", "화장품 용기 주문은 신제품 사이클마다 반복 가능"], nextData: ["공장별 가동률", "고객사 주문 추이", "원가율과 영업이익률", "해외 고객 매출"], judgment: "CAPA 확대가 실제 주문과 원가율 개선으로 연결되는지가 매수 전 핵심" },
+      "206640": { primary: "장비 설치 대수·카트리지 반복 매출", confirmed: ["2025년 매출 1,620억원과 영업이익률 17.9% 보도", "MENA·아프리카·국내 매출 호조", "장비 설치 후 카트리지 매출이 따라오는 구조"], nextData: ["설치 장비 대수", "카트리지 매출 비중", "지역별 반복 주문", "영업이익률 15% 이상 유지 여부"], judgment: "반복 매출 구조는 좋지만 설치 기반과 카트리지 비중 자료가 보강돼야 함" },
+      "214370": { primary: "PO·선적·재주문", confirmed: ["코글루타이드와 Luxidase 상업화 기대", "화성 공장과 펩타이드 생산능력 논리", "1Q26 고마진 회복 보도"], nextData: ["제품별 매출", "PO와 선적", "국가별 인증", "재주문 여부"], judgment: "고마진 잠재력은 있으나 실제 주문과 반복 매출 전환 전까지는 보수 관리" },
+      "051360": { primary: "분할 후 별도 재무·전장 고객사·카지노 수주", confirmed: ["2026년 인적분할과 네오뷰 재상장 예심 자료", "전장 디스플레이와 카지노 모니터 성장 논리", "사업별 평가 기준이 분리될 예정"], nextData: ["존속·신설 법인별 매출과 영업이익", "전장 고객사", "카지노 수주", "분할 후 각 법인 시가총액"], judgment: "분할 전 연결 숫자만으로는 부족하고 분할 후 별도 재무가 핵심" },
+      "333430": { primary: "조선 기자재 수주잔고·고객 편중", confirmed: ["조선 업황 회복과 환경장비 수요 논리", "2025년 매출과 이익률 개선 후보", "DART 우선 확인 경로 설정"], nextData: ["수주잔고", "단일판매 공급계약", "주요 고객 매출 비중", "일회성 손익과 환율 효과"], judgment: "자료 부족 종목이므로 수주잔고 확인 전에는 성장주 후보 우선순위를 낮게 둬야 함" },
+      "053800": { primary: "해외 보안 매출·제로트러스트·반복 유지보수", confirmed: ["2025년 매출 2,677억원과 영업이익 333억원 보도", "사우디 합작법인과 제로트러스트가 성장 옵션", "보안 SW는 유지보수·구독 반복 매출 가능"], nextData: ["중동 매출", "제로트러스트 제품 매출", "유지보수·구독 매출", "영업이익 중심 성장률"], judgment: "안정성은 있으나 해외 반복 매출이 확인돼야 성장주로 재평가 가능" },
+      "192080": { primary: "신사업 매출·잔존율·마케팅 효율", confirmed: ["1Q26 분기 최대 실적과 슈퍼네이션·팍시게임즈 흑자 전환", "소셜카지노와 아이게이밍은 반복 결제 구조", "낮은 PER과 현금창출력이 하방을 일부 방어"], nextData: ["슈퍼네이션·팍시게임즈 분기 이익", "마케팅비율", "유저 잔존율", "영업현금흐름"], judgment: "성장주보다는 저평가 현금창출형에 가까우며 신사업 이익 지속성이 관건" },
+      "018290": { primary: "미국·유럽 채널 매출·후속 제품 재구매", confirmed: ["1Q26 유럽·중동 매출 고성장과 PDRN 라인 확장", "리들샷 성공 경험을 미국·유럽 채널로 확장하는 논리", "브랜드 반복 구매 가능성"], nextData: ["PDRN 매출 비중", "미국·유럽 채널 매출", "마케팅비율", "리들샷 이후 후속 제품 판매"], judgment: "해외 채널 매출과 마케팅비 회수가 확인되기 전까지는 조건부 성장 후보" }
+    };
     const officialSourceRegistry = {
       "058470": {
         status: "공식 IR 경로 확인",
@@ -3216,9 +3238,11 @@
         const competitiveText = competitive ? `${competitive.peers.join(" ")} ${competitive.edge.join(" ")} ${competitive.pricing} ${competitive.lockIn} ${competitive.barrier} ${competitive.verdict}` : "";
         const indicatorsText = (industryIndicators[company.industry] || []).join(" ");
         const growthEvidenceText = `${growthEvidenceSources.common.sources.map((source) => `${source.name} ${source.use} ${source.signal}`).join(" ")} ${(growthEvidenceSources.byIndustry[company.industry] || []).join(" ")}`;
+        const leading = growthLeadingIndicators[company.code];
+        const leadingText = leading ? `${leading.primary} ${leading.confirmed.join(" ")} ${leading.nextData.join(" ")} ${leading.judgment}` : "";
         const growthLensText = `${growthLensFramework.title} ${growthLensFramework.visibleGrowth.title} ${growthLensFramework.hiddenGrowth.title} ${growthLensFramework.recommendation} ${growthLensFramework.addedChecks.join(" ")}`;
         const remainingText = (remainingChecks[company.code] || []).join(" ");
-        const haystack = `${company.name} ${company.code} ${company.industry} ${company.thesis} ${company.facts} ${researchText} ${growthText} ${metaText} ${deepText} ${companyDeepText} ${valuationText} ${futureAssumptionText} ${reliabilityText} ${competitiveText} ${indicatorsText} ${growthEvidenceText} ${growthLensText} ${checkedText} ${quickCheckedText} ${remainingResearchText} ${remainingText}`.toLowerCase();
+        const haystack = `${company.name} ${company.code} ${company.industry} ${company.thesis} ${company.facts} ${researchText} ${growthText} ${metaText} ${deepText} ${companyDeepText} ${valuationText} ${futureAssumptionText} ${reliabilityText} ${competitiveText} ${indicatorsText} ${growthEvidenceText} ${leadingText} ${growthLensText} ${checkedText} ${quickCheckedText} ${remainingResearchText} ${remainingText}`.toLowerCase();
         if (!haystack.includes(state.search.toLowerCase())) return false;
       }
       return true;
@@ -4356,6 +4380,27 @@
       `;
     }
 
+    function renderGrowthLeadingIndicators(company) {
+      const item = growthLeadingIndicators[company.code];
+      if (!item) {
+        return `<p class="soft">성장 선행지표 자료가 아직 입력되지 않았습니다.</p>`;
+      }
+
+      return `
+        <div class="note">핵심 선행지표: ${item.primary}</div>
+        <div class="research-grid">
+          <div class="research-box">
+            <h4>현재 확보한 근거</h4>
+            <ul>${item.confirmed.map((text) => `<li>${text}</li>`).join("")}</ul>
+          </div>
+          <div class="research-box">
+            <h4>다음에 숫자로 확인할 것</h4>
+            <ul>${item.nextData.map((text) => `<li>${text}</li>`).join("")}</ul>
+          </div>
+        </div>
+        <div class="data-caption">판정: ${item.judgment}</div>
+      `;
+    }
     function renderEstimateReliability(company) {
       const reliability = estimateReliability[company.code];
       if (!reliability) {
@@ -4485,6 +4530,10 @@
           ${renderGrowthEvidenceSources(company)}
         </div>
         <div class="section">
+          <h3>성장 선행지표</h3>
+          ${renderGrowthLeadingIndicators(company)}
+        </div>
+        <div class="section">
           <h3>성장성 판단</h3>
           <p>${company.thesis}</p>
         </div>
@@ -4606,5 +4655,12 @@
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
 
 
