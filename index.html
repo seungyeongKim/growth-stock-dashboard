@@ -4407,14 +4407,50 @@
         return `<p class="soft">추정치 신뢰도 자료가 아직 입력되지 않았습니다.</p>`;
       }
 
+      const data = valuationData[company.code] || {};
+      const leading = growthLeadingIndicators[company.code];
+      const ownerScenario = ownerScenarioAssumptions[company.code];
+      const hasValue = (value) => value !== null && value !== undefined && value !== "";
+      const asNumber = (value) => hasValue(value) ? Number(String(value).replace(/,/g, "")) : null;
+      const calcCagr = (start, end) => {
+        const startNumber = asNumber(start);
+        const endNumber = asNumber(end);
+        if (!startNumber || !endNumber || startNumber <= 0 || endNumber <= 0) return null;
+        return (Math.pow(endNumber / startNumber, 1 / 2) - 1) * 100;
+      };
+      const revenueCagr = calcCagr(data.revenue2025, data.revenue2027E);
+      const opCagr = calcCagr(data.op2025, data.op2027E);
+      const netCagr = calcCagr(data.net2025, data.net2027E);
+      const fmtRate = (value) => value === null ? "확인 필요" : `${value.toFixed(1)}%`;
+      const margin2025 = asNumber(data.revenue2025) && asNumber(data.op2025) ? (asNumber(data.op2025) / asNumber(data.revenue2025)) * 100 : null;
+      const margin2027 = asNumber(data.revenue2027E) && asNumber(data.op2027E) ? (asNumber(data.op2027E) / asNumber(data.revenue2027E)) * 100 : null;
+      const estimateStatus = hasValue(data.net2027E)
+        ? "컨센서스 기반"
+        : ownerScenario
+          ? "컨센서스 없음 · 자체 시나리오"
+          : "추정치 보강 필요";
+      const confidenceScore = [
+        hasValue(data.revenue2027E),
+        hasValue(data.op2027E),
+        hasValue(data.net2027E),
+        ["상", "중상"].includes(reliability.level),
+        Boolean(leading?.confirmed?.length),
+        Boolean(leading?.nextData?.length)
+      ].filter(Boolean).length;
+      const confidenceLabel = confidenceScore >= 5 ? "높음" : confidenceScore >= 3 ? "중간" : "낮음";
+      const requiredProof = leading?.nextData || ["다음 분기 실적", "수주·CAPA·반복 매출 근거", "컨센서스 갱신 여부"];
+      const ownerText = ownerScenario ? `2027E 컨센서스가 없어 2025 실제 순이익에 연 ${ownerScenario.annualGrowth}% 성장률을 적용한 자체 시나리오로 관리 중입니다. 근거: ${ownerScenario.basis}` : "";
+
       return `
         <div class="research-grid">
           <div class="research-box">
-            <h4>신뢰도: ${reliability.level}</h4>
+            <h4>신뢰도: ${reliability.level} · 검증 ${confidenceLabel}</h4>
             <ul>
               <li>${reliability.backlog}</li>
               <li>${reliability.capacity}</li>
               <li>${reliability.recurring}</li>
+              <li>추정치 상태: ${estimateStatus}</li>
+              ${ownerText ? `<li>${ownerText}</li>` : ""}
             </ul>
           </div>
           <div class="research-box">
@@ -4422,9 +4458,54 @@
             <ul>
               <li>${reliability.diversification}</li>
               <li>${reliability.revision}</li>
+              <li>${futureValueAssumptions[company.code]?.caution || "컨센서스 하향과 마진 훼손 여부 확인"}</li>
             </ul>
           </div>
         </div>
+        <div class="history-table">
+          <table>
+            <thead>
+              <tr>
+                <th>검증 항목</th>
+                <th>현재 값</th>
+                <th>판단</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2027E 매출·영업이익·순이익</td>
+                <td>${hasValue(data.revenue2027E) ? `${data.revenue2027E} / ${data.op2027E || "확인 필요"} / ${data.net2027E || "확인 필요"}억원` : "컨센서스 없음"}</td>
+                <td>${hasValue(data.net2027E) ? "미래가치 계산 가능" : "공식 추정치 확보 전 보수 관리"}</td>
+              </tr>
+              <tr>
+                <td>2025→2027E 매출 CAGR</td>
+                <td>${fmtRate(revenueCagr)}</td>
+                <td>${revenueCagr !== null && revenueCagr >= 20 ? "고성장 추정" : revenueCagr !== null && revenueCagr >= 10 ? "중간 성장 추정" : "추가 근거 필요"}</td>
+              </tr>
+              <tr>
+                <td>2025→2027E 영업이익 CAGR</td>
+                <td>${fmtRate(opCagr)}</td>
+                <td>${opCagr !== null && opCagr >= revenueCagr ? "매출 성장보다 이익 레버리지 우호적" : opCagr !== null ? "마진 둔화 가능성 점검" : "추정치 필요"}</td>
+              </tr>
+              <tr>
+                <td>2025→2027E 순이익 CAGR</td>
+                <td>${fmtRate(netCagr)}</td>
+                <td>${netCagr !== null && netCagr >= 15 ? "미래가치 계산에 쓸 수 있는 성장률" : netCagr !== null ? "성장률 대비 가격 확인 필요" : "공식 순이익 추정치 필요"}</td>
+              </tr>
+              <tr>
+                <td>영업이익률 변화</td>
+                <td>${margin2025 === null || margin2027 === null ? "확인 필요" : `${margin2025.toFixed(1)}% → ${margin2027.toFixed(1)}%`}</td>
+                <td>${margin2025 !== null && margin2027 !== null && margin2027 >= margin2025 ? "마진 방어 또는 개선 가정" : margin2025 !== null && margin2027 !== null ? "매출 성장 중 마진 훼손 확인 필요" : "자료 필요"}</td>
+              </tr>
+              <tr>
+                <td>추정치를 뒷받침할 선행지표</td>
+                <td>${leading?.primary || "확인 필요"}</td>
+                <td>${requiredProof.slice(0, 3).join(" · ")}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="data-caption">추정치 자료 기준: ${data.sourceDate || "공식 추정치 확인 필요"}</div>
       `;
     }
 
@@ -4655,6 +4736,7 @@
   </script>
 </body>
 </html>
+
 
 
 
