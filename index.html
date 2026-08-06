@@ -661,8 +661,8 @@
         </div>
         <div class="date-pill">
           기준일<br />
-          <strong>2026-07-31</strong>
-          <span>업데이트 2026-07-31</span>
+          <strong>2026-08-06</strong>
+          <span>업데이트 2026-08-06</span>
         </div>
       </div>
     </header>
@@ -3054,10 +3054,10 @@
     });
 
     Object.assign(valuationData, {
-      "278470": { name: "에이피알", marketCap: null, revenue2025: 15273, op2025: 3654, net2025: null, revenue2026E: 30048, op2026E: 7352, net2026E: null, revenue2027E: null, op2027E: null, net2027E: null, fairMultiple: 28, sourceDate: "2026-08-04 리포트·공식자료 기반 보강" },
-      "000660": { name: "SK하이닉스", marketCap: null, revenue2025: 971467, op2025: 472063, net2025: null, revenue2026E: null, op2026E: null, net2026E: null, revenue2027E: null, op2027E: null, net2027E: null, fairMultiple: 12, sourceDate: "2026-08-04 공식 실적·리포트 기반 보강" },
-      "010120": { name: "LS ELECTRIC", marketCap: null, revenue2025: 49658, op2025: 4264, net2025: 2843, revenue2026E: null, op2026E: null, net2026E: null, revenue2027E: null, op2027E: null, net2027E: null, fairMultiple: 22, sourceDate: "2026-08-04 공식 실적·리포트 기반 보강" },
-      "003230": { name: "삼양식품", marketCap: null, revenue2025: 23518, op2025: 5242, net2025: null, revenue2026E: 30556, op2026E: 7266, net2026E: null, revenue2027E: 36429, op2027E: 8711, net2027E: null, fairMultiple: 24, sourceDate: "2026-08-04 리포트 기반 보강" }
+      "278470": { name: "에이피알", marketCap: "147,500", revenue2025: 15273, op2025: 3654, net2025: 2896, revenue2026E: 30048, op2026E: 7352, net2026E: 5500, revenue2027E: 40000, op2027E: 10000, net2027E: 7500, fairMultiple: 28, sourceDate: "2026-08-06 TradingView·리포트 기반 보강" },
+      "000660": { name: "SK하이닉스", marketCap: null, revenue2025: 971467, op2025: 472063, net2025: null, revenue2026E: 2730000, op2026E: 637000, net2026E: null, revenue2027E: null, op2027E: null, net2027E: null, fairMultiple: 12, sourceDate: "2026-08-06 공식 실적·리포트 기반 보강" },
+      "010120": { name: "LS ELECTRIC", marketCap: "285,900", revenue2025: 49658, op2025: 4264, net2025: 2843, revenue2026E: 58070, op2026E: 6780, net2026E: 4500, revenue2027E: null, op2027E: null, net2027E: null, fairMultiple: 22, sourceDate: "2026-08-06 WiseReport·KB증권·공식자료 기반 보강" },
+      "003230": { name: "삼양식품", marketCap: "84,900", revenue2025: 23518, op2025: 5242, net2025: 3900, revenue2026E: 30556, op2026E: 7266, net2026E: 3290, revenue2027E: 36429, op2027E: 8711, net2027E: 4500, fairMultiple: 24, sourceDate: "2026-08-06 TradingView·한국경제·리포트 기반 보강" }
     });
 
     Object.assign(estimateReliability, {
@@ -4223,6 +4223,66 @@
         <div class="data-caption">재무 데이터 기준: ${data.sourceDate || "확인 필요"}. FnGuide 재조회는 2026-07-31에 시도했지만 원본 응답 파싱이 실패해, 마지막 정상 스냅샷을 유지했습니다.</div>
       `;
     }
+    const finalGrowthReview = {
+      "278470": { verdict: "우선 검토", growth: "매출 2배 성장과 20%대 이익률이 확인됨", price: "고성장이 반영됐지만 2027년 조 단위 영업이익 가정이면 보수 시나리오도 검토 가능", next: "2Q26 실적, 미국·유럽 매출, 생산 병목 해소" },
+      "062040": { verdict: "우선 검토", growth: "북미 전력기기 수요와 고마진 특수변압기가 숫자로 확인됨", price: "수주잔고와 2027E 이익 대비 가격 여유 확인 필요", next: "신규 수주, 수주잔고, 증설 CAPA 매출 전환" },
+      "214450": { verdict: "우선 검토", growth: "리쥬란·의료기기 수출과 40%대 영업이익률이 강함", price: "프리미엄은 있지만 이익률과 해외 확장으로 방어 가능", next: "국가별 허가, 수출 매출, 생산능력" },
+      "214150": { verdict: "우선 검토", growth: "장비+소모품 반복 구조와 해외 법인 확장이 확인됨", price: "고PER 부담은 있으나 반복 소모품 비중이 근거", next: "브라질·미국·중국 출시와 소모품 매출" },
+      "257720": { verdict: "우선 검토", growth: "국가별 K뷰티 유통 확장과 매출 성장성이 강함", price: "운전자본 부담이 커지면 할인 필요", next: "재고·매출채권 회전, 지역별 매출" },
+      "000660": { verdict: "조건부 우선", growth: "HBM 수요와 이익 폭발은 명확", price: "이미 대표 성장주라 저평가보다 기준점 성격이 강함", next: "HBM ASP, HBM4, 메모리 가격 사이클" },
+      "058470": { verdict: "우선 검토", growth: "AI 반도체 테스트 소켓 수요와 높은 마진", price: "2027E 컨센서스와 신공장 가동률 확인 필요", next: "신공장, 고객사 개발 사이클, 고부가 제품 믹스" },
+      "010120": { verdict: "조건부 우선", growth: "수주잔고 7조원과 북미 데이터센터 수주가 확인됨", price: "최근 급등 후 목표가 대비 여유는 있으나 2027E 순이익이 아직 부족", next: "수주잔고 매출 전환, 전력기기 마진, CAPA" },
+      "003230": { verdict: "우선 검토", growth: "해외 불닭 수요와 생산능력 확대가 실적으로 연결", price: "2027E 이익 기준 기대수익률이 남아 있는 편", next: "2Q26 실적, 미국·중국·유럽 매출, 밀양2공장" },
+      "267260": { verdict: "우선 검토", growth: "전력기기 수주잔고와 북미 수요가 강함", price: "이미 프리미엄이나 수주 지속 시 방어 가능", next: "수주잔고, 미국 공장, 판가 유지" },
+      "207940": { verdict: "조건부", growth: "CDMO 장기 수요와 공장 증설은 명확", price: "대형주 프리미엄과 신규 수주 회복 여부가 관건", next: "5공장 선행 수주, 신규 계약" },
+      "145020": { verdict: "조건부", growth: "톡신·필러 해외 허가와 미국 직판 전환 가능성", price: "수출 전환이 실적으로 확인되어야 프리미엄 정당화", next: "미국 매출, 허가 국가, 톡신 경쟁" },
+      "196170": { verdict: "조건부", growth: "플랫폼 로열티 옵션은 크지만 실적 가시성은 낮음", price: "미래가치 대부분이 이벤트와 상업화에 의존", next: "로열티 발생, 파트너 임상, 계약 조건" },
+      "064760": { verdict: "조건부", growth: "반도체 소모품 회복과 높은 수익성", price: "반도체 업황 회복 확인 전까지 보수", next: "고객사 가동률, SiC Ring 수요" },
+      "051360": { verdict: "조건부", growth: "카지노·전장 디스플레이 회복 가능성", price: "사업부별 이익 안정성 확인 필요", next: "전장 고객사, 카지노 수주" },
+      "251970": { verdict: "조건부", growth: "K뷰티 용기 수요와 증설", price: "이익률 유지와 고객 다변화 확인 필요", next: "신공장 가동률, 주요 고객 주문" },
+      "192080": { verdict: "조건부", growth: "소셜카지노 현금창출과 아이게이밍 옵션", price: "성장주라기보다 저평가 현금흐름 성격", next: "아이게이밍 매출, 유저 지표" },
+      "206640": { verdict: "조건부", growth: "POCT 장비 설치와 카트리지 반복 매출", price: "지역별 매출과 반복 매출 확인 필요", next: "장비 설치대수, 카트리지 매출" },
+      "053800": { verdict: "조건부", growth: "보안 SW와 중동 확장 옵션", price: "성장률이 더 올라와야 성장주 프리미엄 가능", next: "구독 매출, 중동 합작법인" },
+      "018290": { verdict: "재검토", growth: "브랜드 성장 옵션은 있지만 후속 히트제품 확인 필요", price: "현재 20위로 유지하되 에이피알 대비 열위", next: "미국·유럽 매출, PDRN 라인, 마케팅비" }
+    };
+
+    function renderFinalGrowthReview() {
+      const rows = companies.map((company) => {
+        const review = finalGrowthReview[company.code] || { verdict: "확인 필요", growth: "자료 보강 필요", price: "가격 판단 보류", next: "최신 자료 확인" };
+        const fit = growthConditionSummary(company);
+        const data = valuationData[company.code] || {};
+        return { company, review, fit, data };
+      });
+      return `
+        <div class="note">최종 20개는 좋은 회사 여부와 현재 가격 매력을 분리해서 다시 검토했습니다. 가격 데이터가 부족한 종목은 점수를 올리지 않고 조건부로 남겼습니다.</div>
+        <div class="history-table">
+          <table>
+            <thead>
+              <tr>
+                <th>순위</th>
+                <th>종목</th>
+                <th>판정</th>
+                <th>성장 근거</th>
+                <th>가격 판단</th>
+                <th>다음 확인</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rows.map(({ company, review, fit, data }) => `
+                <tr>
+                  <td>${company.rank}</td>
+                  <td><strong>${company.name}</strong><br><span class="muted">${company.code} · ${fit.passed}/7</span></td>
+                  <td><span class="status-tag">${review.verdict}</span></td>
+                  <td>${review.growth}</td>
+                  <td>${review.price}<br><span class="muted">${data.sourceDate || "기준일 확인 필요"}</span></td>
+                  <td>${review.next}</td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+      `;
+    }
     function renderCandidateRecheckSummary() {
       const rows = sortByReviewPriority(companies).map((company) => {
         const fit = growthConditionSummary(company);
@@ -5163,6 +5223,10 @@
           ${renderGrowthStockFit(company)}
         </div>
         <div class="section">
+          <h3>최종 20개 재검토</h3>
+          ${renderFinalGrowthReview()}
+        </div>
+        <div class="section">
           <h3>기존 후보 전체 재점검</h3>
           ${renderCandidateRecheckSummary()}
         </div>
@@ -5308,6 +5372,9 @@
   </script>
 </body>
 </html>
+
+
+
 
 
 
