@@ -2858,7 +2858,11 @@
       "333430": { fairMultiple: 10, metric: "2027E 순이익", basis: "조선 기자재 업황 회복 반영", caution: "FnGuide 2027E 순이익 미확보로 계산 보류" },
       "053800": { fairMultiple: 12, metric: "2027E 순이익", basis: "보안 소프트웨어 안정형 배수", caution: "중동 매출 반복성과 2027E 추정치 확인 필요" },
       "192080": { fairMultiple: 9, metric: "2027E 순이익", basis: "게임 현금창출력과 신사업 흑자 전환을 반영한 보수 배수", caution: "소셜카지노 성장 정체와 규제 리스크 확인 필요" },
-      "018290": { fairMultiple: 10, metric: "2027E 순이익", basis: "K뷰티 브랜드 확장성은 있으나 성장 둔화 리스크를 반영", caution: "미국·유럽 마케팅 투자 회수 확인 필요" }
+      "018290": { fairMultiple: 10, metric: "2027E 순이익", basis: "K뷰티 브랜드 확장성은 있으나 성장 둔화 리스크를 반영", caution: "미국·유럽 마케팅 투자 회수 확인 필요" },
+      "278470": { fairMultiple: 28, metric: "2027E 순이익", basis: "글로벌 뷰티 디바이스와 K뷰티 브랜드 고성장을 반영", caution: "이미 고성장이 주가에 반영됐는지 확인 필요" },
+      "000660": { fairMultiple: 5.5, metric: "2027E 순이익", basis: "HBM 수요는 강하지만 메모리 사이클 리스크를 반영한 보수 배수", caution: "HBM ASP와 메모리 가격 하락 전환 리스크 확인" },
+      "010120": { fairMultiple: 35, metric: "2027E 순이익", basis: "전력 인프라 수주잔고와 2027E EPS 목표 PER 35배 리포트 근거", caution: "수주잔고 매출 전환과 북미 데이터센터 반복 발주 확인" },
+      "003230": { fairMultiple: 24, metric: "2027E 순이익", basis: "불닭 글로벌 브랜드와 해외 매출 고성장을 반영", caution: "생산능력 확대가 실제 해외 판매로 이어지는지 확인" }
     };
 
     const estimateReliability = {
@@ -3055,9 +3059,9 @@
 
     Object.assign(valuationData, {
       "278470": { name: "에이피알", marketCap: "147,500", revenue2025: 15273, op2025: 3654, net2025: 2896, revenue2026E: 30048, op2026E: 7352, net2026E: 5500, revenue2027E: 40000, op2027E: 10000, net2027E: 7500, fairMultiple: 28, sourceDate: "2026-08-06 TradingView·리포트 기반 보강" },
-      "000660": { name: "SK하이닉스", marketCap: null, revenue2025: 971467, op2025: 472063, net2025: null, revenue2026E: 2730000, op2026E: 637000, net2026E: null, revenue2027E: null, op2027E: null, net2027E: null, fairMultiple: 12, sourceDate: "2026-08-06 공식 실적·리포트 기반 보강" },
-      "010120": { name: "LS ELECTRIC", marketCap: "285,900", revenue2025: 49658, op2025: 4264, net2025: 2843, revenue2026E: 58070, op2026E: 6780, net2026E: 4500, revenue2027E: null, op2027E: null, net2027E: null, fairMultiple: 22, sourceDate: "2026-08-06 WiseReport·KB증권·공식자료 기반 보강" },
-      "003230": { name: "삼양식품", marketCap: "84,900", revenue2025: 23518, op2025: 5242, net2025: 3900, revenue2026E: 30556, op2026E: 7266, net2026E: 3290, revenue2027E: 36429, op2027E: 8711, net2027E: 4500, fairMultiple: 24, sourceDate: "2026-08-06 TradingView·한국경제·리포트 기반 보강" }
+      "000660": { name: "SK하이닉스", marketCap: "15,164,000", revenue2025: 971467, op2025: 472063, net2025: null, revenue2026E: 3562210, op2026E: 2753992, net2026E: 2288383, revenue2027E: 5201421, op2027E: 4062358, net2027E: 3261198, fairMultiple: 5.5, sourceDate: "2026-08-06 WiseReport 2026/2027E 컨센서스 보강" },
+      "010120": { name: "LS ELECTRIC", marketCap: "285,900", revenue2025: 49658, op2025: 4264, net2025: 2843, revenue2026E: 65970, op2026E: 7120, net2026E: 4500, revenue2027E: 85690, op2027E: 11010, net2027E: 6600, fairMultiple: 35, sourceDate: "2026-08-06 교보·KB·공식 수주자료 기반 2027E 보강" },
+      "003230": { name: "삼양식품", marketCap: "84,900", revenue2025: 23518, op2025: 5242, net2025: 3900, revenue2026E: 30556, op2026E: 7266, net2026E: 3290, revenue2027E: 36429, op2027E: 8711, net2027E: 4500, fairMultiple: 24, sourceDate: "2026-08-06 한국경제 컨센서스·유안타 리포트 기반 보강" }
     });
 
     Object.assign(estimateReliability, {
@@ -3172,8 +3176,8 @@
 
     Object.assign(ownerScenarioAssumptions, {
       "278470": { annualGrowth: 28, targetOpMargin: 22, fairMultiple: 28, basis: "미국·유럽 채널 확장과 2026년 2분기 고성장 전망" },
-      "000660": { annualGrowth: 18, targetOpMargin: 35, fairMultiple: 12, basis: "HBM3E·HBM4 수요와 AI 메모리 공급 우위" },
-      "010120": { annualGrowth: 18, targetOpMargin: 11, fairMultiple: 22, basis: "신규 수주 2.1조원, 수주잔고 7조원, 연간 수주 가이던스 상향" },
+      "000660": { annualGrowth: 18, targetOpMargin: 35, fairMultiple: 5.5, basis: "HBM3E·HBM4 수요는 강하지만 메모리 사이클 리스크를 반영해 2027E 순이익 5.5배 적용" },
+      "010120": { annualGrowth: 18, targetOpMargin: 11, fairMultiple: 35, basis: "2027E EPS에 목표 PER 35배를 적용한 리포트와 수주잔고 7조원 근거" },
       "003230": { annualGrowth: 22, targetOpMargin: 22, fairMultiple: 24, basis: "해외 매출 비중 80%대와 생산능력 확대" }
     });
 
@@ -4229,9 +4233,9 @@
       "214450": { verdict: "우선 검토", growth: "리쥬란·의료기기 수출과 40%대 영업이익률이 강함", price: "프리미엄은 있지만 이익률과 해외 확장으로 방어 가능", next: "국가별 허가, 수출 매출, 생산능력" },
       "214150": { verdict: "우선 검토", growth: "장비+소모품 반복 구조와 해외 법인 확장이 확인됨", price: "고PER 부담은 있으나 반복 소모품 비중이 근거", next: "브라질·미국·중국 출시와 소모품 매출" },
       "257720": { verdict: "우선 검토", growth: "국가별 K뷰티 유통 확장과 매출 성장성이 강함", price: "운전자본 부담이 커지면 할인 필요", next: "재고·매출채권 회전, 지역별 매출" },
-      "000660": { verdict: "조건부 우선", growth: "HBM 수요와 이익 폭발은 명확", price: "이미 대표 성장주라 저평가보다 기준점 성격이 강함", next: "HBM ASP, HBM4, 메모리 가격 사이클" },
+      "000660": { verdict: "조건부 우선", growth: "2026/2027E 매출·영업이익·순이익 컨센서스가 크게 상향됨", price: "2027E 순이익 기준 가격 여유는 생겼지만 메모리 사이클이라 보수 PER을 적용해야 함", next: "HBM4 양산, HBM ASP 협상, 2027년 공급 부족 지속 여부" },
       "058470": { verdict: "우선 검토", growth: "AI 반도체 테스트 소켓 수요와 높은 마진", price: "2027E 컨센서스와 신공장 가동률 확인 필요", next: "신공장, 고객사 개발 사이클, 고부가 제품 믹스" },
-      "010120": { verdict: "조건부 우선", growth: "수주잔고 7조원과 북미 데이터센터 수주가 확인됨", price: "최근 급등 후 목표가 대비 여유는 있으나 2027E 순이익이 아직 부족", next: "수주잔고 매출 전환, 전력기기 마진, CAPA" },
+      "010120": { verdict: "우선 검토", growth: "2Q26 수주잔고와 2027E 영업이익률 개선 전망이 같이 확인됨", price: "2027E 순이익과 리포트 목표 PER 기준으로 가격 판단이 가능해짐", next: "배전반 단납기 수주, 초고압변압기 CAPA, 북미 데이터센터 반복 발주" },
       "003230": { verdict: "우선 검토", growth: "해외 불닭 수요와 생산능력 확대가 실적으로 연결", price: "2027E 이익 기준 기대수익률이 남아 있는 편", next: "2Q26 실적, 미국·중국·유럽 매출, 밀양2공장" },
       "267260": { verdict: "우선 검토", growth: "전력기기 수주잔고와 북미 수요가 강함", price: "이미 프리미엄이나 수주 지속 시 방어 가능", next: "수주잔고, 미국 공장, 판가 유지" },
       "207940": { verdict: "조건부", growth: "CDMO 장기 수요와 공장 증설은 명확", price: "대형주 프리미엄과 신규 수주 회복 여부가 관건", next: "5공장 선행 수주, 신규 계약" },
@@ -4243,7 +4247,7 @@
       "192080": { verdict: "조건부", growth: "소셜카지노 현금창출과 아이게이밍 옵션", price: "성장주라기보다 저평가 현금흐름 성격", next: "아이게이밍 매출, 유저 지표" },
       "206640": { verdict: "조건부", growth: "POCT 장비 설치와 카트리지 반복 매출", price: "지역별 매출과 반복 매출 확인 필요", next: "장비 설치대수, 카트리지 매출" },
       "053800": { verdict: "조건부", growth: "보안 SW와 중동 확장 옵션", price: "성장률이 더 올라와야 성장주 프리미엄 가능", next: "구독 매출, 중동 합작법인" },
-      "018290": { verdict: "재검토", growth: "브랜드 성장 옵션은 있지만 후속 히트제품 확인 필요", price: "현재 20위로 유지하되 에이피알 대비 열위", next: "미국·유럽 매출, PDRN 라인, 마케팅비" }
+      "018290": { verdict: "재검토", growth: "2026E 매출 성장률과 영업이익이 약해지는 구간이라 좋은 성장주 기준 통과가 어렵다", price: "주가는 싸 보일 수 있지만 이익 재가속 확인 전에는 저평가 함정 가능성도 반영", next: "2026 하반기 미국·유럽 매출, PDRN 라인 매출 비중, 마케팅비 회수" }
     };
 
     function renderFinalGrowthReview() {
@@ -5372,6 +5376,8 @@
   </script>
 </body>
 </html>
+
+
 
 
 
