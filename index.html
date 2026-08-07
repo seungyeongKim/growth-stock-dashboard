@@ -661,8 +661,8 @@
         </div>
         <div class="date-pill">
           기준일<br />
-          <strong>2026-08-06</strong>
-          <span>업데이트 2026-08-06</span>
+          <strong>2026-08-07</strong>
+          <span>업데이트 2026-08-07</span>
         </div>
       </div>
     </header>
@@ -4309,6 +4309,86 @@
       "018290": { tier: "제외 후보", reason: "에이피알·실리콘투 대비 성장 재가속과 가격 매력 근거가 약함", buyCase: "PDRN과 미국·유럽 매출이 하반기에 빠르게 재가속", waitCase: "마케팅비 회수 실패와 후속 히트제품 부재", trigger: "PDRN sell-through와 OPM 반등" }
     };
 
+    const buyDecisionBoard = {
+      "062040": { action: "1차 매수 후보", conviction: 86, sizing: "분할 1단계", why: "성장성·수익성·가격 여유가 함께 남아 있는 전력기기 후보", must: "2Q26 OPM 37% 이상, 수주잔고 증가, 2027F PER 20배대 유지", stop: "수주잔고 감소 또는 OPM 30% 아래 하락" },
+      "214450": { action: "1차 매수 후보", conviction: 84, sizing: "분할 1단계", why: "의료기기 수출과 화장품 성장, 40%대 OPM이 동시에 확인", must: "2Q26 OPM 40%대, 의료기기 수출 재개, 해외 재주문", stop: "수출 일회성 확인 또는 OPM 35% 하회" },
+      "003230": { action: "1차 매수 후보", conviction: 82, sizing: "분할 1단계", why: "해외 불닭 수요와 생산능력 확대가 실적에 직접 연결", must: "해외 매출 +40%대, OPM 20%대, 밀양2공장 판매 전환", stop: "증설 후 재고 증가 또는 지역별 성장 둔화" },
+      "010120": { action: "1차 매수 후보", conviction: 81, sizing: "분할 1단계", why: "수주잔고 7조원과 북미 데이터센터 수주가 가격 판단 근거를 보강", must: "수주잔고 매출 전환, OPM 10%대, 신규 수주 2조원대 유지", stop: "수주 공백 또는 원가 상승으로 마진 훼손" },
+      "257720": { action: "1차 매수 후보", conviction: 79, sizing: "분할 1단계", why: "K뷰티 글로벌 유통 성장성은 강하지만 운전자본 리스크가 할인 요인", must: "GPM 30% 이상, 재고·매출채권 회전 안정, 북미·유럽 성장", stop: "매출채권 회전 악화와 현금흐름 훼손" },
+      "278470": { action: "2차 매수 후보", conviction: 78, sizing: "조정 시 분할", why: "성장성은 최상위지만 이미 높은 기대가 주가에 반영된 상태", must: "2Q26 컨센서스 상회, 미국 매출 고성장, OPM 20%대", stop: "성장률 둔화 또는 재고/마케팅비 급증" },
+      "058470": { action: "2차 매수 후보", conviction: 76, sizing: "조정 시 분할", why: "AI 테스트 소켓 고마진 사업이 좋지만 2027E 숫자 공백", must: "신공장 가동률, AI ASIC 고객 수요, OPM 45% 이상", stop: "고객 개발 사이클 둔화 또는 신공장 비용 부담" },
+      "214150": { action: "2차 매수 후보", conviction: 74, sizing: "확인 후 분할", why: "사업 구조는 좋지만 최근 컨센서스 하회/가이던스 리스크가 있음", must: "소모품 매출 반등, 브라질 회복, OPM 44% 이상", stop: "소모품 비중 하락과 해외 성장 둔화" },
+      "267260": { action: "2차 매수 후보", conviction: 72, sizing: "확인 후 분할", why: "전력기기 대표 성장주지만 주가 프리미엄 반영도가 큼", must: "수주잔고 질, 판가 유지, 미국 공장 증설", stop: "수주 마진 하락 또는 성장률 둔화" },
+      "000660": { action: "추격매수 주의", conviction: 70, sizing: "조정 대기", why: "HBM 성장성은 강하지만 최근 급등으로 기대가 많이 반영", must: "HBM4 공급 부족 지속, ASP 상승, 2027E 이익 추가 상향", stop: "메모리 가격 피크아웃 또는 HBM 경쟁 심화" },
+      "207940": { action: "관찰", conviction: 66, sizing: "대기", why: "CDMO 성장성은 좋지만 대형주 프리미엄과 신규 수주 확인 필요", must: "5공장·록빌 매출 기여, 신규 CMO/CDO 수주", stop: "신규 수주 정체와 램프업 비용 확대" },
+      "196170": { action: "관찰", conviction: 65, sizing: "대기", why: "로열티 옵션은 크지만 가치가 이벤트와 전환율에 민감", must: "키트루다SC 전환율, J-code 이후 매출, 로열티 인식", stop: "상업화 속도 지연 또는 로열티 불확실성" },
+      "145020": { action: "관찰", conviction: 63, sizing: "대기", why: "글로벌 톡신 확장성은 있으나 미국 직판 비용 회수 확인 전", must: "미국 매출, 허가 국가별 판매, OPM 회복", stop: "판관비 증가와 가격 경쟁 심화" },
+      "064760": { action: "관찰", conviction: 62, sizing: "대기", why: "반도체 소모품 회복 후보지만 업황 의존도 큼", must: "AMEC 매출 인식, 안성공장 가동률, 원재료 부담 완화", stop: "고객사 투자 지연과 마진 회복 실패" },
+      "051360": { action: "보류", conviction: 55, sizing: "매수 보류", why: "성장 옵션은 있으나 사업부별 이익 안정성과 추정치 신뢰도 부족", must: "전장·카지노 신규 고객과 사업부별 이익 공개", stop: "전장 단가 압박과 실적 변동성 확대" },
+      "251970": { action: "보류", conviction: 54, sizing: "매수 보류", why: "K뷰티 후방 수혜는 있으나 가격 결정력과 고객 재고 조정 리스크", must: "신공장 가동률, 주요 고객 주문, OPM 유지", stop: "고정비 부담과 고객 주문 둔화" },
+      "192080": { action: "보류", conviction: 52, sizing: "매수 보류", why: "현금창출력은 좋지만 성장주보다는 저평가 현금흐름 성격", must: "아이게이밍 매출과 결제 유저 성장", stop: "소셜카지노 성장 정체 지속" },
+      "206640": { action: "보류", conviction: 51, sizing: "매수 보류", why: "POCT 반복 매출 구조는 좋지만 설치대수·지역별 매출 근거 부족", must: "장비 설치대수, 카트리지 매출, 국가별 매출", stop: "진단기기 가격 경쟁 심화" },
+      "053800": { action: "보류", conviction: 49, sizing: "매수 보류", why: "보안 SW 안정성은 있으나 성장률이 매수할 정도로 높지 않음", must: "ARR·중동 매출·제로트러스트 수주", stop: "성장률 둔화 지속" },
+      "018290": { action: "제외 후보", conviction: 42, sizing: "제외 검토", why: "성장 재가속과 가격 매력 근거가 최종 20개 중 가장 약함", must: "PDRN sell-through, 미국·유럽 매출, OPM 반등", stop: "후속 히트제품 부재와 마케팅비 회수 실패" }
+    };
+
+    function renderBuyDecisionBoard() {
+      const actionRank = { "1차 매수 후보": 0, "2차 매수 후보": 1, "추격매수 주의": 2, "관찰": 3, "보류": 4, "제외 후보": 5 };
+      const rows = companies.map((company) => ({ company, decision: buyDecisionBoard[company.code] || {} }))
+        .sort((a, b) => (actionRank[a.decision.action] ?? 9) - (actionRank[b.decision.action] ?? 9) || (b.decision.conviction || 0) - (a.decision.conviction || 0));
+      const first = rows.filter((row) => row.decision.action === "1차 매수 후보");
+      const second = rows.filter((row) => row.decision.action === "2차 매수 후보");
+      const caution = rows.filter((row) => row.decision.action === "추격매수 주의");
+      return `
+        <div class="research-grid">
+          <div class="research-box">
+            <h4>내 기준 매수 후보</h4>
+            <ul>
+              <li>1차 매수 후보: ${first.map((row) => row.company.name).join(" · ")}</li>
+              <li>2차 매수 후보: ${second.map((row) => row.company.name).join(" · ")}</li>
+              <li>추격매수 주의: ${caution.map((row) => row.company.name).join(" · ") || "없음"}</li>
+            </ul>
+          </div>
+          <div class="research-box">
+            <h4>매수 판단 원칙</h4>
+            <ul>
+              <li>성장성이 좋고, 가격 여유가 있으며, 다음 분기 확인 지표가 명확해야 1차 후보</li>
+              <li>좋은 회사지만 최근 급등·컨센서스 공백·마진 불확실성이 있으면 2차 또는 관찰</li>
+              <li>트리거가 깨지면 매수 논리보다 보류 논리를 우선 적용</li>
+            </ul>
+          </div>
+        </div>
+        <div class="history-table">
+          <table>
+            <thead>
+              <tr>
+                <th>판단</th>
+                <th>종목</th>
+                <th>확신도</th>
+                <th>비중</th>
+                <th>왜 매수 검토인가</th>
+                <th>매수 전 충족 조건</th>
+                <th>취소 조건</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rows.map(({ company, decision }) => `
+                <tr>
+                  <td><span class="status-tag">${decision.action || "확인"}</span></td>
+                  <td><strong>${company.name}</strong><br><span class="muted">${company.code} · ${company.industry}</span></td>
+                  <td>${decision.conviction || "-"}/100</td>
+                  <td>${decision.sizing || "대기"}</td>
+                  <td>${decision.why || "확인 필요"}</td>
+                  <td>${decision.must || "최신 실적 확인"}</td>
+                  <td>${decision.stop || "논리 훼손 확인"}</td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+        <div class="data-caption">이 표는 투자 추천이 아니라 매수 검토 우선순위입니다. 실제 매수 전에는 당일 주가·시가총액과 최신 공시/리포트로 다시 계산해야 합니다.</div>
+      `;
+    }
     function renderBuyAttractivenessReview() {
       const rank = { "분할 검토": 0, "관찰 후 분할": 1, "추격매수 주의": 2, "관찰": 3, "보류": 4, "제외 후보": 5 };
       const rows = companies.map((company) => ({ company, review: buyAttractivenessReview[company.code] || {} }))
@@ -5343,6 +5423,10 @@
           ${renderGrowthStockFit(company)}
         </div>
         <div class="section">
+          <h3>매수 판단판</h3>
+          ${renderBuyDecisionBoard()}
+        </div>
+        <div class="section">
           <h3>최종 20개 재검토</h3>
           ${renderFinalGrowthReview()}
         </div>
@@ -5500,6 +5584,8 @@
   </script>
 </body>
 </html>
+
+
 
 
 
