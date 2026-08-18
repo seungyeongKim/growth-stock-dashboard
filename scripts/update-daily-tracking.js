@@ -105,11 +105,12 @@ async function main() {
       priority: target.priority,
       thesis: target.thesis,
       dailyChecks: target.dailyChecks,
+      rules: target.rules || {},
       quote,
       dart,
       decision: {
         status: "관찰 유지",
-        nextAction: "새 공시·실적·수주·수출·현금흐름 변화가 있을 때 대시보드 판단 재검토",
+        nextAction: target.rules?.buy || "새 공시·실적·수주·수출·현금흐름 변화가 있을 때 대시보드 판단 재검토",
         buyGuardrail: "초기 매수는 성장주 슬롯의 40~50% 이내, 논리 훼손 시 추가매수 금지"
       }
     });
@@ -128,3 +129,4 @@ main().catch((error) => {
   console.error(error);
   process.exit(1);
 });
+
