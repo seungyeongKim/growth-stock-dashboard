@@ -1,9 +1,20 @@
-name: Daily growth stock tracking
+name: Growth stock tracking
 
 on:
   schedule:
     - cron: "30 23 * * 0-4"
+    - cron: "45 23 * * 0"
   workflow_dispatch:
+    inputs:
+      scope:
+        description: "Update scope"
+        required: true
+        default: "all"
+        type: choice
+        options:
+          - all
+          - daily
+          - weekly
 
 permissions:
   contents: write
@@ -20,13 +31,34 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Update daily tracking data
+      - name: Resolve update scope
+        id: scope
+        shell: bash
+        run: |
+          SCOPE="${{ github.event.inputs.scope || 'all' }}"
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "${{ github.event.schedule }}" = "30 23 * * 0-4" ]; then SCOPE="daily"; fi
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "${{ github.event.schedule }}" = "45 23 * * 0" ]; then SCOPE="weekly"; fi
+          echo "scope=$SCOPE" >> "$GITHUB_OUTPUT"
+
+      - name: Update 5-stock daily tracking
+        if: steps.scope.outputs.scope == 'all' || steps.scope.outputs.scope == 'daily'
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
         run: node scripts/update-daily-tracking.js
 
-      - name: Apply tracking data to dashboard
+      - name: Apply 5-stock daily tracking
+        if: steps.scope.outputs.scope == 'all' || steps.scope.outputs.scope == 'daily'
         run: node scripts/apply-daily-tracking.js index.html data/daily-growth-tracking.json
+
+      - name: Update 20-stock weekly watchlist
+        if: steps.scope.outputs.scope == 'all' || steps.scope.outputs.scope == 'weekly'
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: node scripts/update-weekly-watchlist.js
+
+      - name: Apply 20-stock weekly watchlist
+        if: steps.scope.outputs.scope == 'all' || steps.scope.outputs.scope == 'weekly'
+        run: node scripts/apply-weekly-watchlist.js index.html data/weekly-growth-watchlist.json
 
       - name: Validate dashboard
         run: node scripts/check-dashboard.js index.html
@@ -34,5 +66,5 @@ jobs:
       - name: Commit updated dashboard
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "Update daily growth tracking"
-          file_pattern: "index.html data/daily-growth-tracking.json"
+          commit_message: "Update growth stock tracking"
+          file_pattern: "index.html data/*.json"

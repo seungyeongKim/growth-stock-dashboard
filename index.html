@@ -4712,6 +4712,642 @@
         <div class="data-caption">자동화 파일: data/daily-growth-tracking.json. GitHub Actions가 매일 갱신하고 변경이 있을 때 index.html을 커밋합니다.</div>
       `;
     }
+
+    const weeklyGrowthWatchlist = {
+      "updatedAt": "2026-08-18T17:21:37",
+      "cadence": "weekly",
+      "rule": "20개 관찰군은 매주 1회 가격, 공시, 데이터 충족도, 성장 논리 훼손 여부를 확인해 5개 심층 추적 후보로 승격할지 판단한다.",
+      "sourcePolicy": "20개 관찰군은 자동 수집값만으로 매수 판단하지 않고, 새 공시와 가격 변화를 승격/강등 검토 신호로만 사용한다.",
+      "items": [
+            {
+                  "code": "062040",
+                  "name": "산일전기",
+                  "industry": "변압기/전력기기",
+                  "group": "deep",
+                  "priority": 1,
+                  "reviewFocus": [
+                        "수주잔고",
+                        "영업이익률",
+                        "Bloom Energy",
+                        "2027E PER"
+                  ],
+                  "quote": {
+                        "ok": true,
+                        "source": "Naver Finance realtime",
+                        "price": "179,200",
+                        "changeRate": "-1.81",
+                        "volume": "261,878",
+                        "note": "비공식 참고값"
+                  },
+                  "dart": {
+                        "ok": false,
+                        "items": [],
+                        "note": "DART_API_KEY 미설정"
+                  },
+                  "reviewStatus": "심층 추적 유지",
+                  "reviewQuestion": "심층 추적 5종목에 계속 남길 만큼 논리가 강화됐나?"
+            },
+            {
+                  "code": "214450",
+                  "name": "파마리서치",
+                  "industry": "의료기기/스킨부스터",
+                  "group": "deep",
+                  "priority": 2,
+                  "reviewFocus": [
+                        "의료기기 수출",
+                        "리쥬란 재주문",
+                        "국가별 매출",
+                        "OPM 40%"
+                  ],
+                  "quote": {
+                        "ok": true,
+                        "source": "Naver Finance realtime",
+                        "price": "393,000",
+                        "changeRate": "-1.26",
+                        "volume": "156,451",
+                        "note": "비공식 참고값"
+                  },
+                  "dart": {
+                        "ok": false,
+                        "items": [],
+                        "note": "DART_API_KEY 미설정"
+                  },
+                  "reviewStatus": "심층 추적 유지",
+                  "reviewQuestion": "심층 추적 5종목에 계속 남길 만큼 논리가 강화됐나?"
+            },
+            {
+                  "code": "003230",
+                  "name": "삼양식품",
+                  "industry": "식품/글로벌 라면",
+                  "group": "deep",
+                  "priority": 3,
+                  "reviewFocus": [
+                        "해외 매출",
+                        "밀양2공장",
+                        "재고",
+                        "OPM 20%"
+                  ],
+                  "quote": {
+                        "ok": true,
+                        "source": "Naver Finance realtime",
+                        "price": "1,334,000",
+                        "changeRate": "5.04",
+                        "volume": "85,326",
+                        "note": "비공식 참고값"
+                  },
+                  "dart": {
+                        "ok": false,
+                        "items": [],
+                        "note": "DART_API_KEY 미설정"
+                  },
+                  "reviewStatus": "심층 추적 유지",
+                  "reviewQuestion": "심층 추적 5종목에 계속 남길 만큼 논리가 강화됐나?"
+            },
+            {
+                  "code": "010120",
+                  "name": "LS ELECTRIC",
+                  "industry": "전력기기",
+                  "group": "deep",
+                  "priority": 4,
+                  "reviewFocus": [
+                        "신규수주",
+                        "수주잔고",
+                        "데이터센터",
+                        "OPM 10%"
+                  ],
+                  "quote": {
+                        "ok": true,
+                        "source": "Naver Finance realtime",
+                        "price": "209,000",
+                        "changeRate": "1.21",
+                        "volume": "649,111",
+                        "note": "비공식 참고값"
+                  },
+                  "dart": {
+                        "ok": false,
+                        "items": [],
+                        "note": "DART_API_KEY 미설정"
+                  },
+                  "reviewStatus": "심층 추적 유지",
+                  "reviewQuestion": "심층 추적 5종목에 계속 남길 만큼 논리가 강화됐나?"
+            },
+            {
+                  "code": "257720",
+                  "name": "실리콘투",
+                  "industry": "K뷰티 유통",
+                  "group": "deep",
+                  "priority": 5,
+                  "reviewFocus": [
+                        "지역별 매출",
+                        "재고 회전",
+                        "매출채권",
+                        "영업현금흐름"
+                  ],
+                  "quote": {
+                        "ok": true,
+                        "source": "Naver Finance realtime",
+                        "price": "44,500",
+                        "changeRate": "3.85",
+                        "volume": "2,778,113",
+                        "note": "비공식 참고값"
+                  },
+                  "dart": {
+                        "ok": false,
+                        "items": [],
+                        "note": "DART_API_KEY 미설정"
+                  },
+                  "reviewStatus": "심층 추적 유지",
+                  "reviewQuestion": "심층 추적 5종목에 계속 남길 만큼 논리가 강화됐나?"
+            },
+            {
+                  "code": "278470",
+                  "name": "에이피알",
+                  "industry": "K뷰티 브랜드/뷰티 디바이스",
+                  "group": "watch",
+                  "priority": 6,
+                  "reviewFocus": [
+                        "미국 매출",
+                        "마케팅비",
+                        "재고",
+                        "생산능력"
+                  ],
+                  "quote": {
+                        "ok": true,
+                        "source": "Naver Finance realtime",
+                        "price": "396,500",
+                        "changeRate": "1.54",
+                        "volume": "204,722",
+                        "note": "비공식 참고값"
+                  },
+                  "dart": {
+                        "ok": false,
+                        "items": [],
+                        "note": "DART_API_KEY 미설정"
+                  },
+                  "reviewStatus": "관찰 유지",
+                  "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
+            },
+            {
+                  "code": "058470",
+                  "name": "리노공업",
+                  "industry": "반도체 테스트 소켓",
+                  "group": "watch",
+                  "priority": 7,
+                  "reviewFocus": [
+                        "AI ASIC",
+                        "신공장 가동률",
+                        "2027E 순이익",
+                        "OPM 45%"
+                  ],
+                  "quote": {
+                        "ok": true,
+                        "source": "Naver Finance realtime",
+                        "price": "67,800",
+                        "changeRate": "-4.24",
+                        "volume": "839,948",
+                        "note": "비공식 참고값"
+                  },
+                  "dart": {
+                        "ok": false,
+                        "items": [],
+                        "note": "DART_API_KEY 미설정"
+                  },
+                  "reviewStatus": "관찰 유지",
+                  "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
+            },
+            {
+                  "code": "214150",
+                  "name": "클래시스",
+                  "industry": "미용 의료기기",
+                  "group": "watch",
+                  "priority": 8,
+                  "reviewFocus": [
+                        "소모품 매출",
+                        "브라질",
+                        "미국/유럽",
+                        "OPM 44%"
+                  ],
+                  "quote": {
+                        "ok": true,
+                        "source": "Naver Finance realtime",
+                        "price": "34,700",
+                        "changeRate": "-7.47",
+                        "volume": "507,794",
+                        "note": "비공식 참고값"
+                  },
+                  "dart": {
+                        "ok": false,
+                        "items": [],
+                        "note": "DART_API_KEY 미설정"
+                  },
+                  "reviewStatus": "관찰 유지",
+                  "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
+            },
+            {
+                  "code": "267260",
+                  "name": "HD현대일렉트릭",
+                  "industry": "전력기기",
+                  "group": "watch",
+                  "priority": 9,
+                  "reviewFocus": [
+                        "북미 수주",
+                        "수주 마진",
+                        "미국 공장",
+                        "프리미엄 반영"
+                  ],
+                  "quote": {
+                        "ok": true,
+                        "source": "Naver Finance realtime",
+                        "price": "785,000",
+                        "changeRate": "-2.24",
+                        "volume": "91,526",
+                        "note": "비공식 참고값"
+                  },
+                  "dart": {
+                        "ok": false,
+                        "items": [],
+                        "note": "DART_API_KEY 미설정"
+                  },
+                  "reviewStatus": "관찰 유지",
+                  "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
+            },
+            {
+                  "code": "000660",
+                  "name": "SK하이닉스",
+                  "industry": "AI 메모리/HBM",
+                  "group": "benchmark",
+                  "priority": 10,
+                  "reviewFocus": [
+                        "HBM ASP",
+                        "HBM4",
+                        "메모리 사이클",
+                        "주가 반영도"
+                  ],
+                  "quote": {
+                        "ok": true,
+                        "source": "Naver Finance realtime",
+                        "price": "1,662,000",
+                        "changeRate": "1.03",
+                        "volume": "5,121,374",
+                        "note": "비공식 참고값"
+                  },
+                  "dart": {
+                        "ok": false,
+                        "items": [],
+                        "note": "DART_API_KEY 미설정"
+                  },
+                  "reviewStatus": "기준점 관찰",
+                  "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
+            },
+            {
+                  "code": "207940",
+                  "name": "삼성바이오로직스",
+                  "industry": "CDMO",
+                  "group": "watch",
+                  "priority": 11,
+                  "reviewFocus": [
+                        "신규 수주",
+                        "5공장",
+                        "록빌",
+                        "CDO"
+                  ],
+                  "quote": {
+                        "ok": true,
+                        "source": "Naver Finance realtime",
+                        "price": "1,531,000",
+                        "changeRate": "-1.10",
+                        "volume": "37,718",
+                        "note": "비공식 참고값"
+                  },
+                  "dart": {
+                        "ok": false,
+                        "items": [],
+                        "note": "DART_API_KEY 미설정"
+                  },
+                  "reviewStatus": "관찰 유지",
+                  "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
+            },
+            {
+                  "code": "196170",
+                  "name": "알테오젠",
+                  "industry": "바이오 플랫폼",
+                  "group": "watch",
+                  "priority": 12,
+                  "reviewFocus": [
+                        "키트루다SC",
+                        "로열티",
+                        "마일스톤",
+                        "J-code"
+                  ],
+                  "quote": {
+                        "ok": true,
+                        "source": "Naver Finance realtime",
+                        "price": "298,000",
+                        "changeRate": "-5.10",
+                        "volume": "456,936",
+                        "note": "비공식 참고값"
+                  },
+                  "dart": {
+                        "ok": false,
+                        "items": [],
+                        "note": "DART_API_KEY 미설정"
+                  },
+                  "reviewStatus": "관찰 유지",
+                  "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
+            },
+            {
+                  "code": "145020",
+                  "name": "휴젤",
+                  "industry": "톡신/필러",
+                  "group": "watch",
+                  "priority": 13,
+                  "reviewFocus": [
+                        "미국 직판",
+                        "국가별 매출",
+                        "판관비",
+                        "OPM 회복"
+                  ],
+                  "quote": {
+                        "ok": true,
+                        "source": "Naver Finance realtime",
+                        "price": "248,000",
+                        "changeRate": "-3.13",
+                        "volume": "66,314",
+                        "note": "비공식 참고값"
+                  },
+                  "dart": {
+                        "ok": false,
+                        "items": [],
+                        "note": "DART_API_KEY 미설정"
+                  },
+                  "reviewStatus": "관찰 유지",
+                  "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
+            },
+            {
+                  "code": "064760",
+                  "name": "티씨케이",
+                  "industry": "반도체 소재",
+                  "group": "watch",
+                  "priority": 14,
+                  "reviewFocus": [
+                        "SiC Ring",
+                        "NAND 투자",
+                        "고객 인증",
+                        "2027E"
+                  ],
+                  "quote": {
+                        "ok": true,
+                        "source": "Naver Finance realtime",
+                        "price": "232,000",
+                        "changeRate": "-4.92",
+                        "volume": "67,658",
+                        "note": "비공식 참고값"
+                  },
+                  "dart": {
+                        "ok": false,
+                        "items": [],
+                        "note": "DART_API_KEY 미설정"
+                  },
+                  "reviewStatus": "관찰 유지",
+                  "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
+            },
+            {
+                  "code": "251970",
+                  "name": "펌텍코리아",
+                  "industry": "화장품 용기",
+                  "group": "watch",
+                  "priority": 15,
+                  "reviewFocus": [
+                        "4공장",
+                        "고객 주문",
+                        "원가율",
+                        "해외 고객"
+                  ],
+                  "quote": {
+                        "ok": true,
+                        "source": "Naver Finance realtime",
+                        "price": "55,000",
+                        "changeRate": "3.77",
+                        "volume": "92,287",
+                        "note": "비공식 참고값"
+                  },
+                  "dart": {
+                        "ok": false,
+                        "items": [],
+                        "note": "DART_API_KEY 미설정"
+                  },
+                  "reviewStatus": "관찰 유지",
+                  "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
+            },
+            {
+                  "code": "192080",
+                  "name": "더블유게임즈",
+                  "industry": "게임",
+                  "group": "reserve",
+                  "priority": 16,
+                  "reviewFocus": [
+                        "DTC",
+                        "아이게이밍",
+                        "유저 잔존율",
+                        "현금흐름"
+                  ],
+                  "quote": {
+                        "ok": true,
+                        "source": "Naver Finance realtime",
+                        "price": "58,800",
+                        "changeRate": "-4.55",
+                        "volume": "58,072",
+                        "note": "비공식 참고값"
+                  },
+                  "dart": {
+                        "ok": false,
+                        "items": [],
+                        "note": "DART_API_KEY 미설정"
+                  },
+                  "reviewStatus": "보류 관찰",
+                  "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
+            },
+            {
+                  "code": "051360",
+                  "name": "토비스",
+                  "industry": "산업용 모니터/디스플레이",
+                  "group": "reserve",
+                  "priority": 17,
+                  "reviewFocus": [
+                        "분할 후 별도 재무",
+                        "전장 고객",
+                        "카지노 수주",
+                        "재상장"
+                  ],
+                  "quote": {
+                        "ok": true,
+                        "source": "Naver Finance realtime",
+                        "price": "11,370",
+                        "changeRate": "-3.48",
+                        "volume": "38,323",
+                        "note": "비공식 참고값"
+                  },
+                  "dart": {
+                        "ok": false,
+                        "items": [],
+                        "note": "DART_API_KEY 미설정"
+                  },
+                  "reviewStatus": "보류 관찰",
+                  "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
+            },
+            {
+                  "code": "206640",
+                  "name": "바디텍메드",
+                  "industry": "진단기기",
+                  "group": "reserve",
+                  "priority": 18,
+                  "reviewFocus": [
+                        "설치 장비",
+                        "카트리지",
+                        "지역별 매출",
+                        "허가"
+                  ],
+                  "quote": {
+                        "ok": true,
+                        "source": "Naver Finance realtime",
+                        "price": "10,830",
+                        "changeRate": "-4.16",
+                        "volume": "75,331",
+                        "note": "비공식 참고값"
+                  },
+                  "dart": {
+                        "ok": false,
+                        "items": [],
+                        "note": "DART_API_KEY 미설정"
+                  },
+                  "reviewStatus": "보류 관찰",
+                  "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
+            },
+            {
+                  "code": "053800",
+                  "name": "안랩",
+                  "industry": "보안 소프트웨어",
+                  "group": "reserve",
+                  "priority": 19,
+                  "reviewFocus": [
+                        "ARR",
+                        "중동 매출",
+                        "제로트러스트",
+                        "OPM"
+                  ],
+                  "quote": {
+                        "ok": true,
+                        "source": "Naver Finance realtime",
+                        "price": "57,200",
+                        "changeRate": "-3.54",
+                        "volume": "44,612",
+                        "note": "비공식 참고값"
+                  },
+                  "dart": {
+                        "ok": false,
+                        "items": [],
+                        "note": "DART_API_KEY 미설정"
+                  },
+                  "reviewStatus": "보류 관찰",
+                  "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
+            },
+            {
+                  "code": "018290",
+                  "name": "브이티",
+                  "industry": "K뷰티 브랜드",
+                  "group": "reserve",
+                  "priority": 20,
+                  "reviewFocus": [
+                        "PDRN",
+                        "미국/유럽",
+                        "마케팅비",
+                        "OPM 반등"
+                  ],
+                  "quote": {
+                        "ok": true,
+                        "source": "Naver Finance realtime",
+                        "price": "12,520",
+                        "changeRate": "-3.62",
+                        "volume": "383,037",
+                        "note": "비공식 참고값"
+                  },
+                  "dart": {
+                        "ok": false,
+                        "items": [],
+                        "note": "DART_API_KEY 미설정"
+                  },
+                  "reviewStatus": "보류 관찰",
+                  "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
+            }
+      ]
+};
+
+    function renderWeeklyGrowthWatchlist() {
+      const items = [...(weeklyGrowthWatchlist.items || [])].sort((a, b) => a.priority - b.priority);
+      const updated = weeklyGrowthWatchlist.updatedAt ? weeklyGrowthWatchlist.updatedAt.replace("T", " ").slice(0, 16) : "확인 필요";
+      const counts = items.reduce((acc, item) => {
+        const key = item.reviewStatus || item.group || "관찰";
+        acc[key] = (acc[key] || 0) + 1;
+        return acc;
+      }, {});
+      return `
+        <div class="research-grid">
+          <div class="research-box">
+            <h4>20종목 점검 시간</h4>
+            <ul>
+              <li>업데이트: ${updated}</li>
+              <li>주기: 주 1회, 월요일 장 시작 전</li>
+              <li>목적: 5종목 심층 추적군으로 승격할 종목이 있는지 확인</li>
+            </ul>
+          </div>
+          <div class="research-box">
+            <h4>점검 결과 요약</h4>
+            <ul>
+              <li>심층 추적 유지: ${counts["심층 추적 유지"] || 0}개</li>
+              <li>승격 검토: ${counts["승격 검토"] || 0}개</li>
+              <li>관찰/보류: ${items.length - (counts["심층 추적 유지"] || 0) - (counts["승격 검토"] || 0)}개</li>
+            </ul>
+          </div>
+        </div>
+        <div class="history-table">
+          <table>
+            <thead>
+              <tr>
+                <th>순위</th>
+                <th>종목</th>
+                <th>상태</th>
+                <th>점검 포인트</th>
+                <th>최근 공시</th>
+                <th>시세 참고</th>
+                <th>이번 주 질문</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${items.map((item) => {
+                const dartItems = item.dart?.items || [];
+                const dartText = dartItems.length
+                  ? dartItems.map((doc) => `<a href="${doc.url}" target="_blank" rel="noopener noreferrer">${doc.date} ${doc.title}</a>`).join("<br>")
+                  : item.dart?.note || "신규 공시 없음";
+                const quote = item.quote || {};
+                const quoteText = quote.price ? `가격 ${quote.price}${quote.changeRate ? ` · ${quote.changeRate}%` : ""}${quote.volume ? ` · 거래량 ${quote.volume}` : ""}` : quote.note || "시세 확인 필요";
+                return `
+                  <tr>
+                    <td>${item.priority}</td>
+                    <td><strong>${item.name}</strong><br><span class="muted">${item.code} · ${item.industry}</span></td>
+                    <td><span class="status-tag">${item.reviewStatus || item.group || "관찰"}</span></td>
+                    <td>${(item.reviewFocus || []).join(" · ")}</td>
+                    <td>${dartText}</td>
+                    <td>${quoteText}</td>
+                    <td>${item.reviewQuestion || "관찰할 만한 새 근거가 생겼나?"}</td>
+                  </tr>
+                `;
+              }).join("")}
+            </tbody>
+          </table>
+        </div>
+        <div class="data-caption">${weeklyGrowthWatchlist.rule} ${weeklyGrowthWatchlist.sourcePolicy}</div>
+      `;
+    }
     const singleGrowthPickFramework = {
       rule: "성장주 편입은 1개만 한다는 전제라면, 가장 좋은 회사가 아니라 '좋은 회사 + 아직 가격 여유 + 확인 가능한 다음 이벤트'가 모두 있는 종목을 고릅니다.",
       allocation: [
@@ -5956,6 +6592,10 @@
           ${renderDailyGrowthTracking()}
         </div>
         <div class="section">
+          <h3>성장주 20종목 주간 점검</h3>
+          ${renderWeeklyGrowthWatchlist()}
+        </div>
+        <div class="section">
           <h3>매수 판단판</h3>
           ${renderBuyDecisionBoard()}
         </div>
@@ -6121,6 +6761,7 @@
   </script>
 </body>
 </html>
+
 
 
 

@@ -1,0 +1,26 @@
+{
+  "reviewCadence": "weekly",
+  "reviewRule": "20개 관찰군은 매주 1회 가격, 공시, 데이터 충족도, 성장 논리 훼손 여부를 확인해 5개 심층 추적 후보로 승격할지 판단한다.",
+  "targets": [
+    { "code": "062040", "name": "산일전기", "industry": "변압기/전력기기", "group": "deep", "priority": 1, "reviewFocus": ["수주잔고", "영업이익률", "Bloom Energy", "2027E PER"] },
+    { "code": "214450", "name": "파마리서치", "industry": "의료기기/스킨부스터", "group": "deep", "priority": 2, "reviewFocus": ["의료기기 수출", "리쥬란 재주문", "국가별 매출", "OPM 40%"] },
+    { "code": "003230", "name": "삼양식품", "industry": "식품/글로벌 라면", "group": "deep", "priority": 3, "reviewFocus": ["해외 매출", "밀양2공장", "재고", "OPM 20%"] },
+    { "code": "010120", "name": "LS ELECTRIC", "industry": "전력기기", "group": "deep", "priority": 4, "reviewFocus": ["신규수주", "수주잔고", "데이터센터", "OPM 10%"] },
+    { "code": "257720", "name": "실리콘투", "industry": "K뷰티 유통", "group": "deep", "priority": 5, "reviewFocus": ["지역별 매출", "재고 회전", "매출채권", "영업현금흐름"] },
+    { "code": "278470", "name": "에이피알", "industry": "K뷰티 브랜드/뷰티 디바이스", "group": "watch", "priority": 6, "reviewFocus": ["미국 매출", "마케팅비", "재고", "생산능력"] },
+    { "code": "058470", "name": "리노공업", "industry": "반도체 테스트 소켓", "group": "watch", "priority": 7, "reviewFocus": ["AI ASIC", "신공장 가동률", "2027E 순이익", "OPM 45%"] },
+    { "code": "214150", "name": "클래시스", "industry": "미용 의료기기", "group": "watch", "priority": 8, "reviewFocus": ["소모품 매출", "브라질", "미국/유럽", "OPM 44%"] },
+    { "code": "267260", "name": "HD현대일렉트릭", "industry": "전력기기", "group": "watch", "priority": 9, "reviewFocus": ["북미 수주", "수주 마진", "미국 공장", "프리미엄 반영"] },
+    { "code": "000660", "name": "SK하이닉스", "industry": "AI 메모리/HBM", "group": "benchmark", "priority": 10, "reviewFocus": ["HBM ASP", "HBM4", "메모리 사이클", "주가 반영도"] },
+    { "code": "207940", "name": "삼성바이오로직스", "industry": "CDMO", "group": "watch", "priority": 11, "reviewFocus": ["신규 수주", "5공장", "록빌", "CDO"] },
+    { "code": "196170", "name": "알테오젠", "industry": "바이오 플랫폼", "group": "watch", "priority": 12, "reviewFocus": ["키트루다SC", "로열티", "마일스톤", "J-code"] },
+    { "code": "145020", "name": "휴젤", "industry": "톡신/필러", "group": "watch", "priority": 13, "reviewFocus": ["미국 직판", "국가별 매출", "판관비", "OPM 회복"] },
+    { "code": "064760", "name": "티씨케이", "industry": "반도체 소재", "group": "watch", "priority": 14, "reviewFocus": ["SiC Ring", "NAND 투자", "고객 인증", "2027E"] },
+    { "code": "251970", "name": "펌텍코리아", "industry": "화장품 용기", "group": "watch", "priority": 15, "reviewFocus": ["4공장", "고객 주문", "원가율", "해외 고객"] },
+    { "code": "192080", "name": "더블유게임즈", "industry": "게임", "group": "reserve", "priority": 16, "reviewFocus": ["DTC", "아이게이밍", "유저 잔존율", "현금흐름"] },
+    { "code": "051360", "name": "토비스", "industry": "산업용 모니터/디스플레이", "group": "reserve", "priority": 17, "reviewFocus": ["분할 후 별도 재무", "전장 고객", "카지노 수주", "재상장"] },
+    { "code": "206640", "name": "바디텍메드", "industry": "진단기기", "group": "reserve", "priority": 18, "reviewFocus": ["설치 장비", "카트리지", "지역별 매출", "허가"] },
+    { "code": "053800", "name": "안랩", "industry": "보안 소프트웨어", "group": "reserve", "priority": 19, "reviewFocus": ["ARR", "중동 매출", "제로트러스트", "OPM"] },
+    { "code": "018290", "name": "브이티", "industry": "K뷰티 브랜드", "group": "reserve", "priority": 20, "reviewFocus": ["PDRN", "미국/유럽", "마케팅비", "OPM 반등"] }
+  ]
+}
