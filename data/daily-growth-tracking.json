@@ -1,0 +1,166 @@
+{
+  "updatedAt": "2026-08-18T17:15:42",
+  "sourcePolicy": "공식 공시와 회사 IR을 우선하고, 비공식 시세는 참고값으로만 표시",
+  "targets": [
+    {
+      "code": "062040",
+      "name": "산일전기",
+      "priority": 1,
+      "thesis": "전력기기 수요와 수주잔고가 2027년 이익으로 이어질 수 있는지 확인",
+      "dailyChecks": [
+        "최근 공시",
+        "수주잔고 변화",
+        "2Q26 이후 영업이익률",
+        "Bloom Energy 반복 수주",
+        "현재 시총 대비 2027E PER"
+      ],
+      "quote": {
+        "enabled": true,
+        "source": "Naver Finance realtime",
+        "price": "179,200",
+        "changeRate": "-1.81",
+        "marketCap": null,
+        "volume": "261,878",
+        "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
+      },
+      "dart": {
+        "enabled": false,
+        "items": [],
+        "note": "DART_API_KEY가 없어 공시 자동 수집은 건너뜀"
+      },
+      "decision": {
+        "status": "관찰 유지",
+        "nextAction": "새 공시·실적·수주·수출·현금흐름 변화가 있을 때 대시보드 판단 재검토",
+        "buyGuardrail": "초기 매수는 성장주 슬롯의 40~50% 이내, 논리 훼손 시 추가매수 금지"
+      }
+    },
+    {
+      "code": "214450",
+      "name": "파마리서치",
+      "priority": 2,
+      "thesis": "의료기기 수출과 화장품 해외 매출이 40%대 이익률을 유지하며 커지는지 확인",
+      "dailyChecks": [
+        "최근 공시",
+        "의료기기 국가별 수출",
+        "리쥬란 재주문",
+        "미국·유럽 허가/판매",
+        "영업이익률 40%대 유지"
+      ],
+      "quote": {
+        "enabled": true,
+        "source": "Naver Finance realtime",
+        "price": "393,000",
+        "changeRate": "-1.26",
+        "marketCap": null,
+        "volume": "156,451",
+        "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
+      },
+      "dart": {
+        "enabled": false,
+        "items": [],
+        "note": "DART_API_KEY가 없어 공시 자동 수집은 건너뜀"
+      },
+      "decision": {
+        "status": "관찰 유지",
+        "nextAction": "새 공시·실적·수주·수출·현금흐름 변화가 있을 때 대시보드 판단 재검토",
+        "buyGuardrail": "초기 매수는 성장주 슬롯의 40~50% 이내, 논리 훼손 시 추가매수 금지"
+      }
+    },
+    {
+      "code": "003230",
+      "name": "삼양식품",
+      "priority": 3,
+      "thesis": "밀양2공장 증설이 해외 매출과 이익률로 바로 연결되는지 확인",
+      "dailyChecks": [
+        "최근 공시",
+        "해외 매출 성장",
+        "밀양2공장 가동률",
+        "재고 증가 여부",
+        "브랜드 집중 리스크"
+      ],
+      "quote": {
+        "enabled": true,
+        "source": "Naver Finance realtime",
+        "price": "1,334,000",
+        "changeRate": "5.04",
+        "marketCap": null,
+        "volume": "85,326",
+        "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
+      },
+      "dart": {
+        "enabled": false,
+        "items": [],
+        "note": "DART_API_KEY가 없어 공시 자동 수집은 건너뜀"
+      },
+      "decision": {
+        "status": "관찰 유지",
+        "nextAction": "새 공시·실적·수주·수출·현금흐름 변화가 있을 때 대시보드 판단 재검토",
+        "buyGuardrail": "초기 매수는 성장주 슬롯의 40~50% 이내, 논리 훼손 시 추가매수 금지"
+      }
+    },
+    {
+      "code": "010120",
+      "name": "LS ELECTRIC",
+      "priority": 4,
+      "thesis": "수주잔고와 데이터센터 전력기기 수요가 매출과 10%대 OPM으로 전환되는지 확인",
+      "dailyChecks": [
+        "최근 공시",
+        "신규수주",
+        "수주잔고",
+        "배전반 단납기 매출",
+        "원가 상승 여부"
+      ],
+      "quote": {
+        "enabled": true,
+        "source": "Naver Finance realtime",
+        "price": "209,000",
+        "changeRate": "1.21",
+        "marketCap": null,
+        "volume": "649,111",
+        "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
+      },
+      "dart": {
+        "enabled": false,
+        "items": [],
+        "note": "DART_API_KEY가 없어 공시 자동 수집은 건너뜀"
+      },
+      "decision": {
+        "status": "관찰 유지",
+        "nextAction": "새 공시·실적·수주·수출·현금흐름 변화가 있을 때 대시보드 판단 재검토",
+        "buyGuardrail": "초기 매수는 성장주 슬롯의 40~50% 이내, 논리 훼손 시 추가매수 금지"
+      }
+    },
+    {
+      "code": "257720",
+      "name": "실리콘투",
+      "priority": 5,
+      "thesis": "K뷰티 글로벌 유통 성장이 운전자본 악화 없이 현금으로 전환되는지 확인",
+      "dailyChecks": [
+        "최근 공시",
+        "지역별 매출",
+        "재고 회전",
+        "매출채권 회전",
+        "영업현금흐름"
+      ],
+      "quote": {
+        "enabled": true,
+        "source": "Naver Finance realtime",
+        "price": "44,500",
+        "changeRate": "3.85",
+        "marketCap": null,
+        "volume": "2,778,113",
+        "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
+      },
+      "dart": {
+        "enabled": false,
+        "items": [],
+        "note": "DART_API_KEY가 없어 공시 자동 수집은 건너뜀"
+      },
+      "decision": {
+        "status": "관찰 유지",
+        "nextAction": "새 공시·실적·수주·수출·현금흐름 변화가 있을 때 대시보드 판단 재검토",
+        "buyGuardrail": "초기 매수는 성장주 슬롯의 40~50% 이내, 논리 훼손 시 추가매수 금지"
+      }
+    }
+  ]
+}

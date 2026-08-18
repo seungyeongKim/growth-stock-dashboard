@@ -1,0 +1,38 @@
+name: Daily growth stock tracking
+
+on:
+  schedule:
+    - cron: "30 23 * * 0-4"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-dashboard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Update daily tracking data
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: node scripts/update-daily-tracking.js
+
+      - name: Apply tracking data to dashboard
+        run: node scripts/apply-daily-tracking.js index.html data/daily-growth-tracking.json
+
+      - name: Validate dashboard
+        run: node scripts/check-dashboard.js index.html
+
+      - name: Commit updated dashboard
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Update daily growth tracking"
+          file_pattern: "index.html data/daily-growth-tracking.json"

@@ -1,0 +1,10 @@
+const fs = require("fs");
+const target = process.argv[2] || "index.html";
+const html = fs.readFileSync(target, "utf8");
+const script = html.match(/<script>([\s\S]*)<\/script>/);
+if (!script) throw new Error("Script block not found");
+new Function(script[1]);
+const required = ["dailyGrowthTracking", "renderDailyGrowthTracking", "성장주 5종목 매일 추적", "singleGrowthPickFramework"];
+const missing = required.filter((item) => !html.includes(item));
+if (missing.length) throw new Error(`Missing markers: ${missing.join(", ")}`);
+console.log(JSON.stringify({ script: "ok", requiredMarkers: required.length, target }, null, 2));
