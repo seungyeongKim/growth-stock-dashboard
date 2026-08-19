@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-19T08:49:21",
+  "updatedAt": "2026-08-20T08:49:07",
   "sourcePolicy": "공식 공시와 회사 IR을 우선하고, 비공식 시세는 참고값으로만 표시",
   "targets": [
     {
@@ -36,7 +36,7 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "179,200",
+        "price": "175,700",
         "changeRate": "0.00",
         "marketCap": null,
         "volume": "-",
@@ -87,7 +87,7 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "393,000",
+        "price": "391,000",
         "changeRate": "0.00",
         "marketCap": null,
         "volume": "-",
@@ -138,7 +138,7 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "1,334,000",
+        "price": "1,304,000",
         "changeRate": "0.00",
         "marketCap": null,
         "volume": "-",
@@ -189,7 +189,7 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "209,000",
+        "price": "202,000",
         "changeRate": "0.00",
         "marketCap": null,
         "volume": "-",
@@ -240,7 +240,7 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "44,500",
+        "price": "45,300",
         "changeRate": "0.00",
         "marketCap": null,
         "volume": "-",
