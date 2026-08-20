@@ -2,8 +2,8 @@ name: Growth stock tracking
 
 on:
   schedule:
-    - cron: "30 12 * * 1-5"
-    - cron: "45 12 * * 1"
+    - cron: "0 10 * * 1-5"
+    - cron: "15 10 * * 1"
   workflow_dispatch:
     inputs:
       scope:
@@ -36,8 +36,8 @@ jobs:
         shell: bash
         run: |
           SCOPE="${{ github.event.inputs.scope || 'all' }}"
-          if [ "${{ github.event_name }}" = "schedule" ] && [ "${{ github.event.schedule }}" = "30 12 * * 1-5" ]; then SCOPE="daily"; fi
-          if [ "${{ github.event_name }}" = "schedule" ] && [ "${{ github.event.schedule }}" = "45 12 * * 1" ]; then SCOPE="weekly"; fi
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "${{ github.event.schedule }}" = "0 10 * * 1-5" ]; then SCOPE="daily"; fi
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "${{ github.event.schedule }}" = "15 10 * * 1" ]; then SCOPE="weekly"; fi
           echo "scope=$SCOPE" >> "$GITHUB_OUTPUT"
 
       - name: Update 5-stock daily tracking
@@ -68,4 +68,5 @@ jobs:
         with:
           commit_message: "Update growth stock tracking"
           file_pattern: "index.html data/*.json"
+
 
