@@ -6712,8 +6712,82 @@
         </div>
       `;
     }
+
+    function renderCompanyDecisionSummary(company) {
+      const decision = buyDecisionBoard[company.code] || {};
+      const sufficiency = growthDataSufficiency.notes[company.code] || {};
+      const tracking = dailyGrowthTracking.targets.find((item) => item.code === company.code);
+      const fit = growthStockFit[company.code] || {};
+      const valuation = valuationData[company.code] || {};
+      const leading = growthLeadingIndicators[company.code] || {};
+      const competitive = competitivePosition[company.code] || {};
+      const todayChecks = tracking?.dailyChecks || leading.nextData || company.watch || [];
+      const keepRules = tracking?.rules?.keep || [];
+      const holdRules = tracking?.rules?.hold || [];
+      const priceHint = valuation.revenue2027E || valuation.net2027E
+        ? `2027E 매출 ${valuation.revenue2027E ? Number(valuation.revenue2027E).toLocaleString("ko-KR") : "확인 필요"} · 순이익 ${valuation.net2027E ? Number(valuation.net2027E).toLocaleString("ko-KR") : "확인 필요"}`
+        : "미래가치 입력값 추가 확인 필요";
+      return `
+        <div class="research-grid">
+          <div class="research-box">
+            <h4>현재 판단</h4>
+            <ul>
+              <li>${decision.action || "관찰"} · 확신도 ${decision.conviction || "-"}/100</li>
+              <li>${decision.why || company.thesis}</li>
+              <li>데이터 충족도: ${sufficiency.status || "확인"} ${sufficiency.score ? `· ${sufficiency.score}/100` : ""}</li>
+            </ul>
+          </div>
+          <div class="research-box">
+            <h4>매수 전 조건</h4>
+            <ul>
+              <li>${decision.must || "다음 실적과 공시 확인"}</li>
+              <li>${tracking?.decision?.nextAction || "추가 확인 후 판단"}</li>
+            </ul>
+          </div>
+          <div class="research-box">
+            <h4>보류·취소 조건</h4>
+            <ul>
+              <li>${decision.stop || "성장 논리 훼손"}</li>
+              ${holdRules.slice(0, 3).map((item) => `<li>${item}</li>`).join("")}
+            </ul>
+          </div>
+          <div class="research-box">
+            <h4>미래가치·경쟁력</h4>
+            <ul>
+              <li>${priceHint}</li>
+              <li>성장 조건: ${fit.passed || "-"}/7 통과</li>
+              <li>경쟁력: ${competitive.verdict || "확인 필요"}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="history-table">
+          <table>
+            <thead>
+              <tr>
+                <th>구분</th>
+                <th>오늘 확인할 내용</th>
+                <th>유지 기준</th>
+                <th>아직 부족한 자료</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>추적</td>
+                <td>${todayChecks.slice(0, 5).join(" · ") || "확인 필요"}</td>
+                <td>${keepRules.slice(0, 3).join(" · ") || decision.must || "기준 확인 필요"}</td>
+                <td>${sufficiency.gap || "다음 분기 자료 확인"}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      `;
+    }
     function renderCompanyDetail(company) {
       return `
+        <div class="section">
+          <h3>종목 판단 요약</h3>
+          ${renderCompanyDecisionSummary(company)}
+        </div>
         <div class="stat-grid">
           <div class="stat"><label>매출 성장</label><strong>${fmt(company.revenueGrowth)}</strong></div>
           <div class="stat"><label>영업이익률</label><strong>${fmt(company.opMargin)}</strong></div>
@@ -6894,6 +6968,8 @@
   </script>
 </body>
 </html>
+
+
 
 
 
