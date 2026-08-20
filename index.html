@@ -510,6 +510,13 @@
       white-space: nowrap;
     }
 
+
+    .view-switch {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin: 12px 0 10px;
+    }
     .section {
       margin-top: 16px;
       padding-top: 14px;
@@ -3345,6 +3352,7 @@
 
     const state = {
       filter: "all",
+      detailView: "company",
       industry: "all",
       search: "",
       selectedCode: sortByReviewPriority(companies)[0].code
@@ -6659,35 +6667,9 @@
       return `<ul>${items.map((item) => `<li>${item}</li>`).join("")}</ul>`;
     }
 
-    function renderDetail() {
-      const company = companies.find((item) => item.code === state.selectedCode) || companies[0];
-      if (!company) return;
-      detailBody.innerHTML = `
-        <div class="detail-head">
-          <div>
-            <h2>${company.name}</h2>
-            <div class="rank">${company.code} · ${company.industry} · 후보 ${company.rank}위</div>
-          </div>
-          <div class="score"><strong>${company.score}</strong><span>검토 우선순위</span></div>
-        </div>
-        <div>${tagsFor(company)}</div>
-        <div class="stat-grid">
-          <div class="stat"><label>매출 성장</label><strong>${fmt(company.revenueGrowth)}</strong></div>
-          <div class="stat"><label>영업이익률</label><strong>${fmt(company.opMargin)}</strong></div>
-          <div class="stat"><label>순이익률</label><strong>${fmt(company.netMargin)}</strong></div>
-        </div>
-        <div class="section">
-          <h3>최근 3년 재무 추이</h3>
-          ${renderHistoryTable(company)}
-        </div>
-        <div class="section">
-          <h3>핵심 요약</h3>
-          ${renderExecutiveSummary(company)}
-        </div>
-        <div class="section">
-          <h3>성장주 조건 재점검</h3>
-          ${renderGrowthStockFit(company)}
-        </div>
+
+    function renderCommonDashboard() {
+      return `
         <div class="section">
           <h3>성장주 5종목 매일 추적</h3>
           ${renderDailyGrowthTracking()}
@@ -6695,6 +6677,10 @@
         <div class="section">
           <h3>성장주 20종목 주간 점검</h3>
           ${renderWeeklyGrowthWatchlist()}
+        </div>
+        <div class="section">
+          <h3>성장주 1종목 선발 기준</h3>
+          ${renderSingleGrowthPickFramework()}
         </div>
         <div class="section">
           <h3>매수 판단판</h3>
@@ -6723,6 +6709,27 @@
         <div class="section">
           <h3>추가 후보 관찰군</h3>
           ${renderAdditionalGrowthCandidates()}
+        </div>
+      `;
+    }
+    function renderCompanyDetail(company) {
+      return `
+        <div class="stat-grid">
+          <div class="stat"><label>매출 성장</label><strong>${fmt(company.revenueGrowth)}</strong></div>
+          <div class="stat"><label>영업이익률</label><strong>${fmt(company.opMargin)}</strong></div>
+          <div class="stat"><label>순이익률</label><strong>${fmt(company.netMargin)}</strong></div>
+        </div>
+        <div class="section">
+          <h3>최근 3년 재무 추이</h3>
+          ${renderHistoryTable(company)}
+        </div>
+        <div class="section">
+          <h3>핵심 요약</h3>
+          ${renderExecutiveSummary(company)}
+        </div>
+        <div class="section">
+          <h3>성장주 조건 재점검</h3>
+          ${renderGrowthStockFit(company)}
         </div>
         <div class="section">
           <h3>성장 렌즈 적용</h3>
@@ -6819,6 +6826,31 @@
       `;
     }
 
+    function renderDetail() {
+      const company = companies.find((item) => item.code === state.selectedCode) || companies[0];
+      if (!company) return;
+      detailBody.innerHTML = `
+        <div class="detail-head">
+          <div>
+            <h2>${state.detailView === "common" ? "공통 대시보드" : company.name}</h2>
+            <div class="rank">${state.detailView === "common" ? "전체 후보 · 자동 추적 · 공통 판단표" : `${company.code} · ${company.industry} · 후보 ${company.rank}위`}</div>
+          </div>
+          <div class="score"><strong>${state.detailView === "common" ? "ALL" : company.score}</strong><span>${state.detailView === "common" ? "공통" : "검토 우선순위"}</span></div>
+        </div>
+        <div class="view-switch">
+          <button class="filter-btn ${state.detailView === "company" ? "active" : ""}" type="button" data-detail-view="company">종목 상세</button>
+          <button class="filter-btn ${state.detailView === "common" ? "active" : ""}" type="button" data-detail-view="common">공통 대시보드</button>
+        </div>
+        ${state.detailView === "common" ? renderCommonDashboard() : `<div>${tagsFor(company)}</div>${renderCompanyDetail(company)}`}
+      `;
+    }
+
+    detailBody.addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-detail-view]");
+      if (!button) return;
+      state.detailView = button.dataset.detailView;
+      renderDetail();
+    });
     rows.addEventListener("click", (event) => {
       const tr = event.target.closest("tr[data-code]");
       if (!tr) return;
@@ -6862,6 +6894,9 @@
   </script>
 </body>
 </html>
+
+
+
 
 
 
