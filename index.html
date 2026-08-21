@@ -4139,6 +4139,37 @@
       `;
     }
 
+
+    function getGrowthFitSummary(company) {
+      const data = valuationData[company.code] || {};
+      const profile = longTermProfile(company);
+      const reliability = estimateReliability[company.code];
+      const competitive = competitivePosition[company.code];
+      const leading = growthLeadingIndicators[company.code];
+      const sentence = investmentSentenceProfile(company);
+      const hasValue = (value) => value !== null && value !== undefined && value !== "";
+      const numberOf = (value) => hasValue(value) ? Number(String(value).replace(/,/g, "")) : null;
+      const net2027 = numberOf(data.net2027E);
+      const marketCap = numberOf(data.marketCap);
+      const fairMultiple = numberOf(futureValueAssumptions[company.code]?.fairMultiple);
+      const expectedReturn = net2027 && marketCap && fairMultiple ? (((net2027 * fairMultiple) / marketCap) - 1) * 100 : null;
+      const ownerScenario = ownerScenarioAssumptions[company.code];
+      const checks = [
+        company.revenueGrowth >= 15 && company.opMargin >= 10 && company.netMargin >= 10,
+        hasValue(data.net2027E) || Boolean(ownerScenario),
+        Boolean(leading?.confirmed?.length),
+        Boolean(competitive?.edge?.length >= 3 && competitive?.pricing && competitive?.lockIn),
+        ["상", "중상"].includes(reliability?.level) || Boolean(ownerScenario && leading?.confirmed?.length),
+        expectedReturn !== null && expectedReturn >= 15,
+        profile.conservativeMargin !== null ? profile.conservativeMargin >= 0 : sentence.status !== "미완성"
+      ];
+      const passed = checks.filter(Boolean).length;
+      return {
+        passed,
+        total: checks.length,
+        label: passed >= 6 ? "성장주 조건 우선 통과" : passed >= 4 ? "조건부 성장 후보" : "성장주 조건 재검토"
+      };
+    }
     function renderGrowthStockFit(company) {
       const data = valuationData[company.code] || {};
       const profile = longTermProfile(company);
@@ -6736,7 +6767,7 @@
       const decision = buyDecisionBoard[company.code] || {};
       const sufficiency = growthDataSufficiency.notes[company.code] || {};
       const tracking = dailyGrowthTracking.targets.find((item) => item.code === company.code);
-      const fit = growthStockFit[company.code] || {};
+      const fit = getGrowthFitSummary(company);
       const valuation = valuationData[company.code] || {};
       const leading = growthLeadingIndicators[company.code] || {};
       const competitive = competitivePosition[company.code] || {};
@@ -6774,7 +6805,7 @@
             <h4>미래가치·경쟁력</h4>
             <ul>
               <li>${priceHint}</li>
-              <li>성장 조건: ${fit.passed || "-"}/7 통과</li>
+              <li>성장 조건: ${fit.passed}/${fit.total} · ${fit.label}</li>
               <li>경쟁력: ${competitive.verdict || "확인 필요"}</li>
             </ul>
           </div>
@@ -6985,6 +7016,7 @@
   </script>
 </body>
 </html>
+
 
 
 
