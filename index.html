@@ -89,6 +89,114 @@
       font-size: 12px;
     }
 
+
+    .dashboard-tabs {
+      max-width: 1480px;
+      width: calc(100% - clamp(36px, 6vw, 80px));
+      margin: 18px auto 0;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .dashboard-tab {
+      border: 1px solid var(--line);
+      background: #ffffff;
+      color: var(--ink);
+      border-radius: 8px;
+      padding: 11px 16px;
+      cursor: pointer;
+      font-weight: 700;
+      min-width: 116px;
+    }
+
+    .dashboard-tab.active {
+      border-color: var(--blue);
+      background: var(--soft-blue);
+      color: var(--blue);
+    }
+
+    .tab-panel[hidden] {
+      display: none !important;
+    }
+
+    .summary-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .summary-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #ffffff;
+      padding: 12px;
+      min-height: 96px;
+    }
+
+    .summary-card label {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .summary-card strong {
+      display: block;
+      font-size: 18px;
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+
+    .summary-card span {
+      color: #344054;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .section-stack {
+      display: grid;
+      gap: 10px;
+    }
+
+    .detail-group {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #ffffff;
+      overflow: hidden;
+    }
+
+    .detail-group summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 13px 14px;
+      font-weight: 760;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .detail-group summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .detail-group summary::after {
+      content: "+";
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .detail-group[open] summary::after {
+      content: "-";
+    }
+
+    .detail-group-body {
+      border-top: 1px solid var(--line);
+      padding: 14px;
+    }
+
     main {
       max-width: 1480px;
       width: 100%;
@@ -122,8 +230,8 @@
     }
 
     .common-dashboard-panel .detail-body {
-      max-height: 520px;
-      overflow: auto;
+      max-height: none;
+      overflow: visible;
     }
     .toolbar {
       background: var(--panel);
@@ -526,7 +634,8 @@
       white-space: nowrap;
     }
 
-`r`n    .section {
+
+    .section {
       margin-top: 16px;
       padding-top: 14px;
       border-top: 1px solid var(--line);
@@ -633,8 +742,13 @@
         text-align: left;
       }
 
+      .dashboard-tabs,
       .common-dashboard-panel {
         width: calc(100% - 36px);
+      }
+
+      .summary-strip {
+        grid-template-columns: 1fr;
       }
 
       .toolbar {
@@ -687,7 +801,12 @@
       </div>
     </header>
 
-    <section class="common-dashboard-panel" aria-labelledby="commonDashboardTitle">
+    <nav class="dashboard-tabs" aria-label="대시보드 보기 전환">
+      <button class="dashboard-tab active" type="button" data-view="commonView">공통 분석</button>
+      <button class="dashboard-tab" type="button" data-view="companyView">개별 종목</button>
+    </nav>
+
+    <section class="common-dashboard-panel tab-panel" id="commonView" aria-labelledby="commonDashboardTitle">
       <div class="panel-title">
         <h2 id="commonDashboardTitle">공통 대시보드</h2>
         <span class="count">전체 후보 · 자동 추적 · 공통 판단표</span>
@@ -695,7 +814,7 @@
       <div class="detail-body" id="commonDashboardBody"></div>
     </section>
 
-    <main>
+    <main class="tab-panel" id="companyView" hidden>
       <section class="list-column" id="listColumn">
         <button class="collapsed-rail" id="openListBtn" type="button" title="목록 펼치기">목록 펼치기</button>
         <div class="toolbar">
@@ -3375,7 +3494,8 @@
       filter: "all",
       industry: "all",
       search: "",
-      selectedCode: sortByReviewPriority(companies)[0].code
+      selectedCode: sortByReviewPriority(companies)[0].code,
+      view: "commonView"
     };
 
     const rows = document.getElementById("companyRows");
@@ -3391,6 +3511,8 @@
     const openListBtn = document.getElementById("openListBtn");
     const collapseDetailBtn = document.getElementById("collapseDetailBtn");
     const openDetailBtn = document.getElementById("openDetailBtn");
+    const dashboardTabs = document.querySelectorAll(".dashboard-tab");
+    const tabPanels = document.querySelectorAll(".tab-panel");
 
     const fmt = (value) => {
       if (value === null || value === undefined) return "-";
@@ -6720,50 +6842,50 @@
 
 
     function renderCommonDashboard() {
+      const topPicks = companies.slice(0, 5).map((company) => company.name).join(" · ");
       return `
-        <div class="section">
-          <h3>성장주 5종목 매일 추적</h3>
-          ${renderDailyGrowthTracking()}
+        <div class="summary-strip">
+          <div class="summary-card"><label>목적</label><strong>성장주 1종목 선발</strong><span>20개 후보 중 1~2년 보유할 종목을 고르는 화면입니다.</span></div>
+          <div class="summary-card"><label>먼저 볼 것</label><strong>성장 지속성</strong><span>매출 증가가 일회성이 아닌지, 마진이 유지되는지 확인합니다.</span></div>
+          <div class="summary-card"><label>가격 판단</label><strong>미래가치 대비 싼가</strong><span>2026~2027 이익, 안전마진, 추정 신뢰도를 같이 봅니다.</span></div>
+          <div class="summary-card"><label>우선 추적</label><strong>${topPicks}</strong><span>매일 추적 대상과 주간 후보군을 나눠 관리합니다.</span></div>
         </div>
-        <div class="section">
-          <h3>성장주 20종목 주간 점검</h3>
-          ${renderWeeklyGrowthWatchlist()}
-        </div>
-        <div class="section">
-          <h3>성장주 1종목 선발 기준</h3>
-          ${renderSingleGrowthPickFramework()}
-        </div>
-        <div class="section">
-          <h3>매수 판단판</h3>
-          ${renderBuyDecisionBoard()}
-        </div>
-        <div class="section">
-          <h3>데이터 충족도 점검</h3>
-          ${renderGrowthDataSufficiency()}
-        </div>
-        <div class="section">
-          <h3>최종 20개 재검토</h3>
-          ${renderFinalGrowthReview()}
-        </div>
-        <div class="section">
-          <h3>매수매력 압축 분석</h3>
-          ${renderBuyAttractivenessReview()}
-        </div>
-        <div class="section">
-          <h3>성장성 판단 자료 매트릭스</h3>
-          ${renderGrowthProofMatrix()}
-        </div>
-        <div class="section">
-          <h3>기존 후보 전체 재점검</h3>
-          ${renderCandidateRecheckSummary()}
-        </div>
-        <div class="section">
-          <h3>추가 후보 관찰군</h3>
-          ${renderAdditionalGrowthCandidates()}
+        <div class="section-stack">
+          <details class="detail-group" open>
+            <summary>성장주 5종목 매일 추적</summary>
+            <div class="detail-group-body">${renderDailyGrowthTracking()}</div>
+          </details>
+          <details class="detail-group" open>
+            <summary>성장주 20종목 주간 점검</summary>
+            <div class="detail-group-body">${renderWeeklyGrowthWatchlist()}</div>
+          </details>
+          <details class="detail-group">
+            <summary>1종목 선발 기준과 매수 판단판</summary>
+            <div class="detail-group-body">
+              ${renderSingleGrowthPickFramework()}
+              ${renderBuyDecisionBoard()}
+              ${renderBuyAttractivenessReview()}
+            </div>
+          </details>
+          <details class="detail-group">
+            <summary>데이터 충족도와 성장성 근거 매트릭스</summary>
+            <div class="detail-group-body">
+              ${renderGrowthDataSufficiency()}
+              ${renderGrowthProofMatrix()}
+              ${renderRemainingDataAudit()}
+            </div>
+          </details>
+          <details class="detail-group">
+            <summary>최종 후보 재검토와 추가 관찰군</summary>
+            <div class="detail-group-body">
+              ${renderFinalGrowthReview()}
+              ${renderCandidateRecheckSummary()}
+              ${renderAdditionalGrowthCandidates()}
+            </div>
+          </details>
         </div>
       `;
     }
-
     function renderCompanyDecisionSummary(company) {
       const decision = buyDecisionBoard[company.code] || {};
       const sufficiency = growthDataSufficiency.notes[company.code] || {};
@@ -6775,8 +6897,15 @@
       const todayChecks = tracking?.dailyChecks || leading.nextData || company.watch || [];
       const keepRules = tracking?.rules?.keep || [];
       const holdRules = tracking?.rules?.hold || [];
-      const priceHint = valuation.revenue2027E || valuation.net2027E
-        ? `2027E 매출 ${valuation.revenue2027E ? Number(valuation.revenue2027E).toLocaleString("ko-KR") : "확인 필요"} · 순이익 ${valuation.net2027E ? Number(valuation.net2027E).toLocaleString("ko-KR") : "확인 필요"}`
+      const toFiniteNumber = (value) => {
+        if (value === null || value === undefined || value === "") return null;
+        const parsed = Number(String(value).replace(/,/g, ""));
+        return Number.isFinite(parsed) ? parsed : null;
+      };
+      const revenue2027Number = toFiniteNumber(valuation.revenue2027E);
+      const net2027Number = toFiniteNumber(valuation.net2027E);
+      const priceHint = revenue2027Number !== null || net2027Number !== null
+        ? `2027E 매출 ${revenue2027Number !== null ? revenue2027Number.toLocaleString("ko-KR") : "확인 필요"} · 순이익 ${net2027Number !== null ? net2027Number.toLocaleString("ko-KR") : "확인 필요"}`
         : "미래가치 입력값 추가 확인 필요";
       return `
         <div class="research-grid">
@@ -6844,113 +6973,67 @@
           <div class="stat"><label>영업이익률</label><strong>${fmt(company.opMargin)}</strong></div>
           <div class="stat"><label>순이익률</label><strong>${fmt(company.netMargin)}</strong></div>
         </div>
-        <div class="section">
-          <h3>최근 3년 재무 추이</h3>
-          ${renderHistoryTable(company)}
-        </div>
-        <div class="section">
-          <h3>핵심 요약</h3>
-          ${renderExecutiveSummary(company)}
-        </div>
-        <div class="section">
-          <h3>성장주 조건 재점검</h3>
-          ${renderGrowthStockFit(company)}
-        </div>
-        <div class="section">
-          <h3>성장 렌즈 적용</h3>
-          ${renderCompanyGrowthLens(company)}
-        </div>
-        <div class="section">
-          <h3>성장성 추가 확인 자료</h3>
-          ${renderGrowthEvidenceSources(company)}
-        </div>
-        <div class="section">
-          <h3>성장 선행지표</h3>
-          ${renderGrowthLeadingIndicators(company)}
-        </div>
-        <div class="section">
-          <h3>성장성 판단</h3>
-          <p>${company.thesis}</p>
-        </div>
-        <div class="section">
-          <h3>상세 조사 메모</h3>
-          ${renderResearch(company)}
-        </div>
-        <div class="section">
-          <h3>추가 성장 자료</h3>
-          ${renderGrowthAdditions(company)}
-        </div>
-        <div class="section">
-          <h3>워치리스트 관리</h3>
-          ${renderWatchlistMeta(company)}
-        </div>
-        <div class="section">
-          <h3>리서치·공시 근거 보강</h3>
-          ${renderEvidenceDeepDive(company)}
-        </div>
-        ${renderCompanyDeepReview(company)}
-        <div class="section">
-          <h3>장기 보유 매력도</h3>
-          ${renderLongTermOwnership(company)}
-        </div>
-        <div class="section">
-          <h3>기본 사업과 성장 옵션 분리</h3>
-          ${renderGrowthLayers(company)}
-        </div>
-        <div class="section">
-          <h3>검증 자료 현황</h3>
-          ${renderVerifiedCompanyCoverage(company)}
-        </div>
-        <div class="section">
-          <h3>자료 보강 우선순위</h3>
-          ${renderDataGapAudit(company)}
-        </div>
-        <div class="section">
-          <h3>보조 점검 자료</h3>
-          ${renderBuyReadiness(company)}
-        </div>
-        <div class="section">
-          <h3>미래가치 필수 판단</h3>
-          ${renderValuationEssentials(company)}
-        </div>
-        <div class="section">
-          <h3>추정치 신뢰도</h3>
-          ${renderEstimateReliability(company)}
-        </div>
-        <div class="section">
-          <h3>업종 내 경쟁력</h3>
-          ${renderCompetitivePosition(company)}
-        </div>
-        <div class="section">
-          <h3>확인한 수치</h3>
-          <p>${company.facts}</p>
-        </div>
-        <div class="section">
-          <h3>남은 확인 과제</h3>
-          ${renderRemainingChecks(company)}
-        </div>
-        <div class="section">
-          <h3>남은 과제 조사 결과</h3>
-          ${renderRemainingResearch(company)}
-        </div>
-        <div class="section">
-          <h3>확인 결과 업데이트</h3>
-          ${renderCheckResults(company)}
-        </div>
-        <div class="section">
-          <h3>바로 확인한 과제</h3>
-          ${renderQuickCheckUpdates(company)}
-        </div>
-        <div class="section">
-          <h3>추가 자료</h3>
-          <div class="link-list">
-            ${company.links.map(([label, url]) => `<a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`).join("")}
-          </div>
+        <div class="section-stack">
+          <details class="detail-group" open>
+            <summary>재무와 핵심 판단</summary>
+            <div class="detail-group-body">
+              ${renderHistoryTable(company)}
+              ${renderExecutiveSummary(company)}
+              ${renderGrowthStockFit(company)}
+            </div>
+          </details>
+          <details class="detail-group" open>
+            <summary>미래가치와 매수 가능성</summary>
+            <div class="detail-group-body">
+              ${renderBuyReadiness(company)}
+              ${renderValuationEssentials(company)}
+              ${renderEstimateReliability(company)}
+            </div>
+          </details>
+          <details class="detail-group" open>
+            <summary>성장 지속성과 경쟁력</summary>
+            <div class="detail-group-body">
+              ${renderGrowthLeadingIndicators(company)}
+              ${renderCompetitivePosition(company)}
+              ${renderLongTermOwnership(company)}
+              ${renderGrowthLayers(company)}
+            </div>
+          </details>
+          <details class="detail-group">
+            <summary>리서치·공시 근거</summary>
+            <div class="detail-group-body">
+              ${renderGrowthEvidenceSources(company)}
+              ${renderResearch(company)}
+              ${renderEvidenceDeepDive(company)}
+              ${renderCompanyDeepReview(company)}
+              ${renderVerifiedCompanyCoverage(company)}
+            </div>
+          </details>
+          <details class="detail-group">
+            <summary>추가 확인 과제와 업데이트</summary>
+            <div class="detail-group-body">
+              ${renderDataGapAudit(company)}
+              ${renderRemainingChecks(company)}
+              ${renderRemainingResearch(company)}
+              ${renderCheckResults(company)}
+              ${renderQuickCheckUpdates(company)}
+              ${renderGrowthAdditions(company)}
+              ${renderWatchlistMeta(company)}
+            </div>
+          </details>
+          <details class="detail-group">
+            <summary>출처 링크</summary>
+            <div class="detail-group-body">
+              <p>${company.facts}</p>
+              <div class="link-list">
+                ${company.links.map(([label, url]) => `<a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`).join("")}
+              </div>
+            </div>
+          </details>
         </div>
         <div class="note">이 화면은 투자 판단을 돕는 리서치 정리용입니다. 실제 매수 전에는 최신 사업보고서, 분기보고서, 현금흐름표, 밸류에이션, 주가 반영 정도를 다시 확인해야 합니다.</div>
       `;
     }
-
     function renderDetail() {
       const company = companies.find((item) => item.code === state.selectedCode) || companies[0];
       if (!company) return;
@@ -6972,10 +7055,23 @@
       if (!target) return;
       target.innerHTML = renderCommonDashboard();
     }
+
+    function setDashboardView(view) {
+      state.view = view;
+      dashboardTabs.forEach((button) => button.classList.toggle("active", button.dataset.view === view));
+      tabPanels.forEach((panel) => {
+        panel.hidden = panel.id !== view;
+      });
+    }
+
+    dashboardTabs.forEach((button) => {
+      button.addEventListener("click", () => setDashboardView(button.dataset.view));
+    });
     rows.addEventListener("click", (event) => {
       const tr = event.target.closest("tr[data-code]");
       if (!tr) return;
       state.selectedCode = tr.dataset.code;
+      setDashboardView("companyView");
       renderRows();
     });
 
@@ -7014,9 +7110,14 @@
     renderRows();
     renderDetail();
     renderCommonDashboardPanel();
+    setDashboardView(state.view);
   </script>
 </body>
 </html>
+
+
+
+
 
 
 
