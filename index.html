@@ -109,6 +109,21 @@
       grid-template-columns: minmax(0, 1fr) 42px;
     }
 
+
+    .common-dashboard-panel {
+      max-width: 1480px;
+      width: calc(100% - clamp(36px, 6vw, 80px));
+      margin: 0 auto 40px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .common-dashboard-panel .detail-body {
+      max-height: none;
+    }
     .toolbar {
       background: var(--panel);
       border: 1px solid var(--line);
@@ -510,14 +525,7 @@
       white-space: nowrap;
     }
 
-
-    .view-switch {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px;
-      margin: 12px 0 10px;
-    }
-    .section {
+`r`n    .section {
       margin-top: 16px;
       padding-top: 14px;
       border-top: 1px solid var(--line);
@@ -622,6 +630,10 @@
 
       .date-pill {
         text-align: left;
+      }
+
+      .common-dashboard-panel {
+        width: calc(100% - 36px);
       }
 
       .toolbar {
@@ -729,6 +741,14 @@
         <div class="detail-body" id="detailBody"></div>
       </aside>
     </main>
+
+    <section class="common-dashboard-panel" aria-labelledby="commonDashboardTitle">
+      <div class="panel-title">
+        <h2 id="commonDashboardTitle">공통 대시보드</h2>
+        <span class="count">전체 후보 · 자동 추적 · 공통 판단표</span>
+      </div>
+      <div class="detail-body" id="commonDashboardBody"></div>
+    </section>
   </div>
 
   <script>
@@ -3352,7 +3372,6 @@
 
     const state = {
       filter: "all",
-      detailView: "company",
       industry: "all",
       search: "",
       selectedCode: sortByReviewPriority(companies)[0].code
@@ -6906,25 +6925,21 @@
       detailBody.innerHTML = `
         <div class="detail-head">
           <div>
-            <h2>${state.detailView === "common" ? "공통 대시보드" : company.name}</h2>
-            <div class="rank">${state.detailView === "common" ? "전체 후보 · 자동 추적 · 공통 판단표" : `${company.code} · ${company.industry} · 후보 ${company.rank}위`}</div>
+            <h2>${company.name}</h2>
+            <div class="rank">${company.code} · ${company.industry} · 후보 ${company.rank}위</div>
           </div>
-          <div class="score"><strong>${state.detailView === "common" ? "ALL" : company.score}</strong><span>${state.detailView === "common" ? "공통" : "검토 우선순위"}</span></div>
+          <div class="score"><strong>${company.score}</strong><span>검토 우선순위</span></div>
         </div>
-        <div class="view-switch">
-          <button class="filter-btn ${state.detailView === "company" ? "active" : ""}" type="button" data-detail-view="company">종목 상세</button>
-          <button class="filter-btn ${state.detailView === "common" ? "active" : ""}" type="button" data-detail-view="common">공통 대시보드</button>
-        </div>
-        ${state.detailView === "common" ? renderCommonDashboard() : `<div>${tagsFor(company)}</div>${renderCompanyDetail(company)}`}
+        <div>${tagsFor(company)}</div>
+        ${renderCompanyDetail(company)}
       `;
     }
 
-    detailBody.addEventListener("click", (event) => {
-      const button = event.target.closest("button[data-detail-view]");
-      if (!button) return;
-      state.detailView = button.dataset.detailView;
-      renderDetail();
-    });
+    function renderCommonDashboardPanel() {
+      const target = document.getElementById("commonDashboardBody");
+      if (!target) return;
+      target.innerHTML = renderCommonDashboard();
+    }
     rows.addEventListener("click", (event) => {
       const tr = event.target.closest("tr[data-code]");
       if (!tr) return;
@@ -6968,6 +6983,9 @@
   </script>
 </body>
 </html>
+
+
+
 
 
 
