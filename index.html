@@ -113,7 +113,7 @@
     .common-dashboard-panel {
       max-width: 1480px;
       width: calc(100% - clamp(36px, 6vw, 80px));
-      margin: 0 auto 40px;
+      margin: 22px auto 0;
       background: var(--panel);
       border: 1px solid var(--line);
       border-radius: 8px;
@@ -122,7 +122,8 @@
     }
 
     .common-dashboard-panel .detail-body {
-      max-height: none;
+      max-height: 520px;
+      overflow: auto;
     }
     .toolbar {
       background: var(--panel);
@@ -686,6 +687,14 @@
       </div>
     </header>
 
+    <section class="common-dashboard-panel" aria-labelledby="commonDashboardTitle">
+      <div class="panel-title">
+        <h2 id="commonDashboardTitle">공통 대시보드</h2>
+        <span class="count">전체 후보 · 자동 추적 · 공통 판단표</span>
+      </div>
+      <div class="detail-body" id="commonDashboardBody"></div>
+    </section>
+
     <main>
       <section class="list-column" id="listColumn">
         <button class="collapsed-rail" id="openListBtn" type="button" title="목록 펼치기">목록 펼치기</button>
@@ -741,14 +750,6 @@
         <div class="detail-body" id="detailBody"></div>
       </aside>
     </main>
-
-    <section class="common-dashboard-panel" aria-labelledby="commonDashboardTitle">
-      <div class="panel-title">
-        <h2 id="commonDashboardTitle">공통 대시보드</h2>
-        <span class="count">전체 후보 · 자동 추적 · 공통 판단표</span>
-      </div>
-      <div class="detail-body" id="commonDashboardBody"></div>
-    </section>
   </div>
 
   <script>
@@ -7016,6 +7017,9 @@
   </script>
 </body>
 </html>
+
+
+
 
 
 
