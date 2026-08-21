@@ -42,14 +42,15 @@
     }
 
     header {
-      background: #111827;
-      color: white;
-      padding: 24px clamp(18px, 3vw, 40px);
+      background: #ffffff;
+      color: var(--ink);
+      padding: 16px clamp(18px, 3vw, 40px);
+      border-bottom: 1px solid var(--line);
     }
 
     .header-row {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: space-between;
       gap: 24px;
       max-width: 1480px;
@@ -57,35 +58,24 @@
     }
 
     h1 {
-      margin: 0 0 8px;
-      font-size: clamp(24px, 3vw, 38px);
-      line-height: 1.18;
-      font-weight: 760;
-    }
-
-    .subtitle {
       margin: 0;
-      color: #cbd5e1;
-      max-width: 860px;
-      line-height: 1.6;
-      font-size: 15px;
-    }
+      font-size: clamp(22px, 2.4vw, 30px);
+      line-height: 1.2;
+      font-weight: 780;
+    }
 
     .date-pill {
-      min-width: 160px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      color: #e5e7eb;
-      padding: 10px 12px;
-      border-radius: 8px;
+      min-width: 150px;
+      color: var(--muted);
       text-align: right;
-      font-size: 13px;
+      font-size: 12px;
       line-height: 1.45;
     }
 
     .date-pill span {
       display: block;
       margin-top: 4px;
-      color: #cbd5e1;
+      color: var(--muted);
       font-size: 12px;
     }
 
@@ -526,7 +516,7 @@
 
     .detail-head {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: space-between;
       gap: 12px;
       margin-bottom: 12px;
@@ -559,7 +549,7 @@
 
     .score span {
       font-size: 12px;
-      color: #cbd5e1;
+      color: var(--muted);
     }
 
     .stat-grid {
@@ -791,7 +781,6 @@
       <div class="header-row">
         <div>
           <h1>성장주 대시보드</h1>
-          <p class="subtitle">매출 증가율, 영업이익률, 순이익률을 1차 기준으로 걸러낸 후보군입니다. 회사별 성장 논리, 확인해야 할 리스크, 공시와 리포트 링크를 함께 모아 동료와 같은 화면에서 검토할 수 있게 구성했습니다.</p>
         </div>
         <div class="date-pill">
           기준일<br />
@@ -7114,6 +7103,7 @@
   </script>
 </body>
 </html>
+
 
 
 
