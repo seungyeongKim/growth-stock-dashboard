@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-31T23:55:24",
+  "updatedAt": "2026-09-01T00:07:06",
   "sourcePolicy": "공식 공시와 회사 IR을 우선하고, 비공식 시세는 참고값으로만 표시",
   "targets": [
     {
@@ -45,7 +45,7 @@
       "dart": {
         "enabled": true,
         "items": [],
-        "note": "DART 수집 실패: fetch failed"
+        "note": "최근 14일 신규 DART 공시 없음"
       },
       "decision": {
         "status": "관찰 유지",
@@ -96,7 +96,7 @@
       "dart": {
         "enabled": true,
         "items": [],
-        "note": "DART 수집 실패: fetch failed"
+        "note": "최근 14일 신규 DART 공시 없음"
       },
       "decision": {
         "status": "관찰 유지",
@@ -147,7 +147,7 @@
       "dart": {
         "enabled": true,
         "items": [],
-        "note": "DART 수집 실패: fetch failed"
+        "note": "최근 14일 신규 DART 공시 없음"
       },
       "decision": {
         "status": "관찰 유지",
@@ -198,7 +198,7 @@
       "dart": {
         "enabled": true,
         "items": [],
-        "note": "DART 수집 실패: fetch failed"
+        "note": "최근 14일 신규 DART 공시 없음"
       },
       "decision": {
         "status": "관찰 유지",
@@ -249,7 +249,7 @@
       "dart": {
         "enabled": true,
         "items": [],
-        "note": "DART 수집 실패: fetch failed"
+        "note": "최근 14일 신규 DART 공시 없음"
       },
       "decision": {
         "status": "관찰 유지",
