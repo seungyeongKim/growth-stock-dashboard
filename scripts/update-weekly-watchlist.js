@@ -30,10 +30,37 @@ function daysAgo(days) {
   return date;
 }
 
-async function fetchJson(url) {
-  const response = await fetch(url, { headers: { "user-agent": "growth-stock-dashboard/1.0" } });
-  if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-  return response.json();
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function describeError(error) {
+  return [error?.message, error?.cause?.code, error?.cause?.message].filter(Boolean).join(" / ") || String(error);
+}
+
+async function fetchJson(url, { timeoutMs = 15000, retries = 1 } = {}) {
+  let lastError;
+  for (let attempt = 0; attempt <= retries; attempt += 1) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      const response = await fetch(url, {
+        headers: {
+          "accept": "application/json",
+          "user-agent": "growth-stock-dashboard/1.0"
+        },
+        signal: controller.signal
+      });
+      if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+      return response.json();
+    } catch (error) {
+      lastError = error;
+      if (attempt < retries) await sleep(1000 * (attempt + 1));
+    } finally {
+      clearTimeout(timeout);
+    }
+  }
+  throw new Error(describeError(lastError));
 }
 
 async function fetchQuote(target) {
@@ -51,36 +78,46 @@ async function fetchQuote(target) {
       note: "비공식 참고값"
     };
   } catch (error) {
-    return { ok: false, note: `시세 수집 실패: ${error.message}` };
+    return { ok: false, note: `시세 수집 실패: ${describeError(error)}` };
   }
 }
 
-async function fetchDart(target) {
-  if (!dartKey) return { ok: false, items: [], note: "DART_API_KEY 미설정" };
-  const url = new URL("https://opendart.fss.or.kr/api/list.json");
-  url.searchParams.set("crtfc_key", dartKey);
-  url.searchParams.set("bgn_de", ymd(daysAgo(7)));
-  url.searchParams.set("end_de", ymd(new Date()));
-  url.searchParams.set("corp_cls", "Y");
-  url.searchParams.set("page_count", "100");
-  url.searchParams.set("sort", "date");
-  url.searchParams.set("sort_mth", "desc");
-  try {
-    const data = await fetchJson(url);
-    const list = Array.isArray(data.list) ? data.list : [];
-    const items = list
-      .filter((item) => item.stock_code === target.code || item.corp_name === target.name || String(item.corp_name || "").includes(target.name))
-      .slice(0, 3)
-      .map((item) => ({
-        date: item.rcept_dt,
-        title: item.report_nm,
-        receiptNo: item.rcept_no,
-        url: item.rcept_no ? `https://dart.fss.or.kr/dsaf001/main.do?rcpNo=${item.rcept_no}` : "https://dart.fss.or.kr/"
-      }));
-    return { ok: true, items, note: items.length ? "최근 7일 신규 공시 확인" : "최근 7일 신규 공시 없음" };
-  } catch (error) {
-    return { ok: false, items: [], note: `DART 수집 실패: ${error.message}` };
+let dartListPromise;
+async function fetchDartList() {
+  if (!dartKey) return { ok: false, list: [], note: "DART_API_KEY 미설정" };
+  if (!dartListPromise) {
+    const url = new URL("https://opendart.fss.or.kr/api/list.json");
+    url.searchParams.set("crtfc_key", dartKey);
+    url.searchParams.set("bgn_de", ymd(daysAgo(7)));
+    url.searchParams.set("end_de", ymd(new Date()));
+    url.searchParams.set("corp_cls", "Y");
+    url.searchParams.set("page_count", "100");
+    url.searchParams.set("sort", "date");
+    url.searchParams.set("sort_mth", "desc");
+
+    dartListPromise = fetchJson(url).then((data) => {
+      if (data.status && !["000", "013"].includes(data.status)) {
+        throw new Error(`DART API ${data.status}: ${data.message || "unknown error"}`);
+      }
+      return { ok: true, list: Array.isArray(data.list) ? data.list : [], note: null };
+    }).catch((error) => ({ ok: false, list: [], note: `DART 수집 실패: ${describeError(error)}` }));
   }
+  return dartListPromise;
+}
+
+async function fetchDart(target) {
+  const dart = await fetchDartList();
+  if (!dart.ok) return { ok: false, items: [], note: dart.note };
+  const items = dart.list
+    .filter((item) => item.stock_code === target.code || item.corp_name === target.name || String(item.corp_name || "").includes(target.name))
+    .slice(0, 3)
+    .map((item) => ({
+      date: item.rcept_dt,
+      title: item.report_nm,
+      receiptNo: item.rcept_no,
+      url: item.rcept_no ? `https://dart.fss.or.kr/dsaf001/main.do?rcpNo=${item.rcept_no}` : "https://dart.fss.or.kr/"
+    }));
+  return { ok: true, items, note: items.length ? "최근 7일 신규 공시 확인" : "최근 7일 신규 공시 없음" };
 }
 
 function classify(target, quote, dart) {
