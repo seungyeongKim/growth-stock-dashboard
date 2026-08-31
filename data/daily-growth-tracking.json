@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-29T06:01:05",
+  "updatedAt": "2026-08-31T23:50:10",
   "sourcePolicy": "공식 공시와 회사 IR을 우선하고, 비공식 시세는 참고값으로만 표시",
   "targets": [
     {
@@ -36,16 +36,16 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "202,500",
-        "changeRate": "0.50",
+        "price": "196,100",
+        "changeRate": "-3.16",
         "marketCap": null,
-        "volume": "322,575",
+        "volume": "236,338",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
-        "enabled": false,
+        "enabled": true,
         "items": [],
-        "note": "DART_API_KEY가 없어 공시 자동 수집은 건너뜀"
+        "note": "최근 14일 신규 DART 공시 없음"
       },
       "decision": {
         "status": "관찰 유지",
@@ -87,16 +87,16 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "461,500",
-        "changeRate": "6.71",
+        "price": "426,000",
+        "changeRate": "-7.69",
         "marketCap": null,
-        "volume": "202,110",
+        "volume": "118,450",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
-        "enabled": false,
+        "enabled": true,
         "items": [],
-        "note": "DART_API_KEY가 없어 공시 자동 수집은 건너뜀"
+        "note": "최근 14일 신규 DART 공시 없음"
       },
       "decision": {
         "status": "관찰 유지",
@@ -138,16 +138,16 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "1,547,000",
-        "changeRate": "4.53",
+        "price": "1,531,000",
+        "changeRate": "-1.03",
         "marketCap": null,
-        "volume": "43,148",
+        "volume": "42,304",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
-        "enabled": false,
+        "enabled": true,
         "items": [],
-        "note": "DART_API_KEY가 없어 공시 자동 수집은 건너뜀"
+        "note": "최근 14일 신규 DART 공시 없음"
       },
       "decision": {
         "status": "관찰 유지",
@@ -189,16 +189,16 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "214,500",
-        "changeRate": "-2.28",
+        "price": "207,500",
+        "changeRate": "-3.26",
         "marketCap": null,
-        "volume": "545,317",
+        "volume": "465,844",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
-        "enabled": false,
+        "enabled": true,
         "items": [],
-        "note": "DART_API_KEY가 없어 공시 자동 수집은 건너뜀"
+        "note": "최근 14일 신규 DART 공시 없음"
       },
       "decision": {
         "status": "관찰 유지",
@@ -240,16 +240,16 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "53,300",
-        "changeRate": "8.44",
+        "price": "54,200",
+        "changeRate": "1.69",
         "marketCap": null,
-        "volume": "2,143,399",
+        "volume": "1,094,227",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
-        "enabled": false,
+        "enabled": true,
         "items": [],
-        "note": "DART_API_KEY가 없어 공시 자동 수집은 건너뜀"
+        "note": "최근 14일 신규 DART 공시 없음"
       },
       "decision": {
         "status": "관찰 유지",
