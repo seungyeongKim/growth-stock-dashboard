@@ -16,7 +16,11 @@ const required = [
   "financialSnapshots",
   "renderFinancialSnapshot",
   "valuationSnapshot",
-  "renderValuationSnapshot"
+  "renderValuationSnapshot",
+  "eventRadar",
+  "renderEventRadar",
+  "investmentDecision",
+  "AI 결론"
 ];
 const missing = required.filter((item) => !html.includes(item));
 if (missing.length) throw new Error(`Missing markers: ${missing.join(", ")}`);
@@ -52,5 +56,23 @@ for (const [code, record] of valuationRecords) {
   if (!record.status || !record.note) throw new Error(`${code}: invalid valuation snapshot`);
 }
 
-console.log(JSON.stringify({ script: "ok", requiredMarkers: required.length, decisionRecords: records.length, financialRecords: financialRecords.length, valuationRecords: valuationRecords.length, target }, null, 2));
+const eventPath = path.join(path.dirname(target), "data", "event-radar.json");
+const eventRadar = JSON.parse(fs.readFileSync(eventPath, "utf8"));
+const eventRecords = Object.entries(eventRadar.companies || {});
+if (eventRadar.updatedAt && eventRecords.length !== 20) throw new Error(`Expected 20 event radar records after collection, found ${eventRecords.length}`);
+for (const [code, record] of eventRecords) {
+  if (!record.status || !Array.isArray(record.items)) throw new Error(`${code}: invalid event radar record`);
+}
+
+const decisionPath = path.join(path.dirname(target), "data", "investment-decision.json");
+const decision = JSON.parse(fs.readFileSync(decisionPath, "utf8"));
+const decisionRecords = Object.entries(decision.companies || {});
+if (decision.updatedAt && decisionRecords.length !== 20) throw new Error(`Expected 20 investment decisions after collection, found ${decisionRecords.length}`);
+for (const [code, record] of decisionRecords) {
+  if (!allowedConclusions.has(record.verdict)) throw new Error(`${code}: invalid automated verdict`);
+  if (!Number.isFinite(record.totalScore) || !Number.isFinite(record.confidence)) throw new Error(`${code}: invalid automated decision scores`);
+  if (!Array.isArray(record.evidence) || !Array.isArray(record.minimumHumanChecks)) throw new Error(`${code}: incomplete automated decision evidence`);
+}
+
+console.log(JSON.stringify({ script: "ok", requiredMarkers: required.length, decisionRecords: records.length, financialRecords: financialRecords.length, valuationRecords: valuationRecords.length, eventRecords: eventRecords.length, automatedDecisions: decisionRecords.length, target }, null, 2));
 

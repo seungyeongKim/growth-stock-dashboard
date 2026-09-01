@@ -1,0 +1,17 @@
+{
+  "version": "1.0",
+  "purpose": "자동 판단은 투자 추천이 아니라 최신 재무·가격·근거 상태를 바탕으로 관찰 우선순위를 정하는 보조 도구다.",
+  "rules": {
+    "forwardEstimateCurrentDays": 45,
+    "forwardEstimateAgingDays": 90,
+    "deepReviewScore": 65,
+    "promotionScore": 72,
+    "buyConditionScore": 82
+  },
+  "guardrails": [
+    "추정치의 출처 또는 기준일이 45일을 넘기면 매수 조건 충족으로 자동 상향하지 않는다.",
+    "반기 매출이 늘어도 영업이익률이 전년 동기 대비 5%p 이상 하락하면 수익성 둔화 경보를 우선한다.",
+    "현재 가격 기반 P/E·P/S는 확정 실적 기준 참고값이며, 미래 이익 추정치와 혼용하지 않는다.",
+    "공시·실적 원문과 당일 가격은 최종 매수 전에 사용자가 직접 확인한다."
+  ]
+}

@@ -1,0 +1,879 @@
+{
+  "updatedAt": "2026-09-01T21:05:34",
+  "methodology": "자동 판단은 투자 추천이 아니라 최신 재무·가격·근거 상태를 바탕으로 관찰 우선순위를 정하는 보조 도구다.",
+  "guardrails": [
+    "추정치의 출처 또는 기준일이 45일을 넘기면 매수 조건 충족으로 자동 상향하지 않는다.",
+    "반기 매출이 늘어도 영업이익률이 전년 동기 대비 5%p 이상 하락하면 수익성 둔화 경보를 우선한다.",
+    "현재 가격 기반 P/E·P/S는 확정 실적 기준 참고값이며, 미래 이익 추정치와 혼용하지 않는다.",
+    "공시·실적 원문과 당일 가격은 최종 매수 전에 사용자가 직접 확인한다."
+  ],
+  "counts": {
+    "관찰": 7,
+    "관심 제외": 6,
+    "심층 검토": 7
+  },
+  "companies": {
+    "145020": {
+      "code": "145020",
+      "name": "휴젤",
+      "verdict": "관찰",
+      "totalScore": 62,
+      "confidence": 76,
+      "score": {
+        "financialQuality": 80,
+        "growthMomentum": 40,
+        "valuationQuality": 70,
+        "riskAdjusted": 20,
+        "evidenceStrength": 87
+      },
+      "evidence": [
+        "실제 재무: 수익성 둔화 경보",
+        "가격 대비 확정 실적: 성장 반영·검토 가능",
+        "추정치 자료: 기준일 68일 · 갱신 필요",
+        "최근 수집 범위에서 주요 DART 공시 없음"
+      ],
+      "positiveScenario": "미국 직판 매출이 비용 증가를 넘어선다.",
+      "counterCase": "판관비가 늘고 가격 경쟁이 심해진다.",
+      "invalidation": "핵심 지표 악화",
+      "minimumHumanChecks": [
+        "미국 매출",
+        "국가별 판매",
+        "판관비율"
+      ],
+      "limitations": [
+        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
+      ],
+      "freshness": {
+        "financial": "2026-09-01T21:05:38",
+        "valuation": "2026-09-01T21:05:34",
+        "estimate": "기준일 68일 · 갱신 필요"
+      },
+      "sourceStatus": {
+        "financial": "OpenDART 공식 재무",
+        "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
+        "estimate": "갱신 필요 또는 출처 재확인",
+        "disclosure": "OpenDART 최근 공시"
+      }
+    },
+    "192080": {
+      "code": "192080",
+      "name": "더블유게임즈",
+      "verdict": "관심 제외",
+      "totalScore": 82,
+      "confidence": 71,
+      "score": {
+        "financialQuality": 80,
+        "growthMomentum": 85,
+        "valuationQuality": 90,
+        "riskAdjusted": 62,
+        "evidenceStrength": 87
+      },
+      "evidence": [
+        "실제 재무: 성장 가속·유지",
+        "가격 대비 확정 실적: 확정 실적 대비 여유",
+        "추정치 자료: 기준일 68일 · 갱신 필요",
+        "최근 수집 범위에서 주요 DART 공시 없음"
+      ],
+      "positiveScenario": "아이게이밍 매출과 결제 유저가 의미 있게 늘어난다.",
+      "counterCase": "소셜카지노 성장 정체가 지속된다.",
+      "invalidation": "핵심 지표 악화",
+      "minimumHumanChecks": [
+        "아이게이밍 매출",
+        "결제 유저",
+        "유저 잔존율"
+      ],
+      "limitations": [
+        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
+      ],
+      "freshness": {
+        "financial": "2026-09-01T21:05:38",
+        "valuation": "2026-09-01T21:05:34",
+        "estimate": "기준일 68일 · 갱신 필요"
+      },
+      "sourceStatus": {
+        "financial": "OpenDART 공식 재무",
+        "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
+        "estimate": "갱신 필요 또는 출처 재확인",
+        "disclosure": "OpenDART 최근 공시"
+      }
+    },
+    "196170": {
+      "code": "196170",
+      "name": "알테오젠",
+      "verdict": "관찰",
+      "totalScore": 64,
+      "confidence": 77,
+      "score": {
+        "financialQuality": 85,
+        "growthMomentum": 85,
+        "valuationQuality": 25,
+        "riskAdjusted": 12,
+        "evidenceStrength": 87
+      },
+      "evidence": [
+        "실제 재무: 성장 가속·유지",
+        "가격 대비 확정 실적: 높은 미래 기대 반영",
+        "추정치 자료: 기준일 68일 · 갱신 필요",
+        "최근 수집 범위에서 주요 DART 공시 없음"
+      ],
+      "positiveScenario": "키트루다SC 전환과 로열티 인식이 계획대로 진행된다.",
+      "counterCase": "상업화가 늦어지거나 로열티 조건이 기대를 밑돈다.",
+      "invalidation": "핵심 지표 악화",
+      "minimumHumanChecks": [
+        "전환율",
+        "J-code 이후 매출",
+        "로열티 인식"
+      ],
+      "limitations": [
+        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
+      ],
+      "freshness": {
+        "financial": "2026-09-01T21:05:38",
+        "valuation": "2026-09-01T21:05:34",
+        "estimate": "기준일 68일 · 갱신 필요"
+      },
+      "sourceStatus": {
+        "financial": "OpenDART 공식 재무",
+        "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
+        "estimate": "갱신 필요 또는 출처 재확인",
+        "disclosure": "OpenDART 최근 공시"
+      }
+    },
+    "206640": {
+      "code": "206640",
+      "name": "바디텍메드",
+      "verdict": "관심 제외",
+      "totalScore": 63,
+      "confidence": 71,
+      "score": {
+        "financialQuality": 67,
+        "growthMomentum": 40,
+        "valuationQuality": 90,
+        "riskAdjusted": 29,
+        "evidenceStrength": 87
+      },
+      "evidence": [
+        "실제 재무: 수익성 둔화 경보",
+        "가격 대비 확정 실적: 확정 실적 대비 여유",
+        "추정치 자료: 기준일 68일 · 갱신 필요",
+        "최근 수집 범위에서 주요 DART 공시 없음"
+      ],
+      "positiveScenario": "설치 장비와 카트리지 매출이 함께 늘어난다.",
+      "counterCase": "진단기기 가격 경쟁이 심해진다.",
+      "invalidation": "핵심 지표 악화",
+      "minimumHumanChecks": [
+        "설치 장비",
+        "카트리지 매출",
+        "국가별 매출"
+      ],
+      "limitations": [
+        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
+      ],
+      "freshness": {
+        "financial": "2026-09-01T21:05:38",
+        "valuation": "2026-09-01T21:05:34",
+        "estimate": "기준일 68일 · 갱신 필요"
+      },
+      "sourceStatus": {
+        "financial": "OpenDART 공식 재무",
+        "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
+        "estimate": "갱신 필요 또는 출처 재확인",
+        "disclosure": "OpenDART 최근 공시"
+      }
+    },
+    "207940": {
+      "code": "207940",
+      "name": "삼성바이오로직스",
+      "verdict": "관찰",
+      "totalScore": 63,
+      "confidence": 78,
+      "score": {
+        "financialQuality": 75,
+        "growthMomentum": 65,
+        "valuationQuality": 50,
+        "riskAdjusted": 28,
+        "evidenceStrength": 87
+      },
+      "evidence": [
+        "실제 재무: 성장 유지·확인",
+        "가격 대비 확정 실적: 실적과 가격 동시 확인",
+        "추정치 자료: 기준일 68일 · 갱신 필요",
+        "최근 수집 범위에서 주요 DART 공시 없음"
+      ],
+      "positiveScenario": "신규 수주와 공장 가동이 예정대로 매출을 만든다.",
+      "counterCase": "수주가 정체되고 램프업 비용이 커진다.",
+      "invalidation": "핵심 지표 악화",
+      "minimumHumanChecks": [
+        "신규 수주",
+        "5공장 가동",
+        "록빌 매출"
+      ],
+      "limitations": [
+        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
+      ],
+      "freshness": {
+        "financial": "2026-09-01T21:05:38",
+        "valuation": "2026-09-01T21:05:34",
+        "estimate": "기준일 68일 · 갱신 필요"
+      },
+      "sourceStatus": {
+        "financial": "OpenDART 공식 재무",
+        "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
+        "estimate": "갱신 필요 또는 출처 재확인",
+        "disclosure": "OpenDART 최근 공시"
+      }
+    },
+    "214150": {
+      "code": "214150",
+      "name": "클래시스",
+      "verdict": "관찰",
+      "totalScore": 64,
+      "confidence": 81,
+      "score": {
+        "financialQuality": 85,
+        "growthMomentum": 40,
+        "valuationQuality": 75,
+        "riskAdjusted": 19,
+        "evidenceStrength": 87
+      },
+      "evidence": [
+        "실제 재무: 수익성 둔화 경보",
+        "가격 대비 확정 실적: 성장 반영·검토 가능",
+        "추정치 자료: 기준일 68일 · 갱신 필요",
+        "최근 수집 범위에서 주요 DART 공시 없음"
+      ],
+      "positiveScenario": "소모품 매출과 브라질 회복이 확인된다.",
+      "counterCase": "소모품 비중과 해외 성장률이 계속 떨어진다.",
+      "invalidation": "핵심 지표 악화",
+      "minimumHumanChecks": [
+        "소모품 매출",
+        "브라질 매출",
+        "영업이익률"
+      ],
+      "limitations": [
+        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
+      ],
+      "freshness": {
+        "financial": "2026-09-01T21:05:38",
+        "valuation": "2026-09-01T21:05:34",
+        "estimate": "기준일 68일 · 갱신 필요"
+      },
+      "sourceStatus": {
+        "financial": "OpenDART 공식 재무",
+        "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
+        "estimate": "갱신 필요 또는 출처 재확인",
+        "disclosure": "OpenDART 최근 공시"
+      }
+    },
+    "214450": {
+      "code": "214450",
+      "name": "파마리서치",
+      "verdict": "심층 검토",
+      "totalScore": 77,
+      "confidence": 86,
+      "score": {
+        "financialQuality": 85,
+        "growthMomentum": 85,
+        "valuationQuality": 65,
+        "riskAdjusted": 52,
+        "evidenceStrength": 87
+      },
+      "evidence": [
+        "실제 재무: 성장 가속·유지",
+        "가격 대비 확정 실적: 성장 반영·검토 가능",
+        "추정치 자료: 기준일 68일 · 갱신 필요",
+        "최근 수집 범위에서 주요 DART 공시 없음"
+      ],
+      "positiveScenario": "해외 재주문과 의료기기 수출이 반복 매출로 이어진다.",
+      "counterCase": "수출이 일회성에 그치거나 영업이익률이 35%를 밑돈다.",
+      "invalidation": "핵심 지표 악화",
+      "minimumHumanChecks": [
+        "국가별 수출",
+        "재주문 지표",
+        "영업이익률"
+      ],
+      "limitations": [
+        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
+      ],
+      "freshness": {
+        "financial": "2026-09-01T21:05:38",
+        "valuation": "2026-09-01T21:05:34",
+        "estimate": "기준일 68일 · 갱신 필요"
+      },
+      "sourceStatus": {
+        "financial": "OpenDART 공식 재무",
+        "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
+        "estimate": "갱신 필요 또는 출처 재확인",
+        "disclosure": "OpenDART 최근 공시"
+      }
+    },
+    "251970": {
+      "code": "251970",
+      "name": "펌텍코리아",
+      "verdict": "관심 제외",
+      "totalScore": 58,
+      "confidence": 72,
+      "score": {
+        "financialQuality": 60,
+        "growthMomentum": 65,
+        "valuationQuality": 35,
+        "riskAdjusted": 44,
+        "evidenceStrength": 87
+      },
+      "evidence": [
+        "실제 재무: 성장 유지·확인",
+        "가격 대비 확정 실적: 순이익 기준 확인 필요",
+        "추정치 자료: 기준일 68일 · 갱신 필요",
+        "최근 수집 범위에서 주요 DART 공시 없음"
+      ],
+      "positiveScenario": "주요 고객 주문 증가가 신공장 가동률로 이어진다.",
+      "counterCase": "고정비 부담과 고객 재고 조정이 이익률을 누른다.",
+      "invalidation": "핵심 지표 악화",
+      "minimumHumanChecks": [
+        "신공장 가동률",
+        "주요 고객 주문",
+        "영업이익률"
+      ],
+      "limitations": [
+        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
+      ],
+      "freshness": {
+        "financial": "2026-09-01T21:05:38",
+        "valuation": "2026-09-01T21:05:34",
+        "estimate": "기준일 68일 · 갱신 필요"
+      },
+      "sourceStatus": {
+        "financial": "OpenDART 공식 재무",
+        "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
+        "estimate": "갱신 필요 또는 출처 재확인",
+        "disclosure": "OpenDART 최근 공시"
+      }
+    },
+    "257720": {
+      "code": "257720",
+      "name": "실리콘투",
+      "verdict": "심층 검토",
+      "totalScore": 75,
+      "confidence": 83,
+      "score": {
+        "financialQuality": 77,
+        "growthMomentum": 85,
+        "valuationQuality": 70,
+        "riskAdjusted": 45,
+        "evidenceStrength": 87
+      },
+      "evidence": [
+        "실제 재무: 성장 가속·유지",
+        "가격 대비 확정 실적: 성장 반영·검토 가능",
+        "추정치 자료: 기준일 68일 · 갱신 필요",
+        "최근 수집 범위에서 주요 DART 공시 없음"
+      ],
+      "positiveScenario": "매출 성장과 함께 재고·매출채권 회전이 안정된다.",
+      "counterCase": "매출채권 회전 악화가 영업현금흐름 훼손으로 이어진다.",
+      "invalidation": "핵심 지표 악화",
+      "minimumHumanChecks": [
+        "재고 회전",
+        "매출채권",
+        "영업현금흐름"
+      ],
+      "limitations": [
+        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
+      ],
+      "freshness": {
+        "financial": "2026-09-01T21:05:38",
+        "valuation": "2026-09-01T21:05:34",
+        "estimate": "기준일 68일 · 갱신 필요"
+      },
+      "sourceStatus": {
+        "financial": "OpenDART 공식 재무",
+        "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
+        "estimate": "갱신 필요 또는 출처 재확인",
+        "disclosure": "OpenDART 최근 공시"
+      }
+    },
+    "267260": {
+      "code": "267260",
+      "name": "HD현대일렉트릭",
+      "verdict": "관찰",
+      "totalScore": 70,
+      "confidence": 80,
+      "score": {
+        "financialQuality": 82,
+        "growthMomentum": 85,
+        "valuationQuality": 55,
+        "riskAdjusted": 20,
+        "evidenceStrength": 87
+      },
+      "evidence": [
+        "실제 재무: 성장 가속·유지",
+        "가격 대비 확정 실적: 실적과 가격 동시 확인",
+        "추정치 자료: 기준일 68일 · 갱신 필요",
+        "최근 수집 범위에서 주요 DART 공시 없음"
+      ],
+      "positiveScenario": "고마진 수주와 판가가 유지되며 공장 증설이 매출로 전환된다.",
+      "counterCase": "수주 마진 하락 또는 성장률 둔화가 나타난다.",
+      "invalidation": "핵심 지표 악화",
+      "minimumHumanChecks": [
+        "수주 마진",
+        "북미 수주",
+        "미국 공장 진행"
+      ],
+      "limitations": [
+        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
+      ],
+      "freshness": {
+        "financial": "2026-09-01T21:05:38",
+        "valuation": "2026-09-01T21:05:34",
+        "estimate": "기준일 68일 · 갱신 필요"
+      },
+      "sourceStatus": {
+        "financial": "OpenDART 공식 재무",
+        "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
+        "estimate": "갱신 필요 또는 출처 재확인",
+        "disclosure": "OpenDART 최근 공시"
+      }
+    },
+    "278470": {
+      "code": "278470",
+      "name": "에이피알",
+      "verdict": "관찰",
+      "totalScore": 64,
+      "confidence": 83,
+      "score": {
+        "financialQuality": 82,
+        "growthMomentum": 85,
+        "valuationQuality": 25,
+        "riskAdjusted": 18,
+        "evidenceStrength": 87
+      },
+      "evidence": [
+        "실제 재무: 성장 가속·유지",
+        "가격 대비 확정 실적: 높은 미래 기대 반영",
+        "추정치 자료: 기준일 68일 · 갱신 필요",
+        "최근 수집 범위에서 주요 DART 공시 없음"
+      ],
+      "positiveScenario": "미국 고성장과 20%대 이익률이 동시에 유지된다.",
+      "counterCase": "성장률이 둔화되거나 재고·마케팅비가 급증한다.",
+      "invalidation": "핵심 지표 악화",
+      "minimumHumanChecks": [
+        "미국 매출",
+        "마케팅비율",
+        "재고"
+      ],
+      "limitations": [
+        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
+      ],
+      "freshness": {
+        "financial": "2026-09-01T21:05:38",
+        "valuation": "2026-09-01T21:05:34",
+        "estimate": "기준일 68일 · 갱신 필요"
+      },
+      "sourceStatus": {
+        "financial": "OpenDART 공식 재무",
+        "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
+        "estimate": "갱신 필요 또는 출처 재확인",
+        "disclosure": "OpenDART 최근 공시"
+      }
+    },
+    "062040": {
+      "code": "062040",
+      "name": "산일전기",
+      "verdict": "심층 검토",
+      "totalScore": 73,
+      "confidence": 79,
+      "score": {
+        "financialQuality": 85,
+        "growthMomentum": 85,
+        "valuationQuality": 55,
+        "riskAdjusted": 56,
+        "evidenceStrength": 72
+      },
+      "evidence": [
+        "실제 재무: 성장 가속·유지",
+        "가격 대비 확정 실적: 실적과 가격 동시 확인",
+        "추정치 자료: 기준일 68일 · 갱신 필요",
+        "최근 수집 범위에서 주요 DART 공시 없음"
+      ],
+      "positiveScenario": "수주잔고가 늘고 고마진 수주가 매출로 전환된다.",
+      "counterCase": "수주잔고가 줄거나 영업이익률이 30% 아래로 떨어진다.",
+      "invalidation": "핵심 지표 악화",
+      "minimumHumanChecks": [
+        "분기 수주잔고",
+        "영업이익률",
+        "2027E 이익 추정치"
+      ],
+      "limitations": [
+        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "공식 재무 일부 기간이 누락되어 비교 신뢰도가 낮음",
+        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
+      ],
+      "freshness": {
+        "financial": "2026-09-01T21:05:38",
+        "valuation": "2026-09-01T21:05:34",
+        "estimate": "기준일 68일 · 갱신 필요"
+      },
+      "sourceStatus": {
+        "financial": "OpenDART 공식 재무",
+        "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
+        "estimate": "갱신 필요 또는 출처 재확인",
+        "disclosure": "OpenDART 최근 공시"
+      }
+    },
+    "003230": {
+      "code": "003230",
+      "name": "삼양식품",
+      "verdict": "심층 검토",
+      "totalScore": 75,
+      "confidence": 85,
+      "score": {
+        "financialQuality": 82,
+        "growthMomentum": 85,
+        "valuationQuality": 70,
+        "riskAdjusted": 34,
+        "evidenceStrength": 87
+      },
+      "evidence": [
+        "실제 재무: 성장 가속·유지",
+        "가격 대비 확정 실적: 성장 반영·검토 가능",
+        "추정치 자료: 기준일 68일 · 갱신 필요",
+        "지분변동: 임원ㆍ주요주주특정증권등소유상황보고서"
+      ],
+      "positiveScenario": "밀양2공장이 해외 판매 증가를 흡수하며 가동률을 높인다.",
+      "counterCase": "증설 후 재고가 늘고 지역별 성장률이 꺾인다.",
+      "invalidation": "핵심 지표 악화",
+      "minimumHumanChecks": [
+        "해외 매출 성장률",
+        "재고 회전",
+        "공장 가동률"
+      ],
+      "limitations": [
+        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요",
+        "공시 점검: 지분변동: 임원ㆍ주요주주특정증권등소유상황보고서"
+      ],
+      "freshness": {
+        "financial": "2026-09-01T21:05:38",
+        "valuation": "2026-09-01T21:05:34",
+        "estimate": "기준일 68일 · 갱신 필요"
+      },
+      "sourceStatus": {
+        "financial": "OpenDART 공식 재무",
+        "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
+        "estimate": "갱신 필요 또는 출처 재확인",
+        "disclosure": "OpenDART 최근 공시"
+      }
+    },
+    "010120": {
+      "code": "010120",
+      "name": "LS ELECTRIC",
+      "verdict": "심층 검토",
+      "totalScore": 65,
+      "confidence": 84,
+      "score": {
+        "financialQuality": 48,
+        "growthMomentum": 85,
+        "valuationQuality": 60,
+        "riskAdjusted": 48,
+        "evidenceStrength": 87
+      },
+      "evidence": [
+        "실제 재무: 성장 가속·유지",
+        "가격 대비 확정 실적: 실적과 가격 동시 확인",
+        "추정치 자료: 기준일 68일 · 갱신 필요",
+        "최근 수집 범위에서 주요 DART 공시 없음"
+      ],
+      "positiveScenario": "수주잔고가 매출로 전환되고 신규 수주가 유지된다.",
+      "counterCase": "수주 공백이나 원가 상승으로 마진이 훼손된다.",
+      "invalidation": "핵심 지표 악화",
+      "minimumHumanChecks": [
+        "수주잔고",
+        "신규수주",
+        "영업이익률"
+      ],
+      "limitations": [
+        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
+      ],
+      "freshness": {
+        "financial": "2026-09-01T21:05:38",
+        "valuation": "2026-09-01T21:05:34",
+        "estimate": "기준일 68일 · 갱신 필요"
+      },
+      "sourceStatus": {
+        "financial": "OpenDART 공식 재무",
+        "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
+        "estimate": "갱신 필요 또는 출처 재확인",
+        "disclosure": "OpenDART 최근 공시"
+      }
+    },
+    "058470": {
+      "code": "058470",
+      "name": "리노공업",
+      "verdict": "심층 검토",
+      "totalScore": 73,
+      "confidence": 82,
+      "score": {
+        "financialQuality": 85,
+        "growthMomentum": 85,
+        "valuationQuality": 55,
+        "riskAdjusted": 40,
+        "evidenceStrength": 87
+      },
+      "evidence": [
+        "실제 재무: 성장 가속·유지",
+        "가격 대비 확정 실적: 실적과 가격 동시 확인",
+        "추정치 자료: 기준일 68일 · 갱신 필요",
+        "최근 수집 범위에서 주요 DART 공시 없음"
+      ],
+      "positiveScenario": "신공장 가동률 상승과 AI 고객 수요가 이어진다.",
+      "counterCase": "고객 개발 사이클이 늦어지고 신공장 비용이 앞선다.",
+      "invalidation": "핵심 지표 악화",
+      "minimumHumanChecks": [
+        "신공장 가동률",
+        "AI 고객 수요",
+        "영업이익률"
+      ],
+      "limitations": [
+        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
+      ],
+      "freshness": {
+        "financial": "2026-09-01T21:05:38",
+        "valuation": "2026-09-01T21:05:34",
+        "estimate": "기준일 68일 · 갱신 필요"
+      },
+      "sourceStatus": {
+        "financial": "OpenDART 공식 재무",
+        "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
+        "estimate": "갱신 필요 또는 출처 재확인",
+        "disclosure": "OpenDART 최근 공시"
+      }
+    },
+    "000660": {
+      "code": "000660",
+      "name": "SK하이닉스",
+      "verdict": "심층 검토",
+      "totalScore": 72,
+      "confidence": 79,
+      "score": {
+        "financialQuality": 85,
+        "growthMomentum": 85,
+        "valuationQuality": 70,
+        "riskAdjusted": 8,
+        "evidenceStrength": 87
+      },
+      "evidence": [
+        "실제 재무: 성장 가속·유지",
+        "가격 대비 확정 실적: 성장 반영·검토 가능",
+        "추정치 자료: 기준일 68일 · 갱신 필요",
+        "최근 수집 범위에서 주요 DART 공시 없음"
+      ],
+      "positiveScenario": "HBM4 공급 부족과 이익 추정치 상향이 이어진다.",
+      "counterCase": "메모리 가격이 피크아웃하거나 HBM 경쟁이 심해진다.",
+      "invalidation": "핵심 지표 악화",
+      "minimumHumanChecks": [
+        "HBM ASP",
+        "HBM4 공급",
+        "2027E 이익 상향"
+      ],
+      "limitations": [
+        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
+      ],
+      "freshness": {
+        "financial": "2026-09-01T21:05:38",
+        "valuation": "2026-09-01T21:05:34",
+        "estimate": "기준일 68일 · 갱신 필요"
+      },
+      "sourceStatus": {
+        "financial": "OpenDART 공식 재무",
+        "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
+        "estimate": "갱신 필요 또는 출처 재확인",
+        "disclosure": "OpenDART 최근 공시"
+      }
+    },
+    "064760": {
+      "code": "064760",
+      "name": "티씨케이",
+      "verdict": "관찰",
+      "totalScore": 71,
+      "confidence": 76,
+      "score": {
+        "financialQuality": 72,
+        "growthMomentum": 85,
+        "valuationQuality": 55,
+        "riskAdjusted": 47,
+        "evidenceStrength": 87
+      },
+      "evidence": [
+        "실제 재무: 성장 가속·유지",
+        "가격 대비 확정 실적: 실적과 가격 동시 확인",
+        "추정치 자료: 기준일 68일 · 갱신 필요",
+        "최근 수집 범위에서 주요 DART 공시 없음"
+      ],
+      "positiveScenario": "고객 투자 회복과 신규 매출 인식이 동반된다.",
+      "counterCase": "고객사 투자 지연으로 마진 회복이 늦어진다.",
+      "invalidation": "핵심 지표 악화",
+      "minimumHumanChecks": [
+        "고객사 투자",
+        "공장 가동률",
+        "매출총이익률"
+      ],
+      "limitations": [
+        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
+      ],
+      "freshness": {
+        "financial": "2026-09-01T21:05:38",
+        "valuation": "2026-09-01T21:05:34",
+        "estimate": "기준일 68일 · 갱신 필요"
+      },
+      "sourceStatus": {
+        "financial": "OpenDART 공식 재무",
+        "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
+        "estimate": "갱신 필요 또는 출처 재확인",
+        "disclosure": "OpenDART 최근 공시"
+      }
+    },
+    "051360": {
+      "code": "051360",
+      "name": "토비스",
+      "verdict": "관심 제외",
+      "totalScore": 60,
+      "confidence": 73,
+      "score": {
+        "financialQuality": 48,
+        "growthMomentum": 65,
+        "valuationQuality": 60,
+        "riskAdjusted": 45,
+        "evidenceStrength": 87
+      },
+      "evidence": [
+        "실제 재무: 성장 유지·확인",
+        "가격 대비 확정 실적: 실적과 가격 동시 확인",
+        "추정치 자료: 기준일 68일 · 갱신 필요",
+        "최근 수집 범위에서 주요 DART 공시 없음"
+      ],
+      "positiveScenario": "신규 고객과 사업부별 이익이 확인된다.",
+      "counterCase": "전장 단가 압박과 실적 변동성이 커진다.",
+      "invalidation": "핵심 지표 악화",
+      "minimumHumanChecks": [
+        "사업부별 이익",
+        "전장 고객",
+        "카지노 수주"
+      ],
+      "limitations": [
+        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
+      ],
+      "freshness": {
+        "financial": "2026-09-01T21:05:38",
+        "valuation": "2026-09-01T21:05:34",
+        "estimate": "기준일 68일 · 갱신 필요"
+      },
+      "sourceStatus": {
+        "financial": "OpenDART 공식 재무",
+        "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
+        "estimate": "갱신 필요 또는 출처 재확인",
+        "disclosure": "OpenDART 최근 공시"
+      }
+    },
+    "053800": {
+      "code": "053800",
+      "name": "안랩",
+      "verdict": "관심 제외",
+      "totalScore": 64,
+      "confidence": 70,
+      "score": {
+        "financialQuality": 67,
+        "growthMomentum": 65,
+        "valuationQuality": 50,
+        "riskAdjusted": 50,
+        "evidenceStrength": 87
+      },
+      "evidence": [
+        "실제 재무: 성장 유지·확인",
+        "가격 대비 확정 실적: 실적과 가격 동시 확인",
+        "추정치 자료: 기준일 68일 · 갱신 필요",
+        "최근 수집 범위에서 주요 DART 공시 없음"
+      ],
+      "positiveScenario": "ARR과 중동 매출이 늘고 대형 수주가 잡힌다.",
+      "counterCase": "성장률 둔화가 이어진다.",
+      "invalidation": "핵심 지표 악화",
+      "minimumHumanChecks": [
+        "ARR",
+        "중동 매출",
+        "제로트러스트 수주"
+      ],
+      "limitations": [
+        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
+      ],
+      "freshness": {
+        "financial": "2026-09-01T21:05:38",
+        "valuation": "2026-09-01T21:05:34",
+        "estimate": "기준일 68일 · 갱신 필요"
+      },
+      "sourceStatus": {
+        "financial": "OpenDART 공식 재무",
+        "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
+        "estimate": "갱신 필요 또는 출처 재확인",
+        "disclosure": "OpenDART 최근 공시"
+      }
+    },
+    "018290": {
+      "code": "018290",
+      "name": "브이티",
+      "verdict": "관심 제외",
+      "totalScore": 56,
+      "confidence": 67,
+      "score": {
+        "financialQuality": 62,
+        "growthMomentum": 40,
+        "valuationQuality": 60,
+        "riskAdjusted": 27,
+        "evidenceStrength": 87
+      },
+      "evidence": [
+        "실제 재무: 수익성 둔화 경보",
+        "가격 대비 확정 실적: 실적과 가격 동시 확인",
+        "추정치 자료: 기준일 68일 · 갱신 필요",
+        "최근 수집 범위에서 주요 DART 공시 없음"
+      ],
+      "positiveScenario": "PDRN 판매와 미국·유럽 매출이 재가속한다.",
+      "counterCase": "후속 히트제품이 없고 마케팅비 회수가 늦어진다.",
+      "invalidation": "핵심 지표 악화",
+      "minimumHumanChecks": [
+        "PDRN 판매",
+        "미국·유럽 매출",
+        "영업이익률"
+      ],
+      "limitations": [
+        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
+      ],
+      "freshness": {
+        "financial": "2026-09-01T21:05:38",
+        "valuation": "2026-09-01T21:05:34",
+        "estimate": "기준일 68일 · 갱신 필요"
+      },
+      "sourceStatus": {
+        "financial": "OpenDART 공식 재무",
+        "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
+        "estimate": "갱신 필요 또는 출처 재확인",
+        "disclosure": "OpenDART 최근 공시"
+      }
+    }
+  }
+}

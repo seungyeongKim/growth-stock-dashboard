@@ -70,11 +70,23 @@ jobs:
         if: steps.scope.outputs.scope == 'all' || steps.scope.outputs.scope == 'weekly'
         run: node scripts/update-valuation-snapshot.js
 
+      - name: Build DART disclosure event radar
+        run: node scripts/build-event-radar.js
+
+      - name: Build investment decision summary
+        run: node scripts/build-investment-decision.js
+
       - name: Apply DART financial snapshots
         run: node scripts/apply-financial-snapshots.js
 
       - name: Apply current-price valuation snapshot
         run: node scripts/apply-valuation-snapshot.js
+
+      - name: Apply DART disclosure event radar
+        run: node scripts/apply-event-radar.js
+
+      - name: Apply investment decision summary
+        run: node scripts/apply-investment-decision.js
 
       - name: Apply company decision model
         run: node scripts/apply-company-decision-model.js
