@@ -60,6 +60,15 @@ jobs:
         if: steps.scope.outputs.scope == 'all' || steps.scope.outputs.scope == 'weekly'
         run: node scripts/apply-weekly-watchlist.js index.html data/weekly-growth-watchlist.json
 
+      - name: Update 20-stock DART financial snapshots
+        if: steps.scope.outputs.scope == 'all' || steps.scope.outputs.scope == 'weekly'
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: node scripts/update-financial-snapshots.js
+
+      - name: Apply DART financial snapshots
+        run: node scripts/apply-financial-snapshots.js
+
       - name: Apply company decision model
         run: node scripts/apply-company-decision-model.js
 

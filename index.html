@@ -6252,7 +6252,20 @@ const companyDecisionModel = {
     }
   }
 };
-/* COMPANY_DECISION_MODEL_END */
+    /* COMPANY_DECISION_MODEL_END */
+
+    /* FINANCIAL_SNAPSHOTS_START */
+const financialSnapshots = {
+  "updatedAt": null,
+  "lastAttemptAt": "2026-09-01T14:11:49",
+  "dart": {
+    "enabled": false,
+    "note": "DART_API_KEY가 없어 기존 재무 스냅샷을 유지함"
+  },
+  "sourcePolicy": "재무 수치는 OpenDART 단일회사 전체 재무제표에서 수집한 연결(CFS) 우선, 없으면 별도(OFS) 기준 값이다.",
+  "companies": {}
+};
+/* FINANCIAL_SNAPSHOTS_END */
 
     function getDecisionModel(company) {
       const model = companyDecisionModel.companies?.[company.code] || {};
@@ -6270,6 +6283,43 @@ const companyDecisionModel = {
         latestUpdate: updates.at(-1) || companyDecisionModel.updatedAt,
         trackingState: latestDaily?.decision?.status || latestWeekly?.decision?.status || "정기 점검 대기"
       };
+    }
+
+    function getFinancialSnapshot(company) {
+      return financialSnapshots.companies?.[company.code] || null;
+    }
+
+    function formatDartAmount(value) {
+      if (value === null || value === undefined || !Number.isFinite(Number(value))) return "-";
+      return `${Math.round(Number(value) / 100000000).toLocaleString("ko-KR")}억원`;
+    }
+
+    function formatPercent(value) {
+      return value === null || value === undefined || !Number.isFinite(Number(value)) ? "-" : `${Number(value).toFixed(1)}%`;
+    }
+
+    function renderFinancialSnapshot(company) {
+      const snapshot = getFinancialSnapshot(company);
+      if (!snapshot?.annual?.length) {
+        return `<div class="note">공식 DART 재무: ${financialSnapshots.dart?.note || "수집 대기"}. 기존 분석값은 유지하지만 최신 재무 근거가 들어온 뒤에 매수 판단 신뢰도를 높입니다.</div>`;
+      }
+      const rows = snapshot.annual.map((item) => `
+        <tr>
+          <td>${item.year} FY</td>
+          <td>${formatDartAmount(item.revenue)}</td>
+          <td>${formatPercent(item.revenueGrowthYoY)}</td>
+          <td>${formatPercent(item.operatingMargin)}</td>
+          <td>${formatPercent(item.netMargin)}</td>
+        </tr>`).join("");
+      const interim = snapshot.latestInterim;
+      return `
+        <div class="history-table">
+          <table>
+            <thead><tr><th>공식 DART 재무</th><th>매출액</th><th>매출 성장률</th><th>영업이익률</th><th>순이익률</th></tr></thead>
+            <tbody>${rows}${interim ? `<tr><td>${interim.period}</td><td>${formatDartAmount(interim.revenue)}</td><td>누적 실적</td><td>${formatPercent(interim.operatingMargin)}</td><td>${formatPercent(interim.netMargin)}</td></tr>` : ""}</tbody>
+          </table>
+        </div>
+        <div class="data-caption">수집 ${financialSnapshots.updatedAt || "대기"} · ${snapshot.note || financialSnapshots.sourcePolicy || "OpenDART 공식 재무"}</div>`;
     }
 
     function decisionConclusionRank(conclusion) {
@@ -7379,16 +7429,17 @@ const companyDecisionModel = {
       const rows = companies.map((company) => {
         const decision = getDecisionModel(company);
         const sufficiency = growthDataSufficiency.notes[company.code] || {};
-        return { company, decision, sufficiency };
+        const financial = getFinancialSnapshot(company);
+        return { company, decision, sufficiency, financial };
       }).sort((a, b) => (a.decision.confidence || 0) - (b.decision.confidence || 0));
       return `
         <div class="history-table">
           <table>
-            <thead><tr><th>종목</th><th>데이터 상태</th><th>신뢰도</th><th>최소 확인 항목</th><th>추가 보강 필요</th></tr></thead>
-            <tbody>${rows.map(({ company, decision, sufficiency }) => `
+            <thead><tr><th>종목</th><th>공식 재무</th><th>신뢰도</th><th>최소 확인 항목</th><th>추가 보강 필요</th></tr></thead>
+            <tbody>${rows.map(({ company, decision, sufficiency, financial }) => `
               <tr>
                 <td><strong>${company.name}</strong></td>
-                <td>${decisionFreshness(decision.latestUpdate)}</td>
+                <td>${financial?.status === "ok" ? `${financial.summary?.latestAnnualYear || "-"} FY · ${financial.latestInterim?.period || "최신 중간 실적 대기"}` : financial?.note || financialSnapshots.dart?.note || "수집 대기"}</td>
                 <td>${decision.confidence ?? "-"}/100</td>
                 <td>${(decision.minimumChecks || []).join(" · ") || "확인 필요"}</td>
                 <td>${sufficiency.gap || "최신 실적과 추정치 재확인"}</td>
@@ -7445,6 +7496,7 @@ const companyDecisionModel = {
           ${renderDecisionScore("밸류 매력", decision.valuationAttractiveness)}
           ${renderDecisionScore("기대 반영", decision.expectationBurden, true)}
         </div>
+        ${renderFinancialSnapshot(company)}
         <div class="research-grid">
           <div class="research-box">
             <h4>핵심 근거</h4>

@@ -12,7 +12,9 @@ const required = [
   "renderWeeklyGrowthWatchlist",
   "companyDecisionModel",
   "renderDecisionOverview",
-  "AI 결론"
+  "AI 결론",
+  "financialSnapshots",
+  "renderFinancialSnapshot"
 ];
 const missing = required.filter((item) => !html.includes(item));
 if (missing.length) throw new Error(`Missing markers: ${missing.join(", ")}`);
@@ -32,5 +34,13 @@ for (const [code, record] of records) {
   if (!record.positiveScenario || !record.bearCase) throw new Error(`${code}: scenario data is incomplete`);
 }
 
-console.log(JSON.stringify({ script: "ok", requiredMarkers: required.length, decisionRecords: records.length, target }, null, 2));
+const financialPath = path.join(path.dirname(target), "data", "financial-snapshots.json");
+const financial = JSON.parse(fs.readFileSync(financialPath, "utf8"));
+const financialRecords = Object.entries(financial.companies || {});
+if (financial.updatedAt && financialRecords.length !== 20) throw new Error(`Expected 20 financial records after collection, found ${financialRecords.length}`);
+for (const [code, record] of financialRecords) {
+  if (!record.status || !Array.isArray(record.annual)) throw new Error(`${code}: invalid financial snapshot`);
+}
+
+console.log(JSON.stringify({ script: "ok", requiredMarkers: required.length, decisionRecords: records.length, financialRecords: financialRecords.length, target }, null, 2));
 

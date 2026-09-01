@@ -1,0 +1,10 @@
+{
+  "updatedAt": null,
+  "lastAttemptAt": "2026-09-01T14:11:49",
+  "dart": {
+    "enabled": false,
+    "note": "DART_API_KEY가 없어 기존 재무 스냅샷을 유지함"
+  },
+  "sourcePolicy": "재무 수치는 OpenDART 단일회사 전체 재무제표에서 수집한 연결(CFS) 우선, 없으면 별도(OFS) 기준 값이다.",
+  "companies": {}
+}
