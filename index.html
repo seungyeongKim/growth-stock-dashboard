@@ -7703,6 +7703,7 @@ const financialSnapshots = {
       if (!snapshot?.annual?.length) {
         return `<div class="note">공식 DART 재무: ${financialSnapshots.dart?.note || "수집 대기"}. 기존 분석값은 유지하지만 최신 재무 근거가 들어온 뒤에 매수 판단 신뢰도를 높입니다.</div>`;
       }
+      const summary = snapshot.summary || {};
       const rows = snapshot.annual.map((item) => `
         <tr>
           <td>${item.year} FY</td>
@@ -7716,10 +7717,10 @@ const financialSnapshots = {
         <div class="history-table">
           <table>
             <thead><tr><th>공식 DART 재무</th><th>매출액</th><th>매출 성장률</th><th>영업이익률</th><th>순이익률</th></tr></thead>
-            <tbody>${rows}${interim ? `<tr><td>${interim.period}</td><td>${formatDartAmount(interim.revenue)}</td><td>누적 실적</td><td>${formatPercent(interim.operatingMargin)}</td><td>${formatPercent(interim.netMargin)}</td></tr>` : ""}</tbody>
+            <tbody>${rows}${interim ? `<tr><td>${interim.period}</td><td>${formatDartAmount(interim.revenue)}</td><td>${formatPercent(summary.interimRevenueGrowthYoY)}</td><td>${formatPercent(interim.operatingMargin)}${summary.interimOperatingMarginChangeYoY === null || summary.interimOperatingMarginChangeYoY === undefined ? "" : ` (${summary.interimOperatingMarginChangeYoY >= 0 ? "+" : ""}${summary.interimOperatingMarginChangeYoY}%p)`}</td><td>${formatPercent(interim.netMargin)}</td></tr>` : ""}</tbody>
           </table>
         </div>
-        <div class="data-caption">수집 ${financialSnapshots.updatedAt || "대기"} · ${snapshot.note || financialSnapshots.sourcePolicy || "OpenDART 공식 재무"}</div>`;
+        <div class="data-caption">실제 변화 신호: ${summary.financialSignal || "비교 자료 부족"} · 수집 ${financialSnapshots.updatedAt || "대기"} · ${snapshot.note || financialSnapshots.sourcePolicy || "OpenDART 공식 재무"}</div>`;
     }
 
     function decisionConclusionRank(conclusion) {
@@ -8839,7 +8840,7 @@ const financialSnapshots = {
             <tbody>${rows.map(({ company, decision, sufficiency, financial }) => `
               <tr>
                 <td><strong>${company.name}</strong></td>
-                <td>${financial?.status === "ok" ? `${financial.summary?.latestAnnualYear || "-"} FY · ${financial.latestInterim?.period || "최신 중간 실적 대기"}` : financial?.note || financialSnapshots.dart?.note || "수집 대기"}</td>
+                <td>${financial?.status === "ok" ? `${financial.summary?.financialSignal || "비교 자료 부족"} · ${financial.latestInterim?.period || `${financial.summary?.latestAnnualYear || "-"} FY`}` : financial?.note || financialSnapshots.dart?.note || "수집 대기"}</td>
                 <td>${decision.confidence ?? "-"}/100</td>
                 <td>${(decision.minimumChecks || []).join(" · ") || "확인 필요"}</td>
                 <td>${sufficiency.gap || "최신 실적과 추정치 재확인"}</td>

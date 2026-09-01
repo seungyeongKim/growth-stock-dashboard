@@ -169,8 +169,19 @@ async function buildCompany(target, corpCode) {
   const annualResults = await Promise.allSettled(years.map((year) => fetchStatement(corpCode, year, "11011", `${year} FY`)));
   const annual = enrichAnnual(annualResults.filter((item) => item.status === "fulfilled").map((item) => item.value));
   const interimPlan = latestInterimPlan();
-  const interimResult = interimPlan ? await Promise.allSettled([fetchStatement(corpCode, interimPlan.year, interimPlan.reportCode, interimPlan.period)]) : [];
+  const interimResult = interimPlan ? await Promise.allSettled([
+    fetchStatement(corpCode, interimPlan.year, interimPlan.reportCode, interimPlan.period),
+    fetchStatement(corpCode, interimPlan.year - 1, interimPlan.reportCode, `${interimPlan.year - 1} ${interimPlan.period.split(" ").at(-1)}`)
+  ]) : [];
   const latestInterim = interimResult[0]?.status === "fulfilled" ? interimResult[0].value : null;
+  const priorInterim = interimResult[1]?.status === "fulfilled" ? interimResult[1].value : null;
+  const interimRevenueGrowthYoY = latestInterim?.revenue && priorInterim?.revenue ? Number(((latestInterim.revenue / priorInterim.revenue - 1) * 100).toFixed(1)) : null;
+  const interimOperatingMarginChangeYoY = Number.isFinite(latestInterim?.operatingMargin) && Number.isFinite(priorInterim?.operatingMargin)
+    ? Number((latestInterim.operatingMargin - priorInterim.operatingMargin).toFixed(1)) : null;
+  const financialSignal = interimRevenueGrowthYoY === null || interimOperatingMarginChangeYoY === null ? "비교 자료 부족"
+    : interimRevenueGrowthYoY >= 15 && interimOperatingMarginChangeYoY >= -2 ? "성장 가속·유지"
+      : interimRevenueGrowthYoY <= 0 || interimOperatingMarginChangeYoY <= -5 ? "성장 둔화 경보"
+        : "성장 유지·확인";
   const failures = [...annualResults, ...interimResult].filter((item) => item.status === "rejected").map((item) => errorText(item.reason));
   const latestAnnual = annual.at(-1);
   return {
@@ -181,13 +192,17 @@ async function buildCompany(target, corpCode) {
     note: failures.length ? `일부 재무 수집 실패: ${failures[0]}` : "최근 3개 연도와 최신 분기/반기 재무 수집",
     annual,
     latestInterim,
+    priorInterim,
     summary: latestAnnual ? {
       latestAnnualYear: latestAnnual.year,
       latestAnnualRevenueGrowth: latestAnnual.revenueGrowthYoY,
       latestAnnualOperatingMargin: latestAnnual.operatingMargin,
       latestAnnualNetMargin: latestAnnual.netMargin,
       latestInterimRevenue: latestInterim?.revenue ?? null,
-      latestInterimOperatingMargin: latestInterim?.operatingMargin ?? null
+      latestInterimOperatingMargin: latestInterim?.operatingMargin ?? null,
+      interimRevenueGrowthYoY,
+      interimOperatingMarginChangeYoY,
+      financialSignal
     } : null
   };
 }
