@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-09-01T14:17:24",
-  "lastAttemptAt": "2026-09-01T14:17:24",
+  "updatedAt": "2026-09-01T14:23:07",
+  "lastAttemptAt": "2026-09-01T14:23:07",
   "dart": {
     "enabled": true,
     "note": "OpenDART 공식 재무 수집 완료: 정상 19개, 부분 1개"
@@ -69,13 +69,28 @@
         "netMargin": 32.4,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "priorInterim": {
+        "year": 2025,
+        "period": "2025 H1",
+        "reportCode": "11012",
+        "fsDiv": "CFS",
+        "revenue": 110260417924,
+        "operatingProfit": 56670315005,
+        "netIncome": 38213817234,
+        "operatingMargin": 51.4,
+        "netMargin": 34.7,
+        "source": "OpenDART 단일회사 전체 재무제표"
+      },
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 14,
         "latestAnnualOperatingMargin": 47.2,
         "latestAnnualNetMargin": 34.6,
         "latestInterimRevenue": 137903428646,
-        "latestInterimOperatingMargin": 40.6
+        "latestInterimOperatingMargin": 40.6,
+        "interimRevenueGrowthYoY": 25.1,
+        "interimOperatingMarginChangeYoY": -10.8,
+        "financialSignal": "성장 둔화 경보"
       }
     },
     "192080": {
@@ -140,13 +155,28 @@
         "netMargin": 30.9,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "priorInterim": {
+        "year": 2025,
+        "period": "2025 H1",
+        "reportCode": "11012",
+        "fsDiv": "CFS",
+        "revenue": 171945692649,
+        "operatingProfit": 54317738818,
+        "netIncome": 32989838890,
+        "operatingMargin": 31.6,
+        "netMargin": 19.2,
+        "source": "OpenDART 단일회사 전체 재무제표"
+      },
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 13.6,
         "latestAnnualOperatingMargin": 32.2,
         "latestAnnualNetMargin": 25,
         "latestInterimRevenue": 210628862678,
-        "latestInterimOperatingMargin": 33.3
+        "latestInterimOperatingMargin": 33.3,
+        "interimRevenueGrowthYoY": 22.5,
+        "interimOperatingMarginChangeYoY": 1.7,
+        "financialSignal": "성장 가속·유지"
       }
     },
     "196170": {
@@ -211,13 +241,28 @@
         "netMargin": 43.5,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "priorInterim": {
+        "year": 2025,
+        "period": "2025 H1",
+        "reportCode": "11012",
+        "fsDiv": "CFS",
+        "revenue": 18643000115,
+        "operatingProfit": -426290507,
+        "netIncome": -34317124543,
+        "operatingMargin": -2.3,
+        "netMargin": -184.1,
+        "source": "OpenDART 단일회사 전체 재무제표"
+      },
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 109.9,
         "latestAnnualOperatingMargin": 49.5,
         "latestAnnualNetMargin": 67.3,
         "latestInterimRevenue": 68894335061,
-        "latestInterimOperatingMargin": 49.6
+        "latestInterimOperatingMargin": 49.6,
+        "interimRevenueGrowthYoY": 269.5,
+        "interimOperatingMarginChangeYoY": 51.9,
+        "financialSignal": "성장 가속·유지"
       }
     },
     "206640": {
@@ -282,13 +327,28 @@
         "netMargin": 15.2,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "priorInterim": {
+        "year": 2025,
+        "period": "2025 H1",
+        "reportCode": "11012",
+        "fsDiv": "CFS",
+        "revenue": 41481315937,
+        "operatingProfit": 9200811969,
+        "netIncome": 7457218735,
+        "operatingMargin": 22.2,
+        "netMargin": 18,
+        "source": "OpenDART 단일회사 전체 재무제표"
+      },
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 17.3,
         "latestAnnualOperatingMargin": 17.9,
         "latestAnnualNetMargin": 14.7,
         "latestInterimRevenue": 50417300179,
-        "latestInterimOperatingMargin": 16.3
+        "latestInterimOperatingMargin": 16.3,
+        "interimRevenueGrowthYoY": 21.5,
+        "interimOperatingMarginChangeYoY": -5.9,
+        "financialSignal": "성장 둔화 경보"
       }
     },
     "207940": {
@@ -353,13 +413,28 @@
         "netMargin": 32.6,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "priorInterim": {
+        "year": 2025,
+        "period": "2025 H1",
+        "reportCode": "11012",
+        "fsDiv": "CFS",
+        "revenue": 1289905421405,
+        "operatingProfit": 475599675863,
+        "netIncome": 324386142540,
+        "operatingMargin": 36.9,
+        "netMargin": 25.1,
+        "source": "OpenDART 단일회사 전체 재무제표"
+      },
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 0.2,
         "latestAnnualOperatingMargin": 45.4,
         "latestAnnualNetMargin": 39.2,
         "latestInterimRevenue": 1320910867803,
-        "latestInterimOperatingMargin": 44.4
+        "latestInterimOperatingMargin": 44.4,
+        "interimRevenueGrowthYoY": 2.4,
+        "interimOperatingMarginChangeYoY": 7.5,
+        "financialSignal": "성장 유지·확인"
       }
     },
     "214150": {
@@ -424,13 +499,28 @@
         "netMargin": 24.2,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "priorInterim": {
+        "year": 2025,
+        "period": "2025 H1",
+        "reportCode": "11012",
+        "fsDiv": "CFS",
+        "revenue": 83283805952,
+        "operatingProfit": 43010649853,
+        "netIncome": 26472747965,
+        "operatingMargin": 51.6,
+        "netMargin": 31.8,
+        "source": "OpenDART 단일회사 전체 재무제표"
+      },
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 38.6,
         "latestAnnualOperatingMargin": 50.7,
         "latestAnnualNetMargin": 39.2,
         "latestInterimRevenue": 105515317742,
-        "latestInterimOperatingMargin": 41.6
+        "latestInterimOperatingMargin": 41.6,
+        "interimRevenueGrowthYoY": 26.7,
+        "interimOperatingMarginChangeYoY": -10,
+        "financialSignal": "성장 둔화 경보"
       }
     },
     "214450": {
@@ -495,13 +585,28 @@
         "netMargin": 31.5,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "priorInterim": {
+        "year": 2025,
+        "period": "2025 H1",
+        "reportCode": "11012",
+        "fsDiv": "CFS",
+        "revenue": 140607447466,
+        "operatingProfit": 55877690378,
+        "netIncome": 42044835186,
+        "operatingMargin": 39.7,
+        "netMargin": 29.9,
+        "source": "OpenDART 단일회사 전체 재무제표"
+      },
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 53.2,
         "latestAnnualOperatingMargin": 40,
         "latestAnnualNetMargin": 31.4,
         "latestInterimRevenue": 178704799285,
-        "latestInterimOperatingMargin": 37.2
+        "latestInterimOperatingMargin": 37.2,
+        "interimRevenueGrowthYoY": 27.1,
+        "interimOperatingMarginChangeYoY": -2.5,
+        "financialSignal": "성장 유지·확인"
       }
     },
     "251970": {
@@ -566,13 +671,28 @@
         "netMargin": 0,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "priorInterim": {
+        "year": 2025,
+        "period": "2025 H1",
+        "reportCode": "11012",
+        "fsDiv": "CFS",
+        "revenue": 105420763329,
+        "operatingProfit": 19427710096,
+        "netIncome": 13058002336,
+        "operatingMargin": 18.4,
+        "netMargin": 12.4,
+        "source": "OpenDART 단일회사 전체 재무제표"
+      },
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 10.2,
         "latestAnnualOperatingMargin": 15.2,
         "latestAnnualNetMargin": 0,
         "latestInterimRevenue": 116844346692,
-        "latestInterimOperatingMargin": 18.5
+        "latestInterimOperatingMargin": 18.5,
+        "interimRevenueGrowthYoY": 10.8,
+        "interimOperatingMarginChangeYoY": 0.1,
+        "financialSignal": "성장 유지·확인"
       }
     },
     "257720": {
@@ -637,13 +757,28 @@
         "netMargin": 18,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "priorInterim": {
+        "year": 2025,
+        "period": "2025 H1",
+        "reportCode": "11012",
+        "fsDiv": "CFS",
+        "revenue": 265286436523,
+        "operatingProfit": 52181838032,
+        "netIncome": 35599494171,
+        "operatingMargin": 19.7,
+        "netMargin": 13.4,
+        "source": "OpenDART 단일회사 전체 재무제표"
+      },
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 61.4,
         "latestAnnualOperatingMargin": 18.4,
         "latestAnnualNetMargin": 15.1,
         "latestInterimRevenue": 402597050816,
-        "latestInterimOperatingMargin": 20.6
+        "latestInterimOperatingMargin": 20.6,
+        "interimRevenueGrowthYoY": 51.8,
+        "interimOperatingMarginChangeYoY": 0.9,
+        "financialSignal": "성장 가속·유지"
       }
     },
     "267260": {
@@ -708,13 +843,28 @@
         "netMargin": 18.1,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "priorInterim": {
+        "year": 2025,
+        "period": "2025 H1",
+        "reportCode": "11012",
+        "fsDiv": "CFS",
+        "revenue": 906219054679,
+        "operatingProfit": 209142369028,
+        "netIncome": 141909212363,
+        "operatingMargin": 23.1,
+        "netMargin": 15.7,
+        "source": "OpenDART 단일회사 전체 재무제표"
+      },
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 22.8,
         "latestAnnualOperatingMargin": 24.4,
         "latestAnnualNetMargin": 17.9,
         "latestInterimRevenue": 1141812823338,
-        "latestInterimOperatingMargin": 25.1
+        "latestInterimOperatingMargin": 25.1,
+        "interimRevenueGrowthYoY": 26,
+        "interimOperatingMarginChangeYoY": 2,
+        "financialSignal": "성장 가속·유지"
       }
     },
     "278470": {
@@ -779,13 +929,28 @@
         "netMargin": 18.4,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "priorInterim": {
+        "year": 2025,
+        "period": "2025 H1",
+        "reportCode": "11012",
+        "fsDiv": "CFS",
+        "revenue": 327734894608,
+        "operatingProfit": 84552442450,
+        "netIncome": 66309082291,
+        "operatingMargin": 25.8,
+        "netMargin": 20.2,
+        "source": "OpenDART 단일회사 전체 재무제표"
+      },
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 111.3,
         "latestAnnualOperatingMargin": 23.9,
         "latestAnnualNetMargin": 19,
         "latestInterimRevenue": 767533293305,
-        "latestInterimOperatingMargin": 24.8
+        "latestInterimOperatingMargin": 24.8,
+        "interimRevenueGrowthYoY": 134.2,
+        "interimOperatingMarginChangeYoY": -1,
+        "financialSignal": "성장 가속·유지"
       }
     },
     "062040": {
@@ -836,13 +1001,28 @@
         "netMargin": 33.2,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "priorInterim": {
+        "year": 2025,
+        "period": "2025 H1",
+        "reportCode": "11012",
+        "fsDiv": "CFS",
+        "revenue": 128255019954,
+        "operatingProfit": 46190173936,
+        "netIncome": 37865600433,
+        "operatingMargin": 36,
+        "netMargin": 29.5,
+        "source": "OpenDART 단일회사 전체 재무제표"
+      },
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 50.3,
         "latestAnnualOperatingMargin": 35.6,
         "latestAnnualNetMargin": 29.7,
         "latestInterimRevenue": 164178798154,
-        "latestInterimOperatingMargin": 37.8
+        "latestInterimOperatingMargin": 37.8,
+        "interimRevenueGrowthYoY": 28,
+        "interimOperatingMarginChangeYoY": 1.8,
+        "financialSignal": "성장 가속·유지"
       }
     },
     "003230": {
@@ -907,13 +1087,28 @@
         "netMargin": 17.9,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "priorInterim": {
+        "year": 2025,
+        "period": "2025 H1",
+        "reportCode": "11012",
+        "fsDiv": "CFS",
+        "revenue": 553077609232,
+        "operatingProfit": 120087954818,
+        "netIncome": 84074794328,
+        "operatingMargin": 21.7,
+        "netMargin": 15.2,
+        "source": "OpenDART 단일회사 전체 재무제표"
+      },
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 36.1,
         "latestAnnualOperatingMargin": 22.3,
         "latestAnnualNetMargin": 16.5,
         "latestInterimRevenue": 770308613235,
-        "latestInterimOperatingMargin": 22.9
+        "latestInterimOperatingMargin": 22.9,
+        "interimRevenueGrowthYoY": 39.3,
+        "interimOperatingMarginChangeYoY": 1.2,
+        "financialSignal": "성장 가속·유지"
       }
     },
     "010120": {
@@ -978,13 +1173,28 @@
         "netMargin": 7.3,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "priorInterim": {
+        "year": 2025,
+        "period": "2025 H1",
+        "reportCode": "11012",
+        "fsDiv": "CFS",
+        "revenue": 1193042129325,
+        "operatingProfit": 108597651385,
+        "netIncome": 67257505238,
+        "operatingMargin": 9.1,
+        "netMargin": 5.6,
+        "source": "OpenDART 단일회사 전체 재무제표"
+      },
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 9.1,
         "latestAnnualOperatingMargin": 8.6,
         "latestAnnualNetMargin": 5.7,
         "latestInterimRevenue": 1576997715527,
-        "latestInterimOperatingMargin": 11.3
+        "latestInterimOperatingMargin": 11.3,
+        "interimRevenueGrowthYoY": 32.2,
+        "interimOperatingMarginChangeYoY": 2.2,
+        "financialSignal": "성장 가속·유지"
       }
     },
     "058470": {
@@ -1049,13 +1259,28 @@
         "netMargin": 46,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "priorInterim": {
+        "year": 2025,
+        "period": "2025 H1",
+        "reportCode": "11012",
+        "fsDiv": "OFS",
+        "revenue": 112522064123,
+        "operatingProfit": 53444357551,
+        "netIncome": 41110227661,
+        "operatingMargin": 47.5,
+        "netMargin": 36.5,
+        "source": "OpenDART 단일회사 전체 재무제표"
+      },
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 33.9,
         "latestAnnualOperatingMargin": 47.5,
         "latestAnnualNetMargin": 40.8,
         "latestInterimRevenue": 143187426964,
-        "latestInterimOperatingMargin": 51.3
+        "latestInterimOperatingMargin": 51.3,
+        "interimRevenueGrowthYoY": 27.3,
+        "interimOperatingMarginChangeYoY": 3.8,
+        "financialSignal": "성장 가속·유지"
       }
     },
     "000660": {
@@ -1120,13 +1345,28 @@
         "netMargin": 118.4,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "priorInterim": {
+        "year": 2025,
+        "period": "2025 H1",
+        "reportCode": "11012",
+        "fsDiv": "CFS",
+        "revenue": 22231952000000,
+        "operatingProfit": 9212851000000,
+        "netIncome": 6996216000000,
+        "operatingMargin": 41.4,
+        "netMargin": 31.5,
+        "source": "OpenDART 단일회사 전체 재무제표"
+      },
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 46.8,
         "latestAnnualOperatingMargin": 48.6,
         "latestAnnualNetMargin": 44.2,
         "latestInterimRevenue": 79318746000000,
-        "latestInterimOperatingMargin": 76.3
+        "latestInterimOperatingMargin": 76.3,
+        "interimRevenueGrowthYoY": 256.8,
+        "interimOperatingMarginChangeYoY": 34.9,
+        "financialSignal": "성장 가속·유지"
       }
     },
     "064760": {
@@ -1191,13 +1431,28 @@
         "netMargin": 24.9,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "priorInterim": {
+        "year": 2025,
+        "period": "2025 H1",
+        "reportCode": "11012",
+        "fsDiv": "OFS",
+        "revenue": 72674140670,
+        "operatingProfit": 19501585703,
+        "netIncome": 15986620242,
+        "operatingMargin": 26.8,
+        "netMargin": 22,
+        "source": "OpenDART 단일회사 전체 재무제표"
+      },
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 9.3,
         "latestAnnualOperatingMargin": 27.8,
         "latestAnnualNetMargin": 23.2,
         "latestInterimRevenue": 94873213359,
-        "latestInterimOperatingMargin": 28.3
+        "latestInterimOperatingMargin": 28.3,
+        "interimRevenueGrowthYoY": 30.5,
+        "interimOperatingMarginChangeYoY": 1.5,
+        "financialSignal": "성장 가속·유지"
       }
     },
     "051360": {
@@ -1262,13 +1517,28 @@
         "netMargin": 7.4,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "priorInterim": {
+        "year": 2025,
+        "period": "2025 H1",
+        "reportCode": "11012",
+        "fsDiv": "CFS",
+        "revenue": 166352727089,
+        "operatingProfit": 18331807068,
+        "netIncome": 11182500358,
+        "operatingMargin": 11,
+        "netMargin": 6.7,
+        "source": "OpenDART 단일회사 전체 재무제표"
+      },
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 2.7,
         "latestAnnualOperatingMargin": 8.9,
         "latestAnnualNetMargin": 7,
         "latestInterimRevenue": 188093380453,
-        "latestInterimOperatingMargin": 8.4
+        "latestInterimOperatingMargin": 8.4,
+        "interimRevenueGrowthYoY": 13.1,
+        "interimOperatingMarginChangeYoY": -2.6,
+        "financialSignal": "성장 유지·확인"
       }
     },
     "053800": {
@@ -1333,13 +1603,28 @@
         "netMargin": 9,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "priorInterim": {
+        "year": 2025,
+        "period": "2025 H1",
+        "reportCode": "11012",
+        "fsDiv": "CFS",
+        "revenue": 62289211779,
+        "operatingProfit": 3458561771,
+        "netIncome": 13359619359,
+        "operatingMargin": 5.6,
+        "netMargin": 21.4,
+        "source": "OpenDART 단일회사 전체 재무제표"
+      },
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 2.7,
         "latestAnnualOperatingMargin": 12.4,
         "latestAnnualNetMargin": 19.2,
         "latestInterimRevenue": 71308784756,
-        "latestInterimOperatingMargin": 7.5
+        "latestInterimOperatingMargin": 7.5,
+        "interimRevenueGrowthYoY": 14.5,
+        "interimOperatingMarginChangeYoY": 1.9,
+        "financialSignal": "성장 유지·확인"
       }
     },
     "018290": {
@@ -1404,13 +1689,28 @@
         "netMargin": 2.4,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "priorInterim": {
+        "year": 2025,
+        "period": "2025 H1",
+        "reportCode": "11012",
+        "fsDiv": "CFS",
+        "revenue": 111520825859,
+        "operatingProfit": 29066880443,
+        "netIncome": 21267639845,
+        "operatingMargin": 26.1,
+        "netMargin": 19.1,
+        "source": "OpenDART 단일회사 전체 재무제표"
+      },
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 1.3,
         "latestAnnualOperatingMargin": 19,
         "latestAnnualNetMargin": 14.7,
         "latestInterimRevenue": 131668235835,
-        "latestInterimOperatingMargin": 8.1
+        "latestInterimOperatingMargin": 8.1,
+        "interimRevenueGrowthYoY": 18.1,
+        "interimOperatingMarginChangeYoY": -18,
+        "financialSignal": "성장 둔화 경보"
       }
     }
   }
