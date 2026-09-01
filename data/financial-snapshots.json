@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-09-01T14:29:12",
-  "lastAttemptAt": "2026-09-01T14:29:12",
+  "updatedAt": "2026-09-01T21:05:38",
+  "lastAttemptAt": "2026-09-01T21:05:38",
   "dart": {
     "enabled": true,
     "note": "OpenDART 공식 재무 수집 완료: 정상 19개, 부분 1개"
@@ -81,6 +81,10 @@
         "netMargin": 34.7,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "shareCount": 12304033,
+      "shareCountAsOf": "2025 FY",
+      "shareCountSource": "OpenDART 증권의 발행 및 공시 등에 관한 사항",
+      "shareNote": null,
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 14,
@@ -167,6 +171,10 @@
         "netMargin": 19.2,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "shareCount": 21495906,
+      "shareCountAsOf": "2025 FY",
+      "shareCountSource": "OpenDART 증권의 발행 및 공시 등에 관한 사항",
+      "shareNote": null,
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 13.6,
@@ -253,6 +261,10 @@
         "netMargin": -184.1,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "shareCount": 53505788,
+      "shareCountAsOf": "2025 FY",
+      "shareCountSource": "OpenDART 증권의 발행 및 공시 등에 관한 사항",
+      "shareNote": null,
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 109.9,
@@ -339,6 +351,10 @@
         "netMargin": 18,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "shareCount": 23346171,
+      "shareCountAsOf": "2025 FY",
+      "shareCountSource": "OpenDART 증권의 발행 및 공시 등에 관한 사항",
+      "shareNote": null,
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 17.3,
@@ -425,6 +441,10 @@
         "netMargin": 25.1,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "shareCount": 46290951,
+      "shareCountAsOf": "2025 FY",
+      "shareCountSource": "OpenDART 증권의 발행 및 공시 등에 관한 사항",
+      "shareNote": null,
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 0.2,
@@ -511,6 +531,10 @@
         "netMargin": 31.8,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "shareCount": 65505659,
+      "shareCountAsOf": "2025 FY",
+      "shareCountSource": "OpenDART 증권의 발행 및 공시 등에 관한 사항",
+      "shareNote": null,
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 38.6,
@@ -597,6 +621,10 @@
         "netMargin": 29.9,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "shareCount": 10389648,
+      "shareCountAsOf": "2025 FY",
+      "shareCountSource": "OpenDART 증권의 발행 및 공시 등에 관한 사항",
+      "shareNote": null,
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 53.2,
@@ -683,6 +711,10 @@
         "netMargin": 12.4,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "shareCount": 12400000,
+      "shareCountAsOf": "2025 FY",
+      "shareCountSource": "OpenDART 증권의 발행 및 공시 등에 관한 사항",
+      "shareNote": null,
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 10.2,
@@ -769,6 +801,10 @@
         "netMargin": 13.4,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "shareCount": 65576252,
+      "shareCountAsOf": "2025 FY",
+      "shareCountSource": "OpenDART 증권의 발행 및 공시 등에 관한 사항",
+      "shareNote": null,
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 61.4,
@@ -855,6 +891,10 @@
         "netMargin": 15.7,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "shareCount": 36047135,
+      "shareCountAsOf": "2025 FY",
+      "shareCountSource": "OpenDART 증권의 발행 및 공시 등에 관한 사항",
+      "shareNote": null,
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 22.8,
@@ -941,6 +981,10 @@
         "netMargin": 20.2,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "shareCount": 37430655,
+      "shareCountAsOf": "2025 FY",
+      "shareCountSource": "OpenDART 증권의 발행 및 공시 등에 관한 사항",
+      "shareNote": null,
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 111.3,
@@ -1013,6 +1057,10 @@
         "netMargin": 29.5,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "shareCount": 30445200,
+      "shareCountAsOf": "2025 FY",
+      "shareCountSource": "OpenDART 증권의 발행 및 공시 등에 관한 사항",
+      "shareNote": null,
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 50.3,
@@ -1099,6 +1147,10 @@
         "netMargin": 15.2,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "shareCount": 7533015,
+      "shareCountAsOf": "2025 FY",
+      "shareCountSource": "OpenDART 증권의 발행 및 공시 등에 관한 사항",
+      "shareNote": null,
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 36.1,
@@ -1185,6 +1237,10 @@
         "netMargin": 5.6,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "shareCount": 30000000,
+      "shareCountAsOf": "2025 FY",
+      "shareCountSource": "OpenDART 증권의 발행 및 공시 등에 관한 사항",
+      "shareNote": null,
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 9.1,
@@ -1271,6 +1327,10 @@
         "netMargin": 36.5,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "shareCount": 76211850,
+      "shareCountAsOf": "2025 FY",
+      "shareCountSource": "OpenDART 증권의 발행 및 공시 등에 관한 사항",
+      "shareNote": null,
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 33.9,
@@ -1357,6 +1417,10 @@
         "netMargin": 31.5,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "shareCount": 728002365,
+      "shareCountAsOf": "2025 FY",
+      "shareCountSource": "OpenDART 증권의 발행 및 공시 등에 관한 사항",
+      "shareNote": null,
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 46.8,
@@ -1443,6 +1507,10 @@
         "netMargin": 22,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "shareCount": 11179416,
+      "shareCountAsOf": "2025 FY",
+      "shareCountSource": "OpenDART 증권의 발행 및 공시 등에 관한 사항",
+      "shareNote": null,
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 9.3,
@@ -1529,6 +1597,10 @@
         "netMargin": 6.7,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "shareCount": 15827058,
+      "shareCountAsOf": "2025 FY",
+      "shareCountSource": "OpenDART 증권의 발행 및 공시 등에 관한 사항",
+      "shareNote": null,
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 2.7,
@@ -1615,6 +1687,10 @@
         "netMargin": 21.4,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "shareCount": 11126506,
+      "shareCountAsOf": "2025 FY",
+      "shareCountSource": "OpenDART 증권의 발행 및 공시 등에 관한 사항",
+      "shareNote": null,
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 2.7,
@@ -1701,6 +1777,10 @@
         "netMargin": 19.1,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
+      "shareCount": 34941838,
+      "shareCountAsOf": "2025 FY",
+      "shareCountSource": "OpenDART 증권의 발행 및 공시 등에 관한 사항",
+      "shareNote": null,
       "summary": {
         "latestAnnualYear": 2025,
         "latestAnnualRevenueGrowth": 1.3,
