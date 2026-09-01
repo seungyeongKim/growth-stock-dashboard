@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-09-01T14:23:07",
-  "lastAttemptAt": "2026-09-01T14:23:07",
+  "updatedAt": "2026-09-01T14:29:12",
+  "lastAttemptAt": "2026-09-01T14:29:12",
   "dart": {
     "enabled": true,
     "note": "OpenDART 공식 재무 수집 완료: 정상 19개, 부분 1개"
@@ -90,7 +90,7 @@
         "latestInterimOperatingMargin": 40.6,
         "interimRevenueGrowthYoY": 25.1,
         "interimOperatingMarginChangeYoY": -10.8,
-        "financialSignal": "성장 둔화 경보"
+        "financialSignal": "수익성 둔화 경보"
       }
     },
     "192080": {
@@ -348,7 +348,7 @@
         "latestInterimOperatingMargin": 16.3,
         "interimRevenueGrowthYoY": 21.5,
         "interimOperatingMarginChangeYoY": -5.9,
-        "financialSignal": "성장 둔화 경보"
+        "financialSignal": "수익성 둔화 경보"
       }
     },
     "207940": {
@@ -520,7 +520,7 @@
         "latestInterimOperatingMargin": 41.6,
         "interimRevenueGrowthYoY": 26.7,
         "interimOperatingMarginChangeYoY": -10,
-        "financialSignal": "성장 둔화 경보"
+        "financialSignal": "수익성 둔화 경보"
       }
     },
     "214450": {
@@ -606,7 +606,7 @@
         "latestInterimOperatingMargin": 37.2,
         "interimRevenueGrowthYoY": 27.1,
         "interimOperatingMarginChangeYoY": -2.5,
-        "financialSignal": "성장 유지·확인"
+        "financialSignal": "성장 가속·유지"
       }
     },
     "251970": {
@@ -1710,7 +1710,7 @@
         "latestInterimOperatingMargin": 8.1,
         "interimRevenueGrowthYoY": 18.1,
         "interimOperatingMarginChangeYoY": -18,
-        "financialSignal": "성장 둔화 경보"
+        "financialSignal": "수익성 둔화 경보"
       }
     }
   }
