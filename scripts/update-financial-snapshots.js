@@ -130,6 +130,22 @@ async function fetchStatement(corpCode, year, reportCode, period) {
   return normalizeStatement(data, year, period, reportCode, "CFS");
 }
 
+async function fetchShareCount(corpCode, year) {
+  const url = new URL("https://opendart.fss.or.kr/api/stockTotqySttus.json");
+  url.searchParams.set("crtfc_key", dartKey);
+  url.searchParams.set("corp_code", corpCode);
+  url.searchParams.set("bsns_year", String(year));
+  url.searchParams.set("reprt_code", "11011");
+  const data = await fetchJson(url);
+  if (!data || data.status !== "000" || !Array.isArray(data.list)) {
+    throw new Error(`DART 주식수 API ${data?.status || "unknown"}: ${data?.message || "응답 오류"}`);
+  }
+  const common = data.list.find((item) => String(item.se || "").includes("보통주")) || data.list[0];
+  const shareCount = amount(common?.istc_totqy);
+  if (!shareCount) throw new Error("DART 보통주 발행주식수를 찾지 못함");
+  return { shareCount, shareCountAsOf: `${year} FY`, source: "OpenDART 증권의 발행 및 공시 등에 관한 사항" };
+}
+
 function enrichAnnual(records) {
   return records.map((record, index) => {
     const previous = records[index - 1];
@@ -167,6 +183,7 @@ async function buildCompany(target, corpCode) {
   const currentYear = Number(new Intl.DateTimeFormat("en-US", { timeZone: "Asia/Seoul", year: "numeric" }).format(new Date()));
   const years = [currentYear - 3, currentYear - 2, currentYear - 1];
   const annualResults = await Promise.allSettled(years.map((year) => fetchStatement(corpCode, year, "11011", `${year} FY`)));
+  const shareResult = await Promise.allSettled([fetchShareCount(corpCode, currentYear - 1)]);
   const annual = enrichAnnual(annualResults.filter((item) => item.status === "fulfilled").map((item) => item.value));
   const interimPlan = latestInterimPlan();
   const interimResult = interimPlan ? await Promise.allSettled([
@@ -183,7 +200,9 @@ async function buildCompany(target, corpCode) {
       : interimOperatingMarginChangeYoY <= -5 ? "수익성 둔화 경보"
         : interimRevenueGrowthYoY >= 15 ? "성장 가속·유지"
           : "성장 유지·확인";
+  const shareInfo = shareResult[0]?.status === "fulfilled" ? shareResult[0].value : null;
   const failures = [...annualResults, ...interimResult].filter((item) => item.status === "rejected").map((item) => errorText(item.reason));
+  const shareNote = shareResult[0]?.status === "rejected" ? `주식수 수집 실패: ${errorText(shareResult[0].reason)}` : null;
   const latestAnnual = annual.at(-1);
   return {
     code: target.code,
@@ -194,6 +213,10 @@ async function buildCompany(target, corpCode) {
     annual,
     latestInterim,
     priorInterim,
+    shareCount: shareInfo?.shareCount ?? null,
+    shareCountAsOf: shareInfo?.shareCountAsOf ?? null,
+    shareCountSource: shareInfo?.source ?? null,
+    shareNote,
     summary: latestAnnual ? {
       latestAnnualYear: latestAnnual.year,
       latestAnnualRevenueGrowth: latestAnnual.revenueGrowthYoY,

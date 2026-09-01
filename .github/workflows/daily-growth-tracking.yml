@@ -66,8 +66,15 @@ jobs:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
         run: node scripts/update-financial-snapshots.js
 
+      - name: Update current-price valuation snapshot
+        if: steps.scope.outputs.scope == 'all' || steps.scope.outputs.scope == 'weekly'
+        run: node scripts/update-valuation-snapshot.js
+
       - name: Apply DART financial snapshots
         run: node scripts/apply-financial-snapshots.js
+
+      - name: Apply current-price valuation snapshot
+        run: node scripts/apply-valuation-snapshot.js
 
       - name: Apply company decision model
         run: node scripts/apply-company-decision-model.js

@@ -14,7 +14,9 @@ const required = [
   "renderDecisionOverview",
   "AI 결론",
   "financialSnapshots",
-  "renderFinancialSnapshot"
+  "renderFinancialSnapshot",
+  "valuationSnapshot",
+  "renderValuationSnapshot"
 ];
 const missing = required.filter((item) => !html.includes(item));
 if (missing.length) throw new Error(`Missing markers: ${missing.join(", ")}`);
@@ -42,5 +44,13 @@ for (const [code, record] of financialRecords) {
   if (!record.status || !Array.isArray(record.annual)) throw new Error(`${code}: invalid financial snapshot`);
 }
 
-console.log(JSON.stringify({ script: "ok", requiredMarkers: required.length, decisionRecords: records.length, financialRecords: financialRecords.length, target }, null, 2));
+const valuationPath = path.join(path.dirname(target), "data", "valuation-snapshot.json");
+const valuation = JSON.parse(fs.readFileSync(valuationPath, "utf8"));
+const valuationRecords = Object.entries(valuation.companies || {});
+if (valuation.updatedAt && valuationRecords.length !== 20) throw new Error(`Expected 20 valuation records after collection, found ${valuationRecords.length}`);
+for (const [code, record] of valuationRecords) {
+  if (!record.status || !record.note) throw new Error(`${code}: invalid valuation snapshot`);
+}
+
+console.log(JSON.stringify({ script: "ok", requiredMarkers: required.length, decisionRecords: records.length, financialRecords: financialRecords.length, valuationRecords: valuationRecords.length, target }, null, 2));
 
