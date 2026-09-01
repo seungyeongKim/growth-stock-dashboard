@@ -624,6 +624,83 @@
       white-space: nowrap;
     }
 
+    .decision-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfcff;
+    }
+
+    .decision-head h4 {
+      margin: 9px 0 5px;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .decision-head p {
+      margin: 0;
+      font-size: 12px;
+    }
+
+    .decision-meta {
+      min-width: 130px;
+      display: grid;
+      gap: 5px;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: right;
+    }
+
+    .decision-meta strong {
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    .decision-scores {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: 12px 0;
+    }
+
+    .decision-score {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 5px 8px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #ffffff;
+    }
+
+    .decision-score span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .decision-score strong {
+      font-size: 16px;
+    }
+
+    .decision-score i {
+      grid-column: 1 / -1;
+      height: 5px;
+      overflow: hidden;
+      border-radius: 4px;
+      background: #e6ebf3;
+    }
+
+    .decision-score b {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--blue);
+    }
+
 
     .section {
       margin-top: 16px;
@@ -739,6 +816,18 @@
 
       .summary-strip {
         grid-template-columns: 1fr;
+      }
+
+      .decision-scores {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .decision-head {
+        flex-direction: column;
+      }
+
+      .decision-meta {
+        text-align: left;
       }
 
       .toolbar {
@@ -5775,6 +5864,434 @@
       "018290": { action: "제외 후보", conviction: 42, sizing: "제외 검토", why: "성장 재가속과 가격 매력 근거가 최종 20개 중 가장 약함", must: "PDRN sell-through, 미국·유럽 매출, OPM 반등", stop: "후속 히트제품 부재와 마케팅비 회수 실패" }
     };
 
+    /* COMPANY_DECISION_MODEL_START */
+const companyDecisionModel = {
+  "version": "1.0",
+  "updatedAt": "2026-06-25",
+  "methodology": "점수는 투자 추천이나 목표주가가 아니라, 성장의 지속성·현재 기대 반영도·근거의 충족도를 한 화면에서 비교하기 위한 내부 검토 지표다.",
+  "companies": {
+    "145020": {
+      "conclusion": "관찰",
+      "growthDurability": 73,
+      "growthAcceleration": 68,
+      "valuationAttractiveness": 48,
+      "expectationBurden": 65,
+      "confidence": 63,
+      "keyEvidence": [
+        "미국 톡신 시장 진출",
+        "글로벌 허가 확대"
+      ],
+      "positiveScenario": "미국 직판 매출이 비용 증가를 넘어선다.",
+      "bearCase": "판관비가 늘고 가격 경쟁이 심해진다.",
+      "minimumChecks": [
+        "미국 매출",
+        "국가별 판매",
+        "판관비율"
+      ]
+    },
+    "192080": {
+      "conclusion": "관심 제외",
+      "growthDurability": 55,
+      "growthAcceleration": 42,
+      "valuationAttractiveness": 63,
+      "expectationBurden": 38,
+      "confidence": 52,
+      "keyEvidence": [
+        "현금창출력",
+        "성장주보다 현금흐름 성격"
+      ],
+      "positiveScenario": "아이게이밍 매출과 결제 유저가 의미 있게 늘어난다.",
+      "bearCase": "소셜카지노 성장 정체가 지속된다.",
+      "minimumChecks": [
+        "아이게이밍 매출",
+        "결제 유저",
+        "유저 잔존율"
+      ]
+    },
+    "196170": {
+      "conclusion": "관찰",
+      "growthDurability": 72,
+      "growthAcceleration": 78,
+      "valuationAttractiveness": 32,
+      "expectationBurden": 88,
+      "confidence": 65,
+      "keyEvidence": [
+        "SC 제형 플랫폼 로열티 옵션",
+        "상업화 이벤트 의존"
+      ],
+      "positiveScenario": "키트루다SC 전환과 로열티 인식이 계획대로 진행된다.",
+      "bearCase": "상업화가 늦어지거나 로열티 조건이 기대를 밑돈다.",
+      "minimumChecks": [
+        "전환율",
+        "J-code 이후 매출",
+        "로열티 인식"
+      ]
+    },
+    "206640": {
+      "conclusion": "관심 제외",
+      "growthDurability": 60,
+      "growthAcceleration": 48,
+      "valuationAttractiveness": 50,
+      "expectationBurden": 56,
+      "confidence": 51,
+      "keyEvidence": [
+        "카트리지 반복 매출 구조",
+        "설치대수·지역별 매출 근거 부족"
+      ],
+      "positiveScenario": "설치 장비와 카트리지 매출이 함께 늘어난다.",
+      "bearCase": "진단기기 가격 경쟁이 심해진다.",
+      "minimumChecks": [
+        "설치 장비",
+        "카트리지 매출",
+        "국가별 매출"
+      ]
+    },
+    "207940": {
+      "conclusion": "관찰",
+      "growthDurability": 78,
+      "growthAcceleration": 68,
+      "valuationAttractiveness": 46,
+      "expectationBurden": 72,
+      "confidence": 66,
+      "keyEvidence": [
+        "CDMO 수주와 생산능력 확대",
+        "5공장·록빌 램프업"
+      ],
+      "positiveScenario": "신규 수주와 공장 가동이 예정대로 매출을 만든다.",
+      "bearCase": "수주가 정체되고 램프업 비용이 커진다.",
+      "minimumChecks": [
+        "신규 수주",
+        "5공장 가동",
+        "록빌 매출"
+      ]
+    },
+    "214150": {
+      "conclusion": "관찰",
+      "growthDurability": 79,
+      "growthAcceleration": 68,
+      "valuationAttractiveness": 55,
+      "expectationBurden": 66,
+      "confidence": 74,
+      "keyEvidence": [
+        "소모품 반복 매출",
+        "해외 미용의료기기 확장"
+      ],
+      "positiveScenario": "소모품 매출과 브라질 회복이 확인된다.",
+      "bearCase": "소모품 비중과 해외 성장률이 계속 떨어진다.",
+      "minimumChecks": [
+        "소모품 매출",
+        "브라질 매출",
+        "영업이익률"
+      ]
+    },
+    "214450": {
+      "conclusion": "심층 검토",
+      "growthDurability": 87,
+      "growthAcceleration": 78,
+      "valuationAttractiveness": 68,
+      "expectationBurden": 48,
+      "confidence": 84,
+      "keyEvidence": [
+        "의료기기 수출과 화장품 성장",
+        "40%대 영업이익률 유지 여부"
+      ],
+      "positiveScenario": "해외 재주문과 의료기기 수출이 반복 매출로 이어진다.",
+      "bearCase": "수출이 일회성에 그치거나 영업이익률이 35%를 밑돈다.",
+      "minimumChecks": [
+        "국가별 수출",
+        "재주문 지표",
+        "영업이익률"
+      ]
+    },
+    "251970": {
+      "conclusion": "관심 제외",
+      "growthDurability": 66,
+      "growthAcceleration": 64,
+      "valuationAttractiveness": 55,
+      "expectationBurden": 56,
+      "confidence": 54,
+      "keyEvidence": [
+        "K뷰티 후방 수요",
+        "신공장 가동률 필요"
+      ],
+      "positiveScenario": "주요 고객 주문 증가가 신공장 가동률로 이어진다.",
+      "bearCase": "고정비 부담과 고객 재고 조정이 이익률을 누른다.",
+      "minimumChecks": [
+        "신공장 가동률",
+        "주요 고객 주문",
+        "영업이익률"
+      ]
+    },
+    "257720": {
+      "conclusion": "심층 검토",
+      "growthDurability": 78,
+      "growthAcceleration": 78,
+      "valuationAttractiveness": 64,
+      "expectationBurden": 55,
+      "confidence": 79,
+      "keyEvidence": [
+        "K뷰티 글로벌 유통 확대",
+        "북미·유럽 성장"
+      ],
+      "positiveScenario": "매출 성장과 함께 재고·매출채권 회전이 안정된다.",
+      "bearCase": "매출채권 회전 악화가 영업현금흐름 훼손으로 이어진다.",
+      "minimumChecks": [
+        "재고 회전",
+        "매출채권",
+        "영업현금흐름"
+      ]
+    },
+    "267260": {
+      "conclusion": "관찰",
+      "growthDurability": 82,
+      "growthAcceleration": 72,
+      "valuationAttractiveness": 44,
+      "expectationBurden": 80,
+      "confidence": 72,
+      "keyEvidence": [
+        "북미 전력기기 수주",
+        "미국 공장 증설"
+      ],
+      "positiveScenario": "고마진 수주와 판가가 유지되며 공장 증설이 매출로 전환된다.",
+      "bearCase": "수주 마진 하락 또는 성장률 둔화가 나타난다.",
+      "minimumChecks": [
+        "수주 마진",
+        "북미 수주",
+        "미국 공장 진행"
+      ]
+    },
+    "278470": {
+      "conclusion": "심층 검토",
+      "growthDurability": 84,
+      "growthAcceleration": 80,
+      "valuationAttractiveness": 48,
+      "expectationBurden": 82,
+      "confidence": 78,
+      "keyEvidence": [
+        "미국 매출과 뷰티 디바이스 성장",
+        "높은 성장 기대가 주가에 반영"
+      ],
+      "positiveScenario": "미국 고성장과 20%대 이익률이 동시에 유지된다.",
+      "bearCase": "성장률이 둔화되거나 재고·마케팅비가 급증한다.",
+      "minimumChecks": [
+        "미국 매출",
+        "마케팅비율",
+        "재고"
+      ]
+    },
+    "062040": {
+      "conclusion": "심층 검토",
+      "growthDurability": 88,
+      "growthAcceleration": 80,
+      "valuationAttractiveness": 72,
+      "expectationBurden": 44,
+      "confidence": 88,
+      "keyEvidence": [
+        "전력기기 수주와 고마진 구조",
+        "2027E PER 20배 안팎 검토 가능"
+      ],
+      "positiveScenario": "수주잔고가 늘고 고마진 수주가 매출로 전환된다.",
+      "bearCase": "수주잔고가 줄거나 영업이익률이 30% 아래로 떨어진다.",
+      "minimumChecks": [
+        "분기 수주잔고",
+        "영업이익률",
+        "2027E 이익 추정치"
+      ]
+    },
+    "003230": {
+      "conclusion": "심층 검토",
+      "growthDurability": 85,
+      "growthAcceleration": 83,
+      "valuationAttractiveness": 66,
+      "expectationBurden": 56,
+      "confidence": 83,
+      "keyEvidence": [
+        "해외 라면 수요와 생산능력 확대",
+        "20%대 영업이익률 가능성"
+      ],
+      "positiveScenario": "밀양2공장이 해외 판매 증가를 흡수하며 가동률을 높인다.",
+      "bearCase": "증설 후 재고가 늘고 지역별 성장률이 꺾인다.",
+      "minimumChecks": [
+        "해외 매출 성장률",
+        "재고 회전",
+        "공장 가동률"
+      ]
+    },
+    "010120": {
+      "conclusion": "심층 검토",
+      "growthDurability": 82,
+      "growthAcceleration": 75,
+      "valuationAttractiveness": 63,
+      "expectationBurden": 52,
+      "confidence": 81,
+      "keyEvidence": [
+        "전력망·데이터센터 수주잔고",
+        "북미 수주 확대"
+      ],
+      "positiveScenario": "수주잔고가 매출로 전환되고 신규 수주가 유지된다.",
+      "bearCase": "수주 공백이나 원가 상승으로 마진이 훼손된다.",
+      "minimumChecks": [
+        "수주잔고",
+        "신규수주",
+        "영업이익률"
+      ]
+    },
+    "058470": {
+      "conclusion": "심층 검토",
+      "growthDurability": 82,
+      "growthAcceleration": 72,
+      "valuationAttractiveness": 58,
+      "expectationBurden": 60,
+      "confidence": 76,
+      "keyEvidence": [
+        "AI ASIC 테스트 소켓",
+        "높은 영업이익률"
+      ],
+      "positiveScenario": "신공장 가동률 상승과 AI 고객 수요가 이어진다.",
+      "bearCase": "고객 개발 사이클이 늦어지고 신공장 비용이 앞선다.",
+      "minimumChecks": [
+        "신공장 가동률",
+        "AI 고객 수요",
+        "영업이익률"
+      ]
+    },
+    "000660": {
+      "conclusion": "관찰",
+      "growthDurability": 86,
+      "growthAcceleration": 85,
+      "valuationAttractiveness": 35,
+      "expectationBurden": 92,
+      "confidence": 70,
+      "keyEvidence": [
+        "HBM 공급과 ASP 상승",
+        "AI 메모리 실적 가속"
+      ],
+      "positiveScenario": "HBM4 공급 부족과 이익 추정치 상향이 이어진다.",
+      "bearCase": "메모리 가격이 피크아웃하거나 HBM 경쟁이 심해진다.",
+      "minimumChecks": [
+        "HBM ASP",
+        "HBM4 공급",
+        "2027E 이익 상향"
+      ]
+    },
+    "064760": {
+      "conclusion": "관찰",
+      "growthDurability": 68,
+      "growthAcceleration": 57,
+      "valuationAttractiveness": 52,
+      "expectationBurden": 53,
+      "confidence": 62,
+      "keyEvidence": [
+        "반도체 소모품 회복",
+        "고객 인증과 가동률"
+      ],
+      "positiveScenario": "고객 투자 회복과 신규 매출 인식이 동반된다.",
+      "bearCase": "고객사 투자 지연으로 마진 회복이 늦어진다.",
+      "minimumChecks": [
+        "고객사 투자",
+        "공장 가동률",
+        "매출총이익률"
+      ]
+    },
+    "051360": {
+      "conclusion": "관심 제외",
+      "growthDurability": 58,
+      "growthAcceleration": 54,
+      "valuationAttractiveness": 45,
+      "expectationBurden": 55,
+      "confidence": 55,
+      "keyEvidence": [
+        "전장·카지노 수주 옵션",
+        "사업부별 이익 가시성 부족"
+      ],
+      "positiveScenario": "신규 고객과 사업부별 이익이 확인된다.",
+      "bearCase": "전장 단가 압박과 실적 변동성이 커진다.",
+      "minimumChecks": [
+        "사업부별 이익",
+        "전장 고객",
+        "카지노 수주"
+      ]
+    },
+    "053800": {
+      "conclusion": "관심 제외",
+      "growthDurability": 58,
+      "growthAcceleration": 45,
+      "valuationAttractiveness": 48,
+      "expectationBurden": 50,
+      "confidence": 49,
+      "keyEvidence": [
+        "보안 소프트웨어 안정성",
+        "성장률 재가속 근거 필요"
+      ],
+      "positiveScenario": "ARR과 중동 매출이 늘고 대형 수주가 잡힌다.",
+      "bearCase": "성장률 둔화가 이어진다.",
+      "minimumChecks": [
+        "ARR",
+        "중동 매출",
+        "제로트러스트 수주"
+      ]
+    },
+    "018290": {
+      "conclusion": "관심 제외",
+      "growthDurability": 50,
+      "growthAcceleration": 54,
+      "valuationAttractiveness": 40,
+      "expectationBurden": 58,
+      "confidence": 42,
+      "keyEvidence": [
+        "PDRN과 해외 확장 옵션",
+        "성장 재가속 근거 부족"
+      ],
+      "positiveScenario": "PDRN 판매와 미국·유럽 매출이 재가속한다.",
+      "bearCase": "후속 히트제품이 없고 마케팅비 회수가 늦어진다.",
+      "minimumChecks": [
+        "PDRN 판매",
+        "미국·유럽 매출",
+        "영업이익률"
+      ]
+    }
+  }
+};
+/* COMPANY_DECISION_MODEL_END */
+
+    function getDecisionModel(company) {
+      const model = companyDecisionModel.companies?.[company.code] || {};
+      const legacy = buyDecisionBoard[company.code] || {};
+      const latestDaily = dailyGrowthTracking.targets?.find((item) => item.code === company.code);
+      const latestWeekly = weeklyGrowthWatchlist.items?.find((item) => item.code === company.code);
+      const updates = [latestDaily?.updatedAt, latestWeekly?.updatedAt].filter(Boolean).sort();
+      return {
+        ...model,
+        action: legacy.action || "관찰",
+        conviction: model.confidence ?? legacy.conviction ?? 0,
+        reason: legacy.why || "판단 근거 확인 필요",
+        buyCondition: legacy.must || "다음 실적과 공시 확인",
+        invalidateCondition: legacy.stop || "성장 논리 훼손",
+        latestUpdate: updates.at(-1) || companyDecisionModel.updatedAt,
+        trackingState: latestDaily?.decision?.status || latestWeekly?.decision?.status || "정기 점검 대기"
+      };
+    }
+
+    function decisionConclusionRank(conclusion) {
+      return { "매수 조건 충족": 0, "심층 검토": 1, "관찰": 2, "관심 제외": 3 }[conclusion] ?? 4;
+    }
+
+    function decisionFreshness(value) {
+      if (!value) return "확인 필요";
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return "확인 필요";
+      const days = Math.max(0, Math.floor((Date.now() - date.getTime()) / 86400000));
+      if (days <= 3) return "최신";
+      if (days <= 14) return `${days}일 전`;
+      return `${days}일 전 · 재검토 필요`;
+    }
+
+    function renderDecisionScore(label, value, inverse = false) {
+      const score = Number(value) || 0;
+      const tone = inverse ? 100 - score : score;
+      return `<div class="decision-score"><span>${label}</span><strong>${score}</strong><i><b style="width:${Math.max(0, Math.min(100, tone))}%"></b></i></div>`;
+    }
+
     function renderBuyDecisionBoard() {
       const actionRank = { "1차 매수 후보": 0, "2차 매수 후보": 1, "추격매수 주의": 2, "관찰": 3, "보류": 4, "제외 후보": 5 };
       const rows = companies.map((company) => ({ company, decision: buyDecisionBoard[company.code] || {} }))
@@ -6837,102 +7354,121 @@
     }
 
 
-    function renderCommonDashboard() {
-      const topPicks = companies.slice(0, 5).map((company) => company.name).join(" · ");
+    function renderDecisionOverview() {
+      const rows = companies.map((company) => ({ company, decision: getDecisionModel(company) }))
+        .sort((a, b) => decisionConclusionRank(a.decision.conclusion) - decisionConclusionRank(b.decision.conclusion) || b.decision.confidence - a.decision.confidence);
       return `
-        <div class="summary-strip">
-          <div class="summary-card"><label>목적</label><strong>성장주 1종목 선발</strong><span>20개 후보 중 1~2년 보유할 종목을 고르는 화면입니다.</span></div>
-          <div class="summary-card"><label>먼저 볼 것</label><strong>성장 지속성</strong><span>매출 증가가 일회성이 아닌지, 마진이 유지되는지 확인합니다.</span></div>
-          <div class="summary-card"><label>가격 판단</label><strong>미래가치 대비 싼가</strong><span>2026~2027 이익, 안전마진, 추정 신뢰도를 같이 봅니다.</span></div>
-          <div class="summary-card"><label>우선 추적</label><strong>${topPicks}</strong><span>매일 추적 대상과 주간 후보군을 나눠 관리합니다.</span></div>
+        <div class="history-table">
+          <table>
+            <thead><tr><th>AI 결론</th><th>종목</th><th>성장 지속</th><th>밸류 매력</th><th>기대 반영</th><th>신뢰도</th><th>판단을 바꿀 조건</th></tr></thead>
+            <tbody>${rows.map(({ company, decision }) => `
+              <tr>
+                <td><span class="status-tag">${decision.conclusion || "관찰"}</span></td>
+                <td><strong>${company.name}</strong><br><span class="muted">${company.code} · ${company.industry}</span></td>
+                <td>${decision.growthDurability ?? "-"}/100</td>
+                <td>${decision.valuationAttractiveness ?? "-"}/100</td>
+                <td>${decision.expectationBurden ?? "-"}/100</td>
+                <td>${decision.confidence ?? "-"}/100</td>
+                <td>${decision.invalidateCondition || "다음 실적 확인"}</td>
+              </tr>`).join("")}</tbody>
+          </table>
+        </div>`;
+    }
+
+    function renderDataReadiness() {
+      const rows = companies.map((company) => {
+        const decision = getDecisionModel(company);
+        const sufficiency = growthDataSufficiency.notes[company.code] || {};
+        return { company, decision, sufficiency };
+      }).sort((a, b) => (a.decision.confidence || 0) - (b.decision.confidence || 0));
+      return `
+        <div class="history-table">
+          <table>
+            <thead><tr><th>종목</th><th>데이터 상태</th><th>신뢰도</th><th>최소 확인 항목</th><th>추가 보강 필요</th></tr></thead>
+            <tbody>${rows.map(({ company, decision, sufficiency }) => `
+              <tr>
+                <td><strong>${company.name}</strong></td>
+                <td>${decisionFreshness(decision.latestUpdate)}</td>
+                <td>${decision.confidence ?? "-"}/100</td>
+                <td>${(decision.minimumChecks || []).join(" · ") || "확인 필요"}</td>
+                <td>${sufficiency.gap || "최신 실적과 추정치 재확인"}</td>
+              </tr>`).join("")}</tbody>
+          </table>
+        </div>`;
+    }
+
+    function renderCommonDashboard() {
+      const decisions = companies.map(getDecisionModel);
+      const counts = ["심층 검토", "관찰", "관심 제외"].map((label) => ({ label, count: decisions.filter((item) => item.conclusion === label).length }));
+      const deepNames = companies.filter((company) => getDecisionModel(company).conclusion === "심층 검토").map((company) => company.name).join(" · ");
+      return `
+        <div class="summary-strip decision-summary">
+          <div class="summary-card"><label>심층 검토</label><strong>${counts[0].count}개</strong><span>${deepNames || "없음"}</span></div>
+          <div class="summary-card"><label>관찰</label><strong>${counts[1].count}개</strong><span>실적·공시로 판단을 좁힐 후보</span></div>
+          <div class="summary-card"><label>관심 제외</label><strong>${counts[2].count}개</strong><span>성장 또는 가격 근거가 부족한 후보</span></div>
+          <div class="summary-card"><label>판단 데이터 기준일</label><strong>${companyDecisionModel.updatedAt}</strong><span>일일 공시·주가 추적과 별도로 재검토됩니다.</span></div>
         </div>
         <div class="section-stack">
           <details class="detail-group" open>
-            <summary>성장주 5종목 매일 추적</summary>
-            <div class="detail-group-body">${renderDailyGrowthTracking()}</div>
+            <summary>20개 종목 AI 판단 비교</summary>
+            <div class="detail-group-body">${renderDecisionOverview()}</div>
           </details>
           <details class="detail-group" open>
-            <summary>성장주 20종목 주간 점검</summary>
-            <div class="detail-group-body">${renderWeeklyGrowthWatchlist()}</div>
+            <summary>자동 추적에서 감지된 변화</summary>
+            <div class="detail-group-body">${renderDailyGrowthTracking()}${renderWeeklyGrowthWatchlist()}</div>
           </details>
           <details class="detail-group">
-            <summary>1종목 선발 기준과 매수 판단판</summary>
-            <div class="detail-group-body">
-              ${renderSingleGrowthPickFramework()}
-              ${renderBuyDecisionBoard()}
-              ${renderBuyAttractivenessReview()}
-            </div>
+            <summary>판단 신뢰도와 아직 부족한 데이터</summary>
+            <div class="detail-group-body">${renderDataReadiness()}</div>
           </details>
           <details class="detail-group">
-            <summary>데이터 충족도와 성장성 근거 매트릭스</summary>
-            <div class="detail-group-body">
-              ${renderGrowthDataSufficiency()}
-              ${renderGrowthProofMatrix()}
-              ${renderRemainingDataAudit()}
-            </div>
-          </details>
-          <details class="detail-group">
-            <summary>최종 후보 재검토와 추가 관찰군</summary>
-            <div class="detail-group-body">
-              ${renderFinalGrowthReview()}
-              ${renderCandidateRecheckSummary()}
-              ${renderAdditionalGrowthCandidates()}
-            </div>
+            <summary>검토 기준과 원자료</summary>
+            <div class="detail-group-body">${renderSingleGrowthPickFramework()}${renderGrowthProofMatrix()}${renderRemainingDataAudit()}</div>
           </details>
         </div>
       `;
     }
     function renderCompanyDecisionSummary(company) {
-      const decision = buyDecisionBoard[company.code] || {};
+      const decision = getDecisionModel(company);
       const sufficiency = growthDataSufficiency.notes[company.code] || {};
       const tracking = dailyGrowthTracking.targets.find((item) => item.code === company.code);
-      const fit = getGrowthFitSummary(company);
-      const valuation = valuationData[company.code] || {};
       const leading = growthLeadingIndicators[company.code] || {};
-      const competitive = competitivePosition[company.code] || {};
       const todayChecks = tracking?.dailyChecks || leading.nextData || company.watch || [];
-      const keepRules = tracking?.rules?.keep || [];
-      const holdRules = tracking?.rules?.hold || [];
-      const toFiniteNumber = (value) => {
-        if (value === null || value === undefined || value === "") return null;
-        const parsed = Number(String(value).replace(/,/g, ""));
-        return Number.isFinite(parsed) ? parsed : null;
-      };
-      const revenue2027Number = toFiniteNumber(valuation.revenue2027E);
-      const net2027Number = toFiniteNumber(valuation.net2027E);
-      const priceHint = revenue2027Number !== null || net2027Number !== null
-        ? `2027E 매출 ${revenue2027Number !== null ? revenue2027Number.toLocaleString("ko-KR") : "확인 필요"} · 순이익 ${net2027Number !== null ? net2027Number.toLocaleString("ko-KR") : "확인 필요"}`
-        : "미래가치 입력값 추가 확인 필요";
       return `
+        <div class="decision-head">
+          <div><span class="status-tag">AI 결론 · ${decision.conclusion || "관찰"}</span><h4>${decision.reason || company.thesis}</h4><p class="soft">최종 매수 판단은 사용자에게 있으며, 이 결론은 최신 공시·실적·가격 반영도를 함께 다시 확인해야 합니다.</p></div>
+          <div class="decision-meta"><strong>신뢰도 ${decision.confidence ?? "-"}/100</strong><span>데이터 ${decisionFreshness(decision.latestUpdate)}</span><span>${decision.trackingState}</span></div>
+        </div>
+        <div class="decision-scores">
+          ${renderDecisionScore("성장 지속성", decision.growthDurability)}
+          ${renderDecisionScore("성장 가속", decision.growthAcceleration)}
+          ${renderDecisionScore("밸류 매력", decision.valuationAttractiveness)}
+          ${renderDecisionScore("기대 반영", decision.expectationBurden, true)}
+        </div>
         <div class="research-grid">
           <div class="research-box">
-            <h4>현재 판단</h4>
+            <h4>핵심 근거</h4>
+            <ul>${(decision.keyEvidence || [decision.reason]).map((item) => `<li>${item}</li>`).join("")}</ul>
+          </div>
+          <div class="research-box">
+            <h4>긍정 시나리오</h4>
             <ul>
-              <li>${decision.action || "관찰"} · 확신도 ${decision.conviction || "-"}/100</li>
-              <li>${decision.why || company.thesis}</li>
-              <li>데이터 충족도: ${sufficiency.status || "확인"} ${sufficiency.score ? `· ${sufficiency.score}/100` : ""}</li>
+              <li>${decision.positiveScenario || "성장 지표 재확인"}</li>
+              <li>매수 조건: ${decision.buyCondition}</li>
             </ul>
           </div>
           <div class="research-box">
-            <h4>매수 전 조건</h4>
+            <h4>반대 논리·탈락 조건</h4>
             <ul>
-              <li>${decision.must || "다음 실적과 공시 확인"}</li>
-              <li>${tracking?.decision?.nextAction || "추가 확인 후 판단"}</li>
+              <li>${decision.bearCase || "성장 논리 훼손"}</li>
+              <li>판단 변경: ${decision.invalidateCondition}</li>
             </ul>
           </div>
           <div class="research-box">
-            <h4>보류·취소 조건</h4>
+            <h4>내가 최소로 확인할 것</h4>
             <ul>
-              <li>${decision.stop || "성장 논리 훼손"}</li>
-              ${holdRules.slice(0, 3).map((item) => `<li>${item}</li>`).join("")}
-            </ul>
-          </div>
-          <div class="research-box">
-            <h4>미래가치·경쟁력</h4>
-            <ul>
-              <li>${priceHint}</li>
-              <li>성장 조건: ${fit.passed}/${fit.total} · ${fit.label}</li>
-              <li>경쟁력: ${competitive.verdict || "확인 필요"}</li>
+              ${(decision.minimumChecks || todayChecks.slice(0, 3)).map((item) => `<li>${item}</li>`).join("")}
+              <li>데이터 보강: ${sufficiency.gap || "최신 실적과 추정치 재확인"}</li>
             </ul>
           </div>
         </div>
@@ -6942,15 +7478,15 @@
               <tr>
                 <th>구분</th>
                 <th>오늘 확인할 내용</th>
-                <th>유지 기준</th>
-                <th>아직 부족한 자료</th>
+                <th>자동 추적 상태</th>
+                <th>데이터 한계</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>추적</td>
                 <td>${todayChecks.slice(0, 5).join(" · ") || "확인 필요"}</td>
-                <td>${keepRules.slice(0, 3).join(" · ") || decision.must || "기준 확인 필요"}</td>
+                <td>${decision.trackingState}</td>
                 <td>${sufficiency.gap || "다음 분기 자료 확인"}</td>
               </tr>
             </tbody>

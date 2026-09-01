@@ -60,6 +60,9 @@ jobs:
         if: steps.scope.outputs.scope == 'all' || steps.scope.outputs.scope == 'weekly'
         run: node scripts/apply-weekly-watchlist.js index.html data/weekly-growth-watchlist.json
 
+      - name: Apply company decision model
+        run: node scripts/apply-company-decision-model.js
+
       - name: Validate dashboard
         run: node scripts/check-dashboard.js index.html
 
