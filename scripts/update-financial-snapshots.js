@@ -179,9 +179,10 @@ async function buildCompany(target, corpCode) {
   const interimOperatingMarginChangeYoY = Number.isFinite(latestInterim?.operatingMargin) && Number.isFinite(priorInterim?.operatingMargin)
     ? Number((latestInterim.operatingMargin - priorInterim.operatingMargin).toFixed(1)) : null;
   const financialSignal = interimRevenueGrowthYoY === null || interimOperatingMarginChangeYoY === null ? "비교 자료 부족"
-    : interimRevenueGrowthYoY >= 15 && interimOperatingMarginChangeYoY >= -2 ? "성장 가속·유지"
-      : interimRevenueGrowthYoY <= 0 || interimOperatingMarginChangeYoY <= -5 ? "성장 둔화 경보"
-        : "성장 유지·확인";
+    : interimRevenueGrowthYoY <= 0 ? "성장 둔화 경보"
+      : interimOperatingMarginChangeYoY <= -5 ? "수익성 둔화 경보"
+        : interimRevenueGrowthYoY >= 15 ? "성장 가속·유지"
+          : "성장 유지·확인";
   const failures = [...annualResults, ...interimResult].filter((item) => item.status === "rejected").map((item) => errorText(item.reason));
   const latestAnnual = annual.at(-1);
   return {
