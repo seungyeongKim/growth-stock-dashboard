@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-01T21:20:47",
+  "updatedAt": "2026-09-08T01:05:48",
   "methodology": "자동 판단은 투자 추천이 아니라 최신 재무·가격·근거 상태를 바탕으로 관찰 우선순위를 정하는 보조 도구다.",
   "guardrails": [
     "추정치의 출처 또는 기준일이 45일을 넘기면 매수 조건 충족으로 자동 상향하지 않는다.",
@@ -45,8 +45,8 @@
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-09-01T21:20:51",
-        "valuation": "2026-09-01T21:20:47",
+        "financial": "2026-09-08T01:05:54",
+        "valuation": "2026-09-08T01:05:48",
         "estimate": "기준일 75일 · 갱신 필요"
       },
       "sourceStatus": {
@@ -88,8 +88,8 @@
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-09-01T21:20:51",
-        "valuation": "2026-09-01T21:20:47",
+        "financial": "2026-09-08T01:05:54",
+        "valuation": "2026-09-08T01:05:48",
         "estimate": "기준일 75일 · 갱신 필요"
       },
       "sourceStatus": {
@@ -131,8 +131,8 @@
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-09-01T21:20:51",
-        "valuation": "2026-09-01T21:20:47",
+        "financial": "2026-09-08T01:05:54",
+        "valuation": "2026-09-08T01:05:48",
         "estimate": "기준일 75일 · 갱신 필요"
       },
       "sourceStatus": {
@@ -174,8 +174,8 @@
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-09-01T21:20:51",
-        "valuation": "2026-09-01T21:20:47",
+        "financial": "2026-09-08T01:05:54",
+        "valuation": "2026-09-08T01:05:48",
         "estimate": "기준일 75일 · 갱신 필요"
       },
       "sourceStatus": {
@@ -189,20 +189,20 @@
       "code": "207940",
       "name": "삼성바이오로직스",
       "verdict": "관찰",
-      "totalScore": 63,
+      "totalScore": 62,
       "confidence": 78,
       "score": {
         "financialQuality": 75,
         "growthMomentum": 65,
         "valuationQuality": 50,
-        "riskAdjusted": 28,
+        "riskAdjusted": 18,
         "evidenceStrength": 87
       },
       "evidence": [
         "실제 재무: 성장 유지·확인",
         "가격 대비 확정 실적: 실적과 가격 동시 확인",
         "추정치 자료: 기준일 75일 · 갱신 필요",
-        "최근 수집 범위에서 주요 DART 공시 없음"
+        "지분변동: 최대주주등소유주식변동신고서              "
       ],
       "positiveScenario": "신규 수주와 공장 가동이 예정대로 매출을 만든다.",
       "counterCase": "수주가 정체되고 램프업 비용이 커진다.",
@@ -214,11 +214,12 @@
       ],
       "limitations": [
         "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
-        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
+        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요",
+        "공시 점검: 지분변동: 최대주주등소유주식변동신고서              "
       ],
       "freshness": {
-        "financial": "2026-09-01T21:20:51",
-        "valuation": "2026-09-01T21:20:47",
+        "financial": "2026-09-08T01:05:54",
+        "valuation": "2026-09-08T01:05:48",
         "estimate": "기준일 75일 · 갱신 필요"
       },
       "sourceStatus": {
@@ -260,8 +261,8 @@
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-09-01T21:20:51",
-        "valuation": "2026-09-01T21:20:47",
+        "financial": "2026-09-08T01:05:54",
+        "valuation": "2026-09-08T01:05:48",
         "estimate": "기준일 75일 · 갱신 필요"
       },
       "sourceStatus": {
@@ -275,12 +276,12 @@
       "code": "214450",
       "name": "파마리서치",
       "verdict": "심층 검토",
-      "totalScore": 77,
+      "totalScore": 78,
       "confidence": 86,
       "score": {
         "financialQuality": 85,
         "growthMomentum": 85,
-        "valuationQuality": 65,
+        "valuationQuality": 70,
         "riskAdjusted": 52,
         "evidenceStrength": 87
       },
@@ -303,8 +304,8 @@
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-09-01T21:20:51",
-        "valuation": "2026-09-01T21:20:47",
+        "financial": "2026-09-08T01:05:54",
+        "valuation": "2026-09-08T01:05:48",
         "estimate": "기준일 75일 · 갱신 필요"
       },
       "sourceStatus": {
@@ -346,8 +347,8 @@
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-09-01T21:20:51",
-        "valuation": "2026-09-01T21:20:47",
+        "financial": "2026-09-08T01:05:54",
+        "valuation": "2026-09-08T01:05:48",
         "estimate": "기준일 75일 · 갱신 필요"
       },
       "sourceStatus": {
@@ -389,8 +390,8 @@
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-09-01T21:20:51",
-        "valuation": "2026-09-01T21:20:47",
+        "financial": "2026-09-08T01:05:54",
+        "valuation": "2026-09-08T01:05:48",
         "estimate": "기준일 75일 · 갱신 필요"
       },
       "sourceStatus": {
@@ -432,8 +433,8 @@
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-09-01T21:20:51",
-        "valuation": "2026-09-01T21:20:47",
+        "financial": "2026-09-08T01:05:54",
+        "valuation": "2026-09-08T01:05:48",
         "estimate": "기준일 75일 · 갱신 필요"
       },
       "sourceStatus": {
@@ -446,19 +447,19 @@
     "278470": {
       "code": "278470",
       "name": "에이피알",
-      "verdict": "관찰",
-      "totalScore": 64,
+      "verdict": "심층 검토",
+      "totalScore": 69,
       "confidence": 83,
       "score": {
         "financialQuality": 82,
         "growthMomentum": 85,
-        "valuationQuality": 25,
+        "valuationQuality": 50,
         "riskAdjusted": 18,
         "evidenceStrength": 87
       },
       "evidence": [
         "실제 재무: 성장 가속·유지",
-        "가격 대비 확정 실적: 높은 미래 기대 반영",
+        "가격 대비 확정 실적: 실적과 가격 동시 확인",
         "추정치 자료: 기준일 75일 · 갱신 필요",
         "최근 수집 범위에서 주요 DART 공시 없음"
       ],
@@ -475,8 +476,8 @@
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-09-01T21:20:51",
-        "valuation": "2026-09-01T21:20:47",
+        "financial": "2026-09-08T01:05:54",
+        "valuation": "2026-09-08T01:05:48",
         "estimate": "기준일 75일 · 갱신 필요"
       },
       "sourceStatus": {
@@ -519,8 +520,8 @@
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-09-01T21:20:51",
-        "valuation": "2026-09-01T21:20:47",
+        "financial": "2026-09-08T01:05:54",
+        "valuation": "2026-09-08T01:05:48",
         "estimate": "기준일 75일 · 갱신 필요"
       },
       "sourceStatus": {
@@ -534,20 +535,20 @@
       "code": "003230",
       "name": "삼양식품",
       "verdict": "심층 검토",
-      "totalScore": 75,
+      "totalScore": 76,
       "confidence": 85,
       "score": {
         "financialQuality": 82,
         "growthMomentum": 85,
         "valuationQuality": 70,
-        "riskAdjusted": 34,
+        "riskAdjusted": 44,
         "evidenceStrength": 87
       },
       "evidence": [
         "실제 재무: 성장 가속·유지",
         "가격 대비 확정 실적: 성장 반영·검토 가능",
         "추정치 자료: 기준일 75일 · 갱신 필요",
-        "지분변동: 임원ㆍ주요주주특정증권등소유상황보고서"
+        "최근 수집 범위에서 주요 DART 공시 없음"
       ],
       "positiveScenario": "밀양2공장이 해외 판매 증가를 흡수하며 가동률을 높인다.",
       "counterCase": "증설 후 재고가 늘고 지역별 성장률이 꺾인다.",
@@ -559,12 +560,11 @@
       ],
       "limitations": [
         "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
-        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요",
-        "공시 점검: 지분변동: 임원ㆍ주요주주특정증권등소유상황보고서"
+        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-09-01T21:20:51",
-        "valuation": "2026-09-01T21:20:47",
+        "financial": "2026-09-08T01:05:54",
+        "valuation": "2026-09-08T01:05:48",
         "estimate": "기준일 75일 · 갱신 필요"
       },
       "sourceStatus": {
@@ -606,8 +606,8 @@
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-09-01T21:20:51",
-        "valuation": "2026-09-01T21:20:47",
+        "financial": "2026-09-08T01:05:54",
+        "valuation": "2026-09-08T01:05:48",
         "estimate": "기준일 75일 · 갱신 필요"
       },
       "sourceStatus": {
@@ -649,8 +649,8 @@
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-09-01T21:20:51",
-        "valuation": "2026-09-01T21:20:47",
+        "financial": "2026-09-08T01:05:54",
+        "valuation": "2026-09-08T01:05:48",
         "estimate": "기준일 75일 · 갱신 필요"
       },
       "sourceStatus": {
@@ -663,19 +663,19 @@
     "000660": {
       "code": "000660",
       "name": "SK하이닉스",
-      "verdict": "심층 검토",
-      "totalScore": 72,
+      "verdict": "관찰",
+      "totalScore": 69,
       "confidence": 79,
       "score": {
         "financialQuality": 85,
         "growthMomentum": 85,
-        "valuationQuality": 70,
+        "valuationQuality": 55,
         "riskAdjusted": 8,
         "evidenceStrength": 87
       },
       "evidence": [
         "실제 재무: 성장 가속·유지",
-        "가격 대비 확정 실적: 성장 반영·검토 가능",
+        "가격 대비 확정 실적: 실적과 가격 동시 확인",
         "추정치 자료: 기준일 75일 · 갱신 필요",
         "최근 수집 범위에서 주요 DART 공시 없음"
       ],
@@ -692,8 +692,8 @@
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-09-01T21:20:51",
-        "valuation": "2026-09-01T21:20:47",
+        "financial": "2026-09-08T01:05:54",
+        "valuation": "2026-09-08T01:05:48",
         "estimate": "기준일 75일 · 갱신 필요"
       },
       "sourceStatus": {
@@ -707,12 +707,12 @@
       "code": "064760",
       "name": "티씨케이",
       "verdict": "관찰",
-      "totalScore": 71,
+      "totalScore": 70,
       "confidence": 76,
       "score": {
         "financialQuality": 72,
         "growthMomentum": 85,
-        "valuationQuality": 55,
+        "valuationQuality": 50,
         "riskAdjusted": 47,
         "evidenceStrength": 87
       },
@@ -735,8 +735,8 @@
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-09-01T21:20:51",
-        "valuation": "2026-09-01T21:20:47",
+        "financial": "2026-09-08T01:05:54",
+        "valuation": "2026-09-08T01:05:48",
         "estimate": "기준일 75일 · 갱신 필요"
       },
       "sourceStatus": {
@@ -778,8 +778,8 @@
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-09-01T21:20:51",
-        "valuation": "2026-09-01T21:20:47",
+        "financial": "2026-09-08T01:05:54",
+        "valuation": "2026-09-08T01:05:48",
         "estimate": "기준일 75일 · 갱신 필요"
       },
       "sourceStatus": {
@@ -821,8 +821,8 @@
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-09-01T21:20:51",
-        "valuation": "2026-09-01T21:20:47",
+        "financial": "2026-09-08T01:05:54",
+        "valuation": "2026-09-08T01:05:48",
         "estimate": "기준일 75일 · 갱신 필요"
       },
       "sourceStatus": {
@@ -864,8 +864,8 @@
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-09-01T21:20:51",
-        "valuation": "2026-09-01T21:20:47",
+        "financial": "2026-09-08T01:05:54",
+        "valuation": "2026-09-08T01:05:48",
         "estimate": "기준일 75일 · 갱신 필요"
       },
       "sourceStatus": {

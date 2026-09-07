@@ -33,9 +33,19 @@
     "207940": {
       "code": "207940",
       "name": "삼성바이오로직스",
-      "status": "변화 없음",
-      "headline": "최근 수집 범위에서 주요 DART 공시 없음",
-      "items": []
+      "status": "주의",
+      "headline": "지분변동: 최대주주등소유주식변동신고서              ",
+      "items": [
+        {
+          "date": "20260907",
+          "title": "최대주주등소유주식변동신고서              ",
+          "receiptNo": "20260907800372",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260907800372",
+          "category": "지분변동",
+          "severity": "주의",
+          "impact": "지분 변화 이유와 규모 확인"
+        }
+      ]
     },
     "214150": {
       "code": "214150",
@@ -89,19 +99,9 @@
     "003230": {
       "code": "003230",
       "name": "삼양식품",
-      "status": "주의",
-      "headline": "지분변동: 임원ㆍ주요주주특정증권등소유상황보고서",
-      "items": [
-        {
-          "date": "20260901",
-          "title": "임원ㆍ주요주주특정증권등소유상황보고서",
-          "receiptNo": "20260901000233",
-          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260901000233",
-          "category": "지분변동",
-          "severity": "주의",
-          "impact": "지분 변화 이유와 규모 확인"
-        }
-      ]
+      "status": "변화 없음",
+      "headline": "최근 수집 범위에서 주요 DART 공시 없음",
+      "items": []
     },
     "010120": {
       "code": "010120",
