@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-15T01:37:13",
+  "updatedAt": "2026-09-22T01:38:15",
   "cadence": "weekly",
   "rule": "20개 관찰군은 매주 1회 가격, 공시, 데이터 충족도, 성장 논리 훼손 여부를 확인해 5개 심층 추적 후보로 승격할지 판단한다.",
   "sourcePolicy": "20개 관찰군은 자동 수집값만으로 매수 판단하지 않고, 새 공시와 가격 변화를 승격/강등 검토 신호로만 사용한다.",
@@ -19,9 +19,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "194,700",
-        "changeRate": "-1.96",
-        "volume": "291,979",
+        "price": "207,000",
+        "changeRate": "-2.13",
+        "volume": "183,721",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -47,9 +47,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "341,500",
-        "changeRate": "-0.15",
-        "volume": "81,644",
+        "price": "326,000",
+        "changeRate": "-0.46",
+        "volume": "54,318",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -75,9 +75,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "1,295,000",
-        "changeRate": "1.33",
-        "volume": "72,267",
+        "price": "1,281,000",
+        "changeRate": "-1.46",
+        "volume": "27,641",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -103,9 +103,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "197,500",
-        "changeRate": "-3.42",
-        "volume": "310,634",
+        "price": "211,000",
+        "changeRate": "-0.24",
+        "volume": "274,366",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -131,9 +131,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "45,400",
-        "changeRate": "4.37",
-        "volume": "1,532,202",
+        "price": "41,150",
+        "changeRate": "-0.96",
+        "volume": "691,852",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -159,9 +159,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "363,500",
-        "changeRate": "-2.28",
-        "volume": "261,332",
+        "price": "366,500",
+        "changeRate": "-0.14",
+        "volume": "133,965",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -187,9 +187,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "64,200",
-        "changeRate": "-3.31",
-        "volume": "507,535",
+        "price": "70,400",
+        "changeRate": "1.15",
+        "volume": "443,972",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -215,9 +215,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "31,350",
-        "changeRate": "-2.18",
-        "volume": "110,965",
+        "price": "30,900",
+        "changeRate": "-1.28",
+        "volume": "130,749",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -243,9 +243,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "730,000",
-        "changeRate": "-2.28",
-        "volume": "50,867",
+        "price": "722,000",
+        "changeRate": "-0.41",
+        "volume": "54,950",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -271,9 +271,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "1,683,000",
-        "changeRate": "-7.12",
-        "volume": "4,000,232",
+        "price": "1,879,000",
+        "changeRate": "1.18",
+        "volume": "2,716,408",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -299,9 +299,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "1,402,000",
-        "changeRate": "-0.92",
-        "volume": "32,516",
+        "price": "1,403,000",
+        "changeRate": "0.36",
+        "volume": "30,134",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -327,9 +327,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "258,000",
-        "changeRate": "-3.73",
-        "volume": "403,038",
+        "price": "256,000",
+        "changeRate": "0.99",
+        "volume": "193,075",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -355,9 +355,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "229,500",
-        "changeRate": "-0.65",
-        "volume": "31,158",
+        "price": "207,500",
+        "changeRate": "-3.04",
+        "volume": "59,610",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -383,9 +383,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "256,000",
-        "changeRate": "-0.78",
-        "volume": "65,724",
+        "price": "269,000",
+        "changeRate": "0.19",
+        "volume": "46,956",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -411,9 +411,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "58,200",
-        "changeRate": "10.23",
-        "volume": "243,012",
+        "price": "59,800",
+        "changeRate": "-3.08",
+        "volume": "61,120",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -440,8 +440,8 @@
         "ok": true,
         "source": "Naver Finance realtime",
         "price": "58,700",
-        "changeRate": "1.03",
-        "volume": "45,460",
+        "changeRate": "1.21",
+        "volume": "21,988",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -467,9 +467,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "11,680",
-        "changeRate": "-0.34",
-        "volume": "7,231",
+        "price": "11,840",
+        "changeRate": "-0.08",
+        "volume": "7,186",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -495,9 +495,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "9,530",
-        "changeRate": "-0.73",
-        "volume": "19,722",
+        "price": "9,380",
+        "changeRate": "0.43",
+        "volume": "17,969",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -523,9 +523,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "61,300",
-        "changeRate": "3.37",
-        "volume": "127,633",
+        "price": "68,800",
+        "changeRate": "0.88",
+        "volume": "102,324",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -551,9 +551,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "11,610",
-        "changeRate": "-1.02",
-        "volume": "149,732",
+        "price": "11,420",
+        "changeRate": "-2.31",
+        "volume": "136,910",
         "note": "비공식 참고값"
       },
       "dart": {
