@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-22T01:34:52",
+  "updatedAt": "2026-09-23T00:09:19",
   "sourcePolicy": "공식 공시와 회사 IR을 우선하고, 비공식 시세는 참고값으로만 표시",
   "targets": [
     {
@@ -36,10 +36,10 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "207,000",
-        "changeRate": "-2.13",
+        "price": "206,500",
+        "changeRate": "0.73",
         "marketCap": null,
-        "volume": "183,721",
+        "volume": "239,074",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
@@ -87,10 +87,10 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "326,000",
+        "price": "323,500",
         "changeRate": "-0.46",
         "marketCap": null,
-        "volume": "54,318",
+        "volume": "60,271",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
@@ -138,10 +138,10 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "1,281,000",
-        "changeRate": "-1.46",
+        "price": "1,254,000",
+        "changeRate": "-1.72",
         "marketCap": null,
-        "volume": "27,641",
+        "volume": "55,222",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
@@ -190,9 +190,9 @@
         "enabled": true,
         "source": "Naver Finance realtime",
         "price": "211,000",
-        "changeRate": "-0.24",
+        "changeRate": "0.96",
         "marketCap": null,
-        "volume": "274,366",
+        "volume": "444,006",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
@@ -240,10 +240,10 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "41,150",
-        "changeRate": "-0.96",
+        "price": "39,950",
+        "changeRate": "-2.68",
         "marketCap": null,
-        "volume": "691,852",
+        "volume": "859,673",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
