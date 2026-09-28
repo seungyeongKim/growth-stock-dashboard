@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-26T00:31:58",
+  "updatedAt": "2026-09-29T03:15:10",
   "sourcePolicy": "공식 공시와 회사 IR을 우선하고, 비공식 시세는 참고값으로만 표시",
   "targets": [
     {
@@ -36,10 +36,10 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "205,000",
-        "changeRate": "0.00",
+        "price": "199,900",
+        "changeRate": "-2.73",
         "marketCap": null,
-        "volume": "124,718",
+        "volume": "186,037",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
@@ -87,10 +87,10 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "323,500",
-        "changeRate": "-0.15",
+        "price": "319,000",
+        "changeRate": "-1.09",
         "marketCap": null,
-        "volume": "48,735",
+        "volume": "45,753",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
@@ -139,9 +139,9 @@
         "enabled": true,
         "source": "Naver Finance realtime",
         "price": "1,218,000",
-        "changeRate": "-2.72",
+        "changeRate": "0.25",
         "marketCap": null,
-        "volume": "57,242",
+        "volume": "29,286",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
@@ -189,10 +189,10 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "207,000",
-        "changeRate": "-2.36",
+        "price": "203,000",
+        "changeRate": "-1.22",
         "marketCap": null,
-        "volume": "332,290",
+        "volume": "304,267",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
@@ -240,10 +240,10 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "38,900",
-        "changeRate": "-2.26",
+        "price": "38,700",
+        "changeRate": "-0.13",
         "marketCap": null,
-        "volume": "625,198",
+        "volume": "599,652",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
