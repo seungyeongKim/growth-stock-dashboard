@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-06T04:23:23",
+  "updatedAt": "2026-10-07T01:55:21",
   "sourcePolicy": "DART 공시 제목을 규칙 기반으로 분류한 보조 신호이며, 실제 영향은 공시 원문 확인이 필요하다.",
   "companies": {
     "145020": {
@@ -92,9 +92,20 @@
     "062040": {
       "code": "062040",
       "name": "산일전기",
-      "status": "변화 없음",
-      "headline": "최근 수집 범위에서 주요 DART 공시 없음",
-      "items": []
+      "status": "정보",
+      "headline": "수주·매출: 단일판매ㆍ공급계약체결              ",
+      "items": [
+        {
+          "date": "20261006",
+          "title": "단일판매ㆍ공급계약체결              ",
+          "corpName": "산일전기",
+          "receiptNo": "20261006800320",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006800320",
+          "category": "수주·매출",
+          "severity": "정보",
+          "impact": "계약 규모·마진·매출 인식 시점 확인"
+        }
+      ]
     },
     "003230": {
       "code": "003230",
