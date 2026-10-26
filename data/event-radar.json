@@ -33,9 +33,37 @@
     "207940": {
       "code": "207940",
       "name": "삼성바이오로직스",
-      "status": "변화 없음",
-      "headline": "최근 수집 범위에서 주요 DART 공시 없음",
-      "items": []
+      "status": "주의",
+      "headline": "지분변동: 임원ㆍ주요주주특정증권등소유상황보고서",
+      "items": [
+        {
+          "date": "20261026",
+          "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+          "receiptNo": "20261026000331",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261026000331",
+          "category": "지분변동",
+          "severity": "주의",
+          "impact": "지분 변화 이유와 규모 확인"
+        },
+        {
+          "date": "20261026",
+          "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+          "receiptNo": "20261026000320",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261026000320",
+          "category": "지분변동",
+          "severity": "주의",
+          "impact": "지분 변화 이유와 규모 확인"
+        },
+        {
+          "date": "20261026",
+          "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+          "receiptNo": "20261026000313",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261026000313",
+          "category": "지분변동",
+          "severity": "주의",
+          "impact": "지분 변화 이유와 규모 확인"
+        }
+      ]
     },
     "214150": {
       "code": "214150",
@@ -68,9 +96,19 @@
     "267260": {
       "code": "267260",
       "name": "HD현대일렉트릭",
-      "status": "변화 없음",
-      "headline": "최근 수집 범위에서 주요 DART 공시 없음",
-      "items": []
+      "status": "정보",
+      "headline": "일반 공시: 타인에대한채무보증결정              ",
+      "items": [
+        {
+          "date": "20261026",
+          "title": "타인에대한채무보증결정              ",
+          "receiptNo": "20261026800468",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261026800468",
+          "category": "일반 공시",
+          "severity": "정보",
+          "impact": "원문 필요성 확인"
+        }
+      ]
     },
     "278470": {
       "code": "278470",
@@ -110,9 +148,37 @@
     "000660": {
       "code": "000660",
       "name": "SK하이닉스",
-      "status": "변화 없음",
-      "headline": "최근 수집 범위에서 주요 DART 공시 없음",
-      "items": []
+      "status": "주의",
+      "headline": "지분변동: 임원ㆍ주요주주특정증권등소유상황보고서",
+      "items": [
+        {
+          "date": "20261026",
+          "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+          "receiptNo": "20261026000273",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261026000273",
+          "category": "지분변동",
+          "severity": "주의",
+          "impact": "지분 변화 이유와 규모 확인"
+        },
+        {
+          "date": "20261026",
+          "title": "[기재정정]주식소각결정              ",
+          "receiptNo": "20261026800524",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261026800524",
+          "category": "일반 공시",
+          "severity": "정보",
+          "impact": "원문 필요성 확인"
+        },
+        {
+          "date": "20261026",
+          "title": "자기주식취득결과보고서",
+          "receiptNo": "20261026000259",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261026000259",
+          "category": "일반 공시",
+          "severity": "정보",
+          "impact": "원문 필요성 확인"
+        }
+      ]
     },
     "064760": {
       "code": "064760",

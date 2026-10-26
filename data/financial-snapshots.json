@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-10-20T02:10:40",
-  "lastAttemptAt": "2026-10-20T02:10:40",
+  "updatedAt": "2026-10-27T02:00:35",
+  "lastAttemptAt": "2026-10-27T02:00:35",
   "dart": {
     "enabled": true,
     "note": "OpenDART 공식 재무 수집 완료: 정상 19개, 부분 1개"
