@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-31T01:48:50",
+  "updatedAt": "2026-11-03T05:29:42",
   "sourcePolicy": "DART 공시 제목을 규칙 기반으로 분류한 보조 신호이며, 실제 영향은 공시 원문 확인이 필요하다.",
   "companies": {
     "145020": {
@@ -127,9 +127,40 @@
     "003230": {
       "code": "003230",
       "name": "삼양식품",
-      "status": "변화 없음",
-      "headline": "최근 수집 범위에서 주요 DART 공시 없음",
-      "items": []
+      "status": "주의",
+      "headline": "지분변동: 임원ㆍ주요주주특정증권등소유상황보고서",
+      "items": [
+        {
+          "date": "20261102",
+          "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+          "corpName": "삼양식품",
+          "receiptNo": "20261102000307",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261102000307",
+          "category": "지분변동",
+          "severity": "주의",
+          "impact": "지분 변화 이유와 규모 확인"
+        },
+        {
+          "date": "20261102",
+          "title": "기업설명회(IR)개최(안내공시)              ",
+          "corpName": "삼양식품",
+          "receiptNo": "20261102800768",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261102800768",
+          "category": "일반 공시",
+          "severity": "정보",
+          "impact": "원문 필요성 확인"
+        },
+        {
+          "date": "20261102",
+          "title": "기업설명회(IR)개최(안내공시)              ",
+          "corpName": "삼양식품",
+          "receiptNo": "20261102800763",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261102800763",
+          "category": "일반 공시",
+          "severity": "정보",
+          "impact": "원문 필요성 확인"
+        }
+      ]
     },
     "010120": {
       "code": "010120",
