@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-03T05:29:42",
+  "updatedAt": "2026-11-04T03:00:38",
   "sourcePolicy": "공식 공시와 회사 IR을 우선하고, 비공식 시세는 참고값으로만 표시",
   "targets": [
     {
@@ -36,10 +36,10 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "157,300",
-        "changeRate": "7.23",
+        "price": "147,500",
+        "changeRate": "-5.93",
         "marketCap": null,
-        "volume": "225,621",
+        "volume": "176,921",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
@@ -87,10 +87,10 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "222,000",
-        "changeRate": "4.72",
+        "price": "219,500",
+        "changeRate": "-1.35",
         "marketCap": null,
-        "volume": "70,481",
+        "volume": "34,254",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
@@ -138,38 +138,16 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "1,176,000",
-        "changeRate": "3.34",
+        "price": "1,171,000",
+        "changeRate": "-0.51",
         "marketCap": null,
-        "volume": "35,675",
+        "volume": "28,209",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
         "enabled": true,
-        "items": [
-          {
-            "date": "20261102",
-            "title": "임원ㆍ주요주주특정증권등소유상황보고서",
-            "corpName": "삼양식품",
-            "receiptNo": "20261102000307",
-            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261102000307"
-          },
-          {
-            "date": "20261102",
-            "title": "기업설명회(IR)개최(안내공시)              ",
-            "corpName": "삼양식품",
-            "receiptNo": "20261102800768",
-            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261102800768"
-          },
-          {
-            "date": "20261102",
-            "title": "기업설명회(IR)개최(안내공시)              ",
-            "corpName": "삼양식품",
-            "receiptNo": "20261102800763",
-            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261102800763"
-          }
-        ],
-        "note": "최근 14일 DART 공시 확인"
+        "items": [],
+        "note": "최근 14일 신규 DART 공시 없음"
       },
       "decision": {
         "status": "관찰 유지",
@@ -211,10 +189,10 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "160,600",
-        "changeRate": "7.35",
+        "price": "153,300",
+        "changeRate": "-4.55",
         "marketCap": null,
-        "volume": "684,674",
+        "volume": "463,186",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
@@ -262,10 +240,10 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "28,150",
-        "changeRate": "1.08",
+        "price": "27,500",
+        "changeRate": "-2.48",
         "marketCap": null,
-        "volume": "587,757",
+        "volume": "371,724",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
