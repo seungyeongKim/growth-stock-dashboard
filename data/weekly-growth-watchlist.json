@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-03T05:31:11",
+  "updatedAt": "2026-11-10T06:06:34",
   "cadence": "weekly",
   "rule": "20개 관찰군은 매주 1회 가격, 공시, 데이터 충족도, 성장 논리 훼손 여부를 확인해 5개 심층 추적 후보로 승격할지 판단한다.",
   "sourcePolicy": "20개 관찰군은 자동 수집값만으로 매수 판단하지 않고, 새 공시와 가격 변화를 승격/강등 검토 신호로만 사용한다.",
@@ -19,15 +19,22 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "157,300",
-        "changeRate": "7.23",
-        "volume": "225,621",
+        "price": "112,000",
+        "changeRate": "-3.78",
+        "volume": "179,664",
         "note": "비공식 참고값"
       },
       "dart": {
         "ok": true,
-        "items": [],
-        "note": "최근 7일 신규 공시 없음"
+        "items": [
+          {
+            "date": "20261109",
+            "title": "기업설명회(IR)개최(안내공시)              ",
+            "receiptNo": "20261109800751",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261109800751"
+          }
+        ],
+        "note": "최근 7일 신규 공시 확인"
       },
       "reviewStatus": "심층 추적 유지",
       "reviewQuestion": "심층 추적 5종목에 계속 남길 만큼 논리가 강화됐나?"
@@ -47,9 +54,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "222,000",
-        "changeRate": "4.72",
-        "volume": "70,481",
+        "price": "234,500",
+        "changeRate": "0.00",
+        "volume": "84,732",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -75,34 +82,15 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "1,176,000",
-        "changeRate": "3.34",
-        "volume": "35,675",
+        "price": "1,148,000",
+        "changeRate": "-5.90",
+        "volume": "81,498",
         "note": "비공식 참고값"
       },
       "dart": {
         "ok": true,
-        "items": [
-          {
-            "date": "20261102",
-            "title": "임원ㆍ주요주주특정증권등소유상황보고서",
-            "receiptNo": "20261102000307",
-            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261102000307"
-          },
-          {
-            "date": "20261102",
-            "title": "기업설명회(IR)개최(안내공시)              ",
-            "receiptNo": "20261102800768",
-            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261102800768"
-          },
-          {
-            "date": "20261102",
-            "title": "기업설명회(IR)개최(안내공시)              ",
-            "receiptNo": "20261102800763",
-            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261102800763"
-          }
-        ],
-        "note": "최근 7일 신규 공시 확인"
+        "items": [],
+        "note": "최근 7일 신규 공시 없음"
       },
       "reviewStatus": "심층 추적 유지",
       "reviewQuestion": "심층 추적 5종목에 계속 남길 만큼 논리가 강화됐나?"
@@ -122,9 +110,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "160,600",
-        "changeRate": "7.35",
-        "volume": "684,674",
+        "price": "109,200",
+        "changeRate": "-6.27",
+        "volume": "792,405",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -150,9 +138,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "28,150",
-        "changeRate": "1.08",
-        "volume": "587,757",
+        "price": "25,350",
+        "changeRate": "-5.59",
+        "volume": "900,387",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -178,9 +166,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "263,500",
-        "changeRate": "0.96",
-        "volume": "447,326",
+        "price": "243,500",
+        "changeRate": "-4.70",
+        "volume": "310,069",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -206,9 +194,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "57,200",
-        "changeRate": "1.96",
-        "volume": "378,873",
+        "price": "45,850",
+        "changeRate": "-1.61",
+        "volume": "477,535",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -234,9 +222,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "26,500",
-        "changeRate": "1.15",
-        "volume": "104,216",
+        "price": "25,500",
+        "changeRate": "-1.35",
+        "volume": "197,406",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -262,17 +250,24 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "446,500",
-        "changeRate": "5.18",
-        "volume": "223,237",
+        "price": "352,500",
+        "changeRate": "-3.82",
+        "volume": "184,835",
         "note": "비공식 참고값"
       },
       "dart": {
         "ok": true,
-        "items": [],
-        "note": "최근 7일 신규 공시 없음"
+        "items": [
+          {
+            "date": "20261109",
+            "title": "타인에대한채무보증결정              ",
+            "receiptNo": "20261109800698",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261109800698"
+          }
+        ],
+        "note": "최근 7일 신규 공시 확인"
       },
-      "reviewStatus": "관찰 유지",
+      "reviewStatus": "승격 검토",
       "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
     },
     {
@@ -290,9 +285,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "1,480,000",
-        "changeRate": "4.37",
-        "volume": "2,543,239",
+        "price": "1,115,000",
+        "changeRate": "-1.50",
+        "volume": "4,363,991",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -318,9 +313,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "1,433,000",
-        "changeRate": "-3.63",
-        "volume": "41,504",
+        "price": "1,517,000",
+        "changeRate": "0.07",
+        "volume": "67,904",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -346,9 +341,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "213,500",
-        "changeRate": "0.95",
-        "volume": "191,160",
+        "price": "166,900",
+        "changeRate": "-16.76",
+        "volume": "2,807,483",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -374,9 +369,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "182,900",
-        "changeRate": "1.72",
-        "volume": "31,039",
+        "price": "188,400",
+        "changeRate": "0.48",
+        "volume": "45,416",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -402,9 +397,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "191,700",
-        "changeRate": "-0.98",
-        "volume": "79,215",
+        "price": "149,800",
+        "changeRate": "9.02",
+        "volume": "113,635",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -430,9 +425,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "64,100",
-        "changeRate": "-0.16",
-        "volume": "38,451",
+        "price": "71,200",
+        "changeRate": "1.28",
+        "volume": "87,346",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -458,9 +453,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "54,400",
-        "changeRate": "-0.91",
-        "volume": "27,279",
+        "price": "55,800",
+        "changeRate": "1.45",
+        "volume": "35,548",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -486,9 +481,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "11,120",
-        "changeRate": "1.28",
-        "volume": "7,135",
+        "price": "10,000",
+        "changeRate": "-0.79",
+        "volume": "15,393",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -514,9 +509,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "8,460",
-        "changeRate": "0.71",
-        "volume": "12,797",
+        "price": "8,690",
+        "changeRate": "-2.36",
+        "volume": "46,746",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -542,9 +537,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "115,900",
-        "changeRate": "-1.86",
-        "volume": "629,469",
+        "price": "105,900",
+        "changeRate": "6.86",
+        "volume": "538,968",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -570,9 +565,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "10,190",
-        "changeRate": "1.49",
-        "volume": "62,652",
+        "price": "9,770",
+        "changeRate": "-2.30",
+        "volume": "79,345",
         "note": "비공식 참고값"
       },
       "dart": {
