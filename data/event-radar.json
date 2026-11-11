@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-11T03:12:53",
+  "updatedAt": "2026-11-12T03:01:36",
   "sourcePolicy": "DART 공시 제목을 규칙 기반으로 분류한 보조 신호이며, 실제 영향은 공시 원문 확인이 필요하다.",
   "companies": {
     "145020": {
@@ -109,37 +109,37 @@
     "003230": {
       "code": "003230",
       "name": "삼양식품",
-      "status": "변화 없음",
-      "headline": "최근 수집 범위에서 주요 DART 공시 없음",
-      "items": []
+      "status": "주의",
+      "headline": "사업구조: 타법인주식및출자증권취득결정              ",
+      "items": [
+        {
+          "date": "20261111",
+          "title": "장래사업ㆍ경영계획(공정공시)              ",
+          "corpName": "삼양식품",
+          "receiptNo": "20261111800605",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261111800605",
+          "category": "일반 공시",
+          "severity": "정보",
+          "impact": "원문 필요성 확인"
+        },
+        {
+          "date": "20261111",
+          "title": "타법인주식및출자증권취득결정              ",
+          "corpName": "삼양식품",
+          "receiptNo": "20261111800496",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261111800496",
+          "category": "사업구조",
+          "severity": "주의",
+          "impact": "성장 논리와 자본배분 영향 확인"
+        }
+      ]
     },
     "010120": {
       "code": "010120",
       "name": "LS ELECTRIC",
-      "status": "주의",
-      "headline": "지분변동: 최대주주등소유주식변동신고서              ",
-      "items": [
-        {
-          "date": "20261110",
-          "title": "최대주주등소유주식변동신고서              ",
-          "corpName": "엘에스일렉트릭",
-          "receiptNo": "20261110800736",
-          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261110800736",
-          "category": "지분변동",
-          "severity": "주의",
-          "impact": "지분 변화 이유와 규모 확인"
-        },
-        {
-          "date": "20261110",
-          "title": "임원ㆍ주요주주특정증권등소유상황보고서",
-          "corpName": "엘에스일렉트릭",
-          "receiptNo": "20261110000239",
-          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261110000239",
-          "category": "지분변동",
-          "severity": "주의",
-          "impact": "지분 변화 이유와 규모 확인"
-        }
-      ]
+      "status": "변화 없음",
+      "headline": "최근 수집 범위에서 주요 DART 공시 없음",
+      "items": []
     },
     "058470": {
       "code": "058470",

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-11T03:12:53",
+  "updatedAt": "2026-11-12T03:01:36",
   "sourcePolicy": "공식 공시와 회사 IR을 우선하고, 비공식 시세는 참고값으로만 표시",
   "targets": [
     {
@@ -36,10 +36,10 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "121,600",
-        "changeRate": "6.85",
+        "price": "130,300",
+        "changeRate": "6.28",
         "marketCap": null,
-        "volume": "244,084",
+        "volume": "225,021",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
@@ -87,10 +87,10 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "249,000",
-        "changeRate": "5.51",
+        "price": "250,000",
+        "changeRate": "0.40",
         "marketCap": null,
-        "volume": "74,634",
+        "volume": "75,563",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
@@ -138,16 +138,31 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "1,189,000",
-        "changeRate": "3.21",
+        "price": "1,274,000",
+        "changeRate": "7.33",
         "marketCap": null,
-        "volume": "49,885",
+        "volume": "48,944",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
         "enabled": true,
-        "items": [],
-        "note": "최근 14일 신규 DART 공시 없음"
+        "items": [
+          {
+            "date": "20261111",
+            "title": "장래사업ㆍ경영계획(공정공시)              ",
+            "corpName": "삼양식품",
+            "receiptNo": "20261111800605",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261111800605"
+          },
+          {
+            "date": "20261111",
+            "title": "타법인주식및출자증권취득결정              ",
+            "corpName": "삼양식품",
+            "receiptNo": "20261111800496",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261111800496"
+          }
+        ],
+        "note": "최근 14일 DART 공시 확인"
       },
       "decision": {
         "status": "관찰 유지",
@@ -189,31 +204,16 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "119,700",
-        "changeRate": "7.16",
+        "price": "124,300",
+        "changeRate": "2.73",
         "marketCap": null,
-        "volume": "761,587",
+        "volume": "978,609",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
         "enabled": true,
-        "items": [
-          {
-            "date": "20261110",
-            "title": "최대주주등소유주식변동신고서              ",
-            "corpName": "엘에스일렉트릭",
-            "receiptNo": "20261110800736",
-            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261110800736"
-          },
-          {
-            "date": "20261110",
-            "title": "임원ㆍ주요주주특정증권등소유상황보고서",
-            "corpName": "엘에스일렉트릭",
-            "receiptNo": "20261110000239",
-            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261110000239"
-          }
-        ],
-        "note": "최근 14일 DART 공시 확인"
+        "items": [],
+        "note": "최근 14일 신규 DART 공시 없음"
       },
       "decision": {
         "status": "관찰 유지",
@@ -255,10 +255,10 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "26,500",
-        "changeRate": "3.52",
+        "price": "27,350",
+        "changeRate": "2.63",
         "marketCap": null,
-        "volume": "470,694",
+        "volume": "1,256,475",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
