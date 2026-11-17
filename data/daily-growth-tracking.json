@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-17T05:39:32",
+  "updatedAt": "2026-11-18T04:21:10",
   "sourcePolicy": "공식 공시와 회사 IR을 우선하고, 비공식 시세는 참고값으로만 표시",
   "targets": [
     {
@@ -36,10 +36,10 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "119,200",
-        "changeRate": "-6.36",
+        "price": "110,000",
+        "changeRate": "-8.86",
         "marketCap": null,
-        "volume": "158,215",
+        "volume": "395,459",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
@@ -87,10 +87,10 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "257,500",
-        "changeRate": "2.59",
+        "price": "258,000",
+        "changeRate": "-0.19",
         "marketCap": null,
-        "volume": "75,049",
+        "volume": "124,385",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
@@ -138,10 +138,10 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "1,277,000",
-        "changeRate": "5.54",
+        "price": "1,269,000",
+        "changeRate": "-1.25",
         "marketCap": null,
-        "volume": "61,536",
+        "volume": "31,980",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
@@ -189,24 +189,16 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "118,100",
-        "changeRate": "-4.22",
+        "price": "112,800",
+        "changeRate": "-4.89",
         "marketCap": null,
-        "volume": "633,305",
+        "volume": "536,561",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
         "enabled": true,
-        "items": [
-          {
-            "date": "20261116",
-            "title": "분기보고서 (2026.09)",
-            "corpName": "엘에스일렉트릭",
-            "receiptNo": "20261116002011",
-            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261116002011"
-          }
-        ],
-        "note": "최근 14일 DART 공시 확인"
+        "items": [],
+        "note": "최근 14일 신규 DART 공시 없음"
       },
       "decision": {
         "status": "관찰 유지",
@@ -249,9 +241,9 @@
         "enabled": true,
         "source": "Naver Finance realtime",
         "price": "23,450",
-        "changeRate": "-2.29",
+        "changeRate": "-1.68",
         "marketCap": null,
-        "volume": "622,015",
+        "volume": "572,622",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
