@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-18T04:21:10",
+  "updatedAt": "2026-11-19T04:01:14",
   "sourcePolicy": "공식 공시와 회사 IR을 우선하고, 비공식 시세는 참고값으로만 표시",
   "targets": [
     {
@@ -36,10 +36,10 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "110,000",
-        "changeRate": "-8.86",
+        "price": "114,600",
+        "changeRate": "3.24",
         "marketCap": null,
-        "volume": "395,459",
+        "volume": "357,652",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
@@ -87,10 +87,10 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "258,000",
-        "changeRate": "-0.19",
+        "price": "271,000",
+        "changeRate": "5.04",
         "marketCap": null,
-        "volume": "124,385",
+        "volume": "105,692",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
@@ -138,16 +138,24 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "1,269,000",
-        "changeRate": "-1.25",
+        "price": "1,245,000",
+        "changeRate": "-2.05",
         "marketCap": null,
-        "volume": "31,980",
+        "volume": "35,791",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
         "enabled": true,
-        "items": [],
-        "note": "최근 14일 신규 DART 공시 없음"
+        "items": [
+          {
+            "date": "20261118",
+            "title": "임원ㆍ주요주주특정증권등거래계획보고서",
+            "corpName": "삼양식품",
+            "receiptNo": "20261118000246",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261118000246"
+          }
+        ],
+        "note": "최근 14일 DART 공시 확인"
       },
       "decision": {
         "status": "관찰 유지",
@@ -189,10 +197,10 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "112,800",
-        "changeRate": "-4.89",
+        "price": "117,300",
+        "changeRate": "3.26",
         "marketCap": null,
-        "volume": "536,561",
+        "volume": "449,097",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
@@ -240,10 +248,10 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "23,450",
-        "changeRate": "-1.68",
+        "price": "24,400",
+        "changeRate": "3.39",
         "marketCap": null,
-        "volume": "572,622",
+        "volume": "574,441",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
