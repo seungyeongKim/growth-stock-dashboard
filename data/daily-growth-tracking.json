@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-21T03:47:16",
+  "updatedAt": "2026-11-24T07:12:31",
   "sourcePolicy": "공식 공시와 회사 IR을 우선하고, 비공식 시세는 참고값으로만 표시",
   "targets": [
     {
@@ -36,10 +36,10 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "102,400",
-        "changeRate": "-11.57",
+        "price": "101,800",
+        "changeRate": "-2.86",
         "marketCap": null,
-        "volume": "220,448",
+        "volume": "286,906",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
@@ -87,10 +87,10 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "275,000",
-        "changeRate": "-1.08",
+        "price": "272,000",
+        "changeRate": "-1.09",
         "marketCap": null,
-        "volume": "96,802",
+        "volume": "99,926",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
@@ -138,10 +138,10 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "1,221,000",
-        "changeRate": "-2.32",
+        "price": "1,193,000",
+        "changeRate": "-3.24",
         "marketCap": null,
-        "volume": "24,753",
+        "volume": "33,473",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
@@ -189,10 +189,10 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "108,400",
-        "changeRate": "-10.26",
+        "price": "112,000",
+        "changeRate": "2.10",
         "marketCap": null,
-        "volume": "474,072",
+        "volume": "600,647",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
@@ -240,10 +240,10 @@
       "quote": {
         "enabled": true,
         "source": "Naver Finance realtime",
-        "price": "22,850",
-        "changeRate": "-5.58",
+        "price": "23,600",
+        "changeRate": "1.72",
         "marketCap": null,
-        "volume": "624,088",
+        "volume": "813,892",
         "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
       },
       "dart": {
