@@ -5,24 +5,30 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 jobs:
   cohort:
     runs-on: ubuntu-latest
-    timeout-minutes: 42
+    timeout-minutes: 32
     strategy:
       fail-fast: false
-      max-parallel: 3
+      max-parallel: 6
       matrix:
         year: [2016, 2019, 2021]
+        shard: [0, 1, 2, 3]
     steps:
       - uses: actions/checkout@v4
-      - name: Run historical cohort
+      - name: Download fixed historical cohort
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh run download 45557103694 --name historical-growth-${{ matrix.year }} --dir source
+      - name: Collect point-in-time EPS and operating cash flow
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
-        run: python3 -Bu scripts/research_long_growth.py --year ${{ matrix.year }} --output historical/cohort-${{ matrix.year }}.json
+        run: python3 -Bu scripts/collect_growth_quality.py source/cohort-${{ matrix.year }}.json --shard ${{ matrix.shard }} --output historical/quality-${{ matrix.year }}-${{ matrix.shard }}.json
       - uses: actions/upload-artifact@v4
         with:
-          name: historical-growth-${{ matrix.year }}
-          path: historical/cohort-${{ matrix.year }}.json
+          name: historical-quality-${{ matrix.year }}-${{ matrix.shard }}
+          path: historical/quality-${{ matrix.year }}-${{ matrix.shard }}.json
           if-no-files-found: error
