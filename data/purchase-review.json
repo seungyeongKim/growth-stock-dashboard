@@ -1,5 +1,5 @@
 {
-  "priceAsOf": "2026-11-25T10:47:45",
+  "priceAsOf": "2026-11-26T05:09:06",
   "financialAsOf": "2026-11-25T10:47:48",
   "assumptions": {
     "years": 2,
@@ -14,9 +14,9 @@
     "145020": {
       "name": "휴젤",
       "financialAsOf": "2026-11-25T10:47:48",
-      "priceAsOf": "2026-11-25T10:47:45",
-      "price": 212500,
-      "marketCap": 2659474262500,
+      "priceAsOf": "2026-11-26T05:09:06",
+      "price": 208000,
+      "marketCap": 2603155984000,
       "marketCapSource": "네이버 시세 × OpenDART 보통주 수",
       "period": "2026 Q3",
       "scope": "CFS",
@@ -33,7 +33,7 @@
         "label": "2026 Q3 TTM",
         "fsDiv": "CFS"
       },
-      "actualPer": 21.4,
+      "actualPer": 20.9,
       "shareCountAsOf": "2026 Q3",
       "receipts": [
         "20261113000357",
@@ -43,18 +43,18 @@
       "scenarios": [
         {
           "multiple": 15,
-          "requiredNet": 222402967659,
-          "requiredCagr": 33.6
+          "requiredNet": 217693257755,
+          "requiredCagr": 32.2
         },
         {
           "multiple": 20,
-          "requiredNet": 166802225744,
-          "requiredCagr": 15.7
+          "requiredNet": 163269943316,
+          "requiredCagr": 14.5
         },
         {
           "multiple": 25,
-          "requiredNet": 133441780595,
-          "requiredCagr": 3.5
+          "requiredNet": 130615954653,
+          "requiredCagr": 2.4
         }
       ],
       "notes": [
@@ -70,9 +70,9 @@
     "192080": {
       "name": "더블유게임즈",
       "financialAsOf": "2026-11-25T10:47:48",
-      "priceAsOf": "2026-11-25T10:47:45",
-      "price": 57100,
-      "marketCap": 1209005022800,
+      "priceAsOf": "2026-11-26T05:09:06",
+      "price": 57300,
+      "marketCap": 1213239716400,
       "marketCapSource": "네이버 시세 × OpenDART 보통주 수",
       "period": "2026 Q3",
       "scope": "CFS",
@@ -99,18 +99,18 @@
       "scenarios": [
         {
           "multiple": 15,
-          "requiredNet": 101105060040,
-          "requiredCagr": -16.6
+          "requiredNet": 101459193350,
+          "requiredCagr": -16.5
         },
         {
           "multiple": 20,
-          "requiredNet": 75828795030,
-          "requiredCagr": -27.8
+          "requiredNet": 76094395013,
+          "requiredCagr": -27.6
         },
         {
           "multiple": 25,
-          "requiredNet": 60663036024,
-          "requiredCagr": -35.4
+          "requiredNet": 60875516010,
+          "requiredCagr": -35.3
         }
       ],
       "notes": [
@@ -124,9 +124,9 @@
     "196170": {
       "name": "알테오젠",
       "financialAsOf": "2026-11-25T10:47:48",
-      "priceAsOf": "2026-11-25T10:47:45",
-      "price": 171000,
-      "marketCap": 11911027743000,
+      "priceAsOf": "2026-11-26T05:09:06",
+      "price": 166200,
+      "marketCap": 11576683104600,
       "marketCapSource": "네이버 시세 × OpenDART 보통주 수",
       "period": "2026 Q3",
       "scope": "CFS",
@@ -143,7 +143,7 @@
         "label": "2026 Q3 TTM",
         "fsDiv": "CFS"
       },
-      "actualPer": 56.1,
+      "actualPer": 54.5,
       "shareCountAsOf": "2026 Q3",
       "receipts": [
         "20261116001577",
@@ -153,18 +153,18 @@
       "scenarios": [
         {
           "multiple": 15,
-          "requiredNet": 996079546721,
-          "requiredCagr": 116.6
+          "requiredNet": 968119419094,
+          "requiredCagr": 113.5
         },
         {
           "multiple": 20,
-          "requiredNet": 747059660041,
-          "requiredCagr": 87.6
+          "requiredNet": 726089564321,
+          "requiredCagr": 84.9
         },
         {
           "multiple": 25,
-          "requiredNet": 597647728033,
-          "requiredCagr": 67.8
+          "requiredNet": 580871651456,
+          "requiredCagr": 65.4
         }
       ],
       "notes": [
@@ -178,9 +178,9 @@
     "206640": {
       "name": "바디텍메드",
       "financialAsOf": "2026-11-25T10:47:48",
-      "priceAsOf": "2026-11-25T10:47:45",
-      "price": 9770,
-      "marketCap": 228092090670,
+      "priceAsOf": "2026-11-26T05:09:06",
+      "price": 9750,
+      "marketCap": 227625167250,
       "marketCapSource": "네이버 시세 × OpenDART 보통주 수",
       "period": "2026 Q3",
       "scope": "CFS",
@@ -197,7 +197,7 @@
         "label": "2026 Q3 TTM",
         "fsDiv": "CFS"
       },
-      "actualPer": 11.3,
+      "actualPer": 11.2,
       "shareCountAsOf": "2025 FY",
       "receipts": [
         "20261117000126",
@@ -207,18 +207,18 @@
       "scenarios": [
         {
           "multiple": 15,
-          "requiredNet": 19074581236,
-          "requiredCagr": -2.9
+          "requiredNet": 19035533987,
+          "requiredCagr": -3
         },
         {
           "multiple": 20,
-          "requiredNet": 14305935927,
-          "requiredCagr": -15.9
+          "requiredNet": 14276650490,
+          "requiredCagr": -16
         },
         {
           "multiple": 25,
-          "requiredNet": 11444748741,
-          "requiredCagr": -24.8
+          "requiredNet": 11421320392,
+          "requiredCagr": -24.9
         }
       ],
       "notes": [
@@ -233,9 +233,9 @@
     "207940": {
       "name": "삼성바이오로직스",
       "financialAsOf": "2026-11-25T10:47:48",
-      "priceAsOf": "2026-11-25T10:47:45",
-      "price": 1339000,
-      "marketCap": 61983583389000,
+      "priceAsOf": "2026-11-26T05:09:06",
+      "price": 1349000,
+      "marketCap": 62446492899000,
       "marketCapSource": "네이버 시세 × OpenDART 보통주 수",
       "period": "2026 Q3",
       "scope": "CFS",
@@ -258,17 +258,17 @@
       "scenarios": [
         {
           "multiple": 15,
-          "requiredNet": 5183480466877,
+          "requiredNet": 5222192046167,
           "requiredCagr": null
         },
         {
           "multiple": 20,
-          "requiredNet": 3887610350158,
+          "requiredNet": 3916644034625,
           "requiredCagr": null
         },
         {
           "multiple": 25,
-          "requiredNet": 3110088280126,
+          "requiredNet": 3133315227700,
           "requiredCagr": null
         }
       ],
@@ -288,9 +288,9 @@
     "214150": {
       "name": "클래시스",
       "financialAsOf": "2026-11-25T10:47:48",
-      "priceAsOf": "2026-11-25T10:47:45",
-      "price": 22000,
-      "marketCap": 1441124498000,
+      "priceAsOf": "2026-11-26T05:09:06",
+      "price": 21400,
+      "marketCap": 1401821102600,
       "marketCapSource": "네이버 시세 × OpenDART 보통주 수",
       "period": "2026 Q3",
       "scope": "CFS",
@@ -307,7 +307,7 @@
         "label": "2026 Q3 TTM",
         "fsDiv": "CFS"
       },
-      "actualPer": 13,
+      "actualPer": 12.6,
       "shareCountAsOf": "2025 FY",
       "receipts": [
         "20261116000298",
@@ -317,18 +317,18 @@
       "scenarios": [
         {
           "multiple": 15,
-          "requiredNet": 120516438019,
-          "requiredCagr": 4.2
+          "requiredNet": 117229626073,
+          "requiredCagr": 2.8
         },
         {
           "multiple": 20,
-          "requiredNet": 90387328515,
-          "requiredCagr": -9.7
+          "requiredNet": 87922219555,
+          "requiredCagr": -11
         },
         {
           "multiple": 25,
-          "requiredNet": 72309862812,
-          "requiredCagr": -19.3
+          "requiredNet": 70337775644,
+          "requiredCagr": -20.4
         }
       ],
       "notes": [
@@ -344,9 +344,9 @@
     "214450": {
       "name": "파마리서치",
       "financialAsOf": "2026-11-25T10:47:48",
-      "priceAsOf": "2026-11-25T10:47:45",
-      "price": 280500,
-      "marketCap": 2914296264000,
+      "priceAsOf": "2026-11-26T05:09:06",
+      "price": 274500,
+      "marketCap": 2851958376000,
       "marketCapSource": "네이버 시세 × OpenDART 보통주 수",
       "period": "2026 Q3",
       "scope": "CFS",
@@ -363,7 +363,7 @@
         "label": "2026 Q3 TTM",
         "fsDiv": "CFS"
       },
-      "actualPer": 17.5,
+      "actualPer": 17.1,
       "shareCountAsOf": "2026 Q3",
       "receipts": [
         "20261113001686",
@@ -373,18 +373,18 @@
       "scenarios": [
         {
           "multiple": 15,
-          "requiredNet": 243712882237,
-          "requiredCagr": 20.9
+          "requiredNet": 238499772457,
+          "requiredCagr": 19.6
         },
         {
           "multiple": 20,
-          "requiredNet": 182784661678,
-          "requiredCagr": 4.7
+          "requiredNet": 178874829343,
+          "requiredCagr": 3.6
         },
         {
           "multiple": 25,
-          "requiredNet": 146227729342,
-          "requiredCagr": -6.3
+          "requiredNet": 143099863474,
+          "requiredCagr": -7.3
         }
       ],
       "notes": [
@@ -399,9 +399,9 @@
     "251970": {
       "name": "펌텍코리아",
       "financialAsOf": "2026-11-25T10:47:48",
-      "priceAsOf": "2026-11-25T10:47:45",
-      "price": 79200,
-      "marketCap": 982080000000,
+      "priceAsOf": "2026-11-26T05:09:06",
+      "price": 79700,
+      "marketCap": 988280000000,
       "marketCapSource": "네이버 시세 × OpenDART 보통주 수",
       "period": "2026 Q3",
       "scope": "CFS",
@@ -418,7 +418,7 @@
         "label": "2026 Q3 TTM",
         "fsDiv": "CFS"
       },
-      "actualPer": 19.4,
+      "actualPer": 19.6,
       "shareCountAsOf": "2026 Q3",
       "receipts": [
         "20261116001860",
@@ -428,18 +428,18 @@
       "scenarios": [
         {
           "multiple": 15,
-          "requiredNet": 82128076800,
-          "requiredCagr": 27.5
+          "requiredNet": 82646562133,
+          "requiredCagr": 27.9
         },
         {
           "multiple": 20,
-          "requiredNet": 61596057600,
-          "requiredCagr": 10.4
+          "requiredNet": 61984921600,
+          "requiredCagr": 10.8
         },
         {
           "multiple": 25,
-          "requiredNet": 49276846080,
-          "requiredCagr": -1.2
+          "requiredNet": 49587937280,
+          "requiredCagr": -0.9
         }
       ],
       "notes": [],
@@ -451,9 +451,9 @@
     "257720": {
       "name": "실리콘투",
       "financialAsOf": "2026-11-25T10:47:48",
-      "priceAsOf": "2026-11-25T10:47:45",
-      "price": 29750,
-      "marketCap": 1947600000000,
+      "priceAsOf": "2026-11-26T05:09:06",
+      "price": 28900,
+      "marketCap": 1895200000000,
       "marketCapSource": "Npay 증권 표시 시가총액 (별도 조회·반올림)",
       "period": "2026 Q3",
       "scope": "CFS",
@@ -470,7 +470,7 @@
         "label": "2026 Q3 TTM",
         "fsDiv": "CFS"
       },
-      "actualPer": 11.4,
+      "actualPer": 11.1,
       "shareCountAsOf": null,
       "receipts": [
         "20261113000882",
@@ -480,18 +480,18 @@
       "scenarios": [
         {
           "multiple": 15,
-          "requiredNet": 162871296000,
-          "requiredCagr": -2.5
+          "requiredNet": 158489258667,
+          "requiredCagr": -3.8
         },
         {
           "multiple": 20,
-          "requiredNet": 122153472000,
-          "requiredCagr": -15.5
+          "requiredNet": 118866944000,
+          "requiredCagr": -16.7
         },
         {
           "multiple": 25,
-          "requiredNet": 97722777600,
-          "requiredCagr": -24.5
+          "requiredNet": 95093555200,
+          "requiredCagr": -25.5
         }
       ],
       "notes": [
@@ -508,9 +508,9 @@
     "267260": {
       "name": "HD현대일렉트릭",
       "financialAsOf": "2026-11-25T10:47:48",
-      "priceAsOf": "2026-11-25T10:47:45",
-      "price": 384000,
-      "marketCap": 13842099840000,
+      "priceAsOf": "2026-11-26T05:09:06",
+      "price": 374500,
+      "marketCap": 13499652057500,
       "marketCapSource": "네이버 시세 × OpenDART 보통주 수",
       "period": "2026 Q3",
       "scope": "CFS",
@@ -527,7 +527,7 @@
         "label": "2026 Q3 TTM",
         "fsDiv": "CFS"
       },
-      "actualPer": 16.4,
+      "actualPer": 16,
       "shareCountAsOf": "2025 FY",
       "receipts": [
         "20261116001028",
@@ -537,18 +537,18 @@
       "scenarios": [
         {
           "multiple": 15,
-          "requiredNet": 1157568669286,
-          "requiredCagr": 17.2
+          "requiredNet": 1128930902729,
+          "requiredCagr": 15.7
         },
         {
           "multiple": 20,
-          "requiredNet": 868176501965,
-          "requiredCagr": 1.5
+          "requiredNet": 846698177046,
+          "requiredCagr": 0.2
         },
         {
           "multiple": 25,
-          "requiredNet": 694541201572,
-          "requiredCagr": -9.2
+          "requiredNet": 677358541637,
+          "requiredCagr": -10.4
         }
       ],
       "notes": [
@@ -562,9 +562,9 @@
     "278470": {
       "name": "에이피알",
       "financialAsOf": "2026-11-25T10:47:48",
-      "priceAsOf": "2026-11-25T10:47:45",
-      "price": 290000,
-      "marketCap": 10857064950000,
+      "priceAsOf": "2026-11-26T05:09:06",
+      "price": 291500,
+      "marketCap": 10913222182500,
       "marketCapSource": "네이버 시세 × OpenDART 보통주 수",
       "period": "2026 Q3",
       "scope": "CFS",
@@ -581,7 +581,7 @@
         "label": "2026 Q3 TTM",
         "fsDiv": "CFS"
       },
-      "actualPer": 23.2,
+      "actualPer": 23.3,
       "shareCountAsOf": "2026 Q3",
       "receipts": [
         "20261113001366",
@@ -591,18 +591,18 @@
       "scenarios": [
         {
           "multiple": 15,
-          "requiredNet": 907940151552,
-          "requiredCagr": 39.3
+          "requiredNet": 912636393715,
+          "requiredCagr": 39.7
         },
         {
           "multiple": 20,
-          "requiredNet": 680955113664,
-          "requiredCagr": 20.7
+          "requiredNet": 684477295286,
+          "requiredCagr": 21
         },
         {
           "multiple": 25,
-          "requiredNet": 544764090931,
-          "requiredCagr": 7.9
+          "requiredNet": 547581836229,
+          "requiredCagr": 8.2
         }
       ],
       "notes": [
@@ -616,9 +616,9 @@
     "000660": {
       "name": "SK하이닉스",
       "financialAsOf": "2026-11-25T10:47:48",
-      "priceAsOf": "2026-11-25T10:47:45",
-      "price": 1075000,
-      "marketCap": 785279292375000,
+      "priceAsOf": "2026-11-26T05:09:06",
+      "price": 1014000,
+      "marketCap": 740719258110000,
       "marketCapSource": "네이버 시세 × OpenDART 보통주 수",
       "period": "2026 Q3",
       "scope": "CFS",
@@ -635,7 +635,7 @@
         "label": "2026 Q3 TTM",
         "fsDiv": "CFS"
       },
-      "actualPer": 4.2,
+      "actualPer": 3.9,
       "shareCountAsOf": "2026 Q3",
       "receipts": [
         "20261116001715",
@@ -645,18 +645,18 @@
       "scenarios": [
         {
           "multiple": 15,
-          "requiredNet": 65670289623680,
-          "requiredCagr": -41
+          "requiredNet": 61943882491546,
+          "requiredCagr": -42.7
         },
         {
           "multiple": 20,
-          "requiredNet": 49252717217760,
-          "requiredCagr": -48.9
+          "requiredNet": 46457911868659,
+          "requiredCagr": -50.4
         },
         {
           "multiple": 25,
-          "requiredNet": 39402173774208,
-          "requiredCagr": -54.3
+          "requiredNet": 37166329494927,
+          "requiredCagr": -55.6
         }
       ],
       "notes": [
@@ -670,9 +670,9 @@
     "003230": {
       "name": "삼양식품",
       "financialAsOf": "2026-11-25T10:47:48",
-      "priceAsOf": "2026-11-25T10:47:45",
-      "price": 1290000,
-      "marketCap": 9717589350000,
+      "priceAsOf": "2026-11-26T05:09:06",
+      "price": 1292000,
+      "marketCap": 9732655380000,
       "marketCapSource": "네이버 시세 × OpenDART 보통주 수",
       "period": "2026 Q3",
       "scope": "CFS",
@@ -699,17 +699,17 @@
       "scenarios": [
         {
           "multiple": 15,
-          "requiredNet": 812649605376,
-          "requiredCagr": 31.9
+          "requiredNet": 813909527245,
+          "requiredCagr": 32
         },
         {
           "multiple": 20,
-          "requiredNet": 609487204032,
-          "requiredCagr": 14.2
+          "requiredNet": 610432145434,
+          "requiredCagr": 14.3
         },
         {
           "multiple": 25,
-          "requiredNet": 487589763226,
+          "requiredNet": 488345716347,
           "requiredCagr": 2.2
         }
       ],
@@ -725,9 +725,9 @@
     "062040": {
       "name": "산일전기",
       "financialAsOf": "2026-11-25T10:47:48",
-      "priceAsOf": "2026-11-25T10:47:45",
-      "price": 98300,
-      "marketCap": 2992763160000,
+      "priceAsOf": "2026-11-26T05:09:06",
+      "price": 92300,
+      "marketCap": 2810091960000,
       "marketCapSource": "네이버 시세 × OpenDART 보통주 수",
       "period": "2026 Q3",
       "scope": "CFS",
@@ -744,7 +744,7 @@
         "label": "2026 Q3 TTM",
         "fsDiv": "CFS"
       },
-      "actualPer": 16.2,
+      "actualPer": 15.2,
       "shareCountAsOf": "2025 FY",
       "receipts": [
         "20261116001322",
@@ -754,18 +754,18 @@
       "scenarios": [
         {
           "multiple": 15,
-          "requiredNet": 250274807194,
-          "requiredCagr": 16.5
+          "requiredNet": 234998623642,
+          "requiredCagr": 12.8
         },
         {
           "multiple": 20,
-          "requiredNet": 187706105395,
-          "requiredCagr": 0.9
+          "requiredNet": 176248967731,
+          "requiredCagr": -2.3
         },
         {
           "multiple": 25,
-          "requiredNet": 150164884316,
-          "requiredCagr": -9.8
+          "requiredNet": 140999174185,
+          "requiredCagr": -12.6
         }
       ],
       "notes": [
@@ -779,9 +779,9 @@
     "064760": {
       "name": "티씨케이",
       "financialAsOf": "2026-11-25T10:47:48",
-      "priceAsOf": "2026-11-25T10:47:45",
-      "price": 161100,
-      "marketCap": 1801003917600,
+      "priceAsOf": "2026-11-26T05:09:06",
+      "price": 154700,
+      "marketCap": 1729455655200,
       "marketCapSource": "네이버 시세 × OpenDART 보통주 수",
       "period": "2026 Q3",
       "scope": "OFS",
@@ -798,7 +798,7 @@
         "label": "2026 Q3 TTM",
         "fsDiv": "OFS"
       },
-      "actualPer": 20.2,
+      "actualPer": 19.4,
       "shareCountAsOf": "2026 Q3",
       "receipts": [
         "20261112000558",
@@ -808,18 +808,18 @@
       "scenarios": [
         {
           "multiple": 15,
-          "requiredNet": 150611954282,
-          "requiredCagr": 30.1
+          "requiredNet": 144628611592,
+          "requiredCagr": 27.5
         },
         {
           "multiple": 20,
-          "requiredNet": 112958965712,
-          "requiredCagr": 12.6
+          "requiredNet": 108471458694,
+          "requiredCagr": 10.4
         },
         {
           "multiple": 25,
-          "requiredNet": 90367172569,
-          "requiredCagr": 0.7
+          "requiredNet": 86777166955,
+          "requiredCagr": -1.3
         }
       ],
       "notes": [],
@@ -831,9 +831,9 @@
     "053800": {
       "name": "안랩",
       "financialAsOf": "2026-11-25T10:47:48",
-      "priceAsOf": "2026-11-25T10:47:45",
-      "price": 143400,
-      "marketCap": 1595540960400,
+      "priceAsOf": "2026-11-26T05:09:06",
+      "price": 157900,
+      "marketCap": 1756875297400,
       "marketCapSource": "네이버 시세 × OpenDART 보통주 수",
       "period": "2026 Q3",
       "scope": "CFS",
@@ -850,7 +850,7 @@
         "label": "2026 Q3 TTM",
         "fsDiv": "CFS"
       },
-      "actualPer": 35.6,
+      "actualPer": 39.3,
       "shareCountAsOf": "2026 Q3",
       "receipts": [
         "20261113000391",
@@ -860,18 +860,18 @@
       "scenarios": [
         {
           "multiple": 15,
-          "requiredNet": 133429772048,
-          "requiredCagr": 72.7
+          "requiredNet": 146921624871,
+          "requiredCagr": 81.2
         },
         {
           "multiple": 20,
-          "requiredNet": 100072329036,
-          "requiredCagr": 49.5
+          "requiredNet": 110191218653,
+          "requiredCagr": 56.9
         },
         {
           "multiple": 25,
-          "requiredNet": 80057863229,
-          "requiredCagr": 33.7
+          "requiredNet": 88152974922,
+          "requiredCagr": 40.3
         }
       ],
       "notes": [
@@ -885,9 +885,9 @@
     "018290": {
       "name": "브이티",
       "financialAsOf": "2026-11-25T10:47:48",
-      "priceAsOf": "2026-11-25T10:47:45",
-      "price": 11240,
-      "marketCap": 392746259120,
+      "priceAsOf": "2026-11-26T05:09:06",
+      "price": 11200,
+      "marketCap": 391348585600,
       "marketCapSource": "네이버 시세 × OpenDART 보통주 수",
       "period": "2026 Q3",
       "scope": "CFS",
@@ -914,18 +914,18 @@
       "scenarios": [
         {
           "multiple": 15,
-          "requiredNet": 32844060496,
-          "requiredCagr": -6.7
+          "requiredNet": 32727177718,
+          "requiredCagr": -6.9
         },
         {
           "multiple": 20,
-          "requiredNet": 24633045372,
-          "requiredCagr": -19.2
+          "requiredNet": 24545383289,
+          "requiredCagr": -19.3
         },
         {
           "multiple": 25,
-          "requiredNet": 19706436298,
-          "requiredCagr": -27.7
+          "requiredNet": 19636306631,
+          "requiredCagr": -27.9
         }
       ],
       "notes": [
@@ -939,9 +939,9 @@
     "058470": {
       "name": "리노공업",
       "financialAsOf": "2026-11-25T10:47:48",
-      "priceAsOf": "2026-11-25T10:47:45",
-      "price": 46700,
-      "marketCap": 3559093395000,
+      "priceAsOf": "2026-11-26T05:09:06",
+      "price": 44950,
+      "marketCap": 3425722657500,
       "marketCapSource": "네이버 시세 × OpenDART 보통주 수",
       "period": "2026 Q3",
       "scope": "OFS",
@@ -958,7 +958,7 @@
         "label": "2026 Q3 TTM",
         "fsDiv": "OFS"
       },
-      "actualPer": 21.1,
+      "actualPer": 20.3,
       "shareCountAsOf": "2025 FY",
       "receipts": [
         "20261113000396",
@@ -968,18 +968,18 @@
       "scenarios": [
         {
           "multiple": 15,
-          "requiredNet": 297635116979,
-          "requiredCagr": 32.9
+          "requiredNet": 286481766771,
+          "requiredCagr": 30.4
         },
         {
           "multiple": 20,
-          "requiredNet": 223226337734,
-          "requiredCagr": 15.1
+          "requiredNet": 214861325078,
+          "requiredCagr": 12.9
         },
         {
           "multiple": 25,
-          "requiredNet": 178581070188,
-          "requiredCagr": 2.9
+          "requiredNet": 171889060063,
+          "requiredCagr": 1
         }
       ],
       "notes": [
@@ -995,9 +995,9 @@
     "010120": {
       "name": "LS ELECTRIC",
       "financialAsOf": "2026-11-25T10:47:48",
-      "priceAsOf": "2026-11-25T10:47:45",
-      "price": 116400,
-      "marketCap": 17460000000000,
+      "priceAsOf": "2026-11-26T05:09:06",
+      "price": 110700,
+      "marketCap": 16605000000000,
       "marketCapSource": "네이버 시세 × OpenDART 보통주 수",
       "period": "2026 Q3",
       "scope": "CFS",
@@ -1014,7 +1014,7 @@
         "label": "2026 Q3 TTM",
         "fsDiv": "CFS"
       },
-      "actualPer": 37.7,
+      "actualPer": 35.8,
       "shareCountAsOf": "2026 Q3",
       "receipts": [
         "20261116002011",
@@ -1024,18 +1024,18 @@
       "scenarios": [
         {
           "multiple": 15,
-          "requiredNet": 1460121600000,
-          "requiredCagr": 77.5
+          "requiredNet": 1388620800000,
+          "requiredCagr": 73.1
         },
         {
           "multiple": 20,
-          "requiredNet": 1095091200000,
-          "requiredCagr": 53.7
+          "requiredNet": 1041465600000,
+          "requiredCagr": 49.9
         },
         {
           "multiple": 25,
-          "requiredNet": 876072960000,
-          "requiredCagr": 37.5
+          "requiredNet": 833172480000,
+          "requiredCagr": 34.1
         }
       ],
       "notes": [],
@@ -1047,9 +1047,9 @@
     "051360": {
       "name": "토비스",
       "financialAsOf": "2026-11-25T10:47:48",
-      "priceAsOf": "2026-11-25T10:47:45",
-      "price": 10340,
-      "marketCap": 163651779720,
+      "priceAsOf": "2026-11-26T05:09:06",
+      "price": 10490,
+      "marketCap": 166025838420,
       "marketCapSource": "네이버 시세 × OpenDART 보통주 수",
       "period": "2026 Q3",
       "scope": "CFS",
@@ -1072,17 +1072,17 @@
       "scenarios": [
         {
           "multiple": 15,
-          "requiredNet": 13685652832,
+          "requiredNet": 13884187448,
           "requiredCagr": null
         },
         {
           "multiple": 20,
-          "requiredNet": 10264239624,
+          "requiredNet": 10413140586,
           "requiredCagr": null
         },
         {
           "multiple": 25,
-          "requiredNet": 8211391699,
+          "requiredNet": 8330512469,
           "requiredCagr": null
         }
       ],

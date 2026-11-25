@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-25T10:47:43",
+  "updatedAt": "2026-11-26T05:09:02",
   "sourcePolicy": "DART 공시 제목을 규칙 기반으로 분류한 보조 신호이며, 실제 영향은 공시 원문 확인이 필요하다.",
   "companies": {
     "145020": {
@@ -82,9 +82,19 @@
     "000660": {
       "code": "000660",
       "name": "SK하이닉스",
-      "status": "변화 없음",
-      "headline": "최근 수집 범위에서 주요 DART 공시 없음",
-      "items": []
+      "status": "정보",
+      "headline": "일반 공시: 기업가치제고계획(자율공시)              ",
+      "items": [
+        {
+          "date": "20261125",
+          "title": "기업가치제고계획(자율공시)              ",
+          "receiptNo": "20261125800766",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261125800766",
+          "category": "일반 공시",
+          "severity": "정보",
+          "impact": "원문 필요성 확인"
+        }
+      ]
     },
     "003230": {
       "code": "003230",
