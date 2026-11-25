@@ -9,6 +9,7 @@ import math
 import os
 from pathlib import Path
 import re
+import subprocess
 import time
 from collections import Counter, defaultdict
 from html.parser import HTMLParser
@@ -37,7 +38,29 @@ RECEIPT = re.compile(r"\d{14}")
 
 
 def fetch(url, params=None):
-    request = Request(url + ("?" + urlencode(params) if params else ""),
+    address = url + ("?" + urlencode(params) if params else "")
+    if os.environ.get("GITHUB_ACTIONS") == "true":
+        # Use the same Node HTTPS client as the existing DART tracking job.
+        # The address can contain a secret, so pass it through stdin.
+        for attempt in range(2):
+            try:
+                result = subprocess.run(
+                    ["node", str(ROOT / "scripts/fetch-market-scan-source.js")],
+                    input=json.dumps({"url": address, "timeoutMs": 18000}).encode(),
+                    capture_output=True, timeout=22, check=False,
+                )
+            except subprocess.TimeoutExpired:
+                result = None
+            if result and result.returncode == 0:
+                return result.stdout
+            if result and result.returncode == 1:
+                status = result.stderr.decode().strip()
+                if status not in ("429", "500", "502", "503", "504") or attempt == 1:
+                    raise RuntimeError(f"{urlsplit(url).path}: HTTP {status}")
+            if attempt == 0:
+                time.sleep(1)
+        raise RuntimeError(f"{urlsplit(url).path}: connection failed")
+    request = Request(address,
                       headers={"User-Agent": "growth-stock-dashboard/1.0"})
     for attempt in range(3):
         try:
