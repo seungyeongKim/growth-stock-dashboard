@@ -1,4 +1,4 @@
-name: Historical growth criteria backtest
+name: Seed dashboard growth evidence
 
 on:
   workflow_dispatch:
@@ -7,22 +7,23 @@ permissions:
   contents: read
 
 jobs:
-  cohort:
+  seed:
     runs-on: ubuntu-latest
-    timeout-minutes: 24
-    strategy:
-      fail-fast: false
-      max-parallel: 2
-      matrix:
-        year: [2022, 2023, 2024, 2025]
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
-      - name: Run historical cohort
+      - name: Load growth-quality pairs for existing statement receipts
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
-        run: python3 -Bu scripts/backtest_market_growth.py --year ${{ matrix.year }} --output historical/cohort-${{ matrix.year }}.json
+        run: node scripts/update-financial-snapshots.js --seed-growth-quality
+      - name: Fetch original filing documents for detailed checks
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: node scripts/seed-growth-evidence-filings.js
       - uses: actions/upload-artifact@v4
         with:
-          name: historical-growth-${{ matrix.year }}
-          path: historical/cohort-${{ matrix.year }}.json
+          name: verified-dashboard-growth-evidence
+          path: |
+            data/financial-snapshots.json
+            evidence-filings/
           if-no-files-found: error
