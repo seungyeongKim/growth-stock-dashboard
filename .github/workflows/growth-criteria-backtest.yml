@@ -2,6 +2,11 @@ name: Seed dashboard growth evidence
 
 on:
   workflow_dispatch:
+    inputs:
+      eps_only:
+        description: Inspect exact EPS rows for the two ambiguous reports
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -13,12 +18,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Load growth-quality pairs for existing statement receipts
+        if: ${{ !inputs.eps_only }}
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
         run: node scripts/update-financial-snapshots.js --seed-growth-quality
       - name: Fetch original filing documents for detailed checks
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
+          EPS_ONLY: ${{ inputs.eps_only && '1' || '0' }}
         run: node scripts/seed-growth-evidence-filings.js
       - uses: actions/upload-artifact@v4
         with:
