@@ -107,6 +107,12 @@ function normalizeStatement(data, year, period, reportCode, fsDiv) {
   const netNames = ["지배기업의소유주에게귀속되는당기순이익(손실)", "지배기업소유주지분순이익", "지배기업의소유주지분", "지배주주순이익"];
   const ownerNet = fsDiv === "OFS" ? netIncome : accountValue(records, netIds, netNames);
   const cumulativeField = reportCode === "11011" || reportCode === "11013" ? "thstrm_amount" : "thstrm_add_amount";
+  const priorCumulativeField = reportCode === "11013" ? "frmtrm_q_amount" : "frmtrm_add_amount";
+  const priorRevenue = accountValue(records, ["ifrs-full_Revenue", "ifrs-full_RevenueFromContractsWithCustomers"], ["매출액", "수익(매출액)", "영업수익"], "frmtrm_q_amount");
+  const priorOperatingProfit = accountValue(records, ["dart_OperatingIncomeLoss"], ["영업이익"], "frmtrm_q_amount");
+  const owner = (field) => fsDiv === "OFS"
+    ? accountValue(records, ["ifrs-full_ProfitLoss"], ["당기순이익", "당기순이익(손실)"], field)
+    : accountValue(records, netIds, netNames, field);
   const balances = data.list.filter((item) => item.sj_div === "BS");
   const liabilities = accountValue(balances, ["ifrs-full_Liabilities"], ["부채총계"]);
   const equity = accountValue(balances, ["ifrs-full_Equity"], ["자본총계"]);
@@ -120,9 +126,13 @@ function normalizeStatement(data, year, period, reportCode, fsDiv) {
     operatingProfit,
     netIncome,
     ownerNet,
-    cumulativeOwnerNet: fsDiv === "OFS"
-      ? accountValue(records, ["ifrs-full_ProfitLoss"], ["당기순이익", "당기순이익(손실)"], cumulativeField)
-      : accountValue(records, netIds, netNames, cumulativeField),
+    cumulativeOwnerNet: owner(cumulativeField),
+    priorComparable: reportCode === "11011" ? null : {
+      revenue: priorRevenue, operatingProfit: priorOperatingProfit,
+      ownerNet: owner("frmtrm_q_amount"), cumulativeOwnerNet: owner(priorCumulativeField),
+      operatingMargin: priorRevenue > 0 && priorOperatingProfit !== null
+        ? Number((priorOperatingProfit / priorRevenue * 100).toFixed(1)) : null
+    },
     debtToEquity: liabilities !== null && equity > 0 ? Number((liabilities / equity * 100).toFixed(1)) : null,
     receipt: receipt || null,
     operatingMargin: revenue > 0 && operatingProfit !== null ? Number((operatingProfit / revenue * 100).toFixed(1)) : null,
@@ -222,9 +232,11 @@ async function buildCompany(target, corpCode) {
     return fetchShareCount(corpCode, currentYear - 1, "11011", `${currentYear - 1} FY`);
   })()]);
   const interimComparable = latestInterim && priorInterim && latestInterim.fsDiv === priorInterim.fsDiv;
-  const interimRevenueGrowthYoY = interimComparable && latestInterim.revenue > 0 && priorInterim.revenue > 0 ? Number(((latestInterim.revenue / priorInterim.revenue - 1) * 100).toFixed(1)) : null;
-  const interimOperatingMarginChangeYoY = interimComparable && Number.isFinite(latestInterim.operatingMargin) && Number.isFinite(priorInterim.operatingMargin)
-    ? Number((latestInterim.operatingMargin - priorInterim.operatingMargin).toFixed(1)) : null;
+  const comparison = latestInterim?.priorComparable?.revenue > 0 ? latestInterim.priorComparable
+    : interimComparable && !["051360", "207940"].includes(target.code) ? priorInterim : null;
+  const interimRevenueGrowthYoY = latestInterim?.revenue > 0 && comparison?.revenue > 0 ? Number(((latestInterim.revenue / comparison.revenue - 1) * 100).toFixed(1)) : null;
+  const interimOperatingMarginChangeYoY = Number.isFinite(latestInterim?.operatingMargin) && Number.isFinite(comparison?.operatingMargin)
+    ? Number((latestInterim.operatingMargin - comparison.operatingMargin).toFixed(1)) : null;
   const financialSignal = interimRevenueGrowthYoY === null || interimOperatingMarginChangeYoY === null ? "비교 자료 부족"
     : interimRevenueGrowthYoY <= 0 ? "성장 둔화 경보"
       : interimOperatingMarginChangeYoY <= -5 ? "수익성 둔화 경보"

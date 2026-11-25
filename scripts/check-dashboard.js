@@ -95,7 +95,7 @@ for (const [code, item] of purchaseRecords) {
   if (!item.checkpoint?.check || !item.checkpoint?.hold || !Array.isArray(item.notes)
     || item.receipts.some((receipt) => !/^\d{14}$/.test(receipt))
     || ![0, 3].includes(item.scenarios.length)
-    || item.scenarios.some((s) => !(s.requiredNet > 0 && Number.isFinite(s.requiredCagr)))) throw new Error(`${code}: invalid purchase review`);
+    || item.scenarios.some((s) => !(s.requiredNet > 0 && (s.requiredCagr === null || Number.isFinite(s.requiredCagr))))) throw new Error(`${code}: invalid purchase review`);
 }
 console.log(JSON.stringify({ script: "ok", requiredMarkers: required.length, decisionRecords: records.length, financialRecords: financialRecords.length, valuationRecords: valuationRecords.length, eventRecords: eventRecords.length, automatedDecisions: decisionRecords.length, currentSelections: (selection.items || []).length, purchaseRecords: purchaseRecords.length, target }, null, 2));
 
