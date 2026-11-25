@@ -15,15 +15,20 @@ concurrency:
 jobs:
   scan:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 18
     steps:
       - uses: actions/checkout@v4
       - name: Test screener
         run: python3 -B -m unittest discover -s scripts -p test_market_growth.py
+      - name: Check market data sources
+        timeout-minutes: 3
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python3 -Bu scripts/scan_market_growth.py --probe
       - name: Collect market and filing data
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
-        run: python3 -B scripts/scan_market_growth.py
+        run: python3 -Bu scripts/scan_market_growth.py
       - name: Apply market scan and validate dashboard
         run: |
           node scripts/apply-market-growth-scan.js

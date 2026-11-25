@@ -1,6 +1,7 @@
 """Find new growth candidates independently of the researched watchlist."""
 
 import concurrent.futures
+import argparse
 import datetime as dt
 import io
 import json
@@ -53,7 +54,14 @@ def fetch(url, params=None):
 
 def parallel(fn, args, workers=4):
     with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as pool:
-        return list(pool.map(fn, args))
+        jobs = [pool.submit(fn, arg) for arg in args]
+        done, pending = concurrent.futures.wait(jobs, return_when=concurrent.futures.FIRST_EXCEPTION)
+        for job in done:
+            if job.exception() is not None:
+                for task in pending:
+                    task.cancel()
+                job.result()
+        return [job.result() for job in jobs]
 
 
 class ListingTable(HTMLParser):
@@ -162,7 +170,7 @@ def fetch_financials(key, codes, year, report):
             raise RuntimeError(f"OpenDART financial batch failed: {data.get('status')}")
         return data["list"]
 
-    return accounts_by_company(row for rows in parallel(batch, batches) for row in rows)
+    return accounts_by_company(row for rows in parallel(batch, batches, workers=8) for row in rows)
 
 
 def divide(numerator, denominator):
@@ -275,27 +283,42 @@ def price_candidate(facts, quote, now):
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--probe", action="store_true", help="Verify upstreams without publishing or scanning the full market")
+    args = parser.parse_args()
     key = os.environ.get("DART_API_KEY") or os.environ.get("OPENDART_API_KEY")
     if not key:
         raise SystemExit("DART_API_KEY is required; prior scan is unchanged.")
     now = dt.datetime.now(KST)
     annual_year, interim = period_plan(now.date())
+    print("Loading KIND market listings", flush=True)
     markets = dict(zip(MARKETS, parallel(listings, list(MARKETS), workers=2)))
     listings_by_code = {code: item for rows in markets.values() for code, item in rows.items()}
+    print(f"Loaded {len(listings_by_code)} listed issuers. Loading OpenDART identifiers", flush=True)
     mappings = dart_codes(key)
+    if args.probe:
+        rows = fetch_financials(key, [mappings["000660"], mappings["005930"]], annual_year, "11011")
+        quotes = json.loads(fetch(f"{NAVER}/KOSPI", {"page": 1, "pageSize": PAGE_SIZE}))
+        if len(rows) < 2 or not quotes.get("stocks"):
+            raise RuntimeError("Upstream sample has insufficient data")
+        print(f"Upstream probe verified filings for {len(rows)} issuers and {len(quotes['stocks'])} quotes", flush=True)
+        return
     watchlist = json.loads((ROOT / "data/growth-watchlist-20.json").read_text(encoding="utf-8"))
     known = {row["code"] for row in watchlist["targets"]}
     counts = Counter(item["excluded"] for item in listings_by_code.values() if item["excluded"])
     counts["dartMissing"] = sum(code not in mappings for code, row in listings_by_code.items() if not row["excluded"])
     eligible = {code: item for code, item in listings_by_code.items() if not item["excluded"] and code in mappings}
+    print(f"Collecting {annual_year} audited filings for {len(eligible)} issuers", flush=True)
     annuals = fetch_financials(key, [mappings[code] for code in eligible], annual_year, "11011")
     if len(annuals.keys() & eligible.keys()) < len(eligible) * 0.65:
         raise RuntimeError(f"OpenDART annual coverage unexpectedly low: {len(annuals)}/{len(eligible)}")
     annual_pass = [code for code in eligible if financial_screen(annuals.get(code, {}), {}, None)[0]
                    not in ("annualFail", "annualMissing")]
+    print(f"Annual pass: {len(annual_pass)}. Collecting interim filings", flush=True)
     quarterly = fetch_financials(key, [mappings[code] for code in annual_pass], *interim[:2]) if interim and annual_pass else {}
     if interim and annual_pass and len(quarterly.keys() & set(annual_pass)) < len(annual_pass) * 0.6:
         raise RuntimeError("OpenDART interim coverage unexpectedly low")
+    print(f"Loaded {len(quarterly)} interim records. Collecting Npay market prices", flush=True)
     quotes_by_market = parallel(lambda market: market_prices(market, set(markets[market])), list(markets), workers=2)
     quotes = {code: quote for market in quotes_by_market for code, quote in market.items()}
     qualified = []
