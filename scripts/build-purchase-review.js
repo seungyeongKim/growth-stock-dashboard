@@ -48,7 +48,7 @@ function buildReview(target, snapshot, valuation, checkpoint, financialAsOf, fal
   const prior = snapshot?.priorInterim;
   const scopeBreak = Boolean(checkpoint.breakThroughYear && (latest?.year ?? annual?.year ?? 0) <= checkpoint.breakThroughYear);
   const sameFiling = latest?.priorComparable?.revenue > 0;
-  const comparable = sameFiling ? latest.priorComparable : !scopeBreak && latest && prior
+  const comparable = scopeBreak && checkpoint.omitQuarterComparison ? null : sameFiling ? latest.priorComparable : !scopeBreak && latest && prior
     && latest.fsDiv === prior.fsDiv && latest.reportCode === prior.reportCode ? prior : null;
   const base = scopeBreak ? null : earningsBase(annual, latest, prior);
   const priceAsOf = valuation?.priceAsOf || null;
