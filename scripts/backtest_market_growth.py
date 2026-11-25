@@ -73,7 +73,7 @@ def comparable_actuals(records, year, scope, cutoff):
         "receipt": receipt,
         "sales": number(accounts["sales"].get("thstrm_add_amount")),
         "op": number(accounts["operating"].get("thstrm_add_amount")),
-        "margin": record["values"][1],
+        "margin": record["values"][1], "netMargin": record["values"][2],
     }
 
 

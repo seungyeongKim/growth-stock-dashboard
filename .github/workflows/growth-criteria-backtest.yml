@@ -9,18 +9,18 @@ permissions:
 jobs:
   cohort:
     runs-on: ubuntu-latest
-    timeout-minutes: 24
+    timeout-minutes: 42
     strategy:
       fail-fast: false
-      max-parallel: 2
+      max-parallel: 3
       matrix:
-        year: [2022, 2023, 2024, 2025]
+        year: [2016, 2019, 2021]
     steps:
       - uses: actions/checkout@v4
       - name: Run historical cohort
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
-        run: python3 -Bu scripts/backtest_market_growth.py --year ${{ matrix.year }} --output historical/cohort-${{ matrix.year }}.json
+        run: python3 -Bu scripts/research_long_growth.py --year ${{ matrix.year }} --output historical/cohort-${{ matrix.year }}.json
       - uses: actions/upload-artifact@v4
         with:
           name: historical-growth-${{ matrix.year }}

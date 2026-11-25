@@ -262,12 +262,13 @@ ACCOUNTS = {
 FLOW = ("sales", "operating", "net")
 
 
-def accounts_by_company(rows):
+def accounts_by_company(rows, *, by_corp=False):
     by_company = defaultdict(dict)
     for row in rows:
         label = ACCOUNTS.get(str(row.get("account_nm", "")).replace(" ", ""))
-        code, scope, receipt = (row.get(field, "") for field in ("stock_code", "fs_div", "rcept_no"))
-        if (not label or not CODE.fullmatch(code) or scope not in ("CFS", "OFS")
+        code, scope, receipt = (row.get(field) or "" for field in (
+            "corp_code" if by_corp else "stock_code", "fs_div", "rcept_no"))
+        if (not label or not (CORP_CODE if by_corp else CODE).fullmatch(code) or scope not in ("CFS", "OFS")
                 or row.get("currency") != "KRW" or not RECEIPT.fullmatch(receipt)
                 or row.get("sj_div") != ("IS" if label in FLOW else "BS")):
             continue
@@ -276,7 +277,7 @@ def accounts_by_company(rows):
     return by_company
 
 
-def fetch_financials(key, codes, year, report):
+def fetch_financials(key, codes, year, report, *, by_corp=False):
     batches = [codes[i:i + BATCH_SIZE] for i in range(0, len(codes), BATCH_SIZE)]
 
     def batch(corp_codes):
@@ -295,7 +296,8 @@ def fetch_financials(key, codes, year, report):
             raise RuntimeError(f"OpenDART financial batch failed: {data.get('status')}")
         return data["list"]
 
-    return accounts_by_company(row for rows in parallel(batch, batches, workers=8) for row in rows)
+    return accounts_by_company((row for rows in parallel(batch, batches, workers=8) for row in rows),
+                               by_corp=by_corp)
 
 
 def divide(numerator, denominator):
