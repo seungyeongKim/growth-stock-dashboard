@@ -41,9 +41,11 @@ def q3_index(key, year, market, cutoff):
         for report in block["list"]:
             code, corp = report.get("stock_code") or "", report.get("corp_code") or ""
             name = report.get("corp_name") or ""
+            receipt = report.get("rcept_no") or ""
             if CODE.fullmatch(code) and CORP_CODE.fullmatch(corp) and period.search(report.get("report_nm", "")):
-                if not re.search(r"스팩|기업인수목적|리츠", name):
-                    companies[corp] = {"corp": corp, "code": code, "name": name, "market": market}
+                if not re.search(r"스팩|기업인수목적|리츠", name) and RECEIPT.fullmatch(receipt):
+                    if receipt[:8] <= cutoff.strftime('%Y%m%d') and receipt > companies.get(corp, {}).get('receipt', ''):
+                        companies[corp] = {"corp": corp, "code": code, "name": name, "market": market, "receipt": receipt}
     if len(companies) < (400 if market == "Y" else 700):
         raise RuntimeError(f"Historical universe unexpectedly small: {year}/{market} {len(companies)}")
     return companies

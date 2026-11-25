@@ -3,10 +3,14 @@ name: Historical growth criteria backtest
 on:
   workflow_dispatch:
     inputs:
-      retry_2019_1_only:
-        description: Retry only 2019 shard 1
-        type: boolean
-        default: false
+      years:
+        description: JSON list of cohort years
+        type: string
+        default: '[2016,2019,2021]'
+      shards:
+        description: JSON list of shard numbers
+        type: string
+        default: '[0,1,2,3,4,5]'
 
 permissions:
   contents: read
@@ -15,25 +19,30 @@ permissions:
 jobs:
   cohort:
     runs-on: ubuntu-latest
-    timeout-minutes: 32
+    timeout-minutes: 20
     strategy:
       fail-fast: false
-      max-parallel: 6
+      max-parallel: 7
       matrix:
-        year: ${{ fromJSON(inputs.retry_2019_1_only && '[2019]' || '[2016,2019,2021]') }}
-        shard: ${{ fromJSON(inputs.retry_2019_1_only && '[1]' || '[0,1,2,3]') }}
+        year: ${{ fromJSON(inputs.years) }}
+        shard: ${{ fromJSON(inputs.shards) }}
+    env:
+      COHORT_YEAR: ${{ matrix.year }}
+      SHARD: ${{ matrix.shard }}
     steps:
       - uses: actions/checkout@v4
       - name: Download fixed historical cohort
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh run download 45557103694 --name historical-growth-${{ matrix.year }} --dir source
-      - name: Collect point-in-time EPS and operating cash flow
+        run: |
+          [[ "$COHORT_YEAR" =~ ^(2016|2019|2021)$ && "$SHARD" =~ ^[0-5]$ ]]
+          gh run download 45557103694 --name "historical-growth-$COHORT_YEAR" --dir source
+      - name: Collect prior filing for the repeated-growth study
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
-        run: python3 -Bu scripts/collect_growth_quality.py source/cohort-${{ matrix.year }}.json --shard ${{ matrix.shard }} --output historical/quality-${{ matrix.year }}-${{ matrix.shard }}.json
+        run: python3 -Bu scripts/collect_repeated_growth.py "source/cohort-$COHORT_YEAR.json" --shard "$SHARD" --output "historical/repeat-$COHORT_YEAR-$SHARD.json"
       - uses: actions/upload-artifact@v4
         with:
-          name: historical-quality-${{ matrix.year }}-${{ matrix.shard }}
-          path: historical/quality-${{ matrix.year }}-${{ matrix.shard }}.json
+          name: repeated-growth-${{ matrix.year }}-${{ matrix.shard }}
+          path: historical/repeat-${{ matrix.year }}-${{ matrix.shard }}.json
           if-no-files-found: error
