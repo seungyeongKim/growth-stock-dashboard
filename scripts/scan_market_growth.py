@@ -17,7 +17,7 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode, urlsplit
 from urllib.request import Request, urlopen
 import xml.etree.ElementTree as ET
-from zipfile import ZipFile
+from zipfile import BadZipFile, ZipFile
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -25,6 +25,7 @@ OUTPUT = ROOT / "data" / "market-growth-scan.json"
 KST = dt.timezone(dt.timedelta(hours=9))
 MARKETS = {"KOSPI": "stockMkt", "KOSDAQ": "kosdaqMkt"}
 DART = "https://opendart.fss.or.kr/api"
+DART_ENGLISH = "https://engopendart.fss.or.kr/engapi"
 KIND = "https://kind.krx.co.kr/corpgeneral/corpList.do"
 NAVER = "https://m.stock.naver.com/api/stocks/marketValue"
 BATCH_SIZE = 80
@@ -163,11 +164,20 @@ def verify_issuer(code, key):
 
 
 def dart_codes(key):
-    raw = fetch(DART + "/corpCode.xml", {"crtfc_key": key})
-    with ZipFile(io.BytesIO(raw)) as archive:
-        root = ET.fromstring(archive.read("CORPCODE.xml"))
-    return {item.findtext("stock_code", "").strip(): item.findtext("corp_code", "").strip()
-            for item in root.findall("list") if CODE.fullmatch(item.findtext("stock_code", "").strip())}
+    for base in (DART, DART_ENGLISH):
+        try:
+            raw = fetch(base + "/corpCode.xml", {"crtfc_key": key})
+            with ZipFile(io.BytesIO(raw)) as archive:
+                member, = [name for name in archive.namelist() if name.upper().endswith("CORPCODE.XML")]
+                root = ET.fromstring(archive.read(member))
+            codes = {item.findtext("stock_code", "").strip(): item.findtext("corp_code", "").strip()
+                     for item in root.findall("list") if CODE.fullmatch(item.findtext("stock_code", "").strip())}
+            if len(codes) >= 2000:
+                return codes
+            raise ValueError("Incomplete issuer mapping")
+        except (RuntimeError, ValueError, BadZipFile, ET.ParseError) as error:
+            print(f"OpenDART issuer map unavailable at {urlsplit(base).hostname}: {type(error).__name__}", flush=True)
+    raise RuntimeError("Both official OpenDART identifier endpoints are unavailable")
 
 
 def period_plan(day):
@@ -351,17 +361,17 @@ def main():
         raise SystemExit("DART_API_KEY is required; prior scan is unchanged.")
     now = dt.datetime.now(KST)
     annual_year, interim = period_plan(now.date())
-    print("Loading OpenDART identifiers", flush=True)
-    mappings = dart_codes(key)
     if args.probe:
         print("Checking OpenDART financial batch", flush=True)
-        rows = fetch_financials(key, [mappings["000660"], mappings["005930"]], annual_year, "11011")
+        rows = fetch_financials(key, ["00164779", "00126380"], annual_year, "11011")
         print("Checking Npay market page", flush=True)
         quotes = json.loads(fetch(f"{NAVER}/KOSPI", {"page": 1, "pageSize": PAGE_SIZE}))
         if len(rows) < 2 or not quotes.get("stocks"):
             raise RuntimeError("Upstream sample has insufficient data")
         print(f"Upstream probe verified filings for {len(rows)} issuers and {len(quotes['stocks'])} quotes", flush=True)
         return
+    print("Loading OpenDART identifiers", flush=True)
+    mappings = dart_codes(key)
     print("Loading KIND market listings", flush=True)
     markets = try_kind()
     used_kind = markets is not None
