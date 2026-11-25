@@ -173,6 +173,8 @@ function latestInterimPlan() {
   const now = new Date();
   const year = Number(new Intl.DateTimeFormat("en-US", { timeZone: "Asia/Seoul", year: "numeric" }).format(now));
   const month = Number(new Intl.DateTimeFormat("en-US", { timeZone: "Asia/Seoul", month: "numeric" }).format(now));
+  // 3분기 보고서 제출 시점 이후에는 가장 최근 공시 분기를 우선 비교한다.
+  if (month >= 11) return { year, reportCode: "11014", period: `${year} Q3` };
   if (month >= 8) return { year, reportCode: "11012", period: `${year} H1` };
   if (month >= 5) return { year, reportCode: "11013", period: `${year} Q1` };
   return null;

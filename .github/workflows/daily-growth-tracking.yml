@@ -50,15 +50,10 @@ jobs:
         if: steps.scope.outputs.scope == 'all' || steps.scope.outputs.scope == 'daily'
         run: node scripts/apply-daily-tracking.js index.html data/daily-growth-tracking.json
 
-      - name: Update 20-stock weekly watchlist
-        if: steps.scope.outputs.scope == 'all' || steps.scope.outputs.scope == 'weekly'
+      - name: Refresh 20-stock prices and disclosures
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
         run: node scripts/update-weekly-watchlist.js
-
-      - name: Apply 20-stock weekly watchlist
-        if: steps.scope.outputs.scope == 'all' || steps.scope.outputs.scope == 'weekly'
-        run: node scripts/apply-weekly-watchlist.js index.html data/weekly-growth-watchlist.json
 
       - name: Update 20-stock DART financial snapshots
         if: steps.scope.outputs.scope == 'all' || steps.scope.outputs.scope == 'weekly'
@@ -67,7 +62,6 @@ jobs:
         run: node scripts/update-financial-snapshots.js
 
       - name: Update current-price valuation snapshot
-        if: steps.scope.outputs.scope == 'all' || steps.scope.outputs.scope == 'weekly'
         run: node scripts/update-valuation-snapshot.js
 
       - name: Build DART disclosure event radar
@@ -75,6 +69,15 @@ jobs:
 
       - name: Build investment decision summary
         run: node scripts/build-investment-decision.js
+
+      - name: Re-select and rank 20-stock growth watchlist
+        run: node scripts/refresh-growth-selection.js
+
+      - name: Apply 20-stock weekly watchlist
+        run: node scripts/apply-weekly-watchlist.js index.html data/weekly-growth-watchlist.json
+
+      - name: Apply current growth selection
+        run: node scripts/apply-current-growth-selection.js
 
       - name: Apply DART financial snapshots
         run: node scripts/apply-financial-snapshots.js

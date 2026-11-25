@@ -53,12 +53,10 @@ function valuationQuality(snapshot) {
   }[snapshot?.classification] ?? 30;
 }
 
-function estimateFreshness(updatedAt) {
-  const age = dateAgeDays(updatedAt);
-  if (age === null) return { score: 20, label: "기준일 확인 필요", capBuy: true };
-  if (age <= rubric.rules.forwardEstimateCurrentDays) return { score: 80, label: `기준일 ${age}일`, capBuy: false };
-  if (age <= rubric.rules.forwardEstimateAgingDays) return { score: 55, label: `기준일 ${age}일 · 갱신 필요`, capBuy: true };
-  return { score: 30, label: `기준일 ${age}일 · 오래됨`, capBuy: true };
+function estimateFreshness() {
+  // 정성 검토 모델의 수정일은 증권사 컨센서스의 기준일이 아니다.
+  // 검증 가능한 전망치 소스가 연결되기 전에는 미래 실적을 점수로 가정하지 않는다.
+  return { score: 20, label: "검증 가능한 최신 전망치 미연결", capBuy: true };
 }
 
 function dataStrength(financial, valuation, estimate) {
@@ -69,16 +67,17 @@ function dataStrength(financial, valuation, estimate) {
   return Math.min(100, official + comparableInterim + price + Math.round(estimate.score * 0.3));
 }
 
-function conclusion(base, total, financial, valuation, estimate, dataScore, event) {
+function conclusion(base, total, financial, valuation, estimate, dataScore, event, researchIsCurrent) {
   const signal = financial?.summary?.financialSignal;
   const warning = signal === "성장 둔화 경보" || signal === "수익성 둔화 경보";
   const baseConclusion = base.conclusion || "관찰";
-  if (baseConclusion === "관심 제외") return "관심 제외";
   if (event?.status === "높음") return "관찰";
   if (warning) return "관찰";
-  if (baseConclusion === "심층 검토" && total >= rubric.rules.deepReviewScore) return "심층 검토";
-  if (baseConclusion === "관찰" && total >= rubric.rules.promotionScore && valuation?.classification !== "높은 미래 기대 반영") return "심층 검토";
+  // 최신 데이터가 없던 과거의 제외 판단이 현재 재무·주가 기반 재선별을 막지 않게 한다.
+  if (researchIsCurrent && baseConclusion === "관심 제외") return "관심 제외";
+  if (total >= rubric.rules.promotionScore && valuation?.classification !== "높은 미래 기대 반영") return "심층 검토";
   if (!estimate.capBuy && total >= rubric.rules.buyConditionScore && dataScore >= 75 && valuation?.classification === "확정 실적 대비 여유") return "매수 조건 충족";
+  if (total < 50) return "관심 제외";
   return "관찰";
 }
 
@@ -87,23 +86,27 @@ function buildCompany(target) {
   const financial = financials.companies?.[target.code];
   const valuation = valuations.companies?.[target.code];
   const event = events.companies?.[target.code];
-  const estimate = estimateFreshness(model.updatedAt);
+  const researchAge = dateAgeDays(model.updatedAt);
+  const researchIsCurrent = researchAge !== null && researchAge <= rubric.rules.forwardEstimateAgingDays;
+  const estimate = estimateFreshness();
   const finance = financialQuality(financial);
   const growth = momentum(financial);
   const value = Math.max(0, Math.min(100, valuationQuality(valuation) + (valuation?.peerValuation === "관찰군 내 할인" ? 5 : valuation?.peerValuation === "관찰군 내 프리미엄" ? -5 : 0)));
-  const riskAdjusted = Math.max(0, 100 - (base.expectationBurden || 60) - (financial?.summary?.financialSignal === "수익성 둔화 경보" ? 15 : 0) - (event?.status === "주의" ? 10 : event?.status === "높음" ? 35 : 0));
+  const expectationBurden = researchIsCurrent ? (base.expectationBurden || 60) : 45;
+  const riskAdjusted = Math.max(0, 100 - expectationBurden - (financial?.summary?.financialSignal === "수익성 둔화 경보" ? 15 : 0) - (event?.status === "주의" ? 10 : event?.status === "높음" ? 35 : 0));
   const dataScore = dataStrength(financial, valuation, estimate);
   const total = Math.round(finance * 0.28 + growth * 0.24 + value * 0.2 + riskAdjusted * 0.13 + dataScore * 0.15);
-  const verdict = conclusion(base, total, financial, valuation, estimate, dataScore, event);
+  const verdict = conclusion(base, total, financial, valuation, estimate, dataScore, event, researchIsCurrent);
   const signal = financial?.summary?.financialSignal || "비교 자료 부족";
   const evidence = [
     `실제 재무: ${signal}`,
     `가격 대비 확정 실적: ${valuation?.classification || "확인 필요"}`,
-    `추정치 자료: ${estimate.label}`,
+    `전망치·컨센서스: ${estimate.label}`,
     event?.headline || "최근 수집 범위에서 주요 DART 공시 없음"
   ];
   const limitations = [];
-  if (estimate.capBuy) limitations.push("미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음");
+  if (estimate.capBuy) limitations.push("검증 가능한 최신 컨센서스·전망치가 연결되지 않아 자동 매수 조건 충족 판정을 막음");
+  if (!researchIsCurrent) limitations.push(`기존 정성 리서치 기준일이 ${researchAge}일 전이어서 현재 순위의 점수 근거로 사용하지 않음`);
   if (financial?.status !== "ok") limitations.push("공식 재무 일부 기간이 누락되어 비교 신뢰도가 낮음");
   if (valuation?.note?.includes("비공식")) limitations.push("현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요");
   if (event?.status === "주의" || event?.status === "높음") limitations.push(`공시 점검: ${event.headline}`);
@@ -120,11 +123,11 @@ function buildCompany(target) {
     invalidation: base.invalidateCondition || "핵심 지표 악화",
     minimumHumanChecks: base.minimumChecks || [],
     limitations,
-    freshness: { financial: financials.updatedAt || null, valuation: valuations.updatedAt || null, estimate: estimate.label },
+    freshness: { financial: financials.updatedAt || null, valuation: valuations.updatedAt || null, estimate: estimate.label, research: model.updatedAt || null },
     sourceStatus: {
       financial: "OpenDART 공식 재무",
       valuation: "OpenDART 발행주식수 + Naver Finance 가격 참고값",
-      estimate: estimate.capBuy ? "갱신 필요 또는 출처 재확인" : "최근 기준일 확인",
+      estimate: "검증 가능한 최신 컨센서스 소스 미연결",
       disclosure: "OpenDART 최근 공시"
     }
   };

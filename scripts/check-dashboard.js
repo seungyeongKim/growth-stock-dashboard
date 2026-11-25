@@ -20,6 +20,7 @@ const required = [
   "eventRadar",
   "renderEventRadar",
   "investmentDecision",
+  "currentGrowthSelection",
   "AI 결론"
 ];
 const missing = required.filter((item) => !html.includes(item));
@@ -74,5 +75,13 @@ for (const [code, record] of decisionRecords) {
   if (!Array.isArray(record.evidence) || !Array.isArray(record.minimumHumanChecks)) throw new Error(`${code}: incomplete automated decision evidence`);
 }
 
-console.log(JSON.stringify({ script: "ok", requiredMarkers: required.length, decisionRecords: records.length, financialRecords: financialRecords.length, valuationRecords: valuationRecords.length, eventRecords: eventRecords.length, automatedDecisions: decisionRecords.length, target }, null, 2));
+const selectionPath = path.join(path.dirname(target), "data", "current-growth-selection.json");
+const selection = JSON.parse(fs.readFileSync(selectionPath, "utf8"));
+if (selection.updatedAt && (selection.items || []).length !== 20) throw new Error(`Expected 20 current growth selections, found ${(selection.items || []).length}`);
+for (const item of selection.items || []) {
+  if (!Number.isInteger(item.rank) || item.rank < 1 || item.rank > 20) throw new Error(`${item.code}: invalid current selection rank`);
+  if (typeof item.currentFinancialPass !== "boolean") throw new Error(`${item.code}: invalid current financial pass flag`);
+}
+
+console.log(JSON.stringify({ script: "ok", requiredMarkers: required.length, decisionRecords: records.length, financialRecords: financialRecords.length, valuationRecords: valuationRecords.length, eventRecords: eventRecords.length, automatedDecisions: decisionRecords.length, currentSelections: (selection.items || []).length, target }, null, 2));
 
