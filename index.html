@@ -4746,7 +4746,7 @@
 
 
     const dailyGrowthTracking = {
-          "updatedAt": "2026-11-25T05:51:42",
+          "updatedAt": "2026-11-25T09:39:08",
           "sourcePolicy": "공식 공시와 회사 IR을 우선하고, 비공식 시세는 참고값으로만 표시",
           "targets": [
                 {
@@ -4783,10 +4783,10 @@
                       "quote": {
                             "enabled": true,
                             "source": "Naver Finance realtime",
-                            "price": "101,600",
-                            "changeRate": "1.20",
+                            "price": "96,100",
+                            "changeRate": "-9.60",
                             "marketCap": null,
-                            "volume": "299,086",
+                            "volume": "47,924",
                             "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
                       },
                       "dart": {
@@ -4834,10 +4834,10 @@
                       "quote": {
                             "enabled": true,
                             "source": "Naver Finance realtime",
-                            "price": "263,000",
-                            "changeRate": "-3.84",
+                            "price": "272,500",
+                            "changeRate": "3.02",
                             "marketCap": null,
-                            "volume": "116,186",
+                            "volume": "11,974",
                             "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
                       },
                       "dart": {
@@ -4885,10 +4885,10 @@
                       "quote": {
                             "enabled": true,
                             "source": "Naver Finance realtime",
-                            "price": "1,205,000",
-                            "changeRate": "1.09",
+                            "price": "1,225,000",
+                            "changeRate": "0.08",
                             "marketCap": null,
-                            "volume": "29,299",
+                            "volume": "6,556",
                             "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
                       },
                       "dart": {
@@ -4936,10 +4936,10 @@
                       "quote": {
                             "enabled": true,
                             "source": "Naver Finance realtime",
-                            "price": "116,400",
-                            "changeRate": "5.63",
+                            "price": "113,100",
+                            "changeRate": "-7.30",
                             "marketCap": null,
-                            "volume": "685,897",
+                            "volume": "119,095",
                             "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
                       },
                       "dart": {
@@ -4987,10 +4987,10 @@
                       "quote": {
                             "enabled": true,
                             "source": "Naver Finance realtime",
-                            "price": "25,150",
-                            "changeRate": "6.12",
+                            "price": "28,000",
+                            "changeRate": "8.53",
                             "marketCap": null,
-                            "volume": "917,182",
+                            "volume": "937,679",
                             "note": "비공식 시세 경로이므로 매수 전 증권사/거래소로 재확인"
                       },
                       "dart": {
@@ -5074,9 +5074,9 @@
     }
 
     const weeklyGrowthWatchlist = {
-          "updatedAt": "2026-11-24T07:15:00",
+          "updatedAt": "2026-11-25T09:39:10",
           "cadence": "weekly",
-          "rule": "20개 관찰군은 매주 1회 가격, 공시, 데이터 충족도, 성장 논리 훼손 여부를 확인해 5개 심층 추적 후보로 승격할지 판단한다.",
+          "rule": "매주 최신 OpenDART 재무·현재 가격·최근 공시를 반영해 20개 관찰군의 심층 검토 순위를 다시 매긴다. 검증된 최신 전망치가 없으면 자동 매수 판단으로 승격하지 않는다.",
           "sourcePolicy": "20개 관찰군은 최신 OpenDART 재무·최근 공시와 현재 가격 참고값으로 매주 재정렬한다. 자동 판단은 매수 추천이 아니며, 최신 전망치 출처가 없으면 매수 조건 충족으로 올리지 않는다.",
           "items": [
                 {
@@ -5094,9 +5094,9 @@
                       "quote": {
                             "ok": true,
                             "source": "Naver Finance realtime",
-                            "price": "23,600",
-                            "changeRate": "1.72",
-                            "volume": "813,892",
+                            "price": "28,000",
+                            "changeRate": "8.53",
+                            "volume": "937,680",
                             "note": "비공식 참고값"
                       },
                       "dart": {
@@ -5108,51 +5108,23 @@
                       "reviewQuestion": "심층 추적 5종목에 계속 남길 만큼 논리가 강화됐나?"
                 },
                 {
-                      "code": "192080",
-                      "name": "더블유게임즈",
-                      "industry": "게임",
+                      "code": "000660",
+                      "name": "SK하이닉스",
+                      "industry": "AI 메모리/HBM",
                       "group": "deep",
                       "priority": 2,
                       "reviewFocus": [
-                            "DTC",
-                            "아이게이밍",
-                            "유저 잔존율",
-                            "현금흐름"
+                            "HBM ASP",
+                            "HBM4",
+                            "메모리 사이클",
+                            "주가 반영도"
                       ],
                       "quote": {
                             "ok": true,
                             "source": "Naver Finance realtime",
-                            "price": "54,700",
-                            "changeRate": "-2.50",
-                            "volume": "33,153",
-                            "note": "비공식 참고값"
-                      },
-                      "dart": {
-                            "ok": true,
-                            "items": [],
-                            "note": "최근 7일 신규 공시 없음"
-                      },
-                      "reviewStatus": "보류 관찰",
-                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
-                },
-                {
-                      "code": "058470",
-                      "name": "리노공업",
-                      "industry": "반도체 테스트 소켓",
-                      "group": "deep",
-                      "priority": 3,
-                      "reviewFocus": [
-                            "AI ASIC",
-                            "신공장 가동률",
-                            "2027E 순이익",
-                            "OPM 45%"
-                      ],
-                      "quote": {
-                            "ok": true,
-                            "source": "Naver Finance realtime",
-                            "price": "45,750",
-                            "changeRate": "0.88",
-                            "volume": "673,368",
+                            "price": "1,076,000",
+                            "changeRate": "-7.08",
+                            "volume": "536,011",
                             "note": "비공식 참고값"
                       },
                       "dart": {
@@ -5164,39 +5136,11 @@
                       "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
                 },
                 {
-                      "code": "214450",
-                      "name": "파마리서치",
-                      "industry": "의료기기/스킨부스터",
-                      "group": "deep",
-                      "priority": 4,
-                      "reviewFocus": [
-                            "의료기기 수출",
-                            "리쥬란 재주문",
-                            "국가별 매출",
-                            "OPM 40%"
-                      ],
-                      "quote": {
-                            "ok": true,
-                            "source": "Naver Finance realtime",
-                            "price": "272,000",
-                            "changeRate": "-1.09",
-                            "volume": "99,926",
-                            "note": "비공식 참고값"
-                      },
-                      "dart": {
-                            "ok": true,
-                            "items": [],
-                            "note": "최근 7일 신규 공시 없음"
-                      },
-                      "reviewStatus": "심층 추적 유지",
-                      "reviewQuestion": "심층 추적 5종목에 계속 남길 만큼 논리가 강화됐나?"
-                },
-                {
                       "code": "003230",
                       "name": "삼양식품",
                       "industry": "식품/글로벌 라면",
                       "group": "deep",
-                      "priority": 5,
+                      "priority": 3,
                       "reviewFocus": [
                             "해외 매출",
                             "밀양2공장",
@@ -5206,9 +5150,9 @@
                       "quote": {
                             "ok": true,
                             "source": "Naver Finance realtime",
-                            "price": "1,193,000",
-                            "changeRate": "-3.24",
-                            "volume": "33,473",
+                            "price": "1,225,000",
+                            "changeRate": "0.08",
+                            "volume": "6,556",
                             "note": "비공식 참고값"
                       },
                       "dart": {
@@ -5223,8 +5167,8 @@
                       "code": "267260",
                       "name": "HD현대일렉트릭",
                       "industry": "전력기기",
-                      "group": "watch",
-                      "priority": 6,
+                      "group": "deep",
+                      "priority": 4,
                       "reviewFocus": [
                             "북미 수주",
                             "수주 마진",
@@ -5234,9 +5178,9 @@
                       "quote": {
                             "ok": true,
                             "source": "Naver Finance realtime",
-                            "price": "385,000",
-                            "changeRate": "-0.39",
-                            "volume": "105,083",
+                            "price": "373,500",
+                            "changeRate": "-6.63",
+                            "volume": "24,397",
                             "note": "비공식 참고값"
                       },
                       "dart": {
@@ -5248,38 +5192,87 @@
                       "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
                 },
                 {
-                      "code": "000660",
-                      "name": "SK하이닉스",
-                      "industry": "AI 메모리/HBM",
-                      "group": "watch",
-                      "priority": 7,
+                      "code": "206640",
+                      "name": "바디텍메드",
+                      "industry": "진단기기",
+                      "group": "deep",
+                      "priority": 5,
                       "reviewFocus": [
-                            "HBM ASP",
-                            "HBM4",
-                            "메모리 사이클",
-                            "주가 반영도"
+                            "설치 장비",
+                            "카트리지",
+                            "지역별 매출",
+                            "허가"
                       ],
                       "quote": {
                             "ok": true,
                             "source": "Naver Finance realtime",
-                            "price": "1,101,000",
-                            "changeRate": "-1.08",
-                            "volume": "3,945,821",
+                            "price": "9,620",
+                            "changeRate": "-0.93",
+                            "volume": "3,200",
                             "note": "비공식 참고값"
                       },
                       "dart": {
                             "ok": true,
-                            "items": [
-                                  {
-                                        "date": "20261123",
-                                        "title": "임원ㆍ주요주주특정증권등소유상황보고서",
-                                        "receiptNo": "20261123000192",
-                                        "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261123000192"
-                                  }
-                            ],
-                            "note": "최근 7일 신규 공시 확인"
+                            "items": [],
+                            "note": "최근 7일 신규 공시 없음"
                       },
-                      "reviewStatus": "승격 검토",
+                      "reviewStatus": "관찰 유지",
+                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
+                },
+                {
+                      "code": "192080",
+                      "name": "더블유게임즈",
+                      "industry": "게임",
+                      "group": "watch",
+                      "priority": 6,
+                      "reviewFocus": [
+                            "DTC",
+                            "아이게이밍",
+                            "유저 잔존율",
+                            "현금흐름"
+                      ],
+                      "quote": {
+                            "ok": true,
+                            "source": "Naver Finance realtime",
+                            "price": "55,600",
+                            "changeRate": "0.72",
+                            "volume": "5,574",
+                            "note": "비공식 참고값"
+                      },
+                      "dart": {
+                            "ok": true,
+                            "items": [],
+                            "note": "최근 7일 신규 공시 없음"
+                      },
+                      "reviewStatus": "심층 추적 유지",
+                      "reviewQuestion": "심층 추적 5종목에 계속 남길 만큼 논리가 강화됐나?"
+                },
+                {
+                      "code": "278470",
+                      "name": "에이피알",
+                      "industry": "K뷰티 브랜드/뷰티 디바이스",
+                      "group": "watch",
+                      "priority": 7,
+                      "reviewFocus": [
+                            "미국 매출",
+                            "마케팅비",
+                            "재고",
+                            "생산능력"
+                      ],
+                      "quote": {
+                            "ok": true,
+                            "source": "Naver Finance realtime",
+                            "price": "287,000",
+                            "changeRate": "8.92",
+                            "volume": "196,318",
+                            "note": "비공식 참고값"
+                      },
+                      "dart": {
+                            "ok": true,
+                            "items": [],
+                            "note": "최근 7일 신규 공시 없음"
+                      },
+                      "reviewStatus": "관찰 유지",
                       "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
                 },
                 {
@@ -5297,37 +5290,9 @@
                       "quote": {
                             "ok": true,
                             "source": "Naver Finance realtime",
-                            "price": "101,800",
-                            "changeRate": "-2.86",
-                            "volume": "286,906",
-                            "note": "비공식 참고값"
-                      },
-                      "dart": {
-                            "ok": true,
-                            "items": [],
-                            "note": "최근 7일 신규 공시 없음"
-                      },
-                      "reviewStatus": "심층 추적 유지",
-                      "reviewQuestion": "심층 추적 5종목에 계속 남길 만큼 논리가 강화됐나?"
-                },
-                {
-                      "code": "278470",
-                      "name": "에이피알",
-                      "industry": "K뷰티 브랜드/뷰티 디바이스",
-                      "group": "watch",
-                      "priority": 9,
-                      "reviewFocus": [
-                            "미국 매출",
-                            "마케팅비",
-                            "재고",
-                            "생산능력"
-                      ],
-                      "quote": {
-                            "ok": true,
-                            "source": "Naver Finance realtime",
-                            "price": "256,000",
-                            "changeRate": "8.70",
-                            "volume": "555,984",
+                            "price": "96,100",
+                            "changeRate": "-9.60",
+                            "volume": "47,924",
                             "note": "비공식 참고값"
                       },
                       "dart": {
@@ -5343,7 +5308,7 @@
                       "name": "알테오젠",
                       "industry": "바이오 플랫폼",
                       "group": "watch",
-                      "priority": 10,
+                      "priority": 9,
                       "reviewFocus": [
                             "키트루다SC",
                             "로열티",
@@ -5353,9 +5318,9 @@
                       "quote": {
                             "ok": true,
                             "source": "Naver Finance realtime",
-                            "price": "169,000",
-                            "changeRate": "-3.10",
-                            "volume": "364,142",
+                            "price": "165,200",
+                            "changeRate": "3.44",
+                            "volume": "209,812",
                             "note": "비공식 참고값"
                       },
                       "dart": {
@@ -5371,7 +5336,7 @@
                       "name": "티씨케이",
                       "industry": "반도체 소재",
                       "group": "watch",
-                      "priority": 11,
+                      "priority": 10,
                       "reviewFocus": [
                             "SiC Ring",
                             "NAND 투자",
@@ -5381,9 +5346,9 @@
                       "quote": {
                             "ok": true,
                             "source": "Naver Finance realtime",
-                            "price": "169,600",
-                            "changeRate": "1.56",
-                            "volume": "51,760",
+                            "price": "156,200",
+                            "changeRate": "-9.13",
+                            "volume": "6,929",
                             "note": "비공식 참고값"
                       },
                       "dart": {
@@ -5392,137 +5357,6 @@
                             "note": "최근 7일 신규 공시 없음"
                       },
                       "reviewStatus": "관찰 유지",
-                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
-                },
-                {
-                      "code": "214150",
-                      "name": "클래시스",
-                      "industry": "미용 의료기기",
-                      "group": "watch",
-                      "priority": 12,
-                      "reviewFocus": [
-                            "소모품 매출",
-                            "브라질",
-                            "미국/유럽",
-                            "OPM 44%"
-                      ],
-                      "quote": {
-                            "ok": true,
-                            "source": "Naver Finance realtime",
-                            "price": "20,350",
-                            "changeRate": "-6.65",
-                            "volume": "367,125",
-                            "note": "비공식 참고값"
-                      },
-                      "dart": {
-                            "ok": true,
-                            "items": [],
-                            "note": "최근 7일 신규 공시 없음"
-                      },
-                      "reviewStatus": "관찰 유지",
-                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
-                },
-                {
-                      "code": "010120",
-                      "name": "LS ELECTRIC",
-                      "industry": "전력기기",
-                      "group": "watch",
-                      "priority": 13,
-                      "reviewFocus": [
-                            "신규수주",
-                            "수주잔고",
-                            "데이터센터",
-                            "OPM 10%"
-                      ],
-                      "quote": {
-                            "ok": true,
-                            "source": "Naver Finance realtime",
-                            "price": "112,000",
-                            "changeRate": "2.10",
-                            "volume": "600,647",
-                            "note": "비공식 참고값"
-                      },
-                      "dart": {
-                            "ok": true,
-                            "items": [],
-                            "note": "최근 7일 신규 공시 없음"
-                      },
-                      "reviewStatus": "심층 추적 유지",
-                      "reviewQuestion": "심층 추적 5종목에 계속 남길 만큼 논리가 강화됐나?"
-                },
-                {
-                      "code": "207940",
-                      "name": "삼성바이오로직스",
-                      "industry": "CDMO",
-                      "group": "watch",
-                      "priority": 14,
-                      "reviewFocus": [
-                            "신규 수주",
-                            "5공장",
-                            "록빌",
-                            "CDO"
-                      ],
-                      "quote": {
-                            "ok": true,
-                            "source": "Naver Finance realtime",
-                            "price": "1,293,000",
-                            "changeRate": "-4.58",
-                            "volume": "48,515",
-                            "note": "비공식 참고값"
-                      },
-                      "dart": {
-                            "ok": true,
-                            "items": [
-                                  {
-                                        "date": "20261123",
-                                        "title": "임원ㆍ주요주주특정증권등소유상황보고서",
-                                        "receiptNo": "20261123000359",
-                                        "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261123000359"
-                                  },
-                                  {
-                                        "date": "20261123",
-                                        "title": "임원ㆍ주요주주특정증권등소유상황보고서",
-                                        "receiptNo": "20261123000352",
-                                        "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261123000352"
-                                  },
-                                  {
-                                        "date": "20261123",
-                                        "title": "임원ㆍ주요주주특정증권등소유상황보고서",
-                                        "receiptNo": "20261123000346",
-                                        "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261123000346"
-                                  }
-                            ],
-                            "note": "최근 7일 신규 공시 확인"
-                      },
-                      "reviewStatus": "승격 검토",
-                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
-                },
-                {
-                      "code": "206640",
-                      "name": "바디텍메드",
-                      "industry": "진단기기",
-                      "group": "watch",
-                      "priority": 15,
-                      "reviewFocus": [
-                            "설치 장비",
-                            "카트리지",
-                            "지역별 매출",
-                            "허가"
-                      ],
-                      "quote": {
-                            "ok": true,
-                            "source": "Naver Finance realtime",
-                            "price": "9,570",
-                            "changeRate": "-0.10",
-                            "volume": "38,979",
-                            "note": "비공식 참고값"
-                      },
-                      "dart": {
-                            "ok": true,
-                            "items": [],
-                            "note": "최근 7일 신규 공시 없음"
-                      },
-                      "reviewStatus": "보류 관찰",
                       "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
                 },
                 {
@@ -5530,7 +5364,7 @@
                       "name": "안랩",
                       "industry": "보안 소프트웨어",
                       "group": "watch",
-                      "priority": 16,
+                      "priority": 11,
                       "reviewFocus": [
                             "ARR",
                             "중동 매출",
@@ -5540,93 +5374,9 @@
                       "quote": {
                             "ok": true,
                             "source": "Naver Finance realtime",
-                            "price": "114,500",
-                            "changeRate": "3.06",
-                            "volume": "441,244",
-                            "note": "비공식 참고값"
-                      },
-                      "dart": {
-                            "ok": true,
-                            "items": [],
-                            "note": "최근 7일 신규 공시 없음"
-                      },
-                      "reviewStatus": "보류 관찰",
-                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
-                },
-                {
-                      "code": "145020",
-                      "name": "휴젤",
-                      "industry": "톡신/필러",
-                      "group": "watch",
-                      "priority": 17,
-                      "reviewFocus": [
-                            "미국 직판",
-                            "국가별 매출",
-                            "판관비",
-                            "OPM 회복"
-                      ],
-                      "quote": {
-                            "ok": true,
-                            "source": "Naver Finance realtime",
-                            "price": "201,500",
-                            "changeRate": "-2.42",
-                            "volume": "39,421",
-                            "note": "비공식 참고값"
-                      },
-                      "dart": {
-                            "ok": true,
-                            "items": [],
-                            "note": "최근 7일 신규 공시 없음"
-                      },
-                      "reviewStatus": "관찰 유지",
-                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
-                },
-                {
-                      "code": "051360",
-                      "name": "토비스",
-                      "industry": "산업용 모니터/디스플레이",
-                      "group": "watch",
-                      "priority": 18,
-                      "reviewFocus": [
-                            "분할 후 별도 재무",
-                            "전장 고객",
-                            "카지노 수주",
-                            "재상장"
-                      ],
-                      "quote": {
-                            "ok": true,
-                            "source": "Naver Finance realtime",
-                            "price": "10,690",
-                            "changeRate": "1.91",
-                            "volume": "13,798",
-                            "note": "비공식 참고값"
-                      },
-                      "dart": {
-                            "ok": true,
-                            "items": [],
-                            "note": "최근 7일 신규 공시 없음"
-                      },
-                      "reviewStatus": "보류 관찰",
-                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
-                },
-                {
-                      "code": "251970",
-                      "name": "펌텍코리아",
-                      "industry": "화장품 용기",
-                      "group": "watch",
-                      "priority": 19,
-                      "reviewFocus": [
-                            "4공장",
-                            "고객 주문",
-                            "원가율",
-                            "해외 고객"
-                      ],
-                      "quote": {
-                            "ok": true,
-                            "source": "Naver Finance realtime",
-                            "price": "76,200",
-                            "changeRate": "-1.30",
-                            "volume": "59,461",
+                            "price": "138,000",
+                            "changeRate": "13.58",
+                            "volume": "625,843",
                             "note": "비공식 참고값"
                       },
                       "dart": {
@@ -5642,7 +5392,7 @@
                       "name": "브이티",
                       "industry": "K뷰티 브랜드",
                       "group": "watch",
-                      "priority": 20,
+                      "priority": 12,
                       "reviewFocus": [
                             "PDRN",
                             "미국/유럽",
@@ -5652,9 +5402,9 @@
                       "quote": {
                             "ok": true,
                             "source": "Naver Finance realtime",
-                            "price": "10,430",
-                            "changeRate": "-4.40",
-                            "volume": "139,891",
+                            "price": "10,820",
+                            "changeRate": "1.88",
+                            "volume": "45,568",
                             "note": "비공식 참고값"
                       },
                       "dart": {
@@ -5662,11 +5412,235 @@
                             "items": [],
                             "note": "최근 7일 신규 공시 없음"
                       },
-                      "reviewStatus": "보류 관찰",
+                      "reviewStatus": "관찰 유지",
+                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
+                },
+                {
+                      "code": "214150",
+                      "name": "클래시스",
+                      "industry": "미용 의료기기",
+                      "group": "watch",
+                      "priority": 13,
+                      "reviewFocus": [
+                            "소모품 매출",
+                            "브라질",
+                            "미국/유럽",
+                            "OPM 44%"
+                      ],
+                      "quote": {
+                            "ok": true,
+                            "source": "Naver Finance realtime",
+                            "price": "21,550",
+                            "changeRate": "-0.23",
+                            "volume": "40,611",
+                            "note": "비공식 참고값"
+                      },
+                      "dart": {
+                            "ok": true,
+                            "items": [],
+                            "note": "최근 7일 신규 공시 없음"
+                      },
+                      "reviewStatus": "관찰 유지",
+                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
+                },
+                {
+                      "code": "214450",
+                      "name": "파마리서치",
+                      "industry": "의료기기/스킨부스터",
+                      "group": "watch",
+                      "priority": 14,
+                      "reviewFocus": [
+                            "의료기기 수출",
+                            "리쥬란 재주문",
+                            "국가별 매출",
+                            "OPM 40%"
+                      ],
+                      "quote": {
+                            "ok": true,
+                            "source": "Naver Finance realtime",
+                            "price": "272,500",
+                            "changeRate": "3.02",
+                            "volume": "11,974",
+                            "note": "비공식 참고값"
+                      },
+                      "dart": {
+                            "ok": true,
+                            "items": [],
+                            "note": "최근 7일 신규 공시 없음"
+                      },
+                      "reviewStatus": "심층 추적 유지",
+                      "reviewQuestion": "심층 추적 5종목에 계속 남길 만큼 논리가 강화됐나?"
+                },
+                {
+                      "code": "010120",
+                      "name": "LS ELECTRIC",
+                      "industry": "전력기기",
+                      "group": "watch",
+                      "priority": 15,
+                      "reviewFocus": [
+                            "신규수주",
+                            "수주잔고",
+                            "데이터센터",
+                            "OPM 10%"
+                      ],
+                      "quote": {
+                            "ok": true,
+                            "source": "Naver Finance realtime",
+                            "price": "113,200",
+                            "changeRate": "-7.21",
+                            "volume": "119,735",
+                            "note": "비공식 참고값"
+                      },
+                      "dart": {
+                            "ok": true,
+                            "items": [],
+                            "note": "최근 7일 신규 공시 없음"
+                      },
+                      "reviewStatus": "관찰 유지",
+                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
+                },
+                {
+                      "code": "251970",
+                      "name": "펌텍코리아",
+                      "industry": "화장품 용기",
+                      "group": "watch",
+                      "priority": 16,
+                      "reviewFocus": [
+                            "4공장",
+                            "고객 주문",
+                            "원가율",
+                            "해외 고객"
+                      ],
+                      "quote": {
+                            "ok": true,
+                            "source": "Naver Finance realtime",
+                            "price": "76,500",
+                            "changeRate": "-0.13",
+                            "volume": "13,355",
+                            "note": "비공식 참고값"
+                      },
+                      "dart": {
+                            "ok": true,
+                            "items": [],
+                            "note": "최근 7일 신규 공시 없음"
+                      },
+                      "reviewStatus": "관찰 유지",
+                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
+                },
+                {
+                      "code": "058470",
+                      "name": "리노공업",
+                      "industry": "반도체 테스트 소켓",
+                      "group": "watch",
+                      "priority": 17,
+                      "reviewFocus": [
+                            "AI ASIC",
+                            "신공장 가동률",
+                            "2027E 순이익",
+                            "OPM 45%"
+                      ],
+                      "quote": {
+                            "ok": true,
+                            "source": "Naver Finance realtime",
+                            "price": "45,650",
+                            "changeRate": "-5.88",
+                            "volume": "96,282",
+                            "note": "비공식 참고값"
+                      },
+                      "dart": {
+                            "ok": true,
+                            "items": [],
+                            "note": "최근 7일 신규 공시 없음"
+                      },
+                      "reviewStatus": "심층 추적 유지",
+                      "reviewQuestion": "심층 추적 5종목에 계속 남길 만큼 논리가 강화됐나?"
+                },
+                {
+                      "code": "145020",
+                      "name": "휴젤",
+                      "industry": "톡신/필러",
+                      "group": "watch",
+                      "priority": 18,
+                      "reviewFocus": [
+                            "미국 직판",
+                            "국가별 매출",
+                            "판관비",
+                            "OPM 회복"
+                      ],
+                      "quote": {
+                            "ok": true,
+                            "source": "Naver Finance realtime",
+                            "price": "204,500",
+                            "changeRate": "0.99",
+                            "volume": "2,578",
+                            "note": "비공식 참고값"
+                      },
+                      "dart": {
+                            "ok": true,
+                            "items": [],
+                            "note": "최근 7일 신규 공시 없음"
+                      },
+                      "reviewStatus": "관찰 유지",
+                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
+                },
+                {
+                      "code": "207940",
+                      "name": "삼성바이오로직스",
+                      "industry": "CDMO",
+                      "group": "watch",
+                      "priority": 19,
+                      "reviewFocus": [
+                            "신규 수주",
+                            "5공장",
+                            "록빌",
+                            "CDO"
+                      ],
+                      "quote": {
+                            "ok": true,
+                            "source": "Naver Finance realtime",
+                            "price": "1,300,000",
+                            "changeRate": "0.78",
+                            "volume": "10,343",
+                            "note": "비공식 참고값"
+                      },
+                      "dart": {
+                            "ok": true,
+                            "items": [],
+                            "note": "최근 7일 신규 공시 없음"
+                      },
+                      "reviewStatus": "관찰 유지",
+                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
+                },
+                {
+                      "code": "051360",
+                      "name": "토비스",
+                      "industry": "산업용 모니터/디스플레이",
+                      "group": "watch",
+                      "priority": 20,
+                      "reviewFocus": [
+                            "분할 후 별도 재무",
+                            "전장 고객",
+                            "카지노 수주",
+                            "재상장"
+                      ],
+                      "quote": {
+                            "ok": true,
+                            "source": "Naver Finance realtime",
+                            "price": "10,230",
+                            "changeRate": "-5.63",
+                            "volume": "462",
+                            "note": "비공식 참고값"
+                      },
+                      "dart": {
+                            "ok": true,
+                            "items": [],
+                            "note": "최근 7일 신규 공시 없음"
+                      },
+                      "reviewStatus": "관찰 유지",
                       "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
                 }
           ],
-          "selectionUpdatedAt": "2026-11-24T07:15:00"
+          "selectionUpdatedAt": "2026-11-25T09:39:10"
     };
 
     function renderWeeklyGrowthWatchlist() {
@@ -6276,8 +6250,8 @@ const companyDecisionModel = {
 
     /* FINANCIAL_SNAPSHOTS_START */
 const financialSnapshots = {
-  "updatedAt": "2026-11-24T07:15:04",
-  "lastAttemptAt": "2026-11-24T07:15:04",
+  "updatedAt": "2026-11-25T09:39:14",
+  "lastAttemptAt": "2026-11-25T09:39:14",
   "dart": {
     "enabled": true,
     "note": "OpenDART 공식 재무 수집 완료: 정상 19개, 부분 1개"
@@ -6336,26 +6310,26 @@ const financialSnapshots = {
       ],
       "latestInterim": {
         "year": 2026,
-        "period": "2026 H1",
-        "reportCode": "11012",
+        "period": "2026 Q3",
+        "reportCode": "11014",
         "fsDiv": "CFS",
-        "revenue": 137903428646,
-        "operatingProfit": 56030447567,
-        "netIncome": 44738790809,
-        "operatingMargin": 40.6,
-        "netMargin": 32.4,
+        "revenue": 97521061406,
+        "operatingProfit": 18091910126,
+        "netIncome": 4715879554,
+        "operatingMargin": 18.6,
+        "netMargin": 4.8,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "priorInterim": {
         "year": 2025,
-        "period": "2025 H1",
-        "reportCode": "11012",
+        "period": "2025 Q3",
+        "reportCode": "11014",
         "fsDiv": "CFS",
-        "revenue": 110260417924,
-        "operatingProfit": 56670315005,
-        "netIncome": 38213817234,
-        "operatingMargin": 51.4,
-        "netMargin": 34.7,
+        "revenue": 105898058047,
+        "operatingProfit": 47401917345,
+        "netIncome": 38043614462,
+        "operatingMargin": 44.8,
+        "netMargin": 35.9,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "shareCount": 12304033,
@@ -6367,11 +6341,11 @@ const financialSnapshots = {
         "latestAnnualRevenueGrowth": 14,
         "latestAnnualOperatingMargin": 47.2,
         "latestAnnualNetMargin": 34.6,
-        "latestInterimRevenue": 137903428646,
-        "latestInterimOperatingMargin": 40.6,
-        "interimRevenueGrowthYoY": 25.1,
-        "interimOperatingMarginChangeYoY": -10.8,
-        "financialSignal": "수익성 둔화 경보"
+        "latestInterimRevenue": 97521061406,
+        "latestInterimOperatingMargin": 18.6,
+        "interimRevenueGrowthYoY": -7.9,
+        "interimOperatingMarginChangeYoY": -26.2,
+        "financialSignal": "성장 둔화 경보"
       }
     },
     "192080": {
@@ -6426,26 +6400,26 @@ const financialSnapshots = {
       ],
       "latestInterim": {
         "year": 2026,
-        "period": "2026 H1",
-        "reportCode": "11012",
+        "period": "2026 Q3",
+        "reportCode": "11014",
         "fsDiv": "CFS",
-        "revenue": 210628862678,
-        "operatingProfit": 70071579603,
-        "netIncome": 65033071465,
-        "operatingMargin": 33.3,
-        "netMargin": 30.9,
+        "revenue": 195412606447,
+        "operatingProfit": 63545908727,
+        "netIncome": 16274564824,
+        "operatingMargin": 32.5,
+        "netMargin": 8.3,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "priorInterim": {
         "year": 2025,
-        "period": "2025 H1",
-        "reportCode": "11012",
+        "period": "2025 Q3",
+        "reportCode": "11014",
         "fsDiv": "CFS",
-        "revenue": 171945692649,
-        "operatingProfit": 54317738818,
-        "netIncome": 32989838890,
-        "operatingMargin": 31.6,
-        "netMargin": 19.2,
+        "revenue": 186153548331,
+        "operatingProfit": 59152283808,
+        "netIncome": 56396306925,
+        "operatingMargin": 31.8,
+        "netMargin": 30.3,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "shareCount": 21495906,
@@ -6457,11 +6431,11 @@ const financialSnapshots = {
         "latestAnnualRevenueGrowth": 13.6,
         "latestAnnualOperatingMargin": 32.2,
         "latestAnnualNetMargin": 25,
-        "latestInterimRevenue": 210628862678,
-        "latestInterimOperatingMargin": 33.3,
-        "interimRevenueGrowthYoY": 22.5,
-        "interimOperatingMarginChangeYoY": 1.7,
-        "financialSignal": "성장 가속·유지"
+        "latestInterimRevenue": 195412606447,
+        "latestInterimOperatingMargin": 32.5,
+        "interimRevenueGrowthYoY": 5,
+        "interimOperatingMarginChangeYoY": 0.7,
+        "financialSignal": "성장 유지·확인"
       }
     },
     "196170": {
@@ -6516,26 +6490,26 @@ const financialSnapshots = {
       ],
       "latestInterim": {
         "year": 2026,
-        "period": "2026 H1",
-        "reportCode": "11012",
+        "period": "2026 Q3",
+        "reportCode": "11014",
         "fsDiv": "CFS",
-        "revenue": 68894335061,
-        "operatingProfit": 34180255324,
-        "netIncome": 29988512589,
-        "operatingMargin": 49.6,
-        "netMargin": 43.5,
+        "revenue": 119791545284,
+        "operatingProfit": 78895311587,
+        "netIncome": 42134690669,
+        "operatingMargin": 65.9,
+        "netMargin": 35.2,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "priorInterim": {
         "year": 2025,
-        "period": "2025 H1",
-        "reportCode": "11012",
+        "period": "2025 Q3",
+        "reportCode": "11014",
         "fsDiv": "CFS",
-        "revenue": 18643000115,
-        "operatingProfit": -426290507,
-        "netIncome": -34317124543,
-        "operatingMargin": -2.3,
-        "netMargin": -184.1,
+        "revenue": 49012996870,
+        "operatingProfit": 26670839372,
+        "netIncome": 22025034302,
+        "operatingMargin": 54.4,
+        "netMargin": 44.9,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "shareCount": 53505788,
@@ -6547,10 +6521,10 @@ const financialSnapshots = {
         "latestAnnualRevenueGrowth": 109.9,
         "latestAnnualOperatingMargin": 49.5,
         "latestAnnualNetMargin": 67.3,
-        "latestInterimRevenue": 68894335061,
-        "latestInterimOperatingMargin": 49.6,
-        "interimRevenueGrowthYoY": 269.5,
-        "interimOperatingMarginChangeYoY": 51.9,
+        "latestInterimRevenue": 119791545284,
+        "latestInterimOperatingMargin": 65.9,
+        "interimRevenueGrowthYoY": 144.4,
+        "interimOperatingMarginChangeYoY": 11.5,
         "financialSignal": "성장 가속·유지"
       }
     },
@@ -6606,26 +6580,26 @@ const financialSnapshots = {
       ],
       "latestInterim": {
         "year": 2026,
-        "period": "2026 H1",
-        "reportCode": "11012",
+        "period": "2026 Q3",
+        "reportCode": "11014",
         "fsDiv": "CFS",
-        "revenue": 50417300179,
-        "operatingProfit": 8239188530,
-        "netIncome": 7649799088,
-        "operatingMargin": 16.3,
-        "netMargin": 15.2,
+        "revenue": 47958887212,
+        "operatingProfit": 8932236871,
+        "netIncome": 1987165036,
+        "operatingMargin": 18.6,
+        "netMargin": 4.1,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "priorInterim": {
         "year": 2025,
-        "period": "2025 H1",
-        "reportCode": "11012",
+        "period": "2025 Q3",
+        "reportCode": "11014",
         "fsDiv": "CFS",
-        "revenue": 41481315937,
-        "operatingProfit": 9200811969,
-        "netIncome": 7457218735,
-        "operatingMargin": 22.2,
-        "netMargin": 18,
+        "revenue": 39945906201,
+        "operatingProfit": 6605293639,
+        "netIncome": 7807207667,
+        "operatingMargin": 16.5,
+        "netMargin": 19.5,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "shareCount": 23346171,
@@ -6637,11 +6611,11 @@ const financialSnapshots = {
         "latestAnnualRevenueGrowth": 17.3,
         "latestAnnualOperatingMargin": 17.9,
         "latestAnnualNetMargin": 14.7,
-        "latestInterimRevenue": 50417300179,
-        "latestInterimOperatingMargin": 16.3,
-        "interimRevenueGrowthYoY": 21.5,
-        "interimOperatingMarginChangeYoY": -5.9,
-        "financialSignal": "수익성 둔화 경보"
+        "latestInterimRevenue": 47958887212,
+        "latestInterimOperatingMargin": 18.6,
+        "interimRevenueGrowthYoY": 20.1,
+        "interimOperatingMarginChangeYoY": 2.1,
+        "financialSignal": "성장 가속·유지"
       }
     },
     "207940": {
@@ -6696,26 +6670,26 @@ const financialSnapshots = {
       ],
       "latestInterim": {
         "year": 2026,
-        "period": "2026 H1",
-        "reportCode": "11012",
+        "period": "2026 Q3",
+        "reportCode": "11014",
         "fsDiv": "CFS",
-        "revenue": 1320910867803,
-        "operatingProfit": 586443842141,
-        "netIncome": 430654182174,
-        "operatingMargin": 44.4,
-        "netMargin": 32.6,
+        "revenue": 1490325390188,
+        "operatingProfit": 640091281684,
+        "netIncome": 391102228777,
+        "operatingMargin": 42.9,
+        "netMargin": 26.2,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "priorInterim": {
         "year": 2025,
-        "period": "2025 H1",
-        "reportCode": "11012",
+        "period": "2025 Q3",
+        "reportCode": "11014",
         "fsDiv": "CFS",
-        "revenue": 1289905421405,
-        "operatingProfit": 475599675863,
-        "netIncome": 324386142540,
-        "operatingMargin": 36.9,
-        "netMargin": 25.1,
+        "revenue": 1660220823312,
+        "operatingProfit": 728848136440,
+        "netIncome": 574459721021,
+        "operatingMargin": 43.9,
+        "netMargin": 34.6,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "shareCount": 46290951,
@@ -6727,11 +6701,11 @@ const financialSnapshots = {
         "latestAnnualRevenueGrowth": 0.2,
         "latestAnnualOperatingMargin": 45.4,
         "latestAnnualNetMargin": 39.2,
-        "latestInterimRevenue": 1320910867803,
-        "latestInterimOperatingMargin": 44.4,
-        "interimRevenueGrowthYoY": 2.4,
-        "interimOperatingMarginChangeYoY": 7.5,
-        "financialSignal": "성장 유지·확인"
+        "latestInterimRevenue": 1490325390188,
+        "latestInterimOperatingMargin": 42.9,
+        "interimRevenueGrowthYoY": -10.2,
+        "interimOperatingMarginChangeYoY": -1,
+        "financialSignal": "성장 둔화 경보"
       }
     },
     "214150": {
@@ -6786,26 +6760,26 @@ const financialSnapshots = {
       ],
       "latestInterim": {
         "year": 2026,
-        "period": "2026 H1",
-        "reportCode": "11012",
+        "period": "2026 Q3",
+        "reportCode": "11014",
         "fsDiv": "CFS",
-        "revenue": 105515317742,
-        "operatingProfit": 43940685663,
-        "netIncome": 25521125279,
-        "operatingMargin": 41.6,
-        "netMargin": 24.2,
+        "revenue": 83023433071,
+        "operatingProfit": 27003647226,
+        "netIncome": 5893595849,
+        "operatingMargin": 32.5,
+        "netMargin": 7.1,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "priorInterim": {
         "year": 2025,
-        "period": "2025 H1",
-        "reportCode": "11012",
+        "period": "2025 Q3",
+        "reportCode": "11014",
         "fsDiv": "CFS",
-        "revenue": 83283805952,
-        "operatingProfit": 43010649853,
-        "netIncome": 26472747965,
-        "operatingMargin": 51.6,
-        "netMargin": 31.8,
+        "revenue": 82997291548,
+        "operatingProfit": 37618140937,
+        "netIncome": 33108648724,
+        "operatingMargin": 45.3,
+        "netMargin": 39.9,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "shareCount": 65505659,
@@ -6817,11 +6791,11 @@ const financialSnapshots = {
         "latestAnnualRevenueGrowth": 38.6,
         "latestAnnualOperatingMargin": 50.7,
         "latestAnnualNetMargin": 39.2,
-        "latestInterimRevenue": 105515317742,
-        "latestInterimOperatingMargin": 41.6,
-        "interimRevenueGrowthYoY": 26.7,
-        "interimOperatingMarginChangeYoY": -10,
-        "financialSignal": "수익성 둔화 경보"
+        "latestInterimRevenue": 83023433071,
+        "latestInterimOperatingMargin": 32.5,
+        "interimRevenueGrowthYoY": 0,
+        "interimOperatingMarginChangeYoY": -12.8,
+        "financialSignal": "성장 둔화 경보"
       }
     },
     "214450": {
@@ -6876,26 +6850,26 @@ const financialSnapshots = {
       ],
       "latestInterim": {
         "year": 2026,
-        "period": "2026 H1",
-        "reportCode": "11012",
+        "period": "2026 Q3",
+        "reportCode": "11014",
         "fsDiv": "CFS",
-        "revenue": 178704799285,
-        "operatingProfit": 66469662181,
-        "netIncome": 56228701360,
-        "operatingMargin": 37.2,
-        "netMargin": 31.5,
+        "revenue": 171542095037,
+        "operatingProfit": 62627294301,
+        "netIncome": 30232820441,
+        "operatingMargin": 36.5,
+        "netMargin": 17.6,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "priorInterim": {
         "year": 2025,
-        "period": "2025 H1",
-        "reportCode": "11012",
+        "period": "2025 Q3",
+        "reportCode": "11014",
         "fsDiv": "CFS",
-        "revenue": 140607447466,
-        "operatingProfit": 55877690378,
-        "netIncome": 42044835186,
-        "operatingMargin": 39.7,
-        "netMargin": 29.9,
+        "revenue": 135426410999,
+        "operatingProfit": 61870558180,
+        "netIncome": 50852909683,
+        "operatingMargin": 45.7,
+        "netMargin": 37.6,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "shareCount": 10389648,
@@ -6907,11 +6881,11 @@ const financialSnapshots = {
         "latestAnnualRevenueGrowth": 53.2,
         "latestAnnualOperatingMargin": 40,
         "latestAnnualNetMargin": 31.4,
-        "latestInterimRevenue": 178704799285,
-        "latestInterimOperatingMargin": 37.2,
-        "interimRevenueGrowthYoY": 27.1,
-        "interimOperatingMarginChangeYoY": -2.5,
-        "financialSignal": "성장 가속·유지"
+        "latestInterimRevenue": 171542095037,
+        "latestInterimOperatingMargin": 36.5,
+        "interimRevenueGrowthYoY": 26.7,
+        "interimOperatingMarginChangeYoY": -9.2,
+        "financialSignal": "수익성 둔화 경보"
       }
     },
     "251970": {
@@ -6966,26 +6940,26 @@ const financialSnapshots = {
       ],
       "latestInterim": {
         "year": 2026,
-        "period": "2026 H1",
-        "reportCode": "11012",
+        "period": "2026 Q3",
+        "reportCode": "11014",
         "fsDiv": "CFS",
-        "revenue": 116844346692,
-        "operatingProfit": 21650582792,
+        "revenue": 123798708340,
+        "operatingProfit": 25133417244,
         "netIncome": null,
-        "operatingMargin": 18.5,
+        "operatingMargin": 20.3,
         "netMargin": 0,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "priorInterim": {
         "year": 2025,
-        "period": "2025 H1",
-        "reportCode": "11012",
+        "period": "2025 Q3",
+        "reportCode": "11014",
         "fsDiv": "CFS",
-        "revenue": 105420763329,
-        "operatingProfit": 19427710096,
-        "netIncome": 13058002336,
-        "operatingMargin": 18.4,
-        "netMargin": 12.4,
+        "revenue": 97671578789,
+        "operatingProfit": 15324530765,
+        "netIncome": 13171775355,
+        "operatingMargin": 15.7,
+        "netMargin": 13.5,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "shareCount": 12400000,
@@ -6997,11 +6971,11 @@ const financialSnapshots = {
         "latestAnnualRevenueGrowth": 10.2,
         "latestAnnualOperatingMargin": 15.2,
         "latestAnnualNetMargin": 0,
-        "latestInterimRevenue": 116844346692,
-        "latestInterimOperatingMargin": 18.5,
-        "interimRevenueGrowthYoY": 10.8,
-        "interimOperatingMarginChangeYoY": 0.1,
-        "financialSignal": "성장 유지·확인"
+        "latestInterimRevenue": 123798708340,
+        "latestInterimOperatingMargin": 20.3,
+        "interimRevenueGrowthYoY": 26.7,
+        "interimOperatingMarginChangeYoY": 4.6,
+        "financialSignal": "성장 가속·유지"
       }
     },
     "257720": {
@@ -7056,26 +7030,26 @@ const financialSnapshots = {
       ],
       "latestInterim": {
         "year": 2026,
-        "period": "2026 H1",
-        "reportCode": "11012",
+        "period": "2026 Q3",
+        "reportCode": "11014",
         "fsDiv": "CFS",
-        "revenue": 402597050816,
-        "operatingProfit": 82969819438,
-        "netIncome": 72331311454,
-        "operatingMargin": 20.6,
-        "netMargin": 18,
+        "revenue": 424362712228,
+        "operatingProfit": 69617046443,
+        "netIncome": 8800673748,
+        "operatingMargin": 16.4,
+        "netMargin": 2.1,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "priorInterim": {
         "year": 2025,
-        "period": "2025 H1",
-        "reportCode": "11012",
+        "period": "2025 Q3",
+        "reportCode": "11014",
         "fsDiv": "CFS",
-        "revenue": 265286436523,
-        "operatingProfit": 52181838032,
-        "netIncome": 35599494171,
-        "operatingMargin": 19.7,
-        "netMargin": 13.4,
+        "revenue": 299375144222,
+        "operatingProfit": 63073092892,
+        "netIncome": 58403517595,
+        "operatingMargin": 21.1,
+        "netMargin": 19.5,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "shareCount": 65576252,
@@ -7087,10 +7061,10 @@ const financialSnapshots = {
         "latestAnnualRevenueGrowth": 61.4,
         "latestAnnualOperatingMargin": 18.4,
         "latestAnnualNetMargin": 15.1,
-        "latestInterimRevenue": 402597050816,
-        "latestInterimOperatingMargin": 20.6,
-        "interimRevenueGrowthYoY": 51.8,
-        "interimOperatingMarginChangeYoY": 0.9,
+        "latestInterimRevenue": 424362712228,
+        "latestInterimOperatingMargin": 16.4,
+        "interimRevenueGrowthYoY": 41.7,
+        "interimOperatingMarginChangeYoY": -4.7,
         "financialSignal": "성장 가속·유지"
       }
     },
@@ -7146,26 +7120,26 @@ const financialSnapshots = {
       ],
       "latestInterim": {
         "year": 2026,
-        "period": "2026 H1",
-        "reportCode": "11012",
+        "period": "2026 Q3",
+        "reportCode": "11014",
         "fsDiv": "CFS",
-        "revenue": 1141812823338,
-        "operatingProfit": 287034500364,
-        "netIncome": 206139097292,
-        "operatingMargin": 25.1,
-        "netMargin": 18.1,
+        "revenue": 1179863000000,
+        "operatingProfit": 284493000000,
+        "netIncome": 184217000000,
+        "operatingMargin": 24.1,
+        "netMargin": 15.6,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "priorInterim": {
         "year": 2025,
-        "period": "2025 H1",
-        "reportCode": "11012",
+        "period": "2025 Q3",
+        "reportCode": "11014",
         "fsDiv": "CFS",
-        "revenue": 906219054679,
-        "operatingProfit": 209142369028,
-        "netIncome": 141909212363,
-        "operatingMargin": 23.1,
-        "netMargin": 15.7,
+        "revenue": 995431807616,
+        "operatingProfit": 247075954483,
+        "netIncome": 191137618597,
+        "operatingMargin": 24.8,
+        "netMargin": 19.2,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "shareCount": 36047135,
@@ -7177,10 +7151,10 @@ const financialSnapshots = {
         "latestAnnualRevenueGrowth": 22.8,
         "latestAnnualOperatingMargin": 24.4,
         "latestAnnualNetMargin": 17.9,
-        "latestInterimRevenue": 1141812823338,
-        "latestInterimOperatingMargin": 25.1,
-        "interimRevenueGrowthYoY": 26,
-        "interimOperatingMarginChangeYoY": 2,
+        "latestInterimRevenue": 1179863000000,
+        "latestInterimOperatingMargin": 24.1,
+        "interimRevenueGrowthYoY": 18.5,
+        "interimOperatingMarginChangeYoY": -0.7,
         "financialSignal": "성장 가속·유지"
       }
     },
@@ -7236,26 +7210,26 @@ const financialSnapshots = {
       ],
       "latestInterim": {
         "year": 2026,
-        "period": "2026 H1",
-        "reportCode": "11012",
+        "period": "2026 Q3",
+        "reportCode": "11014",
         "fsDiv": "CFS",
-        "revenue": 767533293305,
-        "operatingProfit": 190553013038,
-        "netIncome": 141529504826,
-        "operatingMargin": 24.8,
-        "netMargin": 18.4,
+        "revenue": 773114833337,
+        "operatingProfit": 160639988453,
+        "netIncome": 110188171380,
+        "operatingMargin": 20.8,
+        "netMargin": 14.3,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "priorInterim": {
         "year": 2025,
-        "period": "2025 H1",
-        "reportCode": "11012",
+        "period": "2025 Q3",
+        "reportCode": "11014",
         "fsDiv": "CFS",
-        "revenue": 327734894608,
-        "operatingProfit": 84552442450,
-        "netIncome": 66309082291,
-        "operatingMargin": 25.8,
-        "netMargin": 20.2,
+        "revenue": 385942757341,
+        "operatingProfit": 96127667281,
+        "netIncome": 74634440014,
+        "operatingMargin": 24.9,
+        "netMargin": 19.3,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "shareCount": 37430655,
@@ -7267,266 +7241,10 @@ const financialSnapshots = {
         "latestAnnualRevenueGrowth": 111.3,
         "latestAnnualOperatingMargin": 23.9,
         "latestAnnualNetMargin": 19,
-        "latestInterimRevenue": 767533293305,
-        "latestInterimOperatingMargin": 24.8,
-        "interimRevenueGrowthYoY": 134.2,
-        "interimOperatingMarginChangeYoY": -1,
-        "financialSignal": "성장 가속·유지"
-      }
-    },
-    "062040": {
-      "code": "062040",
-      "name": "산일전기",
-      "corpCode": "00366438",
-      "status": "partial",
-      "note": "일부 재무 수집 실패: DART 재무 API 013: 조회된 데이타가 없습니다.",
-      "annual": [
-        {
-          "year": 2024,
-          "period": "2024 FY",
-          "reportCode": "11011",
-          "fsDiv": "OFS",
-          "revenue": 333996550771,
-          "operatingProfit": 109231906505,
-          "netIncome": 83676177904,
-          "operatingMargin": 32.7,
-          "netMargin": 25.1,
-          "source": "OpenDART 단일회사 전체 재무제표",
-          "revenueGrowthYoY": null,
-          "operatingProfitGrowthYoY": null
-        },
-        {
-          "year": 2025,
-          "period": "2025 FY",
-          "reportCode": "11011",
-          "fsDiv": "CFS",
-          "revenue": 501946220880,
-          "operatingProfit": 178634181593,
-          "netIncome": 148921775330,
-          "operatingMargin": 35.6,
-          "netMargin": 29.7,
-          "source": "OpenDART 단일회사 전체 재무제표",
-          "revenueGrowthYoY": 50.3,
-          "operatingProfitGrowthYoY": 63.5
-        }
-      ],
-      "latestInterim": {
-        "year": 2026,
-        "period": "2026 H1",
-        "reportCode": "11012",
-        "fsDiv": "CFS",
-        "revenue": 164178798154,
-        "operatingProfit": 62035136960,
-        "netIncome": 54583630066,
-        "operatingMargin": 37.8,
-        "netMargin": 33.2,
-        "source": "OpenDART 단일회사 전체 재무제표"
-      },
-      "priorInterim": {
-        "year": 2025,
-        "period": "2025 H1",
-        "reportCode": "11012",
-        "fsDiv": "CFS",
-        "revenue": 128255019954,
-        "operatingProfit": 46190173936,
-        "netIncome": 37865600433,
-        "operatingMargin": 36,
-        "netMargin": 29.5,
-        "source": "OpenDART 단일회사 전체 재무제표"
-      },
-      "shareCount": 30445200,
-      "shareCountAsOf": "2025 FY",
-      "shareCountSource": "OpenDART 증권의 발행 및 공시 등에 관한 사항",
-      "shareNote": null,
-      "summary": {
-        "latestAnnualYear": 2025,
-        "latestAnnualRevenueGrowth": 50.3,
-        "latestAnnualOperatingMargin": 35.6,
-        "latestAnnualNetMargin": 29.7,
-        "latestInterimRevenue": 164178798154,
-        "latestInterimOperatingMargin": 37.8,
-        "interimRevenueGrowthYoY": 28,
-        "interimOperatingMarginChangeYoY": 1.8,
-        "financialSignal": "성장 가속·유지"
-      }
-    },
-    "003230": {
-      "code": "003230",
-      "name": "삼양식품",
-      "corpCode": "00126955",
-      "status": "ok",
-      "note": "최근 3개 연도와 최신 분기/반기 재무 수집",
-      "annual": [
-        {
-          "year": 2023,
-          "period": "2023 FY",
-          "reportCode": "11011",
-          "fsDiv": "CFS",
-          "revenue": 1192914607980,
-          "operatingProfit": 147514090779,
-          "netIncome": 126591199633,
-          "operatingMargin": 12.4,
-          "netMargin": 10.6,
-          "source": "OpenDART 단일회사 전체 재무제표",
-          "revenueGrowthYoY": null,
-          "operatingProfitGrowthYoY": null
-        },
-        {
-          "year": 2024,
-          "period": "2024 FY",
-          "reportCode": "11011",
-          "fsDiv": "CFS",
-          "revenue": 1728015003746,
-          "operatingProfit": 344569150443,
-          "netIncome": 271255665463,
-          "operatingMargin": 19.9,
-          "netMargin": 15.7,
-          "source": "OpenDART 단일회사 전체 재무제표",
-          "revenueGrowthYoY": 44.9,
-          "operatingProfitGrowthYoY": 133.6
-        },
-        {
-          "year": 2025,
-          "period": "2025 FY",
-          "reportCode": "11011",
-          "fsDiv": "CFS",
-          "revenue": 2351785163786,
-          "operatingProfit": 524188406060,
-          "netIncome": 388673674725,
-          "operatingMargin": 22.3,
-          "netMargin": 16.5,
-          "source": "OpenDART 단일회사 전체 재무제표",
-          "revenueGrowthYoY": 36.1,
-          "operatingProfitGrowthYoY": 52.1
-        }
-      ],
-      "latestInterim": {
-        "year": 2026,
-        "period": "2026 H1",
-        "reportCode": "11012",
-        "fsDiv": "CFS",
-        "revenue": 770308613235,
-        "operatingProfit": 176180637399,
-        "netIncome": 137538620427,
-        "operatingMargin": 22.9,
-        "netMargin": 17.9,
-        "source": "OpenDART 단일회사 전체 재무제표"
-      },
-      "priorInterim": {
-        "year": 2025,
-        "period": "2025 H1",
-        "reportCode": "11012",
-        "fsDiv": "CFS",
-        "revenue": 553077609232,
-        "operatingProfit": 120087954818,
-        "netIncome": 84074794328,
-        "operatingMargin": 21.7,
-        "netMargin": 15.2,
-        "source": "OpenDART 단일회사 전체 재무제표"
-      },
-      "shareCount": 7533015,
-      "shareCountAsOf": "2025 FY",
-      "shareCountSource": "OpenDART 증권의 발행 및 공시 등에 관한 사항",
-      "shareNote": null,
-      "summary": {
-        "latestAnnualYear": 2025,
-        "latestAnnualRevenueGrowth": 36.1,
-        "latestAnnualOperatingMargin": 22.3,
-        "latestAnnualNetMargin": 16.5,
-        "latestInterimRevenue": 770308613235,
-        "latestInterimOperatingMargin": 22.9,
-        "interimRevenueGrowthYoY": 39.3,
-        "interimOperatingMarginChangeYoY": 1.2,
-        "financialSignal": "성장 가속·유지"
-      }
-    },
-    "010120": {
-      "code": "010120",
-      "name": "LS ELECTRIC",
-      "corpCode": "00105855",
-      "status": "ok",
-      "note": "최근 3개 연도와 최신 분기/반기 재무 수집",
-      "annual": [
-        {
-          "year": 2023,
-          "period": "2023 FY",
-          "reportCode": "11011",
-          "fsDiv": "CFS",
-          "revenue": 4230482628448,
-          "operatingProfit": 324877723039,
-          "netIncome": 207672688149,
-          "operatingMargin": 7.7,
-          "netMargin": 4.9,
-          "source": "OpenDART 단일회사 전체 재무제표",
-          "revenueGrowthYoY": null,
-          "operatingProfitGrowthYoY": null
-        },
-        {
-          "year": 2024,
-          "period": "2024 FY",
-          "reportCode": "11011",
-          "fsDiv": "CFS",
-          "revenue": 4551837252467,
-          "operatingProfit": 389717122317,
-          "netIncome": 242237998768,
-          "operatingMargin": 8.6,
-          "netMargin": 5.3,
-          "source": "OpenDART 단일회사 전체 재무제표",
-          "revenueGrowthYoY": 7.6,
-          "operatingProfitGrowthYoY": 20
-        },
-        {
-          "year": 2025,
-          "period": "2025 FY",
-          "reportCode": "11011",
-          "fsDiv": "CFS",
-          "revenue": 4965798552980,
-          "operatingProfit": 426407143017,
-          "netIncome": 284256733172,
-          "operatingMargin": 8.6,
-          "netMargin": 5.7,
-          "source": "OpenDART 단일회사 전체 재무제표",
-          "revenueGrowthYoY": 9.1,
-          "operatingProfitGrowthYoY": 9.4
-        }
-      ],
-      "latestInterim": {
-        "year": 2026,
-        "period": "2026 H1",
-        "reportCode": "11012",
-        "fsDiv": "CFS",
-        "revenue": 1576997715527,
-        "operatingProfit": 178520071669,
-        "netIncome": 115838049789,
-        "operatingMargin": 11.3,
-        "netMargin": 7.3,
-        "source": "OpenDART 단일회사 전체 재무제표"
-      },
-      "priorInterim": {
-        "year": 2025,
-        "period": "2025 H1",
-        "reportCode": "11012",
-        "fsDiv": "CFS",
-        "revenue": 1193042129325,
-        "operatingProfit": 108597651385,
-        "netIncome": 67257505238,
-        "operatingMargin": 9.1,
-        "netMargin": 5.6,
-        "source": "OpenDART 단일회사 전체 재무제표"
-      },
-      "shareCount": 30000000,
-      "shareCountAsOf": "2025 FY",
-      "shareCountSource": "OpenDART 증권의 발행 및 공시 등에 관한 사항",
-      "shareNote": null,
-      "summary": {
-        "latestAnnualYear": 2025,
-        "latestAnnualRevenueGrowth": 9.1,
-        "latestAnnualOperatingMargin": 8.6,
-        "latestAnnualNetMargin": 5.7,
-        "latestInterimRevenue": 1576997715527,
-        "latestInterimOperatingMargin": 11.3,
-        "interimRevenueGrowthYoY": 32.2,
-        "interimOperatingMarginChangeYoY": 2.2,
+        "latestInterimRevenue": 773114833337,
+        "latestInterimOperatingMargin": 20.8,
+        "interimRevenueGrowthYoY": 100.3,
+        "interimOperatingMarginChangeYoY": -4.1,
         "financialSignal": "성장 가속·유지"
       }
     },
@@ -7582,26 +7300,26 @@ const financialSnapshots = {
       ],
       "latestInterim": {
         "year": 2026,
-        "period": "2026 H1",
-        "reportCode": "11012",
+        "period": "2026 Q3",
+        "reportCode": "11014",
         "fsDiv": "OFS",
-        "revenue": 143187426964,
-        "operatingProfit": 73513742404,
-        "netIncome": 65922968641,
-        "operatingMargin": 51.3,
-        "netMargin": 46,
+        "revenue": 82694703692,
+        "operatingProfit": 39419878727,
+        "netIncome": 22628368560,
+        "operatingMargin": 47.7,
+        "netMargin": 27.4,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "priorInterim": {
         "year": 2025,
-        "period": "2025 H1",
-        "reportCode": "11012",
+        "period": "2025 Q3",
+        "reportCode": "11014",
         "fsDiv": "OFS",
-        "revenue": 112522064123,
-        "operatingProfit": 53444357551,
-        "netIncome": 41110227661,
-        "operatingMargin": 47.5,
-        "netMargin": 36.5,
+        "revenue": 96841827642,
+        "operatingProfit": 48261344084,
+        "netIncome": 41914466281,
+        "operatingMargin": 49.8,
+        "netMargin": 43.3,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "shareCount": 76211850,
@@ -7613,10 +7331,100 @@ const financialSnapshots = {
         "latestAnnualRevenueGrowth": 33.9,
         "latestAnnualOperatingMargin": 47.5,
         "latestAnnualNetMargin": 40.8,
-        "latestInterimRevenue": 143187426964,
-        "latestInterimOperatingMargin": 51.3,
-        "interimRevenueGrowthYoY": 27.3,
-        "interimOperatingMarginChangeYoY": 3.8,
+        "latestInterimRevenue": 82694703692,
+        "latestInterimOperatingMargin": 47.7,
+        "interimRevenueGrowthYoY": -14.6,
+        "interimOperatingMarginChangeYoY": -2.1,
+        "financialSignal": "성장 둔화 경보"
+      }
+    },
+    "003230": {
+      "code": "003230",
+      "name": "삼양식품",
+      "corpCode": "00126955",
+      "status": "ok",
+      "note": "최근 3개 연도와 최신 분기/반기 재무 수집",
+      "annual": [
+        {
+          "year": 2023,
+          "period": "2023 FY",
+          "reportCode": "11011",
+          "fsDiv": "CFS",
+          "revenue": 1192914607980,
+          "operatingProfit": 147514090779,
+          "netIncome": 126591199633,
+          "operatingMargin": 12.4,
+          "netMargin": 10.6,
+          "source": "OpenDART 단일회사 전체 재무제표",
+          "revenueGrowthYoY": null,
+          "operatingProfitGrowthYoY": null
+        },
+        {
+          "year": 2024,
+          "period": "2024 FY",
+          "reportCode": "11011",
+          "fsDiv": "CFS",
+          "revenue": 1728015003746,
+          "operatingProfit": 344569150443,
+          "netIncome": 271255665463,
+          "operatingMargin": 19.9,
+          "netMargin": 15.7,
+          "source": "OpenDART 단일회사 전체 재무제표",
+          "revenueGrowthYoY": 44.9,
+          "operatingProfitGrowthYoY": 133.6
+        },
+        {
+          "year": 2025,
+          "period": "2025 FY",
+          "reportCode": "11011",
+          "fsDiv": "CFS",
+          "revenue": 2351785163786,
+          "operatingProfit": 524188406060,
+          "netIncome": 388673674725,
+          "operatingMargin": 22.3,
+          "netMargin": 16.5,
+          "source": "OpenDART 단일회사 전체 재무제표",
+          "revenueGrowthYoY": 36.1,
+          "operatingProfitGrowthYoY": 52.1
+        }
+      ],
+      "latestInterim": {
+        "year": 2026,
+        "period": "2026 Q3",
+        "reportCode": "11014",
+        "fsDiv": "CFS",
+        "revenue": 791845162805,
+        "operatingProfit": 196176543707,
+        "netIncome": 89240112913,
+        "operatingMargin": 24.8,
+        "netMargin": 11.3,
+        "source": "OpenDART 단일회사 전체 재무제표"
+      },
+      "priorInterim": {
+        "year": 2025,
+        "period": "2025 Q3",
+        "reportCode": "11014",
+        "fsDiv": "CFS",
+        "revenue": 632015696590,
+        "operatingProfit": 130899734461,
+        "netIncome": 110016558928,
+        "operatingMargin": 20.7,
+        "netMargin": 17.4,
+        "source": "OpenDART 단일회사 전체 재무제표"
+      },
+      "shareCount": 7533015,
+      "shareCountAsOf": "2025 FY",
+      "shareCountSource": "OpenDART 증권의 발행 및 공시 등에 관한 사항",
+      "shareNote": null,
+      "summary": {
+        "latestAnnualYear": 2025,
+        "latestAnnualRevenueGrowth": 36.1,
+        "latestAnnualOperatingMargin": 22.3,
+        "latestAnnualNetMargin": 16.5,
+        "latestInterimRevenue": 791845162805,
+        "latestInterimOperatingMargin": 24.8,
+        "interimRevenueGrowthYoY": 25.3,
+        "interimOperatingMarginChangeYoY": 4.1,
         "financialSignal": "성장 가속·유지"
       }
     },
@@ -7672,26 +7480,26 @@ const financialSnapshots = {
       ],
       "latestInterim": {
         "year": 2026,
-        "period": "2026 H1",
-        "reportCode": "11012",
+        "period": "2026 Q3",
+        "reportCode": "11014",
         "fsDiv": "CFS",
-        "revenue": 79318746000000,
-        "operatingProfit": 60542608000000,
-        "netIncome": 93922593000000,
-        "operatingMargin": 76.3,
-        "netMargin": 118.4,
+        "revenue": 104615483000000,
+        "operatingProfit": 83333818000000,
+        "netIncome": 39775593000000,
+        "operatingMargin": 79.7,
+        "netMargin": 38,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "priorInterim": {
         "year": 2025,
-        "period": "2025 H1",
-        "reportCode": "11012",
+        "period": "2025 Q3",
+        "reportCode": "11014",
         "fsDiv": "CFS",
-        "revenue": 22231952000000,
-        "operatingProfit": 9212851000000,
-        "netIncome": 6996216000000,
-        "operatingMargin": 41.4,
-        "netMargin": 31.5,
+        "revenue": 24448929000000,
+        "operatingProfit": 11383390000000,
+        "netIncome": 12597538000000,
+        "operatingMargin": 46.6,
+        "netMargin": 51.5,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "shareCount": 728002365,
@@ -7703,11 +7511,87 @@ const financialSnapshots = {
         "latestAnnualRevenueGrowth": 46.8,
         "latestAnnualOperatingMargin": 48.6,
         "latestAnnualNetMargin": 44.2,
-        "latestInterimRevenue": 79318746000000,
-        "latestInterimOperatingMargin": 76.3,
-        "interimRevenueGrowthYoY": 256.8,
-        "interimOperatingMarginChangeYoY": 34.9,
+        "latestInterimRevenue": 104615483000000,
+        "latestInterimOperatingMargin": 79.7,
+        "interimRevenueGrowthYoY": 327.9,
+        "interimOperatingMarginChangeYoY": 33.1,
         "financialSignal": "성장 가속·유지"
+      }
+    },
+    "062040": {
+      "code": "062040",
+      "name": "산일전기",
+      "corpCode": "00366438",
+      "status": "partial",
+      "note": "일부 재무 수집 실패: DART 재무 API 013: 조회된 데이타가 없습니다.",
+      "annual": [
+        {
+          "year": 2024,
+          "period": "2024 FY",
+          "reportCode": "11011",
+          "fsDiv": "OFS",
+          "revenue": 333996550771,
+          "operatingProfit": 109231906505,
+          "netIncome": 83676177904,
+          "operatingMargin": 32.7,
+          "netMargin": 25.1,
+          "source": "OpenDART 단일회사 전체 재무제표",
+          "revenueGrowthYoY": null,
+          "operatingProfitGrowthYoY": null
+        },
+        {
+          "year": 2025,
+          "period": "2025 FY",
+          "reportCode": "11011",
+          "fsDiv": "CFS",
+          "revenue": 501946220880,
+          "operatingProfit": 178634181593,
+          "netIncome": 148921775330,
+          "operatingMargin": 35.6,
+          "netMargin": 29.7,
+          "source": "OpenDART 단일회사 전체 재무제표",
+          "revenueGrowthYoY": 50.3,
+          "operatingProfitGrowthYoY": 63.5
+        }
+      ],
+      "latestInterim": {
+        "year": 2026,
+        "period": "2026 Q3",
+        "reportCode": "11014",
+        "fsDiv": "CFS",
+        "revenue": 146010278401,
+        "operatingProfit": 44510637842,
+        "netIncome": 41083906484,
+        "operatingMargin": 30.5,
+        "netMargin": 28.1,
+        "source": "OpenDART 단일회사 전체 재무제표"
+      },
+      "priorInterim": {
+        "year": 2025,
+        "period": "2025 Q3",
+        "reportCode": "11014",
+        "fsDiv": "CFS",
+        "revenue": 132734594216,
+        "operatingProfit": 42561373003,
+        "netIncome": 36832026055,
+        "operatingMargin": 32.1,
+        "netMargin": 27.7,
+        "source": "OpenDART 단일회사 전체 재무제표"
+      },
+      "shareCount": 30445200,
+      "shareCountAsOf": "2025 FY",
+      "shareCountSource": "OpenDART 증권의 발행 및 공시 등에 관한 사항",
+      "shareNote": null,
+      "summary": {
+        "latestAnnualYear": 2025,
+        "latestAnnualRevenueGrowth": 50.3,
+        "latestAnnualOperatingMargin": 35.6,
+        "latestAnnualNetMargin": 29.7,
+        "latestInterimRevenue": 146010278401,
+        "latestInterimOperatingMargin": 30.5,
+        "interimRevenueGrowthYoY": 10,
+        "interimOperatingMarginChangeYoY": -1.6,
+        "financialSignal": "성장 유지·확인"
       }
     },
     "064760": {
@@ -7762,26 +7646,26 @@ const financialSnapshots = {
       ],
       "latestInterim": {
         "year": 2026,
-        "period": "2026 H1",
-        "reportCode": "11012",
+        "period": "2026 Q3",
+        "reportCode": "11014",
         "fsDiv": "OFS",
-        "revenue": 94873213359,
-        "operatingProfit": 26849503480,
-        "netIncome": 23650653316,
-        "operatingMargin": 28.3,
-        "netMargin": 24.9,
+        "revenue": 110101748819,
+        "operatingProfit": 30218527811,
+        "netIncome": 23006505354,
+        "operatingMargin": 27.4,
+        "netMargin": 20.9,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "priorInterim": {
         "year": 2025,
-        "period": "2025 H1",
-        "reportCode": "11012",
+        "period": "2025 Q3",
+        "reportCode": "11014",
         "fsDiv": "OFS",
-        "revenue": 72674140670,
-        "operatingProfit": 19501585703,
-        "netIncome": 15986620242,
-        "operatingMargin": 26.8,
-        "netMargin": 22,
+        "revenue": 79240971207,
+        "operatingProfit": 22377331980,
+        "netIncome": 17138393079,
+        "operatingMargin": 28.2,
+        "netMargin": 21.6,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "shareCount": 11179416,
@@ -7793,10 +7677,190 @@ const financialSnapshots = {
         "latestAnnualRevenueGrowth": 9.3,
         "latestAnnualOperatingMargin": 27.8,
         "latestAnnualNetMargin": 23.2,
-        "latestInterimRevenue": 94873213359,
-        "latestInterimOperatingMargin": 28.3,
-        "interimRevenueGrowthYoY": 30.5,
-        "interimOperatingMarginChangeYoY": 1.5,
+        "latestInterimRevenue": 110101748819,
+        "latestInterimOperatingMargin": 27.4,
+        "interimRevenueGrowthYoY": 38.9,
+        "interimOperatingMarginChangeYoY": -0.8,
+        "financialSignal": "성장 가속·유지"
+      }
+    },
+    "010120": {
+      "code": "010120",
+      "name": "LS ELECTRIC",
+      "corpCode": "00105855",
+      "status": "ok",
+      "note": "최근 3개 연도와 최신 분기/반기 재무 수집",
+      "annual": [
+        {
+          "year": 2023,
+          "period": "2023 FY",
+          "reportCode": "11011",
+          "fsDiv": "CFS",
+          "revenue": 4230482628448,
+          "operatingProfit": 324877723039,
+          "netIncome": 207672688149,
+          "operatingMargin": 7.7,
+          "netMargin": 4.9,
+          "source": "OpenDART 단일회사 전체 재무제표",
+          "revenueGrowthYoY": null,
+          "operatingProfitGrowthYoY": null
+        },
+        {
+          "year": 2024,
+          "period": "2024 FY",
+          "reportCode": "11011",
+          "fsDiv": "CFS",
+          "revenue": 4551837252467,
+          "operatingProfit": 389717122317,
+          "netIncome": 242237998768,
+          "operatingMargin": 8.6,
+          "netMargin": 5.3,
+          "source": "OpenDART 단일회사 전체 재무제표",
+          "revenueGrowthYoY": 7.6,
+          "operatingProfitGrowthYoY": 20
+        },
+        {
+          "year": 2025,
+          "period": "2025 FY",
+          "reportCode": "11011",
+          "fsDiv": "CFS",
+          "revenue": 4965798552980,
+          "operatingProfit": 426407143017,
+          "netIncome": 284256733172,
+          "operatingMargin": 8.6,
+          "netMargin": 5.7,
+          "source": "OpenDART 단일회사 전체 재무제표",
+          "revenueGrowthYoY": 9.1,
+          "operatingProfitGrowthYoY": 9.4
+        }
+      ],
+      "latestInterim": {
+        "year": 2026,
+        "period": "2026 Q3",
+        "reportCode": "11014",
+        "fsDiv": "CFS",
+        "revenue": 1877789046864,
+        "operatingProfit": 233542799725,
+        "netIncome": 142828071653,
+        "operatingMargin": 12.4,
+        "netMargin": 7.6,
+        "source": "OpenDART 단일회사 전체 재무제표"
+      },
+      "priorInterim": {
+        "year": 2025,
+        "period": "2025 Q3",
+        "reportCode": "11014",
+        "fsDiv": "CFS",
+        "revenue": 1216294667137,
+        "operatingProfit": 100791400061,
+        "netIncome": 65892393659,
+        "operatingMargin": 8.3,
+        "netMargin": 5.4,
+        "source": "OpenDART 단일회사 전체 재무제표"
+      },
+      "shareCount": 30000000,
+      "shareCountAsOf": "2025 FY",
+      "shareCountSource": "OpenDART 증권의 발행 및 공시 등에 관한 사항",
+      "shareNote": null,
+      "summary": {
+        "latestAnnualYear": 2025,
+        "latestAnnualRevenueGrowth": 9.1,
+        "latestAnnualOperatingMargin": 8.6,
+        "latestAnnualNetMargin": 5.7,
+        "latestInterimRevenue": 1877789046864,
+        "latestInterimOperatingMargin": 12.4,
+        "interimRevenueGrowthYoY": 54.4,
+        "interimOperatingMarginChangeYoY": 4.1,
+        "financialSignal": "성장 가속·유지"
+      }
+    },
+    "053800": {
+      "code": "053800",
+      "name": "안랩",
+      "corpCode": "00298270",
+      "status": "ok",
+      "note": "최근 3개 연도와 최신 분기/반기 재무 수집",
+      "annual": [
+        {
+          "year": 2023,
+          "period": "2023 FY",
+          "reportCode": "11011",
+          "fsDiv": "CFS",
+          "revenue": 239201057076,
+          "operatingProfit": 26422531585,
+          "netIncome": 34702787067,
+          "operatingMargin": 11,
+          "netMargin": 14.5,
+          "source": "OpenDART 단일회사 전체 재무제표",
+          "revenueGrowthYoY": null,
+          "operatingProfitGrowthYoY": null
+        },
+        {
+          "year": 2024,
+          "period": "2024 FY",
+          "reportCode": "11011",
+          "fsDiv": "CFS",
+          "revenue": 260569413451,
+          "operatingProfit": 27682476881,
+          "netIncome": 32395312129,
+          "operatingMargin": 10.6,
+          "netMargin": 12.4,
+          "source": "OpenDART 단일회사 전체 재무제표",
+          "revenueGrowthYoY": 8.9,
+          "operatingProfitGrowthYoY": 4.8
+        },
+        {
+          "year": 2025,
+          "period": "2025 FY",
+          "reportCode": "11011",
+          "fsDiv": "CFS",
+          "revenue": 267656916942,
+          "operatingProfit": 33276653034,
+          "netIncome": 51495359406,
+          "operatingMargin": 12.4,
+          "netMargin": 19.2,
+          "source": "OpenDART 단일회사 전체 재무제표",
+          "revenueGrowthYoY": 2.7,
+          "operatingProfitGrowthYoY": 20.2
+        }
+      ],
+      "latestInterim": {
+        "year": 2026,
+        "period": "2026 Q3",
+        "reportCode": "11014",
+        "fsDiv": "CFS",
+        "revenue": 79458805645,
+        "operatingProfit": 10931755429,
+        "netIncome": 7559780805,
+        "operatingMargin": 13.8,
+        "netMargin": 9.5,
+        "source": "OpenDART 단일회사 전체 재무제표"
+      },
+      "priorInterim": {
+        "year": 2025,
+        "period": "2025 Q3",
+        "reportCode": "11014",
+        "fsDiv": "CFS",
+        "revenue": 64535678013,
+        "operatingProfit": 7880928575,
+        "netIncome": 12677217944,
+        "operatingMargin": 12.2,
+        "netMargin": 19.6,
+        "source": "OpenDART 단일회사 전체 재무제표"
+      },
+      "shareCount": 11126506,
+      "shareCountAsOf": "2025 FY",
+      "shareCountSource": "OpenDART 증권의 발행 및 공시 등에 관한 사항",
+      "shareNote": null,
+      "summary": {
+        "latestAnnualYear": 2025,
+        "latestAnnualRevenueGrowth": 2.7,
+        "latestAnnualOperatingMargin": 12.4,
+        "latestAnnualNetMargin": 19.2,
+        "latestInterimRevenue": 79458805645,
+        "latestInterimOperatingMargin": 13.8,
+        "interimRevenueGrowthYoY": 23.1,
+        "interimOperatingMarginChangeYoY": 1.6,
         "financialSignal": "성장 가속·유지"
       }
     },
@@ -7852,26 +7916,26 @@ const financialSnapshots = {
       ],
       "latestInterim": {
         "year": 2026,
-        "period": "2026 H1",
-        "reportCode": "11012",
+        "period": "2026 Q3",
+        "reportCode": "11014",
         "fsDiv": "CFS",
-        "revenue": 188093380453,
-        "operatingProfit": 15813622456,
-        "netIncome": 14010119142,
-        "operatingMargin": 8.4,
-        "netMargin": 7.4,
+        "revenue": 85918226853,
+        "operatingProfit": 7369573866,
+        "netIncome": 64653459,
+        "operatingMargin": 8.6,
+        "netMargin": 0.1,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "priorInterim": {
         "year": 2025,
-        "period": "2025 H1",
-        "reportCode": "11012",
+        "period": "2025 Q3",
+        "reportCode": "11014",
         "fsDiv": "CFS",
-        "revenue": 166352727089,
-        "operatingProfit": 18331807068,
-        "netIncome": 11182500358,
-        "operatingMargin": 11,
-        "netMargin": 6.7,
+        "revenue": 164681246050,
+        "operatingProfit": 16588465712,
+        "netIncome": 13594456404,
+        "operatingMargin": 10.1,
+        "netMargin": 8.3,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "shareCount": 15827058,
@@ -7883,101 +7947,11 @@ const financialSnapshots = {
         "latestAnnualRevenueGrowth": 2.7,
         "latestAnnualOperatingMargin": 8.9,
         "latestAnnualNetMargin": 7,
-        "latestInterimRevenue": 188093380453,
-        "latestInterimOperatingMargin": 8.4,
-        "interimRevenueGrowthYoY": 13.1,
-        "interimOperatingMarginChangeYoY": -2.6,
-        "financialSignal": "성장 유지·확인"
-      }
-    },
-    "053800": {
-      "code": "053800",
-      "name": "안랩",
-      "corpCode": "00298270",
-      "status": "ok",
-      "note": "최근 3개 연도와 최신 분기/반기 재무 수집",
-      "annual": [
-        {
-          "year": 2023,
-          "period": "2023 FY",
-          "reportCode": "11011",
-          "fsDiv": "CFS",
-          "revenue": 239201057076,
-          "operatingProfit": 26422531585,
-          "netIncome": 34702787067,
-          "operatingMargin": 11,
-          "netMargin": 14.5,
-          "source": "OpenDART 단일회사 전체 재무제표",
-          "revenueGrowthYoY": null,
-          "operatingProfitGrowthYoY": null
-        },
-        {
-          "year": 2024,
-          "period": "2024 FY",
-          "reportCode": "11011",
-          "fsDiv": "CFS",
-          "revenue": 260569413451,
-          "operatingProfit": 27682476881,
-          "netIncome": 32395312129,
-          "operatingMargin": 10.6,
-          "netMargin": 12.4,
-          "source": "OpenDART 단일회사 전체 재무제표",
-          "revenueGrowthYoY": 8.9,
-          "operatingProfitGrowthYoY": 4.8
-        },
-        {
-          "year": 2025,
-          "period": "2025 FY",
-          "reportCode": "11011",
-          "fsDiv": "CFS",
-          "revenue": 267656916942,
-          "operatingProfit": 33276653034,
-          "netIncome": 51495359406,
-          "operatingMargin": 12.4,
-          "netMargin": 19.2,
-          "source": "OpenDART 단일회사 전체 재무제표",
-          "revenueGrowthYoY": 2.7,
-          "operatingProfitGrowthYoY": 20.2
-        }
-      ],
-      "latestInterim": {
-        "year": 2026,
-        "period": "2026 H1",
-        "reportCode": "11012",
-        "fsDiv": "CFS",
-        "revenue": 71308784756,
-        "operatingProfit": 5381783016,
-        "netIncome": 6412906570,
-        "operatingMargin": 7.5,
-        "netMargin": 9,
-        "source": "OpenDART 단일회사 전체 재무제표"
-      },
-      "priorInterim": {
-        "year": 2025,
-        "period": "2025 H1",
-        "reportCode": "11012",
-        "fsDiv": "CFS",
-        "revenue": 62289211779,
-        "operatingProfit": 3458561771,
-        "netIncome": 13359619359,
-        "operatingMargin": 5.6,
-        "netMargin": 21.4,
-        "source": "OpenDART 단일회사 전체 재무제표"
-      },
-      "shareCount": 11126506,
-      "shareCountAsOf": "2025 FY",
-      "shareCountSource": "OpenDART 증권의 발행 및 공시 등에 관한 사항",
-      "shareNote": null,
-      "summary": {
-        "latestAnnualYear": 2025,
-        "latestAnnualRevenueGrowth": 2.7,
-        "latestAnnualOperatingMargin": 12.4,
-        "latestAnnualNetMargin": 19.2,
-        "latestInterimRevenue": 71308784756,
-        "latestInterimOperatingMargin": 7.5,
-        "interimRevenueGrowthYoY": 14.5,
-        "interimOperatingMarginChangeYoY": 1.9,
-        "financialSignal": "성장 유지·확인"
+        "latestInterimRevenue": 85918226853,
+        "latestInterimOperatingMargin": 8.6,
+        "interimRevenueGrowthYoY": -47.8,
+        "interimOperatingMarginChangeYoY": -1.5,
+        "financialSignal": "성장 둔화 경보"
       }
     },
     "018290": {
@@ -8032,26 +8006,26 @@ const financialSnapshots = {
       ],
       "latestInterim": {
         "year": 2026,
-        "period": "2026 H1",
-        "reportCode": "11012",
+        "period": "2026 Q3",
+        "reportCode": "11014",
         "fsDiv": "CFS",
-        "revenue": 131668235835,
-        "operatingProfit": 10678686238,
-        "netIncome": 3222848790,
-        "operatingMargin": 8.1,
-        "netMargin": 2.4,
+        "revenue": 137789224150,
+        "operatingProfit": 14853824016,
+        "netIncome": 7439072300,
+        "operatingMargin": 10.8,
+        "netMargin": 5.4,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "priorInterim": {
         "year": 2025,
-        "period": "2025 H1",
-        "reportCode": "11012",
+        "period": "2025 Q3",
+        "reportCode": "11014",
         "fsDiv": "CFS",
-        "revenue": 111520825859,
-        "operatingProfit": 29066880443,
-        "netIncome": 21267639845,
-        "operatingMargin": 26.1,
-        "netMargin": 19.1,
+        "revenue": 110219156432,
+        "operatingProfit": 12123907082,
+        "netIncome": 8795518898,
+        "operatingMargin": 11,
+        "netMargin": 8,
         "source": "OpenDART 단일회사 전체 재무제표"
       },
       "shareCount": 34941838,
@@ -8063,11 +8037,11 @@ const financialSnapshots = {
         "latestAnnualRevenueGrowth": 1.3,
         "latestAnnualOperatingMargin": 19,
         "latestAnnualNetMargin": 14.7,
-        "latestInterimRevenue": 131668235835,
-        "latestInterimOperatingMargin": 8.1,
-        "interimRevenueGrowthYoY": 18.1,
-        "interimOperatingMarginChangeYoY": -18,
-        "financialSignal": "수익성 둔화 경보"
+        "latestInterimRevenue": 137789224150,
+        "latestInterimOperatingMargin": 10.8,
+        "interimRevenueGrowthYoY": 25,
+        "interimOperatingMarginChangeYoY": -0.2,
+        "financialSignal": "성장 가속·유지"
       }
     }
   }
@@ -8076,7 +8050,7 @@ const financialSnapshots = {
 
     /* VALUATION_SNAPSHOT_START */
 const valuationSnapshot = {
-  "updatedAt": "2026-11-24T07:15:00",
+  "updatedAt": "2026-11-25T09:39:10",
   "sourcePolicy": "현재 가격은 Naver Finance 실시간 참고값, 발행주식수와 확정 실적은 OpenDART 기준이다. 실제 매수 전 증권사·거래소 가격과 최신 주식수 변동을 재확인한다.",
   "comparisonPolicy": "관찰군 내 업종 성격이 비슷한 후보의 확정 실적 P/E 중앙값과 비교한 참고값이며, 시장 전체 업종 평균이나 목표주가가 아니다.",
   "companies": {
@@ -8084,19 +8058,19 @@ const valuationSnapshot = {
       "code": "145020",
       "name": "휴젤",
       "status": "ok",
-      "price": 201500,
-      "priceAsOf": "2026-11-24T07:15:00",
+      "price": 204500,
+      "priceAsOf": "2026-11-25T09:39:10",
       "shareCount": 12304033,
       "shareCountAsOf": "2025 FY",
-      "marketCap": 2479262649500,
+      "marketCap": 2516174748500,
       "actualBaseYear": 2025,
-      "actualPer": 16.9,
-      "actualPs": 5.8,
-      "actualPop": 12.3,
+      "actualPer": 17.1,
+      "actualPs": 5.9,
+      "actualPop": 12.5,
       "comparisonGroup": "뷰티·의료미용",
-      "peerMedianPer": 13.4,
-      "peerPerPremium": 26.1,
-      "peerValuation": "관찰군 내 프리미엄",
+      "peerMedianPer": 13.9,
+      "peerPerPremium": 23,
+      "peerValuation": "관찰군 중앙값 부근",
       "classification": "성장 반영·검토 가능",
       "note": "시가총액은 비공식 실시간 가격과 DART 발행주식수의 곱으로 계산한 참고값입니다."
     },
@@ -8104,18 +8078,18 @@ const valuationSnapshot = {
       "code": "192080",
       "name": "더블유게임즈",
       "status": "ok",
-      "price": 54700,
-      "priceAsOf": "2026-11-24T07:15:00",
+      "price": 55600,
+      "priceAsOf": "2026-11-25T09:39:10",
       "shareCount": 21495906,
       "shareCountAsOf": "2025 FY",
-      "marketCap": 1175826058200,
+      "marketCap": 1195172373600,
       "actualBaseYear": 2025,
-      "actualPer": 6.5,
-      "actualPs": 1.6,
+      "actualPer": 6.6,
+      "actualPs": 1.7,
       "actualPop": 5.1,
       "comparisonGroup": "디지털 서비스",
-      "peerMedianPer": 15.6,
-      "peerPerPremium": -58.3,
+      "peerMedianPer": 18.2,
+      "peerPerPremium": -63.7,
       "peerValuation": "관찰군 내 할인",
       "classification": "확정 실적 대비 여유",
       "note": "시가총액은 비공식 실시간 가격과 DART 발행주식수의 곱으로 계산한 참고값입니다."
@@ -8124,18 +8098,18 @@ const valuationSnapshot = {
       "code": "196170",
       "name": "알테오젠",
       "status": "ok",
-      "price": 169000,
-      "priceAsOf": "2026-11-24T07:15:00",
+      "price": 165200,
+      "priceAsOf": "2026-11-25T09:39:10",
       "shareCount": 53505788,
       "shareCountAsOf": "2025 FY",
-      "marketCap": 9042478172000,
+      "marketCap": 8839156177600,
       "actualBaseYear": 2025,
-      "actualPer": 62.3,
-      "actualPs": 41.9,
-      "actualPop": 84.6,
+      "actualPer": 60.9,
+      "actualPs": 40.9,
+      "actualPop": 82.7,
       "comparisonGroup": "기타 성장 후보",
-      "peerMedianPer": 23.1,
-      "peerPerPremium": 169.7,
+      "peerMedianPer": 23.7,
+      "peerPerPremium": 157,
       "peerValuation": "관찰군 내 프리미엄",
       "classification": "높은 미래 기대 반영",
       "note": "시가총액은 비공식 실시간 가격과 DART 발행주식수의 곱으로 계산한 참고값입니다."
@@ -8144,18 +8118,18 @@ const valuationSnapshot = {
       "code": "206640",
       "name": "바디텍메드",
       "status": "ok",
-      "price": 9570,
-      "priceAsOf": "2026-11-24T07:15:00",
+      "price": 9620,
+      "priceAsOf": "2026-11-25T09:39:10",
       "shareCount": 23346171,
       "shareCountAsOf": "2025 FY",
-      "marketCap": 223422856470,
+      "marketCap": 224590165020,
       "actualBaseYear": 2025,
       "actualPer": 9.4,
       "actualPs": 1.4,
-      "actualPop": 7.7,
+      "actualPop": 7.8,
       "comparisonGroup": "기타 성장 후보",
-      "peerMedianPer": 23.1,
-      "peerPerPremium": -59.3,
+      "peerMedianPer": 23.7,
+      "peerPerPremium": -60.3,
       "peerValuation": "관찰군 내 할인",
       "classification": "확정 실적 대비 여유",
       "note": "시가총액은 비공식 실시간 가격과 DART 발행주식수의 곱으로 계산한 참고값입니다."
@@ -8164,18 +8138,18 @@ const valuationSnapshot = {
       "code": "207940",
       "name": "삼성바이오로직스",
       "status": "ok",
-      "price": 1293000,
-      "priceAsOf": "2026-11-24T07:15:00",
+      "price": 1300000,
+      "priceAsOf": "2026-11-25T09:39:10",
       "shareCount": 46290951,
       "shareCountAsOf": "2025 FY",
-      "marketCap": 59854199643000,
+      "marketCap": 60178236300000,
       "actualBaseYear": 2025,
-      "actualPer": 33.5,
-      "actualPs": 13.1,
-      "actualPop": 28.9,
+      "actualPer": 33.7,
+      "actualPs": 13.2,
+      "actualPop": 29.1,
       "comparisonGroup": "기타 성장 후보",
-      "peerMedianPer": 23.1,
-      "peerPerPremium": 45,
+      "peerMedianPer": 23.7,
+      "peerPerPremium": 42.2,
       "peerValuation": "관찰군 내 프리미엄",
       "classification": "실적과 가격 동시 확인",
       "note": "시가총액은 비공식 실시간 가격과 DART 발행주식수의 곱으로 계산한 참고값입니다."
@@ -8184,18 +8158,18 @@ const valuationSnapshot = {
       "code": "214150",
       "name": "클래시스",
       "status": "ok",
-      "price": 20350,
-      "priceAsOf": "2026-11-24T07:15:00",
+      "price": 21550,
+      "priceAsOf": "2026-11-25T09:39:10",
       "shareCount": 65505659,
       "shareCountAsOf": "2025 FY",
-      "marketCap": 1333040160650,
+      "marketCap": 1411646951450,
       "actualBaseYear": 2025,
-      "actualPer": 10.1,
-      "actualPs": 4,
-      "actualPop": 7.8,
+      "actualPer": 10.7,
+      "actualPs": 4.2,
+      "actualPop": 8.3,
       "comparisonGroup": "뷰티·의료미용",
-      "peerMedianPer": 13.4,
-      "peerPerPremium": -24.6,
+      "peerMedianPer": 13.9,
+      "peerPerPremium": -23,
       "peerValuation": "관찰군 내 할인",
       "classification": "확정 실적 대비 여유",
       "note": "시가총액은 비공식 실시간 가격과 DART 발행주식수의 곱으로 계산한 참고값입니다."
@@ -8204,19 +8178,19 @@ const valuationSnapshot = {
       "code": "214450",
       "name": "파마리서치",
       "status": "ok",
-      "price": 272000,
-      "priceAsOf": "2026-11-24T07:15:00",
+      "price": 272500,
+      "priceAsOf": "2026-11-25T09:39:10",
       "shareCount": 10389648,
       "shareCountAsOf": "2025 FY",
-      "marketCap": 2825984256000,
+      "marketCap": 2831179080000,
       "actualBaseYear": 2025,
       "actualPer": 16.8,
       "actualPs": 5.3,
       "actualPop": 13.2,
       "comparisonGroup": "뷰티·의료미용",
-      "peerMedianPer": 13.4,
-      "peerPerPremium": 25.4,
-      "peerValuation": "관찰군 내 프리미엄",
+      "peerMedianPer": 13.9,
+      "peerPerPremium": 20.9,
+      "peerValuation": "관찰군 중앙값 부근",
       "classification": "성장 반영·검토 가능",
       "note": "시가총액은 비공식 실시간 가격과 DART 발행주식수의 곱으로 계산한 참고값입니다."
     },
@@ -8224,17 +8198,17 @@ const valuationSnapshot = {
       "code": "251970",
       "name": "펌텍코리아",
       "status": "ok",
-      "price": 76200,
-      "priceAsOf": "2026-11-24T07:15:00",
+      "price": 76500,
+      "priceAsOf": "2026-11-25T09:39:10",
       "shareCount": 12400000,
       "shareCountAsOf": "2025 FY",
-      "marketCap": 944880000000,
+      "marketCap": 948600000000,
       "actualBaseYear": 2025,
       "actualPer": null,
-      "actualPs": 2.5,
-      "actualPop": 16.7,
+      "actualPs": 2.6,
+      "actualPop": 16.8,
       "comparisonGroup": "뷰티·의료미용",
-      "peerMedianPer": 13.4,
+      "peerMedianPer": 13.9,
       "peerPerPremium": null,
       "peerValuation": "비교 자료 부족",
       "classification": "순이익 기준 확인 필요",
@@ -8244,18 +8218,18 @@ const valuationSnapshot = {
       "code": "257720",
       "name": "실리콘투",
       "status": "ok",
-      "price": 23600,
-      "priceAsOf": "2026-11-24T07:15:00",
+      "price": 28000,
+      "priceAsOf": "2026-11-25T09:39:10",
       "shareCount": 65576252,
       "shareCountAsOf": "2025 FY",
-      "marketCap": 1547599547200,
+      "marketCap": 1836135056000,
       "actualBaseYear": 2025,
-      "actualPer": 9.2,
-      "actualPs": 1.4,
-      "actualPop": 7.5,
+      "actualPer": 10.9,
+      "actualPs": 1.6,
+      "actualPop": 8.9,
       "comparisonGroup": "뷰티·의료미용",
-      "peerMedianPer": 13.4,
-      "peerPerPremium": -31.3,
+      "peerMedianPer": 13.9,
+      "peerPerPremium": -21.6,
       "peerValuation": "관찰군 내 할인",
       "classification": "확정 실적 대비 여유",
       "note": "시가총액은 비공식 실시간 가격과 DART 발행주식수의 곱으로 계산한 참고값입니다."
@@ -8264,17 +8238,17 @@ const valuationSnapshot = {
       "code": "267260",
       "name": "HD현대일렉트릭",
       "status": "ok",
-      "price": 385000,
-      "priceAsOf": "2026-11-24T07:15:00",
+      "price": 373500,
+      "priceAsOf": "2026-11-25T09:39:10",
       "shareCount": 36047135,
       "shareCountAsOf": "2025 FY",
-      "marketCap": 13878146975000,
+      "marketCap": 13463604922500,
       "actualBaseYear": 2025,
-      "actualPer": 19,
-      "actualPs": 3.4,
-      "actualPop": 13.9,
+      "actualPer": 18.4,
+      "actualPs": 3.3,
+      "actualPop": 13.5,
       "comparisonGroup": "전력기기",
-      "peerMedianPer": 19,
+      "peerMedianPer": 18.4,
       "peerPerPremium": 0,
       "peerValuation": "관찰군 중앙값 부근",
       "classification": "성장 반영·검토 가능",
@@ -8284,38 +8258,38 @@ const valuationSnapshot = {
       "code": "278470",
       "name": "에이피알",
       "status": "ok",
-      "price": 256000,
-      "priceAsOf": "2026-11-24T07:15:00",
+      "price": 287000,
+      "priceAsOf": "2026-11-25T09:39:10",
       "shareCount": 37430655,
       "shareCountAsOf": "2025 FY",
-      "marketCap": 9582247680000,
+      "marketCap": 10742597985000,
       "actualBaseYear": 2025,
-      "actualPer": 33.1,
-      "actualPs": 6.3,
-      "actualPop": 26.2,
+      "actualPer": 37.1,
+      "actualPs": 7,
+      "actualPop": 29.4,
       "comparisonGroup": "뷰티·의료미용",
-      "peerMedianPer": 13.4,
-      "peerPerPremium": 147,
+      "peerMedianPer": 13.9,
+      "peerPerPremium": 166.9,
       "peerValuation": "관찰군 내 프리미엄",
       "classification": "실적과 가격 동시 확인",
       "note": "시가총액은 비공식 실시간 가격과 DART 발행주식수의 곱으로 계산한 참고값입니다."
     },
-    "062040": {
-      "code": "062040",
-      "name": "산일전기",
+    "058470": {
+      "code": "058470",
+      "name": "리노공업",
       "status": "ok",
-      "price": 101800,
-      "priceAsOf": "2026-11-24T07:15:00",
-      "shareCount": 30445200,
+      "price": 45650,
+      "priceAsOf": "2026-11-25T09:39:10",
+      "shareCount": 76211850,
       "shareCountAsOf": "2025 FY",
-      "marketCap": 3099321360000,
+      "marketCap": 3479070952500,
       "actualBaseYear": 2025,
-      "actualPer": 20.8,
-      "actualPs": 6.2,
-      "actualPop": 17.4,
-      "comparisonGroup": "전력기기",
-      "peerMedianPer": 19,
-      "peerPerPremium": 9.5,
+      "actualPer": 22.9,
+      "actualPs": 9.3,
+      "actualPop": 19.7,
+      "comparisonGroup": "반도체·AI",
+      "peerMedianPer": 22.9,
+      "peerPerPremium": 0,
       "peerValuation": "관찰군 중앙값 부근",
       "classification": "성장 반영·검토 가능",
       "note": "시가총액은 비공식 실시간 가격과 DART 발행주식수의 곱으로 계산한 참고값입니다."
@@ -8324,57 +8298,17 @@ const valuationSnapshot = {
       "code": "003230",
       "name": "삼양식품",
       "status": "ok",
-      "price": 1193000,
-      "priceAsOf": "2026-11-24T07:15:00",
+      "price": 1225000,
+      "priceAsOf": "2026-11-25T09:39:10",
       "shareCount": 7533015,
       "shareCountAsOf": "2025 FY",
-      "marketCap": 8986886895000,
+      "marketCap": 9227943375000,
       "actualBaseYear": 2025,
-      "actualPer": 23.1,
-      "actualPs": 3.8,
-      "actualPop": 17.1,
+      "actualPer": 23.7,
+      "actualPs": 3.9,
+      "actualPop": 17.6,
       "comparisonGroup": "기타 성장 후보",
-      "peerMedianPer": 23.1,
-      "peerPerPremium": 0,
-      "peerValuation": "관찰군 중앙값 부근",
-      "classification": "성장 반영·검토 가능",
-      "note": "시가총액은 비공식 실시간 가격과 DART 발행주식수의 곱으로 계산한 참고값입니다."
-    },
-    "010120": {
-      "code": "010120",
-      "name": "LS ELECTRIC",
-      "status": "ok",
-      "price": 112000,
-      "priceAsOf": "2026-11-24T07:15:00",
-      "shareCount": 30000000,
-      "shareCountAsOf": "2025 FY",
-      "marketCap": 3360000000000,
-      "actualBaseYear": 2025,
-      "actualPer": 11.8,
-      "actualPs": 0.7,
-      "actualPop": 7.9,
-      "comparisonGroup": "전력기기",
-      "peerMedianPer": 19,
-      "peerPerPremium": -37.9,
-      "peerValuation": "관찰군 내 할인",
-      "classification": "실적과 가격 동시 확인",
-      "note": "시가총액은 비공식 실시간 가격과 DART 발행주식수의 곱으로 계산한 참고값입니다."
-    },
-    "058470": {
-      "code": "058470",
-      "name": "리노공업",
-      "status": "ok",
-      "price": 45750,
-      "priceAsOf": "2026-11-24T07:15:00",
-      "shareCount": 76211850,
-      "shareCountAsOf": "2025 FY",
-      "marketCap": 3486692137500,
-      "actualBaseYear": 2025,
-      "actualPer": 22.9,
-      "actualPs": 9.4,
-      "actualPop": 19.7,
-      "comparisonGroup": "반도체·AI",
-      "peerMedianPer": 22.9,
+      "peerMedianPer": 23.7,
       "peerPerPremium": 0,
       "peerValuation": "관찰군 중앙값 부근",
       "classification": "성장 반영·검토 가능",
@@ -8384,19 +8318,39 @@ const valuationSnapshot = {
       "code": "000660",
       "name": "SK하이닉스",
       "status": "ok",
-      "price": 1101000,
-      "priceAsOf": "2026-11-24T07:15:00",
+      "price": 1076000,
+      "priceAsOf": "2026-11-25T09:39:10",
       "shareCount": 728002365,
       "shareCountAsOf": "2025 FY",
-      "marketCap": 801530603865000,
+      "marketCap": 783330544740000,
       "actualBaseYear": 2025,
-      "actualPer": 18.7,
-      "actualPs": 8.3,
-      "actualPop": 17,
+      "actualPer": 18.2,
+      "actualPs": 8.1,
+      "actualPop": 16.6,
       "comparisonGroup": "반도체·AI",
       "peerMedianPer": 22.9,
-      "peerPerPremium": -18.3,
+      "peerPerPremium": -20.5,
       "peerValuation": "관찰군 내 할인",
+      "classification": "성장 반영·검토 가능",
+      "note": "시가총액은 비공식 실시간 가격과 DART 발행주식수의 곱으로 계산한 참고값입니다."
+    },
+    "062040": {
+      "code": "062040",
+      "name": "산일전기",
+      "status": "ok",
+      "price": 96100,
+      "priceAsOf": "2026-11-25T09:39:10",
+      "shareCount": 30445200,
+      "shareCountAsOf": "2025 FY",
+      "marketCap": 2925783720000,
+      "actualBaseYear": 2025,
+      "actualPer": 19.6,
+      "actualPs": 5.8,
+      "actualPop": 16.4,
+      "comparisonGroup": "전력기기",
+      "peerMedianPer": 18.4,
+      "peerPerPremium": 6.5,
+      "peerValuation": "관찰군 중앙값 부근",
       "classification": "성장 반영·검토 가능",
       "note": "시가총액은 비공식 실시간 가격과 DART 발행주식수의 곱으로 계산한 참고값입니다."
     },
@@ -8404,38 +8358,38 @@ const valuationSnapshot = {
       "code": "064760",
       "name": "티씨케이",
       "status": "ok",
-      "price": 169600,
-      "priceAsOf": "2026-11-24T07:15:00",
+      "price": 156200,
+      "priceAsOf": "2026-11-25T09:39:10",
       "shareCount": 11179416,
       "shareCountAsOf": "2025 FY",
-      "marketCap": 1896028953600,
+      "marketCap": 1746224779200,
       "actualBaseYear": 2025,
-      "actualPer": 27.1,
-      "actualPs": 6.3,
-      "actualPop": 22.6,
+      "actualPer": 25,
+      "actualPs": 5.8,
+      "actualPop": 20.8,
       "comparisonGroup": "반도체·AI",
       "peerMedianPer": 22.9,
-      "peerPerPremium": 18.3,
+      "peerPerPremium": 9.2,
       "peerValuation": "관찰군 중앙값 부근",
       "classification": "실적과 가격 동시 확인",
       "note": "시가총액은 비공식 실시간 가격과 DART 발행주식수의 곱으로 계산한 참고값입니다."
     },
-    "051360": {
-      "code": "051360",
-      "name": "토비스",
+    "010120": {
+      "code": "010120",
+      "name": "LS ELECTRIC",
       "status": "ok",
-      "price": 10690,
-      "priceAsOf": "2026-11-24T07:15:00",
-      "shareCount": 15827058,
+      "price": 113200,
+      "priceAsOf": "2026-11-25T09:39:10",
+      "shareCount": 30000000,
       "shareCountAsOf": "2025 FY",
-      "marketCap": 169191250020,
+      "marketCap": 3396000000000,
       "actualBaseYear": 2025,
-      "actualPer": 3.8,
-      "actualPs": 0.3,
-      "actualPop": 3,
-      "comparisonGroup": "기타 성장 후보",
-      "peerMedianPer": 23.1,
-      "peerPerPremium": -83.5,
+      "actualPer": 11.9,
+      "actualPs": 0.7,
+      "actualPop": 8,
+      "comparisonGroup": "전력기기",
+      "peerMedianPer": 18.4,
+      "peerPerPremium": -35.3,
       "peerValuation": "관찰군 내 할인",
       "classification": "실적과 가격 동시 확인",
       "note": "시가총액은 비공식 실시간 가격과 DART 발행주식수의 곱으로 계산한 참고값입니다."
@@ -8444,19 +8398,39 @@ const valuationSnapshot = {
       "code": "053800",
       "name": "안랩",
       "status": "ok",
-      "price": 114500,
-      "priceAsOf": "2026-11-24T07:15:00",
+      "price": 138000,
+      "priceAsOf": "2026-11-25T09:39:10",
       "shareCount": 11126506,
       "shareCountAsOf": "2025 FY",
-      "marketCap": 1273984937000,
+      "marketCap": 1535457828000,
       "actualBaseYear": 2025,
-      "actualPer": 24.7,
-      "actualPs": 4.8,
-      "actualPop": 38.3,
+      "actualPer": 29.8,
+      "actualPs": 5.7,
+      "actualPop": 46.1,
       "comparisonGroup": "디지털 서비스",
-      "peerMedianPer": 15.6,
-      "peerPerPremium": 58.3,
+      "peerMedianPer": 18.2,
+      "peerPerPremium": 63.7,
       "peerValuation": "관찰군 내 프리미엄",
+      "classification": "실적과 가격 동시 확인",
+      "note": "시가총액은 비공식 실시간 가격과 DART 발행주식수의 곱으로 계산한 참고값입니다."
+    },
+    "051360": {
+      "code": "051360",
+      "name": "토비스",
+      "status": "ok",
+      "price": 10230,
+      "priceAsOf": "2026-11-25T09:39:10",
+      "shareCount": 15827058,
+      "shareCountAsOf": "2025 FY",
+      "marketCap": 161910803340,
+      "actualBaseYear": 2025,
+      "actualPer": 3.6,
+      "actualPs": 0.3,
+      "actualPop": 2.8,
+      "comparisonGroup": "기타 성장 후보",
+      "peerMedianPer": 23.7,
+      "peerPerPremium": -84.8,
+      "peerValuation": "관찰군 내 할인",
       "classification": "실적과 가격 동시 확인",
       "note": "시가총액은 비공식 실시간 가격과 DART 발행주식수의 곱으로 계산한 참고값입니다."
     },
@@ -8464,18 +8438,18 @@ const valuationSnapshot = {
       "code": "018290",
       "name": "브이티",
       "status": "ok",
-      "price": 10430,
-      "priceAsOf": "2026-11-24T07:15:00",
+      "price": 10820,
+      "priceAsOf": "2026-11-25T09:39:10",
       "shareCount": 34941838,
       "shareCountAsOf": "2025 FY",
-      "marketCap": 364443370340,
+      "marketCap": 378070687160,
       "actualBaseYear": 2025,
-      "actualPer": 5.7,
-      "actualPs": 0.8,
-      "actualPop": 4.4,
+      "actualPer": 5.9,
+      "actualPs": 0.9,
+      "actualPop": 4.6,
       "comparisonGroup": "뷰티·의료미용",
-      "peerMedianPer": 13.4,
-      "peerPerPremium": -57.5,
+      "peerMedianPer": 13.9,
+      "peerPerPremium": -57.6,
       "peerValuation": "관찰군 내 할인",
       "classification": "실적과 가격 동시 확인",
       "note": "시가총액은 비공식 실시간 가격과 DART 발행주식수의 곱으로 계산한 참고값입니다."
@@ -8486,7 +8460,7 @@ const valuationSnapshot = {
 
     /* EVENT_RADAR_START */
 const eventRadar = {
-  "updatedAt": "2026-11-25T05:51:42",
+  "updatedAt": "2026-11-25T09:39:08",
   "sourcePolicy": "DART 공시 제목을 규칙 기반으로 분류한 보조 신호이며, 실제 영향은 공시 원문 확인이 필요하다.",
   "companies": {
     "145020": {
@@ -8520,37 +8494,9 @@ const eventRadar = {
     "207940": {
       "code": "207940",
       "name": "삼성바이오로직스",
-      "status": "주의",
-      "headline": "지분변동: 임원ㆍ주요주주특정증권등소유상황보고서",
-      "items": [
-        {
-          "date": "20261123",
-          "title": "임원ㆍ주요주주특정증권등소유상황보고서",
-          "receiptNo": "20261123000359",
-          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261123000359",
-          "category": "지분변동",
-          "severity": "주의",
-          "impact": "지분 변화 이유와 규모 확인"
-        },
-        {
-          "date": "20261123",
-          "title": "임원ㆍ주요주주특정증권등소유상황보고서",
-          "receiptNo": "20261123000352",
-          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261123000352",
-          "category": "지분변동",
-          "severity": "주의",
-          "impact": "지분 변화 이유와 규모 확인"
-        },
-        {
-          "date": "20261123",
-          "title": "임원ㆍ주요주주특정증권등소유상황보고서",
-          "receiptNo": "20261123000346",
-          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261123000346",
-          "category": "지분변동",
-          "severity": "주의",
-          "impact": "지분 변화 이유와 규모 확인"
-        }
-      ]
+      "status": "변화 없음",
+      "headline": "최근 수집 범위에서 주요 DART 공시 없음",
+      "items": []
     },
     "214150": {
       "code": "214150",
@@ -8594,9 +8540,9 @@ const eventRadar = {
       "headline": "최근 수집 범위에서 주요 DART 공시 없음",
       "items": []
     },
-    "062040": {
-      "code": "062040",
-      "name": "산일전기",
+    "058470": {
+      "code": "058470",
+      "name": "리노공업",
       "status": "변화 없음",
       "headline": "최근 수집 범위에서 주요 DART 공시 없음",
       "items": []
@@ -8608,36 +8554,19 @@ const eventRadar = {
       "headline": "최근 수집 범위에서 주요 DART 공시 없음",
       "items": []
     },
-    "010120": {
-      "code": "010120",
-      "name": "LS ELECTRIC",
-      "status": "변화 없음",
-      "headline": "최근 수집 범위에서 주요 DART 공시 없음",
-      "items": []
-    },
-    "058470": {
-      "code": "058470",
-      "name": "리노공업",
-      "status": "변화 없음",
-      "headline": "최근 수집 범위에서 주요 DART 공시 없음",
-      "items": []
-    },
     "000660": {
       "code": "000660",
       "name": "SK하이닉스",
-      "status": "주의",
-      "headline": "지분변동: 임원ㆍ주요주주특정증권등소유상황보고서",
-      "items": [
-        {
-          "date": "20261123",
-          "title": "임원ㆍ주요주주특정증권등소유상황보고서",
-          "receiptNo": "20261123000192",
-          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261123000192",
-          "category": "지분변동",
-          "severity": "주의",
-          "impact": "지분 변화 이유와 규모 확인"
-        }
-      ]
+      "status": "변화 없음",
+      "headline": "최근 수집 범위에서 주요 DART 공시 없음",
+      "items": []
+    },
+    "062040": {
+      "code": "062040",
+      "name": "산일전기",
+      "status": "변화 없음",
+      "headline": "최근 수집 범위에서 주요 DART 공시 없음",
+      "items": []
     },
     "064760": {
       "code": "064760",
@@ -8646,9 +8575,9 @@ const eventRadar = {
       "headline": "최근 수집 범위에서 주요 DART 공시 없음",
       "items": []
     },
-    "051360": {
-      "code": "051360",
-      "name": "토비스",
+    "010120": {
+      "code": "010120",
+      "name": "LS ELECTRIC",
       "status": "변화 없음",
       "headline": "최근 수집 범위에서 주요 DART 공시 없음",
       "items": []
@@ -8656,6 +8585,13 @@ const eventRadar = {
     "053800": {
       "code": "053800",
       "name": "안랩",
+      "status": "변화 없음",
+      "headline": "최근 수집 범위에서 주요 DART 공시 없음",
+      "items": []
+    },
+    "051360": {
+      "code": "051360",
+      "name": "토비스",
       "status": "변화 없음",
       "headline": "최근 수집 범위에서 주요 DART 공시 없음",
       "items": []
@@ -8673,7 +8609,7 @@ const eventRadar = {
 
     /* INVESTMENT_DECISION_START */
 const investmentDecision = {
-  "updatedAt": "2026-11-24T07:15:00",
+  "updatedAt": "2026-11-25T09:39:10",
   "methodology": "자동 판단은 투자 추천이 아니라 최신 재무·가격·근거 상태를 바탕으로 관찰 우선순위를 정하는 보조 도구다.",
   "guardrails": [
     "추정치의 출처 또는 기준일이 45일을 넘기면 매수 조건 충족으로 자동 상향하지 않는다.",
@@ -8682,25 +8618,25 @@ const investmentDecision = {
     "공시·실적 원문과 당일 가격은 최종 매수 전에 사용자가 직접 확인한다."
   ],
   "counts": {
-    "관찰": 11,
-    "심층 검토": 9
+    "관찰": 13,
+    "심층 검토": 7
   },
   "companies": {
     "145020": {
       "code": "145020",
       "name": "휴젤",
       "verdict": "관찰",
-      "totalScore": 62,
+      "totalScore": 61,
       "confidence": 70,
       "score": {
         "financialQuality": 80,
-        "growthMomentum": 40,
-        "valuationQuality": 65,
-        "riskAdjusted": 40,
+        "growthMomentum": 25,
+        "valuationQuality": 70,
+        "riskAdjusted": 55,
         "evidenceStrength": 76
       },
       "evidence": [
-        "실제 재무: 수익성 둔화 경보",
+        "실제 재무: 성장 둔화 경보",
         "가격 대비 확정 실적: 성장 반영·검토 가능",
         "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
         "최근 수집 범위에서 주요 DART 공시 없음"
@@ -8719,8 +8655,8 @@ const investmentDecision = {
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-11-24T07:15:04",
-        "valuation": "2026-11-24T07:15:00",
+        "financial": "2026-11-25T09:39:14",
+        "valuation": "2026-11-25T09:39:10",
         "estimate": "검증 가능한 최신 전망치 미연결",
         "research": "2026-06-25"
       },
@@ -8735,17 +8671,17 @@ const investmentDecision = {
       "code": "192080",
       "name": "더블유게임즈",
       "verdict": "심층 검토",
-      "totalScore": 79,
+      "totalScore": 75,
       "confidence": 65,
       "score": {
         "financialQuality": 80,
-        "growthMomentum": 85,
+        "growthMomentum": 65,
         "valuationQuality": 90,
         "riskAdjusted": 55,
         "evidenceStrength": 76
       },
       "evidence": [
-        "실제 재무: 성장 가속·유지",
+        "실제 재무: 성장 유지·확인",
         "가격 대비 확정 실적: 확정 실적 대비 여유",
         "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
         "최근 수집 범위에서 주요 DART 공시 없음"
@@ -8764,8 +8700,8 @@ const investmentDecision = {
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-11-24T07:15:04",
-        "valuation": "2026-11-24T07:15:00",
+        "financial": "2026-11-25T09:39:14",
+        "valuation": "2026-11-25T09:39:10",
         "estimate": "검증 가능한 최신 전망치 미연결",
         "research": "2026-06-25"
       },
@@ -8809,8 +8745,8 @@ const investmentDecision = {
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-11-24T07:15:04",
-        "valuation": "2026-11-24T07:15:00",
+        "financial": "2026-11-25T09:39:14",
+        "valuation": "2026-11-25T09:39:10",
         "estimate": "검증 가능한 최신 전망치 미연결",
         "research": "2026-06-25"
       },
@@ -8824,18 +8760,18 @@ const investmentDecision = {
     "206640": {
       "code": "206640",
       "name": "바디텍메드",
-      "verdict": "관찰",
-      "totalScore": 63,
+      "verdict": "심층 검토",
+      "totalScore": 76,
       "confidence": 65,
       "score": {
         "financialQuality": 67,
-        "growthMomentum": 40,
+        "growthMomentum": 85,
         "valuationQuality": 90,
-        "riskAdjusted": 40,
+        "riskAdjusted": 55,
         "evidenceStrength": 76
       },
       "evidence": [
-        "실제 재무: 수익성 둔화 경보",
+        "실제 재무: 성장 가속·유지",
         "가격 대비 확정 실적: 확정 실적 대비 여유",
         "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
         "최근 수집 범위에서 주요 DART 공시 없음"
@@ -8854,8 +8790,8 @@ const investmentDecision = {
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-11-24T07:15:04",
-        "valuation": "2026-11-24T07:15:00",
+        "financial": "2026-11-25T09:39:14",
+        "valuation": "2026-11-25T09:39:10",
         "estimate": "검증 가능한 최신 전망치 미연결",
         "research": "2026-06-25"
       },
@@ -8870,20 +8806,20 @@ const investmentDecision = {
       "code": "207940",
       "name": "삼성바이오로직스",
       "verdict": "관찰",
-      "totalScore": 64,
+      "totalScore": 56,
       "confidence": 72,
       "score": {
         "financialQuality": 75,
-        "growthMomentum": 65,
+        "growthMomentum": 25,
         "valuationQuality": 50,
-        "riskAdjusted": 45,
+        "riskAdjusted": 55,
         "evidenceStrength": 76
       },
       "evidence": [
-        "실제 재무: 성장 유지·확인",
+        "실제 재무: 성장 둔화 경보",
         "가격 대비 확정 실적: 실적과 가격 동시 확인",
         "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
-        "지분변동: 임원ㆍ주요주주특정증권등소유상황보고서"
+        "최근 수집 범위에서 주요 DART 공시 없음"
       ],
       "positiveScenario": "신규 수주와 공장 가동이 예정대로 매출을 만든다.",
       "counterCase": "수주가 정체되고 램프업 비용이 커진다.",
@@ -8896,12 +8832,11 @@ const investmentDecision = {
       "limitations": [
         "검증 가능한 최신 컨센서스·전망치가 연결되지 않아 자동 매수 조건 충족 판정을 막음",
         "기존 정성 리서치 기준일이 153일 전이어서 현재 순위의 점수 근거로 사용하지 않음",
-        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요",
-        "공시 점검: 지분변동: 임원ㆍ주요주주특정증권등소유상황보고서"
+        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-11-24T07:15:04",
-        "valuation": "2026-11-24T07:15:00",
+        "financial": "2026-11-25T09:39:14",
+        "valuation": "2026-11-25T09:39:10",
         "estimate": "검증 가능한 최신 전망치 미연결",
         "research": "2026-06-25"
       },
@@ -8916,17 +8851,17 @@ const investmentDecision = {
       "code": "214150",
       "name": "클래시스",
       "verdict": "관찰",
-      "totalScore": 68,
+      "totalScore": 66,
       "confidence": 75,
       "score": {
         "financialQuality": 85,
-        "growthMomentum": 40,
+        "growthMomentum": 25,
         "valuationQuality": 90,
-        "riskAdjusted": 40,
+        "riskAdjusted": 55,
         "evidenceStrength": 76
       },
       "evidence": [
-        "실제 재무: 수익성 둔화 경보",
+        "실제 재무: 성장 둔화 경보",
         "가격 대비 확정 실적: 확정 실적 대비 여유",
         "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
         "최근 수집 범위에서 주요 DART 공시 없음"
@@ -8945,8 +8880,8 @@ const investmentDecision = {
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-11-24T07:15:04",
-        "valuation": "2026-11-24T07:15:00",
+        "financial": "2026-11-25T09:39:14",
+        "valuation": "2026-11-25T09:39:10",
         "estimate": "검증 가능한 최신 전망치 미연결",
         "research": "2026-06-25"
       },
@@ -8960,18 +8895,18 @@ const investmentDecision = {
     "214450": {
       "code": "214450",
       "name": "파마리서치",
-      "verdict": "심층 검토",
-      "totalScore": 76,
+      "verdict": "관찰",
+      "totalScore": 64,
       "confidence": 80,
       "score": {
         "financialQuality": 85,
-        "growthMomentum": 85,
-        "valuationQuality": 65,
-        "riskAdjusted": 55,
+        "growthMomentum": 40,
+        "valuationQuality": 70,
+        "riskAdjusted": 40,
         "evidenceStrength": 76
       },
       "evidence": [
-        "실제 재무: 성장 가속·유지",
+        "실제 재무: 수익성 둔화 경보",
         "가격 대비 확정 실적: 성장 반영·검토 가능",
         "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
         "최근 수집 범위에서 주요 DART 공시 없음"
@@ -8990,8 +8925,8 @@ const investmentDecision = {
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-11-24T07:15:04",
-        "valuation": "2026-11-24T07:15:00",
+        "financial": "2026-11-25T09:39:14",
+        "valuation": "2026-11-25T09:39:10",
         "estimate": "검증 가능한 최신 전망치 미연결",
         "research": "2026-06-25"
       },
@@ -9006,17 +8941,17 @@ const investmentDecision = {
       "code": "251970",
       "name": "펌텍코리아",
       "verdict": "관찰",
-      "totalScore": 58,
+      "totalScore": 63,
       "confidence": 66,
       "score": {
         "financialQuality": 60,
-        "growthMomentum": 65,
+        "growthMomentum": 85,
         "valuationQuality": 35,
         "riskAdjusted": 55,
         "evidenceStrength": 76
       },
       "evidence": [
-        "실제 재무: 성장 유지·확인",
+        "실제 재무: 성장 가속·유지",
         "가격 대비 확정 실적: 순이익 기준 확인 필요",
         "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
         "최근 수집 범위에서 주요 DART 공시 없음"
@@ -9035,8 +8970,8 @@ const investmentDecision = {
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-11-24T07:15:04",
-        "valuation": "2026-11-24T07:15:00",
+        "financial": "2026-11-25T09:39:14",
+        "valuation": "2026-11-25T09:39:10",
         "estimate": "검증 가능한 최신 전망치 미연결",
         "research": "2026-06-25"
       },
@@ -9080,8 +9015,8 @@ const investmentDecision = {
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-11-24T07:15:04",
-        "valuation": "2026-11-24T07:15:00",
+        "financial": "2026-11-25T09:39:14",
+        "valuation": "2026-11-25T09:39:10",
         "estimate": "검증 가능한 최신 전망치 미연결",
         "research": "2026-06-25"
       },
@@ -9125,8 +9060,8 @@ const investmentDecision = {
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-11-24T07:15:04",
-        "valuation": "2026-11-24T07:15:00",
+        "financial": "2026-11-25T09:39:14",
+        "valuation": "2026-11-25T09:39:10",
         "estimate": "검증 가능한 최신 전망치 미연결",
         "research": "2026-06-25"
       },
@@ -9170,8 +9105,8 @@ const investmentDecision = {
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-11-24T07:15:04",
-        "valuation": "2026-11-24T07:15:00",
+        "financial": "2026-11-25T09:39:14",
+        "valuation": "2026-11-25T09:39:10",
         "estimate": "검증 가능한 최신 전망치 미연결",
         "research": "2026-06-25"
       },
@@ -9182,42 +9117,41 @@ const investmentDecision = {
         "disclosure": "OpenDART 최근 공시"
       }
     },
-    "062040": {
-      "code": "062040",
-      "name": "산일전기",
-      "verdict": "심층 검토",
-      "totalScore": 75,
-      "confidence": 73,
+    "058470": {
+      "code": "058470",
+      "name": "리노공업",
+      "verdict": "관찰",
+      "totalScore": 62,
+      "confidence": 76,
       "score": {
         "financialQuality": 85,
-        "growthMomentum": 85,
+        "growthMomentum": 25,
         "valuationQuality": 70,
         "riskAdjusted": 55,
-        "evidenceStrength": 61
+        "evidenceStrength": 76
       },
       "evidence": [
-        "실제 재무: 성장 가속·유지",
+        "실제 재무: 성장 둔화 경보",
         "가격 대비 확정 실적: 성장 반영·검토 가능",
         "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
         "최근 수집 범위에서 주요 DART 공시 없음"
       ],
-      "positiveScenario": "수주잔고가 늘고 고마진 수주가 매출로 전환된다.",
-      "counterCase": "수주잔고가 줄거나 영업이익률이 30% 아래로 떨어진다.",
+      "positiveScenario": "신공장 가동률 상승과 AI 고객 수요가 이어진다.",
+      "counterCase": "고객 개발 사이클이 늦어지고 신공장 비용이 앞선다.",
       "invalidation": "핵심 지표 악화",
       "minimumHumanChecks": [
-        "분기 수주잔고",
-        "영업이익률",
-        "2027E 이익 추정치"
+        "신공장 가동률",
+        "AI 고객 수요",
+        "영업이익률"
       ],
       "limitations": [
         "검증 가능한 최신 컨센서스·전망치가 연결되지 않아 자동 매수 조건 충족 판정을 막음",
         "기존 정성 리서치 기준일이 153일 전이어서 현재 순위의 점수 근거로 사용하지 않음",
-        "공식 재무 일부 기간이 누락되어 비교 신뢰도가 낮음",
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-11-24T07:15:04",
-        "valuation": "2026-11-24T07:15:00",
+        "financial": "2026-11-25T09:39:14",
+        "valuation": "2026-11-25T09:39:10",
         "estimate": "검증 가능한 최신 전망치 미연결",
         "research": "2026-06-25"
       },
@@ -9261,98 +9195,8 @@ const investmentDecision = {
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-11-24T07:15:04",
-        "valuation": "2026-11-24T07:15:00",
-        "estimate": "검증 가능한 최신 전망치 미연결",
-        "research": "2026-06-25"
-      },
-      "sourceStatus": {
-        "financial": "OpenDART 공식 재무",
-        "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
-        "estimate": "검증 가능한 최신 컨센서스 소스 미연결",
-        "disclosure": "OpenDART 최근 공시"
-      }
-    },
-    "010120": {
-      "code": "010120",
-      "name": "LS ELECTRIC",
-      "verdict": "관찰",
-      "totalScore": 64,
-      "confidence": 78,
-      "score": {
-        "financialQuality": 48,
-        "growthMomentum": 85,
-        "valuationQuality": 60,
-        "riskAdjusted": 55,
-        "evidenceStrength": 76
-      },
-      "evidence": [
-        "실제 재무: 성장 가속·유지",
-        "가격 대비 확정 실적: 실적과 가격 동시 확인",
-        "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
-        "최근 수집 범위에서 주요 DART 공시 없음"
-      ],
-      "positiveScenario": "수주잔고가 매출로 전환되고 신규 수주가 유지된다.",
-      "counterCase": "수주 공백이나 원가 상승으로 마진이 훼손된다.",
-      "invalidation": "핵심 지표 악화",
-      "minimumHumanChecks": [
-        "수주잔고",
-        "신규수주",
-        "영업이익률"
-      ],
-      "limitations": [
-        "검증 가능한 최신 컨센서스·전망치가 연결되지 않아 자동 매수 조건 충족 판정을 막음",
-        "기존 정성 리서치 기준일이 153일 전이어서 현재 순위의 점수 근거로 사용하지 않음",
-        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
-      ],
-      "freshness": {
-        "financial": "2026-11-24T07:15:04",
-        "valuation": "2026-11-24T07:15:00",
-        "estimate": "검증 가능한 최신 전망치 미연결",
-        "research": "2026-06-25"
-      },
-      "sourceStatus": {
-        "financial": "OpenDART 공식 재무",
-        "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
-        "estimate": "검증 가능한 최신 컨센서스 소스 미연결",
-        "disclosure": "OpenDART 최근 공시"
-      }
-    },
-    "058470": {
-      "code": "058470",
-      "name": "리노공업",
-      "verdict": "심층 검토",
-      "totalScore": 77,
-      "confidence": 76,
-      "score": {
-        "financialQuality": 85,
-        "growthMomentum": 85,
-        "valuationQuality": 70,
-        "riskAdjusted": 55,
-        "evidenceStrength": 76
-      },
-      "evidence": [
-        "실제 재무: 성장 가속·유지",
-        "가격 대비 확정 실적: 성장 반영·검토 가능",
-        "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
-        "최근 수집 범위에서 주요 DART 공시 없음"
-      ],
-      "positiveScenario": "신공장 가동률 상승과 AI 고객 수요가 이어진다.",
-      "counterCase": "고객 개발 사이클이 늦어지고 신공장 비용이 앞선다.",
-      "invalidation": "핵심 지표 악화",
-      "minimumHumanChecks": [
-        "신공장 가동률",
-        "AI 고객 수요",
-        "영업이익률"
-      ],
-      "limitations": [
-        "검증 가능한 최신 컨센서스·전망치가 연결되지 않아 자동 매수 조건 충족 판정을 막음",
-        "기존 정성 리서치 기준일이 153일 전이어서 현재 순위의 점수 근거로 사용하지 않음",
-        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
-      ],
-      "freshness": {
-        "financial": "2026-11-24T07:15:04",
-        "valuation": "2026-11-24T07:15:00",
+        "financial": "2026-11-25T09:39:14",
+        "valuation": "2026-11-25T09:39:10",
         "estimate": "검증 가능한 최신 전망치 미연결",
         "research": "2026-06-25"
       },
@@ -9367,20 +9211,20 @@ const investmentDecision = {
       "code": "000660",
       "name": "SK하이닉스",
       "verdict": "심층 검토",
-      "totalScore": 76,
+      "totalScore": 78,
       "confidence": 73,
       "score": {
         "financialQuality": 85,
         "growthMomentum": 85,
         "valuationQuality": 75,
-        "riskAdjusted": 45,
+        "riskAdjusted": 55,
         "evidenceStrength": 76
       },
       "evidence": [
         "실제 재무: 성장 가속·유지",
         "가격 대비 확정 실적: 성장 반영·검토 가능",
         "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
-        "지분변동: 임원ㆍ주요주주특정증권등소유상황보고서"
+        "최근 수집 범위에서 주요 DART 공시 없음"
       ],
       "positiveScenario": "HBM4 공급 부족과 이익 추정치 상향이 이어진다.",
       "counterCase": "메모리 가격이 피크아웃하거나 HBM 경쟁이 심해진다.",
@@ -9393,12 +9237,57 @@ const investmentDecision = {
       "limitations": [
         "검증 가능한 최신 컨센서스·전망치가 연결되지 않아 자동 매수 조건 충족 판정을 막음",
         "기존 정성 리서치 기준일이 153일 전이어서 현재 순위의 점수 근거로 사용하지 않음",
-        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요",
-        "공시 점검: 지분변동: 임원ㆍ주요주주특정증권등소유상황보고서"
+        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-11-24T07:15:04",
-        "valuation": "2026-11-24T07:15:00",
+        "financial": "2026-11-25T09:39:14",
+        "valuation": "2026-11-25T09:39:10",
+        "estimate": "검증 가능한 최신 전망치 미연결",
+        "research": "2026-06-25"
+      },
+      "sourceStatus": {
+        "financial": "OpenDART 공식 재무",
+        "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
+        "estimate": "검증 가능한 최신 컨센서스 소스 미연결",
+        "disclosure": "OpenDART 최근 공시"
+      }
+    },
+    "062040": {
+      "code": "062040",
+      "name": "산일전기",
+      "verdict": "관찰",
+      "totalScore": 70,
+      "confidence": 73,
+      "score": {
+        "financialQuality": 85,
+        "growthMomentum": 65,
+        "valuationQuality": 70,
+        "riskAdjusted": 55,
+        "evidenceStrength": 61
+      },
+      "evidence": [
+        "실제 재무: 성장 유지·확인",
+        "가격 대비 확정 실적: 성장 반영·검토 가능",
+        "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
+        "최근 수집 범위에서 주요 DART 공시 없음"
+      ],
+      "positiveScenario": "수주잔고가 늘고 고마진 수주가 매출로 전환된다.",
+      "counterCase": "수주잔고가 줄거나 영업이익률이 30% 아래로 떨어진다.",
+      "invalidation": "핵심 지표 악화",
+      "minimumHumanChecks": [
+        "분기 수주잔고",
+        "영업이익률",
+        "2027E 이익 추정치"
+      ],
+      "limitations": [
+        "검증 가능한 최신 컨센서스·전망치가 연결되지 않아 자동 매수 조건 충족 판정을 막음",
+        "기존 정성 리서치 기준일이 153일 전이어서 현재 순위의 점수 근거로 사용하지 않음",
+        "공식 재무 일부 기간이 누락되어 비교 신뢰도가 낮음",
+        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
+      ],
+      "freshness": {
+        "financial": "2026-11-25T09:39:14",
+        "valuation": "2026-11-25T09:39:10",
         "estimate": "검증 가능한 최신 전망치 미연결",
         "research": "2026-06-25"
       },
@@ -9442,8 +9331,8 @@ const investmentDecision = {
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-11-24T07:15:04",
-        "valuation": "2026-11-24T07:15:00",
+        "financial": "2026-11-25T09:39:14",
+        "valuation": "2026-11-25T09:39:10",
         "estimate": "검증 가능한 최신 전망치 미연결",
         "research": "2026-06-25"
       },
@@ -9454,32 +9343,32 @@ const investmentDecision = {
         "disclosure": "OpenDART 최근 공시"
       }
     },
-    "051360": {
-      "code": "051360",
-      "name": "토비스",
+    "010120": {
+      "code": "010120",
+      "name": "LS ELECTRIC",
       "verdict": "관찰",
-      "totalScore": 60,
-      "confidence": 67,
+      "totalScore": 64,
+      "confidence": 78,
       "score": {
         "financialQuality": 48,
-        "growthMomentum": 65,
+        "growthMomentum": 85,
         "valuationQuality": 60,
         "riskAdjusted": 55,
         "evidenceStrength": 76
       },
       "evidence": [
-        "실제 재무: 성장 유지·확인",
+        "실제 재무: 성장 가속·유지",
         "가격 대비 확정 실적: 실적과 가격 동시 확인",
         "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
         "최근 수집 범위에서 주요 DART 공시 없음"
       ],
-      "positiveScenario": "신규 고객과 사업부별 이익이 확인된다.",
-      "counterCase": "전장 단가 압박과 실적 변동성이 커진다.",
+      "positiveScenario": "수주잔고가 매출로 전환되고 신규 수주가 유지된다.",
+      "counterCase": "수주 공백이나 원가 상승으로 마진이 훼손된다.",
       "invalidation": "핵심 지표 악화",
       "minimumHumanChecks": [
-        "사업부별 이익",
-        "전장 고객",
-        "카지노 수주"
+        "수주잔고",
+        "신규수주",
+        "영업이익률"
       ],
       "limitations": [
         "검증 가능한 최신 컨센서스·전망치가 연결되지 않아 자동 매수 조건 충족 판정을 막음",
@@ -9487,8 +9376,8 @@ const investmentDecision = {
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-11-24T07:15:04",
-        "valuation": "2026-11-24T07:15:00",
+        "financial": "2026-11-25T09:39:14",
+        "valuation": "2026-11-25T09:39:10",
         "estimate": "검증 가능한 최신 전망치 미연결",
         "research": "2026-06-25"
       },
@@ -9503,17 +9392,17 @@ const investmentDecision = {
       "code": "053800",
       "name": "안랩",
       "verdict": "관찰",
-      "totalScore": 63,
+      "totalScore": 68,
       "confidence": 64,
       "score": {
         "financialQuality": 67,
-        "growthMomentum": 65,
+        "growthMomentum": 85,
         "valuationQuality": 50,
         "riskAdjusted": 55,
         "evidenceStrength": 76
       },
       "evidence": [
-        "실제 재무: 성장 유지·확인",
+        "실제 재무: 성장 가속·유지",
         "가격 대비 확정 실적: 실적과 가격 동시 확인",
         "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
         "최근 수집 범위에서 주요 DART 공시 없음"
@@ -9532,8 +9421,53 @@ const investmentDecision = {
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-11-24T07:15:04",
-        "valuation": "2026-11-24T07:15:00",
+        "financial": "2026-11-25T09:39:14",
+        "valuation": "2026-11-25T09:39:10",
+        "estimate": "검증 가능한 최신 전망치 미연결",
+        "research": "2026-06-25"
+      },
+      "sourceStatus": {
+        "financial": "OpenDART 공식 재무",
+        "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
+        "estimate": "검증 가능한 최신 컨센서스 소스 미연결",
+        "disclosure": "OpenDART 최근 공시"
+      }
+    },
+    "051360": {
+      "code": "051360",
+      "name": "토비스",
+      "verdict": "관찰",
+      "totalScore": 50,
+      "confidence": 67,
+      "score": {
+        "financialQuality": 48,
+        "growthMomentum": 25,
+        "valuationQuality": 60,
+        "riskAdjusted": 55,
+        "evidenceStrength": 76
+      },
+      "evidence": [
+        "실제 재무: 성장 둔화 경보",
+        "가격 대비 확정 실적: 실적과 가격 동시 확인",
+        "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
+        "최근 수집 범위에서 주요 DART 공시 없음"
+      ],
+      "positiveScenario": "신규 고객과 사업부별 이익이 확인된다.",
+      "counterCase": "전장 단가 압박과 실적 변동성이 커진다.",
+      "invalidation": "핵심 지표 악화",
+      "minimumHumanChecks": [
+        "사업부별 이익",
+        "전장 고객",
+        "카지노 수주"
+      ],
+      "limitations": [
+        "검증 가능한 최신 컨센서스·전망치가 연결되지 않아 자동 매수 조건 충족 판정을 막음",
+        "기존 정성 리서치 기준일이 153일 전이어서 현재 순위의 점수 근거로 사용하지 않음",
+        "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
+      ],
+      "freshness": {
+        "financial": "2026-11-25T09:39:14",
+        "valuation": "2026-11-25T09:39:10",
         "estimate": "검증 가능한 최신 전망치 미연결",
         "research": "2026-06-25"
       },
@@ -9548,17 +9482,17 @@ const investmentDecision = {
       "code": "018290",
       "name": "브이티",
       "verdict": "관찰",
-      "totalScore": 56,
+      "totalScore": 68,
       "confidence": 61,
       "score": {
         "financialQuality": 62,
-        "growthMomentum": 40,
+        "growthMomentum": 85,
         "valuationQuality": 60,
-        "riskAdjusted": 40,
+        "riskAdjusted": 55,
         "evidenceStrength": 76
       },
       "evidence": [
-        "실제 재무: 수익성 둔화 경보",
+        "실제 재무: 성장 가속·유지",
         "가격 대비 확정 실적: 실적과 가격 동시 확인",
         "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
         "최근 수집 범위에서 주요 DART 공시 없음"
@@ -9577,8 +9511,8 @@ const investmentDecision = {
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
-        "financial": "2026-11-24T07:15:04",
-        "valuation": "2026-11-24T07:15:00",
+        "financial": "2026-11-25T09:39:14",
+        "valuation": "2026-11-25T09:39:10",
         "estimate": "검증 가능한 최신 전망치 미연결",
         "research": "2026-06-25"
       },
@@ -9595,7 +9529,7 @@ const investmentDecision = {
 
 /* CURRENT_GROWTH_SELECTION_START */
 const currentGrowthSelection = {
-  "updatedAt": "2026-11-24T07:15:00",
+  "updatedAt": "2026-11-25T09:39:10",
   "methodology": "기존 20개 후보를 최신 공식 재무, 현재 가격 기반 확정 실적 밸류에이션, 최근 공시 위험 신호로 다시 정렬한다. 이는 전 종목 시장 스캔이 아니라 현재 관리 중인 20개 후보군의 재선별 결과다.",
   "guardrails": [
     "OpenDART 공식 재무가 없거나 최근 실적 경보가 있으면 심층 검토 우선순위를 낮춘다.",
@@ -9603,8 +9537,8 @@ const currentGrowthSelection = {
     "검증 가능한 최신 컨센서스·목표주가 소스가 연결되기 전에는 자동 매수 조건 충족으로 분류하지 않는다."
   ],
   "counts": {
-    "심층 검토": 9,
-    "관찰": 11
+    "심층 검토": 7,
+    "관찰": 13
   },
   "items": [
     {
@@ -9621,39 +9555,13 @@ const currentGrowthSelection = {
       "screenReason": "매출 성장·수익성·최근 실적 신호 통과"
     },
     {
-      "code": "192080",
-      "name": "더블유게임즈",
-      "industry": "게임",
+      "code": "000660",
+      "name": "SK하이닉스",
+      "industry": "AI 메모리/HBM",
       "rank": 2,
       "verdict": "심층 검토",
-      "totalScore": 79,
-      "confidence": 65,
-      "financialSignal": "성장 가속·유지",
-      "valuation": "확정 실적 대비 여유",
-      "currentFinancialPass": true,
-      "screenReason": "매출 성장·수익성·최근 실적 신호 통과"
-    },
-    {
-      "code": "058470",
-      "name": "리노공업",
-      "industry": "반도체 테스트 소켓",
-      "rank": 3,
-      "verdict": "심층 검토",
-      "totalScore": 77,
-      "confidence": 76,
-      "financialSignal": "성장 가속·유지",
-      "valuation": "성장 반영·검토 가능",
-      "currentFinancialPass": true,
-      "screenReason": "매출 성장·수익성·최근 실적 신호 통과"
-    },
-    {
-      "code": "214450",
-      "name": "파마리서치",
-      "industry": "의료기기/스킨부스터",
-      "rank": 4,
-      "verdict": "심층 검토",
-      "totalScore": 76,
-      "confidence": 80,
+      "totalScore": 78,
+      "confidence": 73,
       "financialSignal": "성장 가속·유지",
       "valuation": "성장 반영·검토 가능",
       "currentFinancialPass": true,
@@ -9663,7 +9571,7 @@ const currentGrowthSelection = {
       "code": "003230",
       "name": "삼양식품",
       "industry": "식품/글로벌 라면",
-      "rank": 5,
+      "rank": 3,
       "verdict": "심층 검토",
       "totalScore": 76,
       "confidence": 79,
@@ -9676,7 +9584,7 @@ const currentGrowthSelection = {
       "code": "267260",
       "name": "HD현대일렉트릭",
       "industry": "전력기기",
-      "rank": 6,
+      "rank": 4,
       "verdict": "심층 검토",
       "totalScore": 76,
       "confidence": 74,
@@ -9686,28 +9594,28 @@ const currentGrowthSelection = {
       "screenReason": "매출 성장·수익성·최근 실적 신호 통과"
     },
     {
-      "code": "000660",
-      "name": "SK하이닉스",
-      "industry": "AI 메모리/HBM",
-      "rank": 7,
+      "code": "206640",
+      "name": "바디텍메드",
+      "industry": "진단기기",
+      "rank": 5,
       "verdict": "심층 검토",
       "totalScore": 76,
-      "confidence": 73,
+      "confidence": 65,
       "financialSignal": "성장 가속·유지",
-      "valuation": "성장 반영·검토 가능",
+      "valuation": "확정 실적 대비 여유",
       "currentFinancialPass": true,
       "screenReason": "매출 성장·수익성·최근 실적 신호 통과"
     },
     {
-      "code": "062040",
-      "name": "산일전기",
-      "industry": "변압기/전력기기",
-      "rank": 8,
+      "code": "192080",
+      "name": "더블유게임즈",
+      "industry": "게임",
+      "rank": 6,
       "verdict": "심층 검토",
       "totalScore": 75,
-      "confidence": 73,
-      "financialSignal": "성장 가속·유지",
-      "valuation": "성장 반영·검토 가능",
+      "confidence": 65,
+      "financialSignal": "성장 유지·확인",
+      "valuation": "확정 실적 대비 여유",
       "currentFinancialPass": true,
       "screenReason": "매출 성장·수익성·최근 실적 신호 통과"
     },
@@ -9715,7 +9623,7 @@ const currentGrowthSelection = {
       "code": "278470",
       "name": "에이피알",
       "industry": "K뷰티 브랜드/뷰티 디바이스",
-      "rank": 9,
+      "rank": 7,
       "verdict": "심층 검토",
       "totalScore": 72,
       "confidence": 77,
@@ -9725,10 +9633,23 @@ const currentGrowthSelection = {
       "screenReason": "매출 성장·수익성·최근 실적 신호 통과"
     },
     {
+      "code": "062040",
+      "name": "산일전기",
+      "industry": "변압기/전력기기",
+      "rank": 8,
+      "verdict": "관찰",
+      "totalScore": 70,
+      "confidence": 73,
+      "financialSignal": "성장 유지·확인",
+      "valuation": "성장 반영·검토 가능",
+      "currentFinancialPass": true,
+      "screenReason": "매출 성장·수익성·최근 실적 신호 통과"
+    },
+    {
       "code": "196170",
       "name": "알테오젠",
       "industry": "바이오 플랫폼",
-      "rank": 10,
+      "rank": 9,
       "verdict": "관찰",
       "totalScore": 68,
       "confidence": 71,
@@ -9741,7 +9662,7 @@ const currentGrowthSelection = {
       "code": "064760",
       "name": "티씨케이",
       "industry": "반도체 소재",
-      "rank": 11,
+      "rank": 10,
       "verdict": "관찰",
       "totalScore": 70,
       "confidence": 70,
@@ -9751,15 +9672,54 @@ const currentGrowthSelection = {
       "screenReason": "성장 가속·유지"
     },
     {
-      "code": "214150",
-      "name": "클래시스",
-      "industry": "미용 의료기기",
+      "code": "053800",
+      "name": "안랩",
+      "industry": "보안 소프트웨어",
+      "rank": 11,
+      "verdict": "관찰",
+      "totalScore": 68,
+      "confidence": 64,
+      "financialSignal": "성장 가속·유지",
+      "valuation": "실적과 가격 동시 확인",
+      "currentFinancialPass": false,
+      "screenReason": "성장 가속·유지"
+    },
+    {
+      "code": "018290",
+      "name": "브이티",
+      "industry": "K뷰티 브랜드",
       "rank": 12,
       "verdict": "관찰",
       "totalScore": 68,
+      "confidence": 61,
+      "financialSignal": "성장 가속·유지",
+      "valuation": "실적과 가격 동시 확인",
+      "currentFinancialPass": false,
+      "screenReason": "성장 가속·유지"
+    },
+    {
+      "code": "214150",
+      "name": "클래시스",
+      "industry": "미용 의료기기",
+      "rank": 13,
+      "verdict": "관찰",
+      "totalScore": 66,
       "confidence": 75,
-      "financialSignal": "수익성 둔화 경보",
+      "financialSignal": "성장 둔화 경보",
       "valuation": "확정 실적 대비 여유",
+      "currentFinancialPass": false,
+      "screenReason": "성장 둔화 경보"
+    },
+    {
+      "code": "214450",
+      "name": "파마리서치",
+      "industry": "의료기기/스킨부스터",
+      "rank": 14,
+      "verdict": "관찰",
+      "totalScore": 64,
+      "confidence": 80,
+      "financialSignal": "수익성 둔화 경보",
+      "valuation": "성장 반영·검토 가능",
       "currentFinancialPass": false,
       "screenReason": "수익성 둔화 경보"
     },
@@ -9767,7 +9727,7 @@ const currentGrowthSelection = {
       "code": "010120",
       "name": "LS ELECTRIC",
       "industry": "전력기기",
-      "rank": 13,
+      "rank": 15,
       "verdict": "관찰",
       "totalScore": 64,
       "confidence": 78,
@@ -9777,95 +9737,69 @@ const currentGrowthSelection = {
       "screenReason": "성장 가속·유지"
     },
     {
-      "code": "207940",
-      "name": "삼성바이오로직스",
-      "industry": "CDMO",
-      "rank": 14,
-      "verdict": "관찰",
-      "totalScore": 64,
-      "confidence": 72,
-      "financialSignal": "성장 유지·확인",
-      "valuation": "실적과 가격 동시 확인",
-      "currentFinancialPass": false,
-      "screenReason": "성장 유지·확인"
-    },
-    {
-      "code": "206640",
-      "name": "바디텍메드",
-      "industry": "진단기기",
-      "rank": 15,
-      "verdict": "관찰",
-      "totalScore": 63,
-      "confidence": 65,
-      "financialSignal": "수익성 둔화 경보",
-      "valuation": "확정 실적 대비 여유",
-      "currentFinancialPass": false,
-      "screenReason": "수익성 둔화 경보"
-    },
-    {
-      "code": "053800",
-      "name": "안랩",
-      "industry": "보안 소프트웨어",
+      "code": "251970",
+      "name": "펌텍코리아",
+      "industry": "화장품 용기",
       "rank": 16,
       "verdict": "관찰",
       "totalScore": 63,
-      "confidence": 64,
-      "financialSignal": "성장 유지·확인",
-      "valuation": "실적과 가격 동시 확인",
+      "confidence": 66,
+      "financialSignal": "성장 가속·유지",
+      "valuation": "순이익 기준 확인 필요",
       "currentFinancialPass": false,
-      "screenReason": "성장 유지·확인"
+      "screenReason": "성장 가속·유지"
+    },
+    {
+      "code": "058470",
+      "name": "리노공업",
+      "industry": "반도체 테스트 소켓",
+      "rank": 17,
+      "verdict": "관찰",
+      "totalScore": 62,
+      "confidence": 76,
+      "financialSignal": "성장 둔화 경보",
+      "valuation": "성장 반영·검토 가능",
+      "currentFinancialPass": false,
+      "screenReason": "성장 둔화 경보"
     },
     {
       "code": "145020",
       "name": "휴젤",
       "industry": "톡신/필러",
-      "rank": 17,
+      "rank": 18,
       "verdict": "관찰",
-      "totalScore": 62,
+      "totalScore": 61,
       "confidence": 70,
-      "financialSignal": "수익성 둔화 경보",
+      "financialSignal": "성장 둔화 경보",
       "valuation": "성장 반영·검토 가능",
       "currentFinancialPass": false,
-      "screenReason": "수익성 둔화 경보"
+      "screenReason": "성장 둔화 경보"
+    },
+    {
+      "code": "207940",
+      "name": "삼성바이오로직스",
+      "industry": "CDMO",
+      "rank": 19,
+      "verdict": "관찰",
+      "totalScore": 56,
+      "confidence": 72,
+      "financialSignal": "성장 둔화 경보",
+      "valuation": "실적과 가격 동시 확인",
+      "currentFinancialPass": false,
+      "screenReason": "성장 둔화 경보"
     },
     {
       "code": "051360",
       "name": "토비스",
       "industry": "산업용 모니터/디스플레이",
-      "rank": 18,
-      "verdict": "관찰",
-      "totalScore": 60,
-      "confidence": 67,
-      "financialSignal": "성장 유지·확인",
-      "valuation": "실적과 가격 동시 확인",
-      "currentFinancialPass": false,
-      "screenReason": "성장 유지·확인"
-    },
-    {
-      "code": "251970",
-      "name": "펌텍코리아",
-      "industry": "화장품 용기",
-      "rank": 19,
-      "verdict": "관찰",
-      "totalScore": 58,
-      "confidence": 66,
-      "financialSignal": "성장 유지·확인",
-      "valuation": "순이익 기준 확인 필요",
-      "currentFinancialPass": false,
-      "screenReason": "성장 유지·확인"
-    },
-    {
-      "code": "018290",
-      "name": "브이티",
-      "industry": "K뷰티 브랜드",
       "rank": 20,
       "verdict": "관찰",
-      "totalScore": 56,
-      "confidence": 61,
-      "financialSignal": "수익성 둔화 경보",
+      "totalScore": 50,
+      "confidence": 67,
+      "financialSignal": "성장 둔화 경보",
       "valuation": "실적과 가격 동시 확인",
       "currentFinancialPass": false,
-      "screenReason": "수익성 둔화 경보"
+      "screenReason": "성장 둔화 경보"
     }
   ]
 };
