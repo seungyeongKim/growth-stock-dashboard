@@ -1,0 +1,28 @@
+name: Historical growth criteria backtest
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cohort:
+    runs-on: ubuntu-latest
+    timeout-minutes: 24
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        year: [2022, 2023, 2024, 2025]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run historical cohort
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python3 -Bu scripts/backtest_market_growth.py --year ${{ matrix.year }} --output historical/cohort-${{ matrix.year }}.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: historical-growth-${{ matrix.year }}
+          path: historical/cohort-${{ matrix.year }}.json
+          if-no-files-found: error
