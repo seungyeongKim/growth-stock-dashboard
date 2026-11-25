@@ -28,7 +28,7 @@ DART = "https://opendart.fss.or.kr/api"
 DART_ENGLISH = "https://engopendart.fss.or.kr/engapi"
 KIND = "https://kind.krx.co.kr/corpgeneral/corpList.do"
 NAVER = "https://m.stock.naver.com/api/stocks/marketValue"
-BATCH_SIZE = 80
+BATCH_SIZE = 20
 PAGE_SIZE = 100
 RESULT_LIMIT = 20
 MIN_GROWTH = 10
@@ -39,17 +39,17 @@ RECEIPT = re.compile(r"\d{14}")
 CORP_CODE = re.compile(r"\d{8}")
 
 
-def fetch(url, params=None):
+def fetch(url, params=None, *, attempts=2, timeout=18):
     address = url + ("?" + urlencode(params) if params else "")
     if os.environ.get("GITHUB_ACTIONS") == "true":
         # Use the same Node HTTPS client as the existing DART tracking job.
         # The address can contain a secret, so pass it through stdin.
-        for attempt in range(2):
+        for attempt in range(attempts):
             try:
                 result = subprocess.run(
                     ["node", str(ROOT / "scripts/fetch-market-scan-source.js")],
-                    input=json.dumps({"url": address, "timeoutMs": 18000}).encode(),
-                    capture_output=True, timeout=22, check=False,
+                    input=json.dumps({"url": address, "timeoutMs": timeout * 1000}).encode(),
+                    capture_output=True, timeout=timeout + 4, check=False,
                 )
             except subprocess.TimeoutExpired:
                 result = None
@@ -57,22 +57,22 @@ def fetch(url, params=None):
                 return result.stdout
             if result and result.returncode == 1:
                 status = result.stderr.decode().strip()
-                if status not in ("429", "500", "502", "503", "504") or attempt == 1:
+                if status not in ("429", "500", "502", "503", "504") or attempt == attempts - 1:
                     raise RuntimeError(f"{urlsplit(url).path}: HTTP {status}")
-            if attempt == 0:
+            if attempt < attempts - 1:
                 time.sleep(1)
         raise RuntimeError(f"{urlsplit(url).path}: connection failed")
     request = Request(address,
                       headers={"User-Agent": "growth-stock-dashboard/1.0"})
-    for attempt in range(3):
+    for attempt in range(attempts):
         try:
-            with urlopen(request, timeout=25) as response:
+            with urlopen(request, timeout=timeout) as response:
                 return response.read()
         except HTTPError as error:
-            if error.code not in (429, 500, 502, 503, 504) or attempt == 2:
+            if error.code not in (429, 500, 502, 503, 504) or attempt == attempts - 1:
                 raise RuntimeError(f"{urlsplit(url).path}: HTTP {error.code}") from None
         except (URLError, TimeoutError):
-            if attempt == 2:
+            if attempt == attempts - 1:
                 raise RuntimeError(f"{urlsplit(url).path}: connection failed") from None
         time.sleep(1 + attempt)
 
@@ -270,9 +270,15 @@ def fetch_financials(key, codes, year, report):
     batches = [codes[i:i + BATCH_SIZE] for i in range(0, len(codes), BATCH_SIZE)]
 
     def batch(corp_codes):
-        data = json.loads(fetch(DART + "/fnlttMultiAcnt.json", {
-            "crtfc_key": key, "corp_code": ",".join(corp_codes), "bsns_year": year, "reprt_code": report,
-        }))
+        try:
+            data = json.loads(fetch(DART + "/fnlttMultiAcnt.json", {
+                "crtfc_key": key, "corp_code": ",".join(corp_codes), "bsns_year": year, "reprt_code": report,
+            }, attempts=1 if len(corp_codes) > 5 else 2, timeout=15))
+        except RuntimeError as error:
+            if len(corp_codes) <= 5 or "connection failed" not in str(error):
+                raise
+            midpoint = len(corp_codes) // 2
+            return batch(corp_codes[:midpoint]) + batch(corp_codes[midpoint:])
         if data.get("status") == "013":
             return []
         if data.get("status") != "000" or not isinstance(data.get("list"), list):
