@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-25T10:43:41",
+  "updatedAt": "2026-11-25T10:47:43",
   "sourcePolicy": "DART 공시 제목을 규칙 기반으로 분류한 보조 신호이며, 실제 영향은 공시 원문 확인이 필요하다.",
   "companies": {
     "145020": {
@@ -121,16 +121,16 @@
       "headline": "최근 수집 범위에서 주요 DART 공시 없음",
       "items": []
     },
-    "010120": {
-      "code": "010120",
-      "name": "LS ELECTRIC",
+    "058470": {
+      "code": "058470",
+      "name": "리노공업",
       "status": "변화 없음",
       "headline": "최근 수집 범위에서 주요 DART 공시 없음",
       "items": []
     },
-    "058470": {
-      "code": "058470",
-      "name": "리노공업",
+    "010120": {
+      "code": "010120",
+      "name": "LS ELECTRIC",
       "status": "변화 없음",
       "headline": "최근 수집 범위에서 주요 DART 공시 없음",
       "items": []
