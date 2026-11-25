@@ -7,6 +7,10 @@ on:
         description: Download selected original public filings for case review
         type: boolean
         default: false
+      position_review:
+        description: Fetch the second-year filing checkpoints for the position replay
+        type: boolean
+        default: false
       years:
         description: JSON list of cohort years
         type: string
@@ -22,7 +26,7 @@ permissions:
 
 jobs:
   cohort:
-    if: ${{ !inputs.filing_review }}
+    if: ${{ !inputs.filing_review && !inputs.position_review }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
@@ -67,4 +71,32 @@ jobs:
         with:
           name: original-growth-case-filings
           path: original-filings/
+          if-no-files-found: error
+
+  position:
+    if: ${{ inputs.position_review }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    strategy:
+      fail-fast: false
+      matrix:
+        year: ${{ fromJSON(inputs.years) }}
+    env:
+      COHORT_YEAR: ${{ matrix.year }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Retrieve frozen historical observations
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          [[ "$COHORT_YEAR" =~ ^(2016|2019|2021)$ ]]
+          gh run download 45557103694 --name "historical-growth-$COHORT_YEAR" --dir source
+      - name: Collect the second annual checkpoint
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python3 -Bu scripts/collect_position_checkpoints.py "source/cohort-$COHORT_YEAR.json" "reviews/review-$COHORT_YEAR.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: position-checkpoint-${{ matrix.year }}
+          path: reviews/review-${{ matrix.year }}.json
           if-no-files-found: error
