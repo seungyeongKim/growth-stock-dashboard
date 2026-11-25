@@ -12961,6 +12961,40 @@ const purchaseReview = {
       return { cap, tranches: [0.4, 0.35, 0.25].map((weight) => cap * weight) };
     }
 
+    /* MARKET_GROWTH_SCAN_START */
+    const marketGrowthScan = {"updatedAt":null,"items":[]};
+    /* MARKET_GROWTH_SCAN_END */
+
+    function renderMarketGrowthScan() {
+      const scan = marketGrowthScan;
+      if (!scan.updatedAt) return '<div class="data-caption">시장 스크리너 첫 실행 대기</div>';
+      const escapeListing = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => (
+        {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[char]
+      ));
+      const counts = scan.counts || {};
+      const incomplete = (counts.dartMissing || 0) + (counts.annualMissing || 0) + (counts.recentMissing || 0);
+      return `
+        <div class="data-caption">코스피 ${scan.markets.KOSPI.toLocaleString("ko-KR")}개 · 코스닥 ${scan.markets.KOSDAQ.toLocaleString("ko-KR")}개 · 재무 조회 대상 ${scan.eligibleCount.toLocaleString("ko-KR")}개 · 재무·시세 통과 ${scan.pricedPass}개 · 기존 리서치 목록 밖 ${scan.outsideWatchlist}개 · 갱신 ${escapeListing(scan.updatedAt.slice(0, 16).replace("T", " "))} 한국시간</div>
+        <div class="history-table"><table>
+          <thead><tr><th>순위</th><th>종목 · 시장</th><th>연간 매출 증가율<br>${escapeListing(scan.annualPeriod)}</th><th>최근 매출 증가율<br>${escapeListing(scan.recentPeriod)}</th><th>최근 영업·순이익률</th><th>연간 실적 PER<br>참고값</th><th>시세 · 원문</th></tr></thead>
+          <tbody>${scan.items.length ? scan.items.map((row) => `<tr>
+            <td>${row.rank}</td>
+            <td><strong>${escapeListing(row.name)}</strong><br><span class="muted">${row.code} · ${row.market === "KOSPI" ? "코스피" : "코스닥"} · ${row.scope === "CFS" ? "연결" : "별도"}</span><br>
+              ${row.inWatchlist ? "" : '<span class="status-tag">리서치 목록 밖</span>'}
+              ${scan.previousRun && row.newInTop ? '<span class="status-tag">이번 회차 진입</span>' : ""}</td>
+            <td>${signedPurchaseValue(row.annualGrowth)}</td><td>${signedPurchaseValue(row.recentGrowth)}</td>
+            <td>${formatPercent(row.recentOperatingMargin)} · ${formatPercent(row.recentNetMargin)}</td>
+            <td>${row.annualPer}배</td>
+            <td>${row.price.toLocaleString("ko-KR")}원 <span class="muted">${escapeListing(row.priceTime.slice(0, 16).replace("T", " "))}</span><br>
+              <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=${row.recentReceipt}" target="_blank" rel="noreferrer">최근 실적</a>
+              · <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=${row.annualReceipt}" target="_blank" rel="noreferrer">연간 실적</a></td>
+          </tr>`).join("") : '<tr><td colspan="7">통과 종목 없음</td></tr>'}</tbody>
+        </table></div>
+        <div class="data-caption">재무 미확인 ${incomplete}개 · 재무 통과 후 시세 확인 불가 ${counts.quoteMissing || 0}개${scan.removed.length ? ` · 상위권 이탈: ${scan.removed.map(escapeListing).join(" · ")}` : ""}</div>
+        <div class="data-caption">최근 2년 연속 매출 증가, 최근 연간·누적 매출 성장률 각각 10% 이상과 영업·순이익률 각각 10% 이상, 영업이익률 하락 5%p 미만. 금융·일부 지주·리츠·스팩·12월 외 결산 제외. OpenDART 확정 실적과 네이버 증권 시세 참고값으로 비교하며, PER 분모는 연간 총순이익입니다. 기존 회사별 리서치와 별도인 신규 검토 목록입니다.</div>
+      `;
+    }
+
     function renderCommonDashboard() {
       const decisions = companies.map(getDecisionModel);
       const counts = ["심층 검토", "관찰", "관심 제외"].map((label) => ({ label, count: decisions.filter((item) => item.aiVerdict === label).length }));
@@ -12973,6 +13007,10 @@ const purchaseReview = {
           <div class="summary-card"><label>재선별 기준일</label><strong>${currentGrowthSelection.updatedAt || investmentDecision.updatedAt || companyDecisionModel.updatedAt}</strong><span>공식 재무·현재 가격으로 평일마다 우선순위를 다시 계산합니다.</span></div>
         </div>
         <div class="section-stack">
+          <details class="detail-group" open>
+            <summary>시장 스크리너 · 새 성장주 후보 ${marketGrowthScan.updatedAt ? marketGrowthScan.items.length + "개" : ""}</summary>
+            <div class="detail-group-body">${renderMarketGrowthScan()}</div>
+          </details>
           <details class="detail-group" open>
             <summary>20개 종목 매수 판단 비교</summary>
             <div class="detail-group-body">${renderPurchaseComparison()}</div>

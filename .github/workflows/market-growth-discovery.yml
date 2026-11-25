@@ -1,0 +1,34 @@
+name: Market growth discovery
+
+on:
+  schedule:
+    - cron: "11 11 * * 3"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: growth-dashboard-main
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test screener
+        run: python3 -B -m unittest discover -s scripts -p test_market_growth.py
+      - name: Collect market and filing data
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python3 -B scripts/scan_market_growth.py
+      - name: Apply market scan and validate dashboard
+        run: |
+          node scripts/apply-market-growth-scan.js
+          node scripts/check-dashboard.js index.html
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Update market growth candidates"
+          file_pattern: "index.html data/market-growth-scan.json"

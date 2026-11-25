@@ -24,6 +24,7 @@ const required = [
   "renderPurchaseComparison",
   "renderPurchaseSnapshot",
   "renderPositionPlan",
+  "renderMarketGrowthScan",
   "AI 결론"
 ];
 const missing = required.filter((item) => !html.includes(item));
@@ -97,5 +98,9 @@ for (const [code, item] of purchaseRecords) {
     || ![0, 3].includes(item.scenarios.length)
     || item.scenarios.some((s) => !(s.requiredNet > 0 && (s.requiredCagr === null || Number.isFinite(s.requiredCagr))))) throw new Error(`${code}: invalid purchase review`);
 }
-console.log(JSON.stringify({ script: "ok", requiredMarkers: required.length, decisionRecords: records.length, financialRecords: financialRecords.length, valuationRecords: valuationRecords.length, eventRecords: eventRecords.length, automatedDecisions: decisionRecords.length, currentSelections: (selection.items || []).length, purchaseRecords: purchaseRecords.length, target }, null, 2));
+const scanPath = path.join(path.dirname(target), "data", "market-growth-scan.json");
+const marketEmbed = html.match(/\/\* MARKET_GROWTH_SCAN_START \*\/\s*const marketGrowthScan = ([\s\S]*?);\s*\/\* MARKET_GROWTH_SCAN_END \*\//);
+const market = JSON.parse(marketEmbed[1]);
+if (fs.existsSync(scanPath) && JSON.stringify(JSON.parse(fs.readFileSync(scanPath, "utf8"))) !== JSON.stringify(market)) throw new Error("Market scan differs from HTML");
+console.log(JSON.stringify({ script: "ok", requiredMarkers: required.length, decisionRecords: records.length, financialRecords: financialRecords.length, valuationRecords: valuationRecords.length, eventRecords: eventRecords.length, automatedDecisions: decisionRecords.length, currentSelections: (selection.items || []).length, purchaseRecords: purchaseRecords.length, marketCandidates: market.items.length, target }, null, 2));
 

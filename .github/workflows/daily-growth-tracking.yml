@@ -19,6 +19,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: growth-dashboard-main
+  cancel-in-progress: false
+
 jobs:
   update-dashboard:
     runs-on: ubuntu-latest
