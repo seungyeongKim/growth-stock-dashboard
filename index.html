@@ -5077,26 +5077,26 @@
           "updatedAt": "2026-11-24T07:15:00",
           "cadence": "weekly",
           "rule": "20개 관찰군은 매주 1회 가격, 공시, 데이터 충족도, 성장 논리 훼손 여부를 확인해 5개 심층 추적 후보로 승격할지 판단한다.",
-          "sourcePolicy": "20개 관찰군은 자동 수집값만으로 매수 판단하지 않고, 새 공시와 가격 변화를 승격/강등 검토 신호로만 사용한다.",
+          "sourcePolicy": "20개 관찰군은 최신 OpenDART 재무·최근 공시와 현재 가격 참고값으로 매주 재정렬한다. 자동 판단은 매수 추천이 아니며, 최신 전망치 출처가 없으면 매수 조건 충족으로 올리지 않는다.",
           "items": [
                 {
-                      "code": "062040",
-                      "name": "산일전기",
-                      "industry": "변압기/전력기기",
+                      "code": "257720",
+                      "name": "실리콘투",
+                      "industry": "K뷰티 유통",
                       "group": "deep",
                       "priority": 1,
                       "reviewFocus": [
-                            "수주잔고",
-                            "영업이익률",
-                            "Bloom Energy",
-                            "2027E PER"
+                            "지역별 매출",
+                            "재고 회전",
+                            "매출채권",
+                            "영업현금흐름"
                       ],
                       "quote": {
                             "ok": true,
                             "source": "Naver Finance realtime",
-                            "price": "101,800",
-                            "changeRate": "-2.86",
-                            "volume": "286,906",
+                            "price": "23,600",
+                            "changeRate": "1.72",
+                            "volume": "813,892",
                             "note": "비공식 참고값"
                       },
                       "dart": {
@@ -5108,11 +5108,67 @@
                       "reviewQuestion": "심층 추적 5종목에 계속 남길 만큼 논리가 강화됐나?"
                 },
                 {
+                      "code": "192080",
+                      "name": "더블유게임즈",
+                      "industry": "게임",
+                      "group": "deep",
+                      "priority": 2,
+                      "reviewFocus": [
+                            "DTC",
+                            "아이게이밍",
+                            "유저 잔존율",
+                            "현금흐름"
+                      ],
+                      "quote": {
+                            "ok": true,
+                            "source": "Naver Finance realtime",
+                            "price": "54,700",
+                            "changeRate": "-2.50",
+                            "volume": "33,153",
+                            "note": "비공식 참고값"
+                      },
+                      "dart": {
+                            "ok": true,
+                            "items": [],
+                            "note": "최근 7일 신규 공시 없음"
+                      },
+                      "reviewStatus": "보류 관찰",
+                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
+                },
+                {
+                      "code": "058470",
+                      "name": "리노공업",
+                      "industry": "반도체 테스트 소켓",
+                      "group": "deep",
+                      "priority": 3,
+                      "reviewFocus": [
+                            "AI ASIC",
+                            "신공장 가동률",
+                            "2027E 순이익",
+                            "OPM 45%"
+                      ],
+                      "quote": {
+                            "ok": true,
+                            "source": "Naver Finance realtime",
+                            "price": "45,750",
+                            "changeRate": "0.88",
+                            "volume": "673,368",
+                            "note": "비공식 참고값"
+                      },
+                      "dart": {
+                            "ok": true,
+                            "items": [],
+                            "note": "최근 7일 신규 공시 없음"
+                      },
+                      "reviewStatus": "관찰 유지",
+                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
+                },
+                {
                       "code": "214450",
                       "name": "파마리서치",
                       "industry": "의료기기/스킨부스터",
                       "group": "deep",
-                      "priority": 2,
+                      "priority": 4,
                       "reviewFocus": [
                             "의료기기 수출",
                             "리쥬란 재주문",
@@ -5140,7 +5196,7 @@
                       "name": "삼양식품",
                       "industry": "식품/글로벌 라면",
                       "group": "deep",
-                      "priority": 3,
+                      "priority": 5,
                       "reviewFocus": [
                             "해외 매출",
                             "밀양2공장",
@@ -5164,151 +5220,11 @@
                       "reviewQuestion": "심층 추적 5종목에 계속 남길 만큼 논리가 강화됐나?"
                 },
                 {
-                      "code": "010120",
-                      "name": "LS ELECTRIC",
-                      "industry": "전력기기",
-                      "group": "deep",
-                      "priority": 4,
-                      "reviewFocus": [
-                            "신규수주",
-                            "수주잔고",
-                            "데이터센터",
-                            "OPM 10%"
-                      ],
-                      "quote": {
-                            "ok": true,
-                            "source": "Naver Finance realtime",
-                            "price": "112,000",
-                            "changeRate": "2.10",
-                            "volume": "600,647",
-                            "note": "비공식 참고값"
-                      },
-                      "dart": {
-                            "ok": true,
-                            "items": [],
-                            "note": "최근 7일 신규 공시 없음"
-                      },
-                      "reviewStatus": "심층 추적 유지",
-                      "reviewQuestion": "심층 추적 5종목에 계속 남길 만큼 논리가 강화됐나?"
-                },
-                {
-                      "code": "257720",
-                      "name": "실리콘투",
-                      "industry": "K뷰티 유통",
-                      "group": "deep",
-                      "priority": 5,
-                      "reviewFocus": [
-                            "지역별 매출",
-                            "재고 회전",
-                            "매출채권",
-                            "영업현금흐름"
-                      ],
-                      "quote": {
-                            "ok": true,
-                            "source": "Naver Finance realtime",
-                            "price": "23,600",
-                            "changeRate": "1.72",
-                            "volume": "813,892",
-                            "note": "비공식 참고값"
-                      },
-                      "dart": {
-                            "ok": true,
-                            "items": [],
-                            "note": "최근 7일 신규 공시 없음"
-                      },
-                      "reviewStatus": "심층 추적 유지",
-                      "reviewQuestion": "심층 추적 5종목에 계속 남길 만큼 논리가 강화됐나?"
-                },
-                {
-                      "code": "278470",
-                      "name": "에이피알",
-                      "industry": "K뷰티 브랜드/뷰티 디바이스",
-                      "group": "watch",
-                      "priority": 6,
-                      "reviewFocus": [
-                            "미국 매출",
-                            "마케팅비",
-                            "재고",
-                            "생산능력"
-                      ],
-                      "quote": {
-                            "ok": true,
-                            "source": "Naver Finance realtime",
-                            "price": "256,000",
-                            "changeRate": "8.70",
-                            "volume": "555,984",
-                            "note": "비공식 참고값"
-                      },
-                      "dart": {
-                            "ok": true,
-                            "items": [],
-                            "note": "최근 7일 신규 공시 없음"
-                      },
-                      "reviewStatus": "관찰 유지",
-                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
-                },
-                {
-                      "code": "058470",
-                      "name": "리노공업",
-                      "industry": "반도체 테스트 소켓",
-                      "group": "watch",
-                      "priority": 7,
-                      "reviewFocus": [
-                            "AI ASIC",
-                            "신공장 가동률",
-                            "2027E 순이익",
-                            "OPM 45%"
-                      ],
-                      "quote": {
-                            "ok": true,
-                            "source": "Naver Finance realtime",
-                            "price": "45,750",
-                            "changeRate": "0.88",
-                            "volume": "673,368",
-                            "note": "비공식 참고값"
-                      },
-                      "dart": {
-                            "ok": true,
-                            "items": [],
-                            "note": "최근 7일 신규 공시 없음"
-                      },
-                      "reviewStatus": "관찰 유지",
-                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
-                },
-                {
-                      "code": "214150",
-                      "name": "클래시스",
-                      "industry": "미용 의료기기",
-                      "group": "watch",
-                      "priority": 8,
-                      "reviewFocus": [
-                            "소모품 매출",
-                            "브라질",
-                            "미국/유럽",
-                            "OPM 44%"
-                      ],
-                      "quote": {
-                            "ok": true,
-                            "source": "Naver Finance realtime",
-                            "price": "20,350",
-                            "changeRate": "-6.65",
-                            "volume": "367,125",
-                            "note": "비공식 참고값"
-                      },
-                      "dart": {
-                            "ok": true,
-                            "items": [],
-                            "note": "최근 7일 신규 공시 없음"
-                      },
-                      "reviewStatus": "관찰 유지",
-                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
-                },
-                {
                       "code": "267260",
                       "name": "HD현대일렉트릭",
                       "industry": "전력기기",
                       "group": "watch",
-                      "priority": 9,
+                      "priority": 6,
                       "reviewFocus": [
                             "북미 수주",
                             "수주 마진",
@@ -5335,8 +5251,8 @@
                       "code": "000660",
                       "name": "SK하이닉스",
                       "industry": "AI 메모리/HBM",
-                      "group": "benchmark",
-                      "priority": 10,
+                      "group": "watch",
+                      "priority": 7,
                       "reviewFocus": [
                             "HBM ASP",
                             "HBM4",
@@ -5367,11 +5283,179 @@
                       "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
                 },
                 {
+                      "code": "062040",
+                      "name": "산일전기",
+                      "industry": "변압기/전력기기",
+                      "group": "watch",
+                      "priority": 8,
+                      "reviewFocus": [
+                            "수주잔고",
+                            "영업이익률",
+                            "Bloom Energy",
+                            "2027E PER"
+                      ],
+                      "quote": {
+                            "ok": true,
+                            "source": "Naver Finance realtime",
+                            "price": "101,800",
+                            "changeRate": "-2.86",
+                            "volume": "286,906",
+                            "note": "비공식 참고값"
+                      },
+                      "dart": {
+                            "ok": true,
+                            "items": [],
+                            "note": "최근 7일 신규 공시 없음"
+                      },
+                      "reviewStatus": "심층 추적 유지",
+                      "reviewQuestion": "심층 추적 5종목에 계속 남길 만큼 논리가 강화됐나?"
+                },
+                {
+                      "code": "278470",
+                      "name": "에이피알",
+                      "industry": "K뷰티 브랜드/뷰티 디바이스",
+                      "group": "watch",
+                      "priority": 9,
+                      "reviewFocus": [
+                            "미국 매출",
+                            "마케팅비",
+                            "재고",
+                            "생산능력"
+                      ],
+                      "quote": {
+                            "ok": true,
+                            "source": "Naver Finance realtime",
+                            "price": "256,000",
+                            "changeRate": "8.70",
+                            "volume": "555,984",
+                            "note": "비공식 참고값"
+                      },
+                      "dart": {
+                            "ok": true,
+                            "items": [],
+                            "note": "최근 7일 신규 공시 없음"
+                      },
+                      "reviewStatus": "관찰 유지",
+                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
+                },
+                {
+                      "code": "196170",
+                      "name": "알테오젠",
+                      "industry": "바이오 플랫폼",
+                      "group": "watch",
+                      "priority": 10,
+                      "reviewFocus": [
+                            "키트루다SC",
+                            "로열티",
+                            "마일스톤",
+                            "J-code"
+                      ],
+                      "quote": {
+                            "ok": true,
+                            "source": "Naver Finance realtime",
+                            "price": "169,000",
+                            "changeRate": "-3.10",
+                            "volume": "364,142",
+                            "note": "비공식 참고값"
+                      },
+                      "dart": {
+                            "ok": true,
+                            "items": [],
+                            "note": "최근 7일 신규 공시 없음"
+                      },
+                      "reviewStatus": "관찰 유지",
+                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
+                },
+                {
+                      "code": "064760",
+                      "name": "티씨케이",
+                      "industry": "반도체 소재",
+                      "group": "watch",
+                      "priority": 11,
+                      "reviewFocus": [
+                            "SiC Ring",
+                            "NAND 투자",
+                            "고객 인증",
+                            "2027E"
+                      ],
+                      "quote": {
+                            "ok": true,
+                            "source": "Naver Finance realtime",
+                            "price": "169,600",
+                            "changeRate": "1.56",
+                            "volume": "51,760",
+                            "note": "비공식 참고값"
+                      },
+                      "dart": {
+                            "ok": true,
+                            "items": [],
+                            "note": "최근 7일 신규 공시 없음"
+                      },
+                      "reviewStatus": "관찰 유지",
+                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
+                },
+                {
+                      "code": "214150",
+                      "name": "클래시스",
+                      "industry": "미용 의료기기",
+                      "group": "watch",
+                      "priority": 12,
+                      "reviewFocus": [
+                            "소모품 매출",
+                            "브라질",
+                            "미국/유럽",
+                            "OPM 44%"
+                      ],
+                      "quote": {
+                            "ok": true,
+                            "source": "Naver Finance realtime",
+                            "price": "20,350",
+                            "changeRate": "-6.65",
+                            "volume": "367,125",
+                            "note": "비공식 참고값"
+                      },
+                      "dart": {
+                            "ok": true,
+                            "items": [],
+                            "note": "최근 7일 신규 공시 없음"
+                      },
+                      "reviewStatus": "관찰 유지",
+                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
+                },
+                {
+                      "code": "010120",
+                      "name": "LS ELECTRIC",
+                      "industry": "전력기기",
+                      "group": "watch",
+                      "priority": 13,
+                      "reviewFocus": [
+                            "신규수주",
+                            "수주잔고",
+                            "데이터센터",
+                            "OPM 10%"
+                      ],
+                      "quote": {
+                            "ok": true,
+                            "source": "Naver Finance realtime",
+                            "price": "112,000",
+                            "changeRate": "2.10",
+                            "volume": "600,647",
+                            "note": "비공식 참고값"
+                      },
+                      "dart": {
+                            "ok": true,
+                            "items": [],
+                            "note": "최근 7일 신규 공시 없음"
+                      },
+                      "reviewStatus": "심층 추적 유지",
+                      "reviewQuestion": "심층 추적 5종목에 계속 남길 만큼 논리가 강화됐나?"
+                },
+                {
                       "code": "207940",
                       "name": "삼성바이오로직스",
                       "industry": "CDMO",
                       "group": "watch",
-                      "priority": 11,
+                      "priority": 14,
                       "reviewFocus": [
                             "신규 수주",
                             "5공장",
@@ -5414,179 +5498,11 @@
                       "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
                 },
                 {
-                      "code": "196170",
-                      "name": "알테오젠",
-                      "industry": "바이오 플랫폼",
-                      "group": "watch",
-                      "priority": 12,
-                      "reviewFocus": [
-                            "키트루다SC",
-                            "로열티",
-                            "마일스톤",
-                            "J-code"
-                      ],
-                      "quote": {
-                            "ok": true,
-                            "source": "Naver Finance realtime",
-                            "price": "169,000",
-                            "changeRate": "-3.10",
-                            "volume": "364,142",
-                            "note": "비공식 참고값"
-                      },
-                      "dart": {
-                            "ok": true,
-                            "items": [],
-                            "note": "최근 7일 신규 공시 없음"
-                      },
-                      "reviewStatus": "관찰 유지",
-                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
-                },
-                {
-                      "code": "145020",
-                      "name": "휴젤",
-                      "industry": "톡신/필러",
-                      "group": "watch",
-                      "priority": 13,
-                      "reviewFocus": [
-                            "미국 직판",
-                            "국가별 매출",
-                            "판관비",
-                            "OPM 회복"
-                      ],
-                      "quote": {
-                            "ok": true,
-                            "source": "Naver Finance realtime",
-                            "price": "201,500",
-                            "changeRate": "-2.42",
-                            "volume": "39,421",
-                            "note": "비공식 참고값"
-                      },
-                      "dart": {
-                            "ok": true,
-                            "items": [],
-                            "note": "최근 7일 신규 공시 없음"
-                      },
-                      "reviewStatus": "관찰 유지",
-                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
-                },
-                {
-                      "code": "064760",
-                      "name": "티씨케이",
-                      "industry": "반도체 소재",
-                      "group": "watch",
-                      "priority": 14,
-                      "reviewFocus": [
-                            "SiC Ring",
-                            "NAND 투자",
-                            "고객 인증",
-                            "2027E"
-                      ],
-                      "quote": {
-                            "ok": true,
-                            "source": "Naver Finance realtime",
-                            "price": "169,600",
-                            "changeRate": "1.56",
-                            "volume": "51,760",
-                            "note": "비공식 참고값"
-                      },
-                      "dart": {
-                            "ok": true,
-                            "items": [],
-                            "note": "최근 7일 신규 공시 없음"
-                      },
-                      "reviewStatus": "관찰 유지",
-                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
-                },
-                {
-                      "code": "251970",
-                      "name": "펌텍코리아",
-                      "industry": "화장품 용기",
-                      "group": "watch",
-                      "priority": 15,
-                      "reviewFocus": [
-                            "4공장",
-                            "고객 주문",
-                            "원가율",
-                            "해외 고객"
-                      ],
-                      "quote": {
-                            "ok": true,
-                            "source": "Naver Finance realtime",
-                            "price": "76,200",
-                            "changeRate": "-1.30",
-                            "volume": "59,461",
-                            "note": "비공식 참고값"
-                      },
-                      "dart": {
-                            "ok": true,
-                            "items": [],
-                            "note": "최근 7일 신규 공시 없음"
-                      },
-                      "reviewStatus": "관찰 유지",
-                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
-                },
-                {
-                      "code": "192080",
-                      "name": "더블유게임즈",
-                      "industry": "게임",
-                      "group": "reserve",
-                      "priority": 16,
-                      "reviewFocus": [
-                            "DTC",
-                            "아이게이밍",
-                            "유저 잔존율",
-                            "현금흐름"
-                      ],
-                      "quote": {
-                            "ok": true,
-                            "source": "Naver Finance realtime",
-                            "price": "54,700",
-                            "changeRate": "-2.50",
-                            "volume": "33,153",
-                            "note": "비공식 참고값"
-                      },
-                      "dart": {
-                            "ok": true,
-                            "items": [],
-                            "note": "최근 7일 신규 공시 없음"
-                      },
-                      "reviewStatus": "보류 관찰",
-                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
-                },
-                {
-                      "code": "051360",
-                      "name": "토비스",
-                      "industry": "산업용 모니터/디스플레이",
-                      "group": "reserve",
-                      "priority": 17,
-                      "reviewFocus": [
-                            "분할 후 별도 재무",
-                            "전장 고객",
-                            "카지노 수주",
-                            "재상장"
-                      ],
-                      "quote": {
-                            "ok": true,
-                            "source": "Naver Finance realtime",
-                            "price": "10,690",
-                            "changeRate": "1.91",
-                            "volume": "13,798",
-                            "note": "비공식 참고값"
-                      },
-                      "dart": {
-                            "ok": true,
-                            "items": [],
-                            "note": "최근 7일 신규 공시 없음"
-                      },
-                      "reviewStatus": "보류 관찰",
-                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
-                },
-                {
                       "code": "206640",
                       "name": "바디텍메드",
                       "industry": "진단기기",
-                      "group": "reserve",
-                      "priority": 18,
+                      "group": "watch",
+                      "priority": 15,
                       "reviewFocus": [
                             "설치 장비",
                             "카트리지",
@@ -5613,8 +5529,8 @@
                       "code": "053800",
                       "name": "안랩",
                       "industry": "보안 소프트웨어",
-                      "group": "reserve",
-                      "priority": 19,
+                      "group": "watch",
+                      "priority": 16,
                       "reviewFocus": [
                             "ARR",
                             "중동 매출",
@@ -5638,10 +5554,94 @@
                       "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
                 },
                 {
+                      "code": "145020",
+                      "name": "휴젤",
+                      "industry": "톡신/필러",
+                      "group": "watch",
+                      "priority": 17,
+                      "reviewFocus": [
+                            "미국 직판",
+                            "국가별 매출",
+                            "판관비",
+                            "OPM 회복"
+                      ],
+                      "quote": {
+                            "ok": true,
+                            "source": "Naver Finance realtime",
+                            "price": "201,500",
+                            "changeRate": "-2.42",
+                            "volume": "39,421",
+                            "note": "비공식 참고값"
+                      },
+                      "dart": {
+                            "ok": true,
+                            "items": [],
+                            "note": "최근 7일 신규 공시 없음"
+                      },
+                      "reviewStatus": "관찰 유지",
+                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
+                },
+                {
+                      "code": "051360",
+                      "name": "토비스",
+                      "industry": "산업용 모니터/디스플레이",
+                      "group": "watch",
+                      "priority": 18,
+                      "reviewFocus": [
+                            "분할 후 별도 재무",
+                            "전장 고객",
+                            "카지노 수주",
+                            "재상장"
+                      ],
+                      "quote": {
+                            "ok": true,
+                            "source": "Naver Finance realtime",
+                            "price": "10,690",
+                            "changeRate": "1.91",
+                            "volume": "13,798",
+                            "note": "비공식 참고값"
+                      },
+                      "dart": {
+                            "ok": true,
+                            "items": [],
+                            "note": "최근 7일 신규 공시 없음"
+                      },
+                      "reviewStatus": "보류 관찰",
+                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
+                },
+                {
+                      "code": "251970",
+                      "name": "펌텍코리아",
+                      "industry": "화장품 용기",
+                      "group": "watch",
+                      "priority": 19,
+                      "reviewFocus": [
+                            "4공장",
+                            "고객 주문",
+                            "원가율",
+                            "해외 고객"
+                      ],
+                      "quote": {
+                            "ok": true,
+                            "source": "Naver Finance realtime",
+                            "price": "76,200",
+                            "changeRate": "-1.30",
+                            "volume": "59,461",
+                            "note": "비공식 참고값"
+                      },
+                      "dart": {
+                            "ok": true,
+                            "items": [],
+                            "note": "최근 7일 신규 공시 없음"
+                      },
+                      "reviewStatus": "관찰 유지",
+                      "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
+                },
+                {
                       "code": "018290",
                       "name": "브이티",
                       "industry": "K뷰티 브랜드",
-                      "group": "reserve",
+                      "group": "watch",
                       "priority": 20,
                       "reviewFocus": [
                             "PDRN",
@@ -5665,7 +5665,8 @@
                       "reviewStatus": "보류 관찰",
                       "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
                 }
-          ]
+          ],
+          "selectionUpdatedAt": "2026-11-24T07:15:00"
     };
 
     function renderWeeklyGrowthWatchlist() {
@@ -8681,28 +8682,27 @@ const investmentDecision = {
     "공시·실적 원문과 당일 가격은 최종 매수 전에 사용자가 직접 확인한다."
   ],
   "counts": {
-    "관찰": 7,
-    "관심 제외": 6,
-    "심층 검토": 7
+    "관찰": 11,
+    "심층 검토": 9
   },
   "companies": {
     "145020": {
       "code": "145020",
       "name": "휴젤",
       "verdict": "관찰",
-      "totalScore": 59,
-      "confidence": 72,
+      "totalScore": 62,
+      "confidence": 70,
       "score": {
         "financialQuality": 80,
         "growthMomentum": 40,
         "valuationQuality": 65,
-        "riskAdjusted": 20,
-        "evidenceStrength": 79
+        "riskAdjusted": 40,
+        "evidenceStrength": 76
       },
       "evidence": [
         "실제 재무: 수익성 둔화 경보",
         "가격 대비 확정 실적: 성장 반영·검토 가능",
-        "추정치 자료: 기준일 153일 · 오래됨",
+        "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
         "최근 수집 범위에서 주요 DART 공시 없음"
       ],
       "positiveScenario": "미국 직판 매출이 비용 증가를 넘어선다.",
@@ -8714,38 +8714,40 @@ const investmentDecision = {
         "판관비율"
       ],
       "limitations": [
-        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "검증 가능한 최신 컨센서스·전망치가 연결되지 않아 자동 매수 조건 충족 판정을 막음",
+        "기존 정성 리서치 기준일이 153일 전이어서 현재 순위의 점수 근거로 사용하지 않음",
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
         "financial": "2026-11-24T07:15:04",
         "valuation": "2026-11-24T07:15:00",
-        "estimate": "기준일 153일 · 오래됨"
+        "estimate": "검증 가능한 최신 전망치 미연결",
+        "research": "2026-06-25"
       },
       "sourceStatus": {
         "financial": "OpenDART 공식 재무",
         "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
-        "estimate": "갱신 필요 또는 출처 재확인",
+        "estimate": "검증 가능한 최신 컨센서스 소스 미연결",
         "disclosure": "OpenDART 최근 공시"
       }
     },
     "192080": {
       "code": "192080",
       "name": "더블유게임즈",
-      "verdict": "관심 제외",
-      "totalScore": 81,
-      "confidence": 67,
+      "verdict": "심층 검토",
+      "totalScore": 79,
+      "confidence": 65,
       "score": {
         "financialQuality": 80,
         "growthMomentum": 85,
         "valuationQuality": 90,
-        "riskAdjusted": 62,
-        "evidenceStrength": 79
+        "riskAdjusted": 55,
+        "evidenceStrength": 76
       },
       "evidence": [
         "실제 재무: 성장 가속·유지",
         "가격 대비 확정 실적: 확정 실적 대비 여유",
-        "추정치 자료: 기준일 153일 · 오래됨",
+        "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
         "최근 수집 범위에서 주요 DART 공시 없음"
       ],
       "positiveScenario": "아이게이밍 매출과 결제 유저가 의미 있게 늘어난다.",
@@ -8757,18 +8759,20 @@ const investmentDecision = {
         "유저 잔존율"
       ],
       "limitations": [
-        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "검증 가능한 최신 컨센서스·전망치가 연결되지 않아 자동 매수 조건 충족 판정을 막음",
+        "기존 정성 리서치 기준일이 153일 전이어서 현재 순위의 점수 근거로 사용하지 않음",
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
         "financial": "2026-11-24T07:15:04",
         "valuation": "2026-11-24T07:15:00",
-        "estimate": "기준일 153일 · 오래됨"
+        "estimate": "검증 가능한 최신 전망치 미연결",
+        "research": "2026-06-25"
       },
       "sourceStatus": {
         "financial": "OpenDART 공식 재무",
         "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
-        "estimate": "갱신 필요 또는 출처 재확인",
+        "estimate": "검증 가능한 최신 컨센서스 소스 미연결",
         "disclosure": "OpenDART 최근 공시"
       }
     },
@@ -8776,19 +8780,19 @@ const investmentDecision = {
       "code": "196170",
       "name": "알테오젠",
       "verdict": "관찰",
-      "totalScore": 63,
-      "confidence": 73,
+      "totalScore": 68,
+      "confidence": 71,
       "score": {
         "financialQuality": 85,
         "growthMomentum": 85,
         "valuationQuality": 25,
-        "riskAdjusted": 12,
-        "evidenceStrength": 79
+        "riskAdjusted": 55,
+        "evidenceStrength": 76
       },
       "evidence": [
         "실제 재무: 성장 가속·유지",
         "가격 대비 확정 실적: 높은 미래 기대 반영",
-        "추정치 자료: 기준일 153일 · 오래됨",
+        "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
         "최근 수집 범위에서 주요 DART 공시 없음"
       ],
       "positiveScenario": "키트루다SC 전환과 로열티 인식이 계획대로 진행된다.",
@@ -8800,38 +8804,40 @@ const investmentDecision = {
         "로열티 인식"
       ],
       "limitations": [
-        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "검증 가능한 최신 컨센서스·전망치가 연결되지 않아 자동 매수 조건 충족 판정을 막음",
+        "기존 정성 리서치 기준일이 153일 전이어서 현재 순위의 점수 근거로 사용하지 않음",
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
         "financial": "2026-11-24T07:15:04",
         "valuation": "2026-11-24T07:15:00",
-        "estimate": "기준일 153일 · 오래됨"
+        "estimate": "검증 가능한 최신 전망치 미연결",
+        "research": "2026-06-25"
       },
       "sourceStatus": {
         "financial": "OpenDART 공식 재무",
         "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
-        "estimate": "갱신 필요 또는 출처 재확인",
+        "estimate": "검증 가능한 최신 컨센서스 소스 미연결",
         "disclosure": "OpenDART 최근 공시"
       }
     },
     "206640": {
       "code": "206640",
       "name": "바디텍메드",
-      "verdict": "관심 제외",
-      "totalScore": 62,
-      "confidence": 66,
+      "verdict": "관찰",
+      "totalScore": 63,
+      "confidence": 65,
       "score": {
         "financialQuality": 67,
         "growthMomentum": 40,
         "valuationQuality": 90,
-        "riskAdjusted": 29,
-        "evidenceStrength": 79
+        "riskAdjusted": 40,
+        "evidenceStrength": 76
       },
       "evidence": [
         "실제 재무: 수익성 둔화 경보",
         "가격 대비 확정 실적: 확정 실적 대비 여유",
-        "추정치 자료: 기준일 153일 · 오래됨",
+        "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
         "최근 수집 범위에서 주요 DART 공시 없음"
       ],
       "positiveScenario": "설치 장비와 카트리지 매출이 함께 늘어난다.",
@@ -8843,18 +8849,20 @@ const investmentDecision = {
         "국가별 매출"
       ],
       "limitations": [
-        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "검증 가능한 최신 컨센서스·전망치가 연결되지 않아 자동 매수 조건 충족 판정을 막음",
+        "기존 정성 리서치 기준일이 153일 전이어서 현재 순위의 점수 근거로 사용하지 않음",
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
         "financial": "2026-11-24T07:15:04",
         "valuation": "2026-11-24T07:15:00",
-        "estimate": "기준일 153일 · 오래됨"
+        "estimate": "검증 가능한 최신 전망치 미연결",
+        "research": "2026-06-25"
       },
       "sourceStatus": {
         "financial": "OpenDART 공식 재무",
         "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
-        "estimate": "갱신 필요 또는 출처 재확인",
+        "estimate": "검증 가능한 최신 컨센서스 소스 미연결",
         "disclosure": "OpenDART 최근 공시"
       }
     },
@@ -8862,19 +8870,19 @@ const investmentDecision = {
       "code": "207940",
       "name": "삼성바이오로직스",
       "verdict": "관찰",
-      "totalScore": 61,
-      "confidence": 73,
+      "totalScore": 64,
+      "confidence": 72,
       "score": {
         "financialQuality": 75,
         "growthMomentum": 65,
         "valuationQuality": 50,
-        "riskAdjusted": 18,
-        "evidenceStrength": 79
+        "riskAdjusted": 45,
+        "evidenceStrength": 76
       },
       "evidence": [
         "실제 재무: 성장 유지·확인",
         "가격 대비 확정 실적: 실적과 가격 동시 확인",
-        "추정치 자료: 기준일 153일 · 오래됨",
+        "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
         "지분변동: 임원ㆍ주요주주특정증권등소유상황보고서"
       ],
       "positiveScenario": "신규 수주와 공장 가동이 예정대로 매출을 만든다.",
@@ -8886,19 +8894,21 @@ const investmentDecision = {
         "록빌 매출"
       ],
       "limitations": [
-        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "검증 가능한 최신 컨센서스·전망치가 연결되지 않아 자동 매수 조건 충족 판정을 막음",
+        "기존 정성 리서치 기준일이 153일 전이어서 현재 순위의 점수 근거로 사용하지 않음",
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요",
         "공시 점검: 지분변동: 임원ㆍ주요주주특정증권등소유상황보고서"
       ],
       "freshness": {
         "financial": "2026-11-24T07:15:04",
         "valuation": "2026-11-24T07:15:00",
-        "estimate": "기준일 153일 · 오래됨"
+        "estimate": "검증 가능한 최신 전망치 미연결",
+        "research": "2026-06-25"
       },
       "sourceStatus": {
         "financial": "OpenDART 공식 재무",
         "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
-        "estimate": "갱신 필요 또는 출처 재확인",
+        "estimate": "검증 가능한 최신 컨센서스 소스 미연결",
         "disclosure": "OpenDART 최근 공시"
       }
     },
@@ -8906,19 +8916,19 @@ const investmentDecision = {
       "code": "214150",
       "name": "클래시스",
       "verdict": "관찰",
-      "totalScore": 66,
-      "confidence": 77,
+      "totalScore": 68,
+      "confidence": 75,
       "score": {
         "financialQuality": 85,
         "growthMomentum": 40,
         "valuationQuality": 90,
-        "riskAdjusted": 19,
-        "evidenceStrength": 79
+        "riskAdjusted": 40,
+        "evidenceStrength": 76
       },
       "evidence": [
         "실제 재무: 수익성 둔화 경보",
         "가격 대비 확정 실적: 확정 실적 대비 여유",
-        "추정치 자료: 기준일 153일 · 오래됨",
+        "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
         "최근 수집 범위에서 주요 DART 공시 없음"
       ],
       "positiveScenario": "소모품 매출과 브라질 회복이 확인된다.",
@@ -8930,18 +8940,20 @@ const investmentDecision = {
         "영업이익률"
       ],
       "limitations": [
-        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "검증 가능한 최신 컨센서스·전망치가 연결되지 않아 자동 매수 조건 충족 판정을 막음",
+        "기존 정성 리서치 기준일이 153일 전이어서 현재 순위의 점수 근거로 사용하지 않음",
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
         "financial": "2026-11-24T07:15:04",
         "valuation": "2026-11-24T07:15:00",
-        "estimate": "기준일 153일 · 오래됨"
+        "estimate": "검증 가능한 최신 전망치 미연결",
+        "research": "2026-06-25"
       },
       "sourceStatus": {
         "financial": "OpenDART 공식 재무",
         "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
-        "estimate": "갱신 필요 또는 출처 재확인",
+        "estimate": "검증 가능한 최신 컨센서스 소스 미연결",
         "disclosure": "OpenDART 최근 공시"
       }
     },
@@ -8950,18 +8962,18 @@ const investmentDecision = {
       "name": "파마리서치",
       "verdict": "심층 검토",
       "totalScore": 76,
-      "confidence": 81,
+      "confidence": 80,
       "score": {
         "financialQuality": 85,
         "growthMomentum": 85,
         "valuationQuality": 65,
-        "riskAdjusted": 52,
-        "evidenceStrength": 79
+        "riskAdjusted": 55,
+        "evidenceStrength": 76
       },
       "evidence": [
         "실제 재무: 성장 가속·유지",
         "가격 대비 확정 실적: 성장 반영·검토 가능",
-        "추정치 자료: 기준일 153일 · 오래됨",
+        "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
         "최근 수집 범위에서 주요 DART 공시 없음"
       ],
       "positiveScenario": "해외 재주문과 의료기기 수출이 반복 매출로 이어진다.",
@@ -8973,38 +8985,40 @@ const investmentDecision = {
         "영업이익률"
       ],
       "limitations": [
-        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "검증 가능한 최신 컨센서스·전망치가 연결되지 않아 자동 매수 조건 충족 판정을 막음",
+        "기존 정성 리서치 기준일이 153일 전이어서 현재 순위의 점수 근거로 사용하지 않음",
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
         "financial": "2026-11-24T07:15:04",
         "valuation": "2026-11-24T07:15:00",
-        "estimate": "기준일 153일 · 오래됨"
+        "estimate": "검증 가능한 최신 전망치 미연결",
+        "research": "2026-06-25"
       },
       "sourceStatus": {
         "financial": "OpenDART 공식 재무",
         "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
-        "estimate": "갱신 필요 또는 출처 재확인",
+        "estimate": "검증 가능한 최신 컨센서스 소스 미연결",
         "disclosure": "OpenDART 최근 공시"
       }
     },
     "251970": {
       "code": "251970",
       "name": "펌텍코리아",
-      "verdict": "관심 제외",
-      "totalScore": 57,
-      "confidence": 68,
+      "verdict": "관찰",
+      "totalScore": 58,
+      "confidence": 66,
       "score": {
         "financialQuality": 60,
         "growthMomentum": 65,
         "valuationQuality": 35,
-        "riskAdjusted": 44,
-        "evidenceStrength": 79
+        "riskAdjusted": 55,
+        "evidenceStrength": 76
       },
       "evidence": [
         "실제 재무: 성장 유지·확인",
         "가격 대비 확정 실적: 순이익 기준 확인 필요",
-        "추정치 자료: 기준일 153일 · 오래됨",
+        "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
         "최근 수집 범위에서 주요 DART 공시 없음"
       ],
       "positiveScenario": "주요 고객 주문 증가가 신공장 가동률로 이어진다.",
@@ -9016,18 +9030,20 @@ const investmentDecision = {
         "영업이익률"
       ],
       "limitations": [
-        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "검증 가능한 최신 컨센서스·전망치가 연결되지 않아 자동 매수 조건 충족 판정을 막음",
+        "기존 정성 리서치 기준일이 153일 전이어서 현재 순위의 점수 근거로 사용하지 않음",
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
         "financial": "2026-11-24T07:15:04",
         "valuation": "2026-11-24T07:15:00",
-        "estimate": "기준일 153일 · 오래됨"
+        "estimate": "검증 가능한 최신 전망치 미연결",
+        "research": "2026-06-25"
       },
       "sourceStatus": {
         "financial": "OpenDART 공식 재무",
         "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
-        "estimate": "갱신 필요 또는 출처 재확인",
+        "estimate": "검증 가능한 최신 컨센서스 소스 미연결",
         "disclosure": "OpenDART 최근 공시"
       }
     },
@@ -9035,19 +9051,19 @@ const investmentDecision = {
       "code": "257720",
       "name": "실리콘투",
       "verdict": "심층 검토",
-      "totalScore": 78,
-      "confidence": 79,
+      "totalScore": 79,
+      "confidence": 77,
       "score": {
         "financialQuality": 77,
         "growthMomentum": 85,
         "valuationQuality": 90,
-        "riskAdjusted": 45,
-        "evidenceStrength": 79
+        "riskAdjusted": 55,
+        "evidenceStrength": 76
       },
       "evidence": [
         "실제 재무: 성장 가속·유지",
         "가격 대비 확정 실적: 확정 실적 대비 여유",
-        "추정치 자료: 기준일 153일 · 오래됨",
+        "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
         "최근 수집 범위에서 주요 DART 공시 없음"
       ],
       "positiveScenario": "매출 성장과 함께 재고·매출채권 회전이 안정된다.",
@@ -9059,18 +9075,20 @@ const investmentDecision = {
         "영업현금흐름"
       ],
       "limitations": [
-        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "검증 가능한 최신 컨센서스·전망치가 연결되지 않아 자동 매수 조건 충족 판정을 막음",
+        "기존 정성 리서치 기준일이 153일 전이어서 현재 순위의 점수 근거로 사용하지 않음",
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
         "financial": "2026-11-24T07:15:04",
         "valuation": "2026-11-24T07:15:00",
-        "estimate": "기준일 153일 · 오래됨"
+        "estimate": "검증 가능한 최신 전망치 미연결",
+        "research": "2026-06-25"
       },
       "sourceStatus": {
         "financial": "OpenDART 공식 재무",
         "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
-        "estimate": "갱신 필요 또는 출처 재확인",
+        "estimate": "검증 가능한 최신 컨센서스 소스 미연결",
         "disclosure": "OpenDART 최근 공시"
       }
     },
@@ -9078,19 +9096,19 @@ const investmentDecision = {
       "code": "267260",
       "name": "HD현대일렉트릭",
       "verdict": "심층 검토",
-      "totalScore": 72,
-      "confidence": 76,
+      "totalScore": 76,
+      "confidence": 74,
       "score": {
         "financialQuality": 82,
         "growthMomentum": 85,
         "valuationQuality": 70,
-        "riskAdjusted": 20,
-        "evidenceStrength": 79
+        "riskAdjusted": 55,
+        "evidenceStrength": 76
       },
       "evidence": [
         "실제 재무: 성장 가속·유지",
         "가격 대비 확정 실적: 성장 반영·검토 가능",
-        "추정치 자료: 기준일 153일 · 오래됨",
+        "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
         "최근 수집 범위에서 주요 DART 공시 없음"
       ],
       "positiveScenario": "고마진 수주와 판가가 유지되며 공장 증설이 매출로 전환된다.",
@@ -9102,18 +9120,20 @@ const investmentDecision = {
         "미국 공장 진행"
       ],
       "limitations": [
-        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "검증 가능한 최신 컨센서스·전망치가 연결되지 않아 자동 매수 조건 충족 판정을 막음",
+        "기존 정성 리서치 기준일이 153일 전이어서 현재 순위의 점수 근거로 사용하지 않음",
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
         "financial": "2026-11-24T07:15:04",
         "valuation": "2026-11-24T07:15:00",
-        "estimate": "기준일 153일 · 오래됨"
+        "estimate": "검증 가능한 최신 전망치 미연결",
+        "research": "2026-06-25"
       },
       "sourceStatus": {
         "financial": "OpenDART 공식 재무",
         "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
-        "estimate": "갱신 필요 또는 출처 재확인",
+        "estimate": "검증 가능한 최신 컨센서스 소스 미연결",
         "disclosure": "OpenDART 최근 공시"
       }
     },
@@ -9121,19 +9141,19 @@ const investmentDecision = {
       "code": "278470",
       "name": "에이피알",
       "verdict": "심층 검토",
-      "totalScore": 68,
-      "confidence": 79,
+      "totalScore": 72,
+      "confidence": 77,
       "score": {
         "financialQuality": 82,
         "growthMomentum": 85,
         "valuationQuality": 50,
-        "riskAdjusted": 18,
-        "evidenceStrength": 79
+        "riskAdjusted": 55,
+        "evidenceStrength": 76
       },
       "evidence": [
         "실제 재무: 성장 가속·유지",
         "가격 대비 확정 실적: 실적과 가격 동시 확인",
-        "추정치 자료: 기준일 153일 · 오래됨",
+        "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
         "최근 수집 범위에서 주요 DART 공시 없음"
       ],
       "positiveScenario": "미국 고성장과 20%대 이익률이 동시에 유지된다.",
@@ -9145,18 +9165,20 @@ const investmentDecision = {
         "재고"
       ],
       "limitations": [
-        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "검증 가능한 최신 컨센서스·전망치가 연결되지 않아 자동 매수 조건 충족 판정을 막음",
+        "기존 정성 리서치 기준일이 153일 전이어서 현재 순위의 점수 근거로 사용하지 않음",
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
         "financial": "2026-11-24T07:15:04",
         "valuation": "2026-11-24T07:15:00",
-        "estimate": "기준일 153일 · 오래됨"
+        "estimate": "검증 가능한 최신 전망치 미연결",
+        "research": "2026-06-25"
       },
       "sourceStatus": {
         "financial": "OpenDART 공식 재무",
         "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
-        "estimate": "갱신 필요 또는 출처 재확인",
+        "estimate": "검증 가능한 최신 컨센서스 소스 미연결",
         "disclosure": "OpenDART 최근 공시"
       }
     },
@@ -9165,18 +9187,18 @@ const investmentDecision = {
       "name": "산일전기",
       "verdict": "심층 검토",
       "totalScore": 75,
-      "confidence": 75,
+      "confidence": 73,
       "score": {
         "financialQuality": 85,
         "growthMomentum": 85,
         "valuationQuality": 70,
-        "riskAdjusted": 56,
-        "evidenceStrength": 64
+        "riskAdjusted": 55,
+        "evidenceStrength": 61
       },
       "evidence": [
         "실제 재무: 성장 가속·유지",
         "가격 대비 확정 실적: 성장 반영·검토 가능",
-        "추정치 자료: 기준일 153일 · 오래됨",
+        "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
         "최근 수집 범위에서 주요 DART 공시 없음"
       ],
       "positiveScenario": "수주잔고가 늘고 고마진 수주가 매출로 전환된다.",
@@ -9188,19 +9210,21 @@ const investmentDecision = {
         "2027E 이익 추정치"
       ],
       "limitations": [
-        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "검증 가능한 최신 컨센서스·전망치가 연결되지 않아 자동 매수 조건 충족 판정을 막음",
+        "기존 정성 리서치 기준일이 153일 전이어서 현재 순위의 점수 근거로 사용하지 않음",
         "공식 재무 일부 기간이 누락되어 비교 신뢰도가 낮음",
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
         "financial": "2026-11-24T07:15:04",
         "valuation": "2026-11-24T07:15:00",
-        "estimate": "기준일 153일 · 오래됨"
+        "estimate": "검증 가능한 최신 전망치 미연결",
+        "research": "2026-06-25"
       },
       "sourceStatus": {
         "financial": "OpenDART 공식 재무",
         "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
-        "estimate": "갱신 필요 또는 출처 재확인",
+        "estimate": "검증 가능한 최신 컨센서스 소스 미연결",
         "disclosure": "OpenDART 최근 공시"
       }
     },
@@ -9208,19 +9232,19 @@ const investmentDecision = {
       "code": "003230",
       "name": "삼양식품",
       "verdict": "심층 검토",
-      "totalScore": 75,
-      "confidence": 81,
+      "totalScore": 76,
+      "confidence": 79,
       "score": {
         "financialQuality": 82,
         "growthMomentum": 85,
         "valuationQuality": 70,
-        "riskAdjusted": 44,
-        "evidenceStrength": 79
+        "riskAdjusted": 55,
+        "evidenceStrength": 76
       },
       "evidence": [
         "실제 재무: 성장 가속·유지",
         "가격 대비 확정 실적: 성장 반영·검토 가능",
-        "추정치 자료: 기준일 153일 · 오래됨",
+        "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
         "최근 수집 범위에서 주요 DART 공시 없음"
       ],
       "positiveScenario": "밀양2공장이 해외 판매 증가를 흡수하며 가동률을 높인다.",
@@ -9232,18 +9256,20 @@ const investmentDecision = {
         "공장 가동률"
       ],
       "limitations": [
-        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "검증 가능한 최신 컨센서스·전망치가 연결되지 않아 자동 매수 조건 충족 판정을 막음",
+        "기존 정성 리서치 기준일이 153일 전이어서 현재 순위의 점수 근거로 사용하지 않음",
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
         "financial": "2026-11-24T07:15:04",
         "valuation": "2026-11-24T07:15:00",
-        "estimate": "기준일 153일 · 오래됨"
+        "estimate": "검증 가능한 최신 전망치 미연결",
+        "research": "2026-06-25"
       },
       "sourceStatus": {
         "financial": "OpenDART 공식 재무",
         "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
-        "estimate": "갱신 필요 또는 출처 재확인",
+        "estimate": "검증 가능한 최신 컨센서스 소스 미연결",
         "disclosure": "OpenDART 최근 공시"
       }
     },
@@ -9252,18 +9278,18 @@ const investmentDecision = {
       "name": "LS ELECTRIC",
       "verdict": "관찰",
       "totalScore": 64,
-      "confidence": 80,
+      "confidence": 78,
       "score": {
         "financialQuality": 48,
         "growthMomentum": 85,
         "valuationQuality": 60,
-        "riskAdjusted": 48,
-        "evidenceStrength": 79
+        "riskAdjusted": 55,
+        "evidenceStrength": 76
       },
       "evidence": [
         "실제 재무: 성장 가속·유지",
         "가격 대비 확정 실적: 실적과 가격 동시 확인",
-        "추정치 자료: 기준일 153일 · 오래됨",
+        "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
         "최근 수집 범위에서 주요 DART 공시 없음"
       ],
       "positiveScenario": "수주잔고가 매출로 전환되고 신규 수주가 유지된다.",
@@ -9275,18 +9301,20 @@ const investmentDecision = {
         "영업이익률"
       ],
       "limitations": [
-        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "검증 가능한 최신 컨센서스·전망치가 연결되지 않아 자동 매수 조건 충족 판정을 막음",
+        "기존 정성 리서치 기준일이 153일 전이어서 현재 순위의 점수 근거로 사용하지 않음",
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
         "financial": "2026-11-24T07:15:04",
         "valuation": "2026-11-24T07:15:00",
-        "estimate": "기준일 153일 · 오래됨"
+        "estimate": "검증 가능한 최신 전망치 미연결",
+        "research": "2026-06-25"
       },
       "sourceStatus": {
         "financial": "OpenDART 공식 재무",
         "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
-        "estimate": "갱신 필요 또는 출처 재확인",
+        "estimate": "검증 가능한 최신 컨센서스 소스 미연결",
         "disclosure": "OpenDART 최근 공시"
       }
     },
@@ -9294,19 +9322,19 @@ const investmentDecision = {
       "code": "058470",
       "name": "리노공업",
       "verdict": "심층 검토",
-      "totalScore": 75,
-      "confidence": 78,
+      "totalScore": 77,
+      "confidence": 76,
       "score": {
         "financialQuality": 85,
         "growthMomentum": 85,
         "valuationQuality": 70,
-        "riskAdjusted": 40,
-        "evidenceStrength": 79
+        "riskAdjusted": 55,
+        "evidenceStrength": 76
       },
       "evidence": [
         "실제 재무: 성장 가속·유지",
         "가격 대비 확정 실적: 성장 반영·검토 가능",
-        "추정치 자료: 기준일 153일 · 오래됨",
+        "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
         "최근 수집 범위에서 주요 DART 공시 없음"
       ],
       "positiveScenario": "신공장 가동률 상승과 AI 고객 수요가 이어진다.",
@@ -9318,38 +9346,40 @@ const investmentDecision = {
         "영업이익률"
       ],
       "limitations": [
-        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "검증 가능한 최신 컨센서스·전망치가 연결되지 않아 자동 매수 조건 충족 판정을 막음",
+        "기존 정성 리서치 기준일이 153일 전이어서 현재 순위의 점수 근거로 사용하지 않음",
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
         "financial": "2026-11-24T07:15:04",
         "valuation": "2026-11-24T07:15:00",
-        "estimate": "기준일 153일 · 오래됨"
+        "estimate": "검증 가능한 최신 전망치 미연결",
+        "research": "2026-06-25"
       },
       "sourceStatus": {
         "financial": "OpenDART 공식 재무",
         "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
-        "estimate": "갱신 필요 또는 출처 재확인",
+        "estimate": "검증 가능한 최신 컨센서스 소스 미연결",
         "disclosure": "OpenDART 최근 공시"
       }
     },
     "000660": {
       "code": "000660",
       "name": "SK하이닉스",
-      "verdict": "관찰",
-      "totalScore": 71,
-      "confidence": 75,
+      "verdict": "심층 검토",
+      "totalScore": 76,
+      "confidence": 73,
       "score": {
         "financialQuality": 85,
         "growthMomentum": 85,
         "valuationQuality": 75,
-        "riskAdjusted": 0,
-        "evidenceStrength": 79
+        "riskAdjusted": 45,
+        "evidenceStrength": 76
       },
       "evidence": [
         "실제 재무: 성장 가속·유지",
         "가격 대비 확정 실적: 성장 반영·검토 가능",
-        "추정치 자료: 기준일 153일 · 오래됨",
+        "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
         "지분변동: 임원ㆍ주요주주특정증권등소유상황보고서"
       ],
       "positiveScenario": "HBM4 공급 부족과 이익 추정치 상향이 이어진다.",
@@ -9361,19 +9391,21 @@ const investmentDecision = {
         "2027E 이익 상향"
       ],
       "limitations": [
-        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "검증 가능한 최신 컨센서스·전망치가 연결되지 않아 자동 매수 조건 충족 판정을 막음",
+        "기존 정성 리서치 기준일이 153일 전이어서 현재 순위의 점수 근거로 사용하지 않음",
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요",
         "공시 점검: 지분변동: 임원ㆍ주요주주특정증권등소유상황보고서"
       ],
       "freshness": {
         "financial": "2026-11-24T07:15:04",
         "valuation": "2026-11-24T07:15:00",
-        "estimate": "기준일 153일 · 오래됨"
+        "estimate": "검증 가능한 최신 전망치 미연결",
+        "research": "2026-06-25"
       },
       "sourceStatus": {
         "financial": "OpenDART 공식 재무",
         "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
-        "estimate": "갱신 필요 또는 출처 재확인",
+        "estimate": "검증 가능한 최신 컨센서스 소스 미연결",
         "disclosure": "OpenDART 최근 공시"
       }
     },
@@ -9382,18 +9414,18 @@ const investmentDecision = {
       "name": "티씨케이",
       "verdict": "관찰",
       "totalScore": 70,
-      "confidence": 71,
+      "confidence": 70,
       "score": {
         "financialQuality": 72,
         "growthMomentum": 85,
         "valuationQuality": 55,
-        "riskAdjusted": 47,
-        "evidenceStrength": 79
+        "riskAdjusted": 55,
+        "evidenceStrength": 76
       },
       "evidence": [
         "실제 재무: 성장 가속·유지",
         "가격 대비 확정 실적: 실적과 가격 동시 확인",
-        "추정치 자료: 기준일 153일 · 오래됨",
+        "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
         "최근 수집 범위에서 주요 DART 공시 없음"
       ],
       "positiveScenario": "고객 투자 회복과 신규 매출 인식이 동반된다.",
@@ -9405,38 +9437,40 @@ const investmentDecision = {
         "매출총이익률"
       ],
       "limitations": [
-        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "검증 가능한 최신 컨센서스·전망치가 연결되지 않아 자동 매수 조건 충족 판정을 막음",
+        "기존 정성 리서치 기준일이 153일 전이어서 현재 순위의 점수 근거로 사용하지 않음",
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
         "financial": "2026-11-24T07:15:04",
         "valuation": "2026-11-24T07:15:00",
-        "estimate": "기준일 153일 · 오래됨"
+        "estimate": "검증 가능한 최신 전망치 미연결",
+        "research": "2026-06-25"
       },
       "sourceStatus": {
         "financial": "OpenDART 공식 재무",
         "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
-        "estimate": "갱신 필요 또는 출처 재확인",
+        "estimate": "검증 가능한 최신 컨센서스 소스 미연결",
         "disclosure": "OpenDART 최근 공시"
       }
     },
     "051360": {
       "code": "051360",
       "name": "토비스",
-      "verdict": "관심 제외",
-      "totalScore": 59,
-      "confidence": 68,
+      "verdict": "관찰",
+      "totalScore": 60,
+      "confidence": 67,
       "score": {
         "financialQuality": 48,
         "growthMomentum": 65,
         "valuationQuality": 60,
-        "riskAdjusted": 45,
-        "evidenceStrength": 79
+        "riskAdjusted": 55,
+        "evidenceStrength": 76
       },
       "evidence": [
         "실제 재무: 성장 유지·확인",
         "가격 대비 확정 실적: 실적과 가격 동시 확인",
-        "추정치 자료: 기준일 153일 · 오래됨",
+        "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
         "최근 수집 범위에서 주요 DART 공시 없음"
       ],
       "positiveScenario": "신규 고객과 사업부별 이익이 확인된다.",
@@ -9448,38 +9482,40 @@ const investmentDecision = {
         "카지노 수주"
       ],
       "limitations": [
-        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "검증 가능한 최신 컨센서스·전망치가 연결되지 않아 자동 매수 조건 충족 판정을 막음",
+        "기존 정성 리서치 기준일이 153일 전이어서 현재 순위의 점수 근거로 사용하지 않음",
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
         "financial": "2026-11-24T07:15:04",
         "valuation": "2026-11-24T07:15:00",
-        "estimate": "기준일 153일 · 오래됨"
+        "estimate": "검증 가능한 최신 전망치 미연결",
+        "research": "2026-06-25"
       },
       "sourceStatus": {
         "financial": "OpenDART 공식 재무",
         "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
-        "estimate": "갱신 필요 또는 출처 재확인",
+        "estimate": "검증 가능한 최신 컨센서스 소스 미연결",
         "disclosure": "OpenDART 최근 공시"
       }
     },
     "053800": {
       "code": "053800",
       "name": "안랩",
-      "verdict": "관심 제외",
+      "verdict": "관찰",
       "totalScore": 63,
-      "confidence": 66,
+      "confidence": 64,
       "score": {
         "financialQuality": 67,
         "growthMomentum": 65,
         "valuationQuality": 50,
-        "riskAdjusted": 50,
-        "evidenceStrength": 79
+        "riskAdjusted": 55,
+        "evidenceStrength": 76
       },
       "evidence": [
         "실제 재무: 성장 유지·확인",
         "가격 대비 확정 실적: 실적과 가격 동시 확인",
-        "추정치 자료: 기준일 153일 · 오래됨",
+        "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
         "최근 수집 범위에서 주요 DART 공시 없음"
       ],
       "positiveScenario": "ARR과 중동 매출이 늘고 대형 수주가 잡힌다.",
@@ -9491,38 +9527,40 @@ const investmentDecision = {
         "제로트러스트 수주"
       ],
       "limitations": [
-        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "검증 가능한 최신 컨센서스·전망치가 연결되지 않아 자동 매수 조건 충족 판정을 막음",
+        "기존 정성 리서치 기준일이 153일 전이어서 현재 순위의 점수 근거로 사용하지 않음",
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
         "financial": "2026-11-24T07:15:04",
         "valuation": "2026-11-24T07:15:00",
-        "estimate": "기준일 153일 · 오래됨"
+        "estimate": "검증 가능한 최신 전망치 미연결",
+        "research": "2026-06-25"
       },
       "sourceStatus": {
         "financial": "OpenDART 공식 재무",
         "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
-        "estimate": "갱신 필요 또는 출처 재확인",
+        "estimate": "검증 가능한 최신 컨센서스 소스 미연결",
         "disclosure": "OpenDART 최근 공시"
       }
     },
     "018290": {
       "code": "018290",
       "name": "브이티",
-      "verdict": "관심 제외",
-      "totalScore": 54,
-      "confidence": 62,
+      "verdict": "관찰",
+      "totalScore": 56,
+      "confidence": 61,
       "score": {
         "financialQuality": 62,
         "growthMomentum": 40,
         "valuationQuality": 60,
-        "riskAdjusted": 27,
-        "evidenceStrength": 79
+        "riskAdjusted": 40,
+        "evidenceStrength": 76
       },
       "evidence": [
         "실제 재무: 수익성 둔화 경보",
         "가격 대비 확정 실적: 실적과 가격 동시 확인",
-        "추정치 자료: 기준일 153일 · 오래됨",
+        "전망치·컨센서스: 검증 가능한 최신 전망치 미연결",
         "최근 수집 범위에서 주요 DART 공시 없음"
       ],
       "positiveScenario": "PDRN 판매와 미국·유럽 매출이 재가속한다.",
@@ -9534,24 +9572,304 @@ const investmentDecision = {
         "영업이익률"
       ],
       "limitations": [
-        "미래 추정치 기준일이 최근 45일 이내가 아니어서 자동 매수 조건 충족 판정을 막음",
+        "검증 가능한 최신 컨센서스·전망치가 연결되지 않아 자동 매수 조건 충족 판정을 막음",
+        "기존 정성 리서치 기준일이 153일 전이어서 현재 순위의 점수 근거로 사용하지 않음",
         "현재 가격은 비공식 참고값이므로 매수 전 증권사·거래소 가격 확인 필요"
       ],
       "freshness": {
         "financial": "2026-11-24T07:15:04",
         "valuation": "2026-11-24T07:15:00",
-        "estimate": "기준일 153일 · 오래됨"
+        "estimate": "검증 가능한 최신 전망치 미연결",
+        "research": "2026-06-25"
       },
       "sourceStatus": {
         "financial": "OpenDART 공식 재무",
         "valuation": "OpenDART 발행주식수 + Naver Finance 가격 참고값",
-        "estimate": "갱신 필요 또는 출처 재확인",
+        "estimate": "검증 가능한 최신 컨센서스 소스 미연결",
         "disclosure": "OpenDART 최근 공시"
       }
     }
   }
 };
 /* INVESTMENT_DECISION_END */
+
+/* CURRENT_GROWTH_SELECTION_START */
+const currentGrowthSelection = {
+  "updatedAt": "2026-11-24T07:15:00",
+  "methodology": "기존 20개 후보를 최신 공식 재무, 현재 가격 기반 확정 실적 밸류에이션, 최근 공시 위험 신호로 다시 정렬한다. 이는 전 종목 시장 스캔이 아니라 현재 관리 중인 20개 후보군의 재선별 결과다.",
+  "guardrails": [
+    "OpenDART 공식 재무가 없거나 최근 실적 경보가 있으면 심층 검토 우선순위를 낮춘다.",
+    "현재 가격은 Naver Finance 참고값이며, 확정 실적 P/E는 미래 이익 추정치가 아니다.",
+    "검증 가능한 최신 컨센서스·목표주가 소스가 연결되기 전에는 자동 매수 조건 충족으로 분류하지 않는다."
+  ],
+  "counts": {
+    "심층 검토": 9,
+    "관찰": 11
+  },
+  "items": [
+    {
+      "code": "257720",
+      "name": "실리콘투",
+      "industry": "K뷰티 유통",
+      "rank": 1,
+      "verdict": "심층 검토",
+      "totalScore": 79,
+      "confidence": 77,
+      "financialSignal": "성장 가속·유지",
+      "valuation": "확정 실적 대비 여유",
+      "currentFinancialPass": true,
+      "screenReason": "매출 성장·수익성·최근 실적 신호 통과"
+    },
+    {
+      "code": "192080",
+      "name": "더블유게임즈",
+      "industry": "게임",
+      "rank": 2,
+      "verdict": "심층 검토",
+      "totalScore": 79,
+      "confidence": 65,
+      "financialSignal": "성장 가속·유지",
+      "valuation": "확정 실적 대비 여유",
+      "currentFinancialPass": true,
+      "screenReason": "매출 성장·수익성·최근 실적 신호 통과"
+    },
+    {
+      "code": "058470",
+      "name": "리노공업",
+      "industry": "반도체 테스트 소켓",
+      "rank": 3,
+      "verdict": "심층 검토",
+      "totalScore": 77,
+      "confidence": 76,
+      "financialSignal": "성장 가속·유지",
+      "valuation": "성장 반영·검토 가능",
+      "currentFinancialPass": true,
+      "screenReason": "매출 성장·수익성·최근 실적 신호 통과"
+    },
+    {
+      "code": "214450",
+      "name": "파마리서치",
+      "industry": "의료기기/스킨부스터",
+      "rank": 4,
+      "verdict": "심층 검토",
+      "totalScore": 76,
+      "confidence": 80,
+      "financialSignal": "성장 가속·유지",
+      "valuation": "성장 반영·검토 가능",
+      "currentFinancialPass": true,
+      "screenReason": "매출 성장·수익성·최근 실적 신호 통과"
+    },
+    {
+      "code": "003230",
+      "name": "삼양식품",
+      "industry": "식품/글로벌 라면",
+      "rank": 5,
+      "verdict": "심층 검토",
+      "totalScore": 76,
+      "confidence": 79,
+      "financialSignal": "성장 가속·유지",
+      "valuation": "성장 반영·검토 가능",
+      "currentFinancialPass": true,
+      "screenReason": "매출 성장·수익성·최근 실적 신호 통과"
+    },
+    {
+      "code": "267260",
+      "name": "HD현대일렉트릭",
+      "industry": "전력기기",
+      "rank": 6,
+      "verdict": "심층 검토",
+      "totalScore": 76,
+      "confidence": 74,
+      "financialSignal": "성장 가속·유지",
+      "valuation": "성장 반영·검토 가능",
+      "currentFinancialPass": true,
+      "screenReason": "매출 성장·수익성·최근 실적 신호 통과"
+    },
+    {
+      "code": "000660",
+      "name": "SK하이닉스",
+      "industry": "AI 메모리/HBM",
+      "rank": 7,
+      "verdict": "심층 검토",
+      "totalScore": 76,
+      "confidence": 73,
+      "financialSignal": "성장 가속·유지",
+      "valuation": "성장 반영·검토 가능",
+      "currentFinancialPass": true,
+      "screenReason": "매출 성장·수익성·최근 실적 신호 통과"
+    },
+    {
+      "code": "062040",
+      "name": "산일전기",
+      "industry": "변압기/전력기기",
+      "rank": 8,
+      "verdict": "심층 검토",
+      "totalScore": 75,
+      "confidence": 73,
+      "financialSignal": "성장 가속·유지",
+      "valuation": "성장 반영·검토 가능",
+      "currentFinancialPass": true,
+      "screenReason": "매출 성장·수익성·최근 실적 신호 통과"
+    },
+    {
+      "code": "278470",
+      "name": "에이피알",
+      "industry": "K뷰티 브랜드/뷰티 디바이스",
+      "rank": 9,
+      "verdict": "심층 검토",
+      "totalScore": 72,
+      "confidence": 77,
+      "financialSignal": "성장 가속·유지",
+      "valuation": "실적과 가격 동시 확인",
+      "currentFinancialPass": true,
+      "screenReason": "매출 성장·수익성·최근 실적 신호 통과"
+    },
+    {
+      "code": "196170",
+      "name": "알테오젠",
+      "industry": "바이오 플랫폼",
+      "rank": 10,
+      "verdict": "관찰",
+      "totalScore": 68,
+      "confidence": 71,
+      "financialSignal": "성장 가속·유지",
+      "valuation": "높은 미래 기대 반영",
+      "currentFinancialPass": true,
+      "screenReason": "매출 성장·수익성·최근 실적 신호 통과"
+    },
+    {
+      "code": "064760",
+      "name": "티씨케이",
+      "industry": "반도체 소재",
+      "rank": 11,
+      "verdict": "관찰",
+      "totalScore": 70,
+      "confidence": 70,
+      "financialSignal": "성장 가속·유지",
+      "valuation": "실적과 가격 동시 확인",
+      "currentFinancialPass": false,
+      "screenReason": "성장 가속·유지"
+    },
+    {
+      "code": "214150",
+      "name": "클래시스",
+      "industry": "미용 의료기기",
+      "rank": 12,
+      "verdict": "관찰",
+      "totalScore": 68,
+      "confidence": 75,
+      "financialSignal": "수익성 둔화 경보",
+      "valuation": "확정 실적 대비 여유",
+      "currentFinancialPass": false,
+      "screenReason": "수익성 둔화 경보"
+    },
+    {
+      "code": "010120",
+      "name": "LS ELECTRIC",
+      "industry": "전력기기",
+      "rank": 13,
+      "verdict": "관찰",
+      "totalScore": 64,
+      "confidence": 78,
+      "financialSignal": "성장 가속·유지",
+      "valuation": "실적과 가격 동시 확인",
+      "currentFinancialPass": false,
+      "screenReason": "성장 가속·유지"
+    },
+    {
+      "code": "207940",
+      "name": "삼성바이오로직스",
+      "industry": "CDMO",
+      "rank": 14,
+      "verdict": "관찰",
+      "totalScore": 64,
+      "confidence": 72,
+      "financialSignal": "성장 유지·확인",
+      "valuation": "실적과 가격 동시 확인",
+      "currentFinancialPass": false,
+      "screenReason": "성장 유지·확인"
+    },
+    {
+      "code": "206640",
+      "name": "바디텍메드",
+      "industry": "진단기기",
+      "rank": 15,
+      "verdict": "관찰",
+      "totalScore": 63,
+      "confidence": 65,
+      "financialSignal": "수익성 둔화 경보",
+      "valuation": "확정 실적 대비 여유",
+      "currentFinancialPass": false,
+      "screenReason": "수익성 둔화 경보"
+    },
+    {
+      "code": "053800",
+      "name": "안랩",
+      "industry": "보안 소프트웨어",
+      "rank": 16,
+      "verdict": "관찰",
+      "totalScore": 63,
+      "confidence": 64,
+      "financialSignal": "성장 유지·확인",
+      "valuation": "실적과 가격 동시 확인",
+      "currentFinancialPass": false,
+      "screenReason": "성장 유지·확인"
+    },
+    {
+      "code": "145020",
+      "name": "휴젤",
+      "industry": "톡신/필러",
+      "rank": 17,
+      "verdict": "관찰",
+      "totalScore": 62,
+      "confidence": 70,
+      "financialSignal": "수익성 둔화 경보",
+      "valuation": "성장 반영·검토 가능",
+      "currentFinancialPass": false,
+      "screenReason": "수익성 둔화 경보"
+    },
+    {
+      "code": "051360",
+      "name": "토비스",
+      "industry": "산업용 모니터/디스플레이",
+      "rank": 18,
+      "verdict": "관찰",
+      "totalScore": 60,
+      "confidence": 67,
+      "financialSignal": "성장 유지·확인",
+      "valuation": "실적과 가격 동시 확인",
+      "currentFinancialPass": false,
+      "screenReason": "성장 유지·확인"
+    },
+    {
+      "code": "251970",
+      "name": "펌텍코리아",
+      "industry": "화장품 용기",
+      "rank": 19,
+      "verdict": "관찰",
+      "totalScore": 58,
+      "confidence": 66,
+      "financialSignal": "성장 유지·확인",
+      "valuation": "순이익 기준 확인 필요",
+      "currentFinancialPass": false,
+      "screenReason": "성장 유지·확인"
+    },
+    {
+      "code": "018290",
+      "name": "브이티",
+      "industry": "K뷰티 브랜드",
+      "rank": 20,
+      "verdict": "관찰",
+      "totalScore": 56,
+      "confidence": 61,
+      "financialSignal": "수익성 둔화 경보",
+      "valuation": "실적과 가격 동시 확인",
+      "currentFinancialPass": false,
+      "screenReason": "수익성 둔화 경보"
+    }
+  ]
+};
+/* CURRENT_GROWTH_SELECTION_END */
 
     function getDecisionModel(company) {
       const model = companyDecisionModel.companies?.[company.code] || {};
@@ -9665,6 +9983,10 @@ const investmentDecision = {
 
     function decisionConclusionRank(conclusion) {
       return { "매수 조건 충족": 0, "심층 검토": 1, "관찰": 2, "관심 제외": 3 }[conclusion] ?? 4;
+    }
+
+    function getCurrentGrowthSelection(company) {
+      return currentGrowthSelection.items?.find((item) => item.code === company.code) || null;
     }
 
     function decisionFreshness(value) {
@@ -10747,13 +11069,16 @@ const investmentDecision = {
 
     function renderDecisionOverview() {
       const rows = companies.map((company) => ({ company, decision: getDecisionModel(company) }))
-        .sort((a, b) => decisionConclusionRank(a.decision.conclusion) - decisionConclusionRank(b.decision.conclusion) || b.decision.confidence - a.decision.confidence);
+        .sort((a, b) => (getCurrentGrowthSelection(a.company)?.rank ?? 99) - (getCurrentGrowthSelection(b.company)?.rank ?? 99));
       return `
         <div class="history-table">
           <table>
-            <thead><tr><th>AI 결론</th><th>종목</th><th>성장 지속</th><th>밸류 매력</th><th>기대 반영</th><th>신뢰도</th><th>판단을 바꿀 조건</th></tr></thead>
-            <tbody>${rows.map(({ company, decision }) => `
+            <thead><tr><th>재선별</th><th>AI 결론</th><th>종목</th><th>성장 지속</th><th>밸류 매력</th><th>기대 반영</th><th>신뢰도</th><th>판단을 바꿀 조건</th></tr></thead>
+            <tbody>${rows.map(({ company, decision }) => {
+              const selection = getCurrentGrowthSelection(company);
+              return `
               <tr>
+                <td>${selection?.rank ?? "-"}<br><span class="muted">${selection?.currentFinancialPass ? "재무 통과" : "재확인"}</span></td>
                 <td><span class="status-tag">${decision.aiVerdict}</span></td>
                 <td><strong>${company.name}</strong><br><span class="muted">${company.code} · ${company.industry}</span></td>
                 <td>${decision.analysis?.score?.growthMomentum ?? decision.growthDurability ?? "-"}/100</td>
@@ -10761,7 +11086,8 @@ const investmentDecision = {
                 <td>${decision.analysis?.score?.riskAdjusted ?? decision.expectationBurden ?? "-"}/100</td>
                 <td>${decision.aiConfidence}/100</td>
                 <td>${decision.analysis?.invalidation || decision.invalidateCondition || "다음 실적 확인"}</td>
-              </tr>`).join("")}</tbody>
+              </tr>`;
+            }).join("")}</tbody>
           </table>
         </div>`;
     }
@@ -10798,7 +11124,7 @@ const investmentDecision = {
           <div class="summary-card"><label>심층 검토</label><strong>${counts[0].count}개</strong><span>${deepNames || "없음"}</span></div>
           <div class="summary-card"><label>관찰</label><strong>${counts[1].count}개</strong><span>실적·공시로 판단을 좁힐 후보</span></div>
           <div class="summary-card"><label>관심 제외</label><strong>${counts[2].count}개</strong><span>성장 또는 가격 근거가 부족한 후보</span></div>
-          <div class="summary-card"><label>판단 데이터 기준일</label><strong>${investmentDecision.updatedAt || companyDecisionModel.updatedAt}</strong><span>추정치 기준일이 오래되면 결론 상향을 제한합니다.</span></div>
+          <div class="summary-card"><label>재선별 기준일</label><strong>${currentGrowthSelection.updatedAt || investmentDecision.updatedAt || companyDecisionModel.updatedAt}</strong><span>공식 재무·현재 가격으로 평일마다 우선순위를 다시 계산합니다.</span></div>
         </div>
         <div class="section-stack">
           <details class="detail-group" open>
