@@ -102,5 +102,6 @@ const scanPath = path.join(path.dirname(target), "data", "market-growth-scan.jso
 const marketEmbed = html.match(/\/\* MARKET_GROWTH_SCAN_START \*\/\s*const marketGrowthScan = ([\s\S]*?);\s*\/\* MARKET_GROWTH_SCAN_END \*\//);
 const market = JSON.parse(marketEmbed[1]);
 if (fs.existsSync(scanPath) && JSON.stringify(JSON.parse(fs.readFileSync(scanPath, "utf8"))) !== JSON.stringify(market)) throw new Error("Market scan differs from HTML");
-console.log(JSON.stringify({ script: "ok", requiredMarkers: required.length, decisionRecords: records.length, financialRecords: financialRecords.length, valuationRecords: valuationRecords.length, eventRecords: eventRecords.length, automatedDecisions: decisionRecords.length, currentSelections: (selection.items || []).length, purchaseRecords: purchaseRecords.length, marketCandidates: market.items.length, target }, null, 2));
+const marketTracks = market.tracks ? Object.fromEntries(Object.entries(market.tracks).map(([key, track]) => [key, track.items.length])) : { verified: market.items.length };
+console.log(JSON.stringify({ script: "ok", requiredMarkers: required.length, decisionRecords: records.length, financialRecords: financialRecords.length, valuationRecords: valuationRecords.length, eventRecords: eventRecords.length, automatedDecisions: decisionRecords.length, currentSelections: (selection.items || []).length, purchaseRecords: purchaseRecords.length, marketTracks, target }, null, 2));
 

@@ -13532,33 +13532,58 @@ const marketGrowthScan = {
 };
 /* MARKET_GROWTH_SCAN_END */
 
-    function renderMarketGrowthScan() {
-      const scan = marketGrowthScan;
-      if (!scan.updatedAt) return '<div class="data-caption">시장 스크리너 첫 실행 대기</div>';
-      const escapeListing = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => (
+    function escapeMarketGrowth(value) {
+      return String(value ?? "").replace(/[&<>"']/g, (char) => (
         {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[char]
       ));
-      const counts = scan.counts || {};
-      const incomplete = (counts.dartMissing || 0) + (counts.annualMissing || 0) + (counts.recentMissing || 0);
+    }
+
+    function marketGrowthTracks(scan) {
+      return scan.tracks || { verified: { ...scan, label: "성장·수익성 확인형", qualified: scan.pricedPass,
+        criteria: "최근 연간·누적 매출 증가율과 영업·순이익률 각각 10% 이상. 영업이익률 하락 5%p 미만." } };
+    }
+
+    function renderMarketGrowthTable(track) {
+      const scan = marketGrowthScan;
+      const escapeListing = escapeMarketGrowth;
       return `
-        <div class="data-caption">코스피 ${scan.markets.KOSPI.toLocaleString("ko-KR")}개 · 코스닥 ${scan.markets.KOSDAQ.toLocaleString("ko-KR")}개 · 재무 조회 대상 ${scan.eligibleCount.toLocaleString("ko-KR")}개 · 재무·시세 통과 ${scan.pricedPass}개 · 기존 리서치 목록 밖 ${scan.outsideWatchlist}개 · 갱신 ${escapeListing(scan.updatedAt.slice(0, 16).replace("T", " "))} 한국시간</div>
+        <div class="data-caption">이 유형 ${track.qualified}개 · 상위 ${track.items.length}개 표시 · 기존 리서치 목록 밖 ${track.outsideWatchlist}개</div>
+        <div class="data-caption">${escapeListing(track.criteria)}</div>
         <div class="history-table"><table>
-          <thead><tr><th>순위</th><th>종목 · 시장</th><th>연간 매출 증가율<br>${escapeListing(scan.annualPeriod)}</th><th>최근 매출 증가율<br>${escapeListing(scan.recentPeriod)}</th><th>최근 영업·순이익률</th><th>연간 실적 PER<br>참고값</th><th>시세 · 원문</th></tr></thead>
-          <tbody>${scan.items.length ? scan.items.map((row) => `<tr>
+          <thead><tr><th>순위</th><th>종목 · 시장</th><th>연간 매출 증가율<br>${escapeListing(scan.annualPeriod)}</th><th>최근 매출 증가율<br>${escapeListing(scan.recentPeriod)}</th><th>최근 영업이익 증가율</th><th>최근 영업·순이익률<br>영업이익률 YoY</th><th>연간 실적 PER<br>참고값</th><th>시세 · 원문</th></tr></thead>
+          <tbody>${track.items.length ? track.items.map((row) => `<tr>
             <td>${row.rank}</td>
             <td><strong>${escapeListing(row.name)}</strong><br><span class="muted">${row.code} · ${row.market === "KOSPI" ? "코스피" : "코스닥"} · ${row.scope === "CFS" ? "연결" : "별도"}</span><br>
               ${row.inWatchlist ? "" : '<span class="status-tag">리서치 목록 밖</span>'}
-              ${scan.previousRun && row.newInTop ? '<span class="status-tag">이번 회차 진입</span>' : ""}</td>
+              ${track.previousRun && row.newInTop ? '<span class="status-tag">이번 회차 진입</span>' : ""}</td>
             <td>${signedPurchaseValue(row.annualGrowth)}</td><td>${signedPurchaseValue(row.recentGrowth)}</td>
-            <td>${formatPercent(row.recentOperatingMargin)} · ${formatPercent(row.recentNetMargin)}</td>
-            <td>${row.annualPer}배</td>
+            <td>${signedPurchaseValue(row.recentOperatingGrowth)}</td>
+            <td>${formatPercent(row.recentOperatingMargin)} · ${formatPercent(row.recentNetMargin)}<br><span class="muted">${signedPurchaseValue(row.marginDelta, "%p")}</span></td>
+            <td>${row.annualPer == null ? "산정 보류" : `${row.annualPer}배`}</td>
             <td>${row.price.toLocaleString("ko-KR")}원 <span class="muted">${escapeListing(row.priceTime.slice(0, 16).replace("T", " "))}</span><br>
               <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=${row.recentReceipt}" target="_blank" rel="noreferrer">최근 실적</a>
               · <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=${row.annualReceipt}" target="_blank" rel="noreferrer">연간 실적</a></td>
-          </tr>`).join("") : '<tr><td colspan="7">통과 종목 없음</td></tr>'}</tbody>
+          </tr>`).join("") : '<tr><td colspan="8">통과 종목 없음</td></tr>'}</tbody>
         </table></div>
-        <div class="data-caption">목록: ${escapeListing(scan.universeSource || "—")} · 재무 미확인 ${incomplete}개 · 재무 통과 후 시세 확인 불가 ${counts.quoteMissing || 0}개${counts.issuerMissing ? ` · 업종·결산월 확인 불가 ${counts.issuerMissing}개` : ""}${scan.removed.length ? ` · 상위권 이탈: ${scan.removed.map(escapeListing).join(" · ")}` : ""}</div>
-        <div class="data-caption">최근 2년 연속 매출 증가, 최근 연간·누적 매출 성장률 각각 10% 이상과 영업·순이익률 각각 10% 이상, 영업이익률 하락 5%p 미만. 금융·일부 지주·리츠·스팩·12월 외 결산 제외. OpenDART 확정 실적과 네이버 증권 시세 참고값으로 비교하며, PER 분모는 연간 총순이익입니다. 기존 회사별 리서치와 별도인 신규 검토 목록입니다.</div>
+        ${track.removed?.length ? `<div class="data-caption">이 유형 상위권 이탈: ${track.removed.map(escapeListing).join(" · ")}</div>` : ""}
+      `;
+    }
+
+    function renderMarketGrowthScan() {
+      const scan = marketGrowthScan;
+      if (!scan.updatedAt) return '<div class="data-caption">시장 스크리너 첫 실행 대기</div>';
+      const tracks = marketGrowthTracks(scan);
+      const counts = scan.counts || {};
+      const incomplete = (counts.dartMissing || 0) + (counts.annualMissing || 0) + (counts.recentMissing || 0);
+      return `
+        <div class="data-caption">코스피 ${scan.markets.KOSPI.toLocaleString("ko-KR")}개 · 코스닥 ${scan.markets.KOSDAQ.toLocaleString("ko-KR")}개 · 재무 조회 대상 ${scan.eligibleCount.toLocaleString("ko-KR")}개 · 전체 유형 통과 ${scan.pricedPass}개 · 갱신 ${escapeMarketGrowth(scan.updatedAt.slice(0, 16).replace("T", " "))} 한국시간</div>
+        <label for="marketGrowthRoute">성장 유형</label>
+        <select class="industry-select" id="marketGrowthRoute">
+          ${Object.entries(tracks).map(([key, track]) => `<option value="${key}">${escapeMarketGrowth(track.label)} (${track.qualified}개)</option>`).join("")}
+        </select>
+        <div id="marketGrowthResults">${renderMarketGrowthTable(tracks.verified)}</div>
+        <div class="data-caption">목록: ${escapeMarketGrowth(scan.universeSource || "—")} · 재무 미확인 ${incomplete}개 · 시세 확인 불가 ${counts.quoteMissing || 0}개${counts.issuerMissing ? ` · 업종·결산월 확인 불가 ${counts.issuerMissing}개` : ""}</div>
+        <div class="data-caption">공통: 최근 2년 연속 매출 증가. 금융·일부 지주·리츠·스팩·12월 외 결산 제외. OpenDART 확정 실적, 네이버 증권 시세 참고값. 유형별 순위는 서로 비교하지 않으며, 매수 판단이 아닙니다.</div>
       `;
     }
 
@@ -13575,7 +13600,7 @@ const marketGrowthScan = {
         </div>
         <div class="section-stack">
           <details class="detail-group" open>
-            <summary>시장 스크리너 · 새 성장주 후보 ${marketGrowthScan.updatedAt ? marketGrowthScan.items.length + "개" : ""}</summary>
+            <summary>시장 스크리너 · 유형별 성장주 후보</summary>
             <div class="detail-group-body">${renderMarketGrowthScan()}</div>
           </details>
           <details class="detail-group" open>
@@ -13768,6 +13793,13 @@ const marketGrowthScan = {
       const target = document.getElementById("commonDashboardBody");
       if (!target) return;
       target.innerHTML = renderCommonDashboard();
+      const marketRoute = document.getElementById("marketGrowthRoute");
+      if (marketRoute) {
+        const marketResults = document.getElementById("marketGrowthResults");
+        marketRoute.addEventListener("change", () => {
+          marketResults.innerHTML = renderMarketGrowthTable(marketGrowthTracks(marketGrowthScan)[marketRoute.value]);
+        });
+      }
       const inputs = ["positionAllocation", "positionStress", "positionLoss"].map((id) => document.getElementById(id));
       const output = document.getElementById("positionOutput");
       const update = () => {

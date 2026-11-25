@@ -34,6 +34,16 @@ RESULT_LIMIT = 20
 MIN_GROWTH = 10
 MIN_MARGIN = 10
 MAX_MARGIN_DROP = -5
+HIGH_MARGIN = 15
+MIN_PROFIT_GROWTH = 10
+HIGH_SALES_GROWTH = 20
+MIN_MARGIN_IMPROVEMENT = 2
+TRACKS = {
+    "verified": ("성장·수익성 확인형", "최근 연간·누적 매출 증가율과 영업·순이익률 각각 10% 이상. 영업이익률 하락 5%p 미만."),
+    "profitLed": ("고마진·이익 성장형", "최근 연간·누적 매출 증가, 영업이익률 15%·순이익률 10% 이상. 최근 영업이익 증가율 10% 이상이면서 매출 증가율보다 높고, 영업이익률 하락 5%p 미만."),
+    "salesImproving": ("고매출 성장 · 마진 개선 확인", "최근 연간 매출 증가율 10%·누적 20% 이상. 이익률 10% 기준에는 못 미치지만 최근 영업·순이익 흑자 및 영업이익률 2%p 이상 개선."),
+    "salesWatch": ("고매출 성장 · 마진 확인 대기", "최근 연간 매출 증가율 10%·누적 20% 이상. 이익률 10% 기준 미달이고 개선 확인 조건에도 미달. 영업이익률 하락 5%p 이상은 제외."),
+}
 CODE = re.compile(r"[0-9A-Z]{6}")
 RECEIPT = re.compile(r"\d{14}")
 CORP_CODE = re.compile(r"\d{8}")
@@ -293,8 +303,7 @@ def divide(numerator, denominator):
 
 
 def growth(current, prior):
-    level = divide(current, prior)
-    return level - 100 if level is not None else None
+    return divide(current - prior, prior) if current is not None and prior is not None else None
 
 
 def annual_statement(records, scope):
@@ -306,8 +315,9 @@ def annual_statement(records, scope):
         older = number(a["sales"].get("bfefrmtrm_amount"))
         values = (growth(sales, prior), growth(prior, older), divide(op, sales), divide(net, sales))
         if all(value is not None for value in values):
+            prior_op = number(a["operating"].get("frmtrm_amount"))
             return {"receipt": receipt, "net": net, "values": values,
-                    "priorOpMargin": divide(number(a["operating"].get("frmtrm_amount")), prior),
+                    "priorOpMargin": divide(prior_op, prior), "opGrowth": growth(op, prior_op),
                     "debtRatio": divide(number(a.get("debt", {}).get("thstrm_amount")), number(a.get("equity", {}).get("thstrm_amount")))}
     return None
 
@@ -323,12 +333,12 @@ def interim_statement(records, scope, report):
         op_margin, prior_margin = divide(op, sales), divide(prior_op, prior)
         values = (growth(sales, prior), op_margin, divide(net, sales), prior_margin)
         if all(value is not None for value in values):
-            return {"receipt": receipt, "values": values,
+            return {"receipt": receipt, "values": values, "opGrowth": growth(op, prior_op),
                     "debtRatio": divide(number(a.get("debt", {}).get("thstrm_amount")), number(a.get("equity", {}).get("thstrm_amount")))}
     return None
 
 
-def financial_screen(annual, interim, report):
+def annual_prefilter(annual):
     # Use consolidated statements whenever the relevant rows exist. Do not
     # rescue a failing consolidated company with a better separate statement.
     scope = "CFS" if any(basis == "CFS" for basis, _ in annual) else "OFS"
@@ -336,23 +346,44 @@ def financial_screen(annual, interim, report):
     if not yearly:
         return "annualMissing", None
     sales_growth, preceding_growth, op_margin, net_margin = yearly["values"]
-    if not (sales_growth >= MIN_GROWTH and preceding_growth > 0 and min(op_margin, net_margin) >= MIN_MARGIN):
+    if preceding_growth <= 0 or not (sales_growth >= MIN_GROWTH or (
+            sales_growth > 0 and op_margin >= HIGH_MARGIN and net_margin >= MIN_MARGIN)):
         return "annualFail", None
+    return scope, yearly
+
+
+def financial_screen(annual, interim, report):
+    scope, yearly = annual_prefilter(annual)
+    if not yearly:
+        return scope, None
+    sales_growth, preceding_growth, op_margin, net_margin = yearly["values"]
     current = interim_statement(interim, scope, report) if report else {
         "receipt": yearly["receipt"], "values": (sales_growth, op_margin, net_margin, yearly["priorOpMargin"]),
-        "debtRatio": yearly["debtRatio"],
+        "debtRatio": yearly["debtRatio"], "opGrowth": yearly["opGrowth"],
     }
     if not current or current["values"][-1] is None:
         return "recentMissing", None
     recent_growth, recent_op, recent_net, prior_margin = current["values"]
-    if not (recent_growth >= MIN_GROWTH and min(recent_op, recent_net) >= MIN_MARGIN and recent_op - prior_margin > MAX_MARGIN_DROP):
+    margin_delta = recent_op - prior_margin
+    op_growth = current["opGrowth"]
+    if margin_delta <= MAX_MARGIN_DROP:
+        return "recentFail", None
+    if min(sales_growth, recent_growth) >= MIN_GROWTH and min(op_margin, net_margin, recent_op, recent_net) >= MIN_MARGIN:
+        track = "verified"
+    elif (recent_growth > 0 and min(op_margin, recent_op) >= HIGH_MARGIN and min(net_margin, recent_net) >= MIN_MARGIN
+            and op_growth is not None and op_growth >= MIN_PROFIT_GROWTH and op_growth > recent_growth):
+        track = "profitLed"
+    elif sales_growth >= MIN_GROWTH and recent_growth >= HIGH_SALES_GROWTH:
+        track = "salesImproving" if margin_delta >= MIN_MARGIN_IMPROVEMENT and min(recent_op, recent_net) > 0 else "salesWatch"
+    else:
         return "recentFail", None
     return "financialPass", {
+        "track": track,
         "scope": scope, "annualReceipt": yearly["receipt"], "recentReceipt": current["receipt"],
         "annualGrowth": sales_growth, "priorAnnualGrowth": preceding_growth,
         "annualOperatingMargin": op_margin, "annualNetMargin": net_margin,
         "recentGrowth": recent_growth, "recentOperatingMargin": recent_op, "recentNetMargin": recent_net,
-        "marginDelta": recent_op - prior_margin, "debtRatio": current["debtRatio"],
+        "marginDelta": margin_delta, "recentOperatingGrowth": op_growth, "debtRatio": current["debtRatio"],
         "annualTotalNet": yearly["net"],
     }
 
@@ -389,15 +420,47 @@ def price_candidate(facts, quote, now):
         return None
     if not (price and price > 0 and market_cap and market_cap > 0 and volume and volume > 0 and 0 <= age.days <= 7):
         return None
-    per = market_cap / facts["annualTotalNet"]
+    per = market_cap / facts["annualTotalNet"] if facts["annualTotalNet"] > 0 else None
 
     def factor(value, cap):
         return max(0, min(value / cap, 1))
 
-    score = 30 * factor(facts["recentGrowth"], 40) + 25 * factor(facts["annualGrowth"], 40) + (
-        20 * factor(facts["recentOperatingMargin"], 30) + 10 * factor(facts["recentNetMargin"], 25)) + 15 * min(15 / per, 1)
+    track = facts.get("track", "verified")
+    value = min(15 / per, 1) if per else 0
+    if track == "profitLed":
+        score = (35 * factor(facts["recentOperatingGrowth"], 30) + 25 * factor(facts["recentOperatingMargin"], 30)
+                 + 15 * factor(facts["recentNetMargin"], 25) + 10 * factor(facts["recentGrowth"], 15) + 15 * value)
+    elif track in ("salesImproving", "salesWatch"):
+        score = (35 * factor(facts["recentGrowth"], 60) + 20 * factor(facts["annualGrowth"], 40)
+                 + 30 * factor(facts["marginDelta"] + 5, 12) + 15 * factor(facts["recentOperatingMargin"], 15))
+    else:
+        score = 30 * factor(facts["recentGrowth"], 40) + 25 * factor(facts["annualGrowth"], 40) + (
+            20 * factor(facts["recentOperatingMargin"], 30) + 10 * factor(facts["recentNetMargin"], 25)) + 15 * value
     return {"price": int(price), "marketCap": int(market_cap), "priceTime": traded,
-            "annualPer": round(per, 1), "score": round(score, 2)}
+            "annualPer": round(per, 1) if per is not None else None, "score": round(score, 2)}
+
+
+def ranked_tracks(qualified, previous):
+    by_track = defaultdict(list)
+    for row in qualified:
+        by_track[row["track"]].append(row)
+    results = {}
+    for track, (label, criteria) in TRACKS.items():
+        rows = sorted(by_track[track], key=lambda row: (-row["score"], -row["marketCap"], row["code"])
+                      if track.startswith("sales") else (-row["score"], row["annualPer"], -row["marketCap"], row["code"]))
+        prior_track = previous.get("tracks", {}).get(track)
+        if prior_track is None and track == "verified" and previous.get("updatedAt"):
+            prior_track = previous
+        former = {row["code"]: row["name"] for row in (prior_track or {}).get("items", [])}
+        items = [{"rank": i, **row, "newInTop": row["code"] not in former} for i, row in enumerate(rows[:RESULT_LIMIT], 1)]
+        current_codes = {row["code"] for row in items}
+        results[track] = {
+            "label": label, "criteria": criteria, "qualified": len(rows), "items": items,
+            "outsideWatchlist": sum(not row["inWatchlist"] for row in items),
+            "previousRun": previous.get("updatedAt") if prior_track is not None else None,
+            "removed": [name for code, name in former.items() if code not in current_codes],
+        }
+    return results
 
 
 def main():
@@ -447,8 +510,7 @@ def main():
     annuals = fetch_financials(key, [mappings[code] for code in eligible], annual_year, "11011")
     if len(annuals.keys() & eligible.keys()) < len(eligible) * 0.65:
         raise RuntimeError(f"OpenDART annual coverage unexpectedly low: {len(annuals)}/{len(eligible)}")
-    annual_pass = [code for code in eligible if financial_screen(annuals.get(code, {}), {}, None)[0]
-                   not in ("annualFail", "annualMissing")]
+    annual_pass = [code for code in eligible if annual_prefilter(annuals.get(code, {}))[1] is not None]
     print(f"Annual pass: {len(annual_pass)}. Collecting interim filings", flush=True)
     quarterly = fetch_financials(key, [mappings[code] for code in annual_pass], *interim[:2]) if interim and annual_pass else {}
     if interim and annual_pass and len(quarterly.keys() & set(annual_pass)) < len(annual_pass) * 0.6:
@@ -466,7 +528,6 @@ def main():
             continue
         rounded = {field: round(value, 2) if isinstance(value, float) else value for field, value in facts.items()}
         qualified.append({**{k: v for k, v in issuer.items() if k != "excluded"}, **rounded, **quote, "inWatchlist": code in known})
-    qualified.sort(key=lambda row: (-row["score"], row["annualPer"], -row["marketCap"], row["code"]))
     if not used_kind:
         flags = parallel(lambda row: verify_issuer(mappings[row["code"]], key), qualified, workers=8)
         counts["issuerMissing"] = flags.count(None)
@@ -475,9 +536,8 @@ def main():
             raise RuntimeError("Too many issuers missing fiscal month or industry confirmation")
         qualified = [row for row, flag in zip(qualified, flags) if flag]
     previous = json.loads(OUTPUT.read_text(encoding="utf-8")) if OUTPUT.exists() else {}
-    former = {row["code"]: row["name"] for row in previous.get("items", [])}
-    items = [{"rank": i, **row, "newInTop": row["code"] not in former} for i, row in enumerate(qualified[:RESULT_LIMIT], 1)]
-    current_codes = {row["code"] for row in items}
+    tracks = ranked_tracks(qualified, previous)
+    verified = tracks["verified"]
     payload = {
         "updatedAt": now.isoformat(timespec="seconds"),
         "markets": {market: len(rows) for market, rows in markets.items()},
@@ -485,12 +545,13 @@ def main():
         "mappingSource": mapping_source,
         "annualPeriod": f"{annual_year} FY", "recentPeriod": f"{interim[0]} {interim[2]} 누적" if interim else f"{annual_year} FY",
         "eligibleCount": len(eligible), "counts": dict(counts), "pricedPass": len(qualified),
-        "outsideWatchlist": sum(not row["inWatchlist"] for row in items),
-        "previousRun": previous.get("updatedAt"), "removed": [name for code, name in former.items() if code not in current_codes],
-        "items": items,
+        "outsideWatchlist": verified["outsideWatchlist"], "previousRun": verified["previousRun"],
+        "removed": verified["removed"], "items": verified["items"], "tracks": tracks,
     }
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"Listings: {sum(payload['markets'].values())}; DART batches targeted: {len(eligible)} companies; qualified: {len(qualified)}; selected: {len(items)}; outside watchlist: {payload['outsideWatchlist']}")
+    print(f"Listings: {sum(payload['markets'].values())}; DART batches targeted: {len(eligible)} companies; qualified: {len(qualified)}")
+    for track, result in tracks.items():
+        print(f"{track}: {result['qualified']} qualified, {len(result['items'])} selected, {result['outsideWatchlist']} outside watchlist")
 
 
 if __name__ == "__main__":
