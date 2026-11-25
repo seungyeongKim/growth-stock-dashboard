@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const zlib = require("zlib");
+const { readGrowthStatementQuality } = require("./growth-statement-quality");
 
 const root = path.resolve(__dirname, "..");
 const targets = JSON.parse(fs.readFileSync(path.join(root, "data", "growth-watchlist-20.json"), "utf8")).targets;
@@ -137,6 +138,7 @@ function normalizeStatement(data, year, period, reportCode, fsDiv) {
     receipt: receipt || null,
     operatingMargin: revenue > 0 && operatingProfit !== null ? Number((operatingProfit / revenue * 100).toFixed(1)) : null,
     netMargin: revenue > 0 && netIncome !== null ? Number((netIncome / revenue * 100).toFixed(1)) : null,
+    growthQuality: readGrowthStatementQuality(data.list, reportCode, receipt),
     source: "OpenDART 단일회사 전체 재무제표"
   };
 }
@@ -297,4 +299,32 @@ async function main() {
   console.log(`Wrote ${outPath}`);
 }
 
-main().catch((error) => { console.error(error); process.exit(1); });
+async function seedGrowthQuality() {
+  if (!dartKey) throw new Error("DART_API_KEY is required to seed growth evidence");
+  const snapshot = safeJson(outPath, null);
+  if (!snapshot?.companies) throw new Error("Missing financial snapshot");
+  const tasks = Object.values(snapshot.companies).flatMap((company) => ["latestInterim", "priorInterim"].map((field) => ({ company, field })));
+  let processed = 0;
+  let withPairs = 0;
+  await mapLimit(tasks, 6, async ({ company, field }) => {
+    const record = company[field];
+    if (!record?.receipt || !company.corpCode) return;
+    const query = new URLSearchParams({ crtfc_key: dartKey, corp_code: company.corpCode,
+      bsns_year: String(record.year), reprt_code: record.reportCode, fs_div: record.fsDiv });
+    const data = await fetchJson(`https://opendart.fss.or.kr/api/fnlttSinglAcntAll.json?${query}`).catch(() => null);
+    if (data?.status !== "000" || !Array.isArray(data.list)) return;
+    const quality = readGrowthStatementQuality(data.list, record.reportCode, record.receipt);
+    if (!quality) return;
+    record.growthQuality = quality;
+    processed++;
+    if (Number.isFinite(quality.eps?.prior) && Number.isFinite(quality.cash?.prior)) withPairs++;
+  });
+  if (!processed) throw new Error("No exact-receipt growth evidence was returned");
+  fs.writeFileSync(outPath, `${JSON.stringify(snapshot, null, 2)}\n`, "utf8");
+  console.log(`Verified growth evidence for ${processed}/${tasks.length} reports; ${withPairs} with both EPS and cash comparison pairs.`);
+}
+
+(process.argv.includes("--seed-growth-quality") ? seedGrowthQuality() : main()).catch((error) => {
+  console.error(error);
+  process.exit(1);
+});
