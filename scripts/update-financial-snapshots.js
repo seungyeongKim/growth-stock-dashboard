@@ -83,13 +83,16 @@ async function fetchCorpCodes() {
 }
 
 function amount(value) {
-  const parsed = Number(String(value || "").replaceAll(",", ""));
+  const clean = String(value ?? "").replaceAll(",", "").trim();
+  if (!clean) return null;
+  const parsed = Number(clean);
   return Number.isFinite(parsed) ? parsed : null;
 }
 
-function accountValue(records, ids, names) {
-  const record = records.find((item) => ids.includes(item.account_id)) || records.find((item) => names.includes(String(item.account_nm || "").replaceAll(" ", "")));
-  return record ? amount(record.thstrm_amount) : null;
+function accountValue(records, ids, names, field = "thstrm_amount") {
+  const candidates = [...records.filter((item) => ids.includes(item.account_id)),
+    ...records.filter((item) => names.includes(String(item.account_nm || "").replaceAll(" ", "")))];
+  return candidates.map((item) => amount(item[field])).find(Number.isFinite) ?? null;
 }
 
 function normalizeStatement(data, year, period, reportCode, fsDiv) {
@@ -100,6 +103,14 @@ function normalizeStatement(data, year, period, reportCode, fsDiv) {
   const revenue = accountValue(records, ["ifrs-full_Revenue", "ifrs-full_RevenueFromContractsWithCustomers"], ["매출액", "수익(매출액)", "영업수익"]);
   const operatingProfit = accountValue(records, ["dart_OperatingIncomeLoss"], ["영업이익"]);
   const netIncome = accountValue(records, ["ifrs-full_ProfitLoss"], ["당기순이익", "당기순이익(손실)"]);
+  const netIds = ["ifrs-full_ProfitLossAttributableToOwnersOfParent"];
+  const netNames = ["지배기업의소유주에게귀속되는당기순이익(손실)", "지배기업소유주지분순이익", "지배기업의소유주지분", "지배주주순이익"];
+  const ownerNet = fsDiv === "OFS" ? netIncome : accountValue(records, netIds, netNames);
+  const cumulativeField = reportCode === "11011" || reportCode === "11013" ? "thstrm_amount" : "thstrm_add_amount";
+  const balances = data.list.filter((item) => item.sj_div === "BS");
+  const liabilities = accountValue(balances, ["ifrs-full_Liabilities"], ["부채총계"]);
+  const equity = accountValue(balances, ["ifrs-full_Equity"], ["자본총계"]);
+  const receipt = records.find((item) => /^\d{14}$/.test(item.rcept_no))?.rcept_no;
   return {
     year,
     period,
@@ -108,8 +119,14 @@ function normalizeStatement(data, year, period, reportCode, fsDiv) {
     revenue,
     operatingProfit,
     netIncome,
-    operatingMargin: revenue ? Number((operatingProfit / revenue * 100).toFixed(1)) : null,
-    netMargin: revenue ? Number((netIncome / revenue * 100).toFixed(1)) : null,
+    ownerNet,
+    cumulativeOwnerNet: fsDiv === "OFS"
+      ? accountValue(records, ["ifrs-full_ProfitLoss"], ["당기순이익", "당기순이익(손실)"], cumulativeField)
+      : accountValue(records, netIds, netNames, cumulativeField),
+    debtToEquity: liabilities !== null && equity > 0 ? Number((liabilities / equity * 100).toFixed(1)) : null,
+    receipt: receipt || null,
+    operatingMargin: revenue > 0 && operatingProfit !== null ? Number((operatingProfit / revenue * 100).toFixed(1)) : null,
+    netMargin: revenue > 0 && netIncome !== null ? Number((netIncome / revenue * 100).toFixed(1)) : null,
     source: "OpenDART 단일회사 전체 재무제표"
   };
 }
@@ -130,20 +147,21 @@ async function fetchStatement(corpCode, year, reportCode, period) {
   return normalizeStatement(data, year, period, reportCode, "CFS");
 }
 
-async function fetchShareCount(corpCode, year) {
+async function fetchShareCount(corpCode, year, reportCode, period) {
   const url = new URL("https://opendart.fss.or.kr/api/stockTotqySttus.json");
   url.searchParams.set("crtfc_key", dartKey);
   url.searchParams.set("corp_code", corpCode);
   url.searchParams.set("bsns_year", String(year));
-  url.searchParams.set("reprt_code", "11011");
+  url.searchParams.set("reprt_code", reportCode);
   const data = await fetchJson(url);
   if (!data || data.status !== "000" || !Array.isArray(data.list)) {
     throw new Error(`DART 주식수 API ${data?.status || "unknown"}: ${data?.message || "응답 오류"}`);
   }
-  const common = data.list.find((item) => String(item.se || "").includes("보통주")) || data.list[0];
+  const common = data.list.find((item) => /보통주|보통주식/.test(item.se || ""))
+    || (data.list.length === 1 && !/우선|종류/.test(data.list[0].se || "") ? data.list[0] : null);
   const shareCount = amount(common?.istc_totqy);
   if (!shareCount) throw new Error("DART 보통주 발행주식수를 찾지 못함");
-  return { shareCount, shareCountAsOf: `${year} FY`, source: "OpenDART 증권의 발행 및 공시 등에 관한 사항" };
+  return { shareCount, shareCountAsOf: period, source: "OpenDART 증권의 발행 및 공시 등에 관한 사항" };
 }
 
 function enrichAnnual(records) {
@@ -172,11 +190,11 @@ async function mapLimit(items, limit, mapper) {
 function latestInterimPlan() {
   const now = new Date();
   const year = Number(new Intl.DateTimeFormat("en-US", { timeZone: "Asia/Seoul", year: "numeric" }).format(now));
-  const month = Number(new Intl.DateTimeFormat("en-US", { timeZone: "Asia/Seoul", month: "numeric" }).format(now));
-  // 3분기 보고서 제출 시점 이후에는 가장 최근 공시 분기를 우선 비교한다.
-  if (month >= 11) return { year, reportCode: "11014", period: `${year} Q3` };
-  if (month >= 8) return { year, reportCode: "11012", period: `${year} H1` };
-  if (month >= 5) return { year, reportCode: "11013", period: `${year} Q1` };
+  const [, month, day] = kstDate(now).slice(0, 10).split("-").map(Number);
+  const md = month * 100 + day;
+  if (md >= 1116) return { year, reportCode: "11014", period: `${year} Q3` };
+  if (md >= 816) return { year, reportCode: "11012", period: `${year} H1` };
+  if (md >= 516) return { year, reportCode: "11013", period: `${year} Q1` };
   return null;
 }
 
@@ -185,7 +203,6 @@ async function buildCompany(target, corpCode) {
   const currentYear = Number(new Intl.DateTimeFormat("en-US", { timeZone: "Asia/Seoul", year: "numeric" }).format(new Date()));
   const years = [currentYear - 3, currentYear - 2, currentYear - 1];
   const annualResults = await Promise.allSettled(years.map((year) => fetchStatement(corpCode, year, "11011", `${year} FY`)));
-  const shareResult = await Promise.allSettled([fetchShareCount(corpCode, currentYear - 1)]);
   const annual = enrichAnnual(annualResults.filter((item) => item.status === "fulfilled").map((item) => item.value));
   const interimPlan = latestInterimPlan();
   const interimResult = interimPlan ? await Promise.allSettled([
@@ -194,8 +211,19 @@ async function buildCompany(target, corpCode) {
   ]) : [];
   const latestInterim = interimResult[0]?.status === "fulfilled" ? interimResult[0].value : null;
   const priorInterim = interimResult[1]?.status === "fulfilled" ? interimResult[1].value : null;
-  const interimRevenueGrowthYoY = latestInterim?.revenue && priorInterim?.revenue ? Number(((latestInterim.revenue / priorInterim.revenue - 1) * 100).toFixed(1)) : null;
-  const interimOperatingMarginChangeYoY = Number.isFinite(latestInterim?.operatingMargin) && Number.isFinite(priorInterim?.operatingMargin)
+  const shareResult = await Promise.allSettled([(async () => {
+    if (latestInterim) {
+      try {
+        return await fetchShareCount(corpCode, latestInterim.year, latestInterim.reportCode, latestInterim.period);
+      } catch {
+        // Use the annual share count only with its original period label.
+      }
+    }
+    return fetchShareCount(corpCode, currentYear - 1, "11011", `${currentYear - 1} FY`);
+  })()]);
+  const interimComparable = latestInterim && priorInterim && latestInterim.fsDiv === priorInterim.fsDiv;
+  const interimRevenueGrowthYoY = interimComparable && latestInterim.revenue > 0 && priorInterim.revenue > 0 ? Number(((latestInterim.revenue / priorInterim.revenue - 1) * 100).toFixed(1)) : null;
+  const interimOperatingMarginChangeYoY = interimComparable && Number.isFinite(latestInterim.operatingMargin) && Number.isFinite(priorInterim.operatingMargin)
     ? Number((latestInterim.operatingMargin - priorInterim.operatingMargin).toFixed(1)) : null;
   const financialSignal = interimRevenueGrowthYoY === null || interimOperatingMarginChangeYoY === null ? "비교 자료 부족"
     : interimRevenueGrowthYoY <= 0 ? "성장 둔화 경보"

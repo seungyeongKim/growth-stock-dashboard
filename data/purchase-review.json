@@ -1,0 +1,624 @@
+{
+  "priceAsOf": "2026-11-25T09:39:10",
+  "financialAsOf": "2026-11-25T09:39:14",
+  "assumptions": {
+    "years": 2,
+    "annualReturn": 0.12,
+    "multiples": [
+      15,
+      20,
+      25
+    ]
+  },
+  "companies": {
+    "145020": {
+      "name": "휴젤",
+      "financialAsOf": "2026-11-25T09:39:14",
+      "priceAsOf": "2026-11-25T09:39:10",
+      "price": 204500,
+      "marketCap": 2516174748500,
+      "period": "2026 Q3",
+      "scope": "CFS",
+      "annualRevenueGrowth": 14,
+      "revenueGrowth": -7.9,
+      "opGrowth": -61.8,
+      "ownerNetGrowth": null,
+      "opMargin": 18.6,
+      "marginDelta": -26.2,
+      "netMargin": 4.8,
+      "debtToEquity": null,
+      "base": null,
+      "actualPer": null,
+      "shareCountAsOf": "2025 FY",
+      "receipts": [],
+      "scenarios": [],
+      "notes": [
+        "분기 매출 역성장",
+        "분기 영업이익률 3%p 이상 하락",
+        "최신 재무와 주식수 기준 기간 차이 확인",
+        "양의 이익 기준 또는 가격 자료 부족: 필요 이익 역산 보류"
+      ],
+      "checkpoint": {
+        "check": "미국 톡신 판매 증가가 직판 비용 증가를 감당하는지 확인",
+        "hold": "국가별 매출이 늘어도 판관비 부담으로 영업이익률이 악화되면 보류"
+      }
+    },
+    "192080": {
+      "name": "더블유게임즈",
+      "financialAsOf": "2026-11-25T09:39:14",
+      "priceAsOf": "2026-11-25T09:39:10",
+      "price": 55600,
+      "marketCap": 1195172373600,
+      "period": "2026 Q3",
+      "scope": "CFS",
+      "annualRevenueGrowth": 13.6,
+      "revenueGrowth": 5,
+      "opGrowth": 7.4,
+      "ownerNetGrowth": null,
+      "opMargin": 32.5,
+      "marginDelta": 0.7,
+      "netMargin": 8.3,
+      "debtToEquity": null,
+      "base": null,
+      "actualPer": null,
+      "shareCountAsOf": "2025 FY",
+      "receipts": [],
+      "scenarios": [],
+      "notes": [
+        "최신 재무와 주식수 기준 기간 차이 확인",
+        "양의 이익 기준 또는 가격 자료 부족: 필요 이익 역산 보류"
+      ],
+      "checkpoint": {
+        "check": "아이게이밍 매출 증가가 기존 소셜카지노 둔화를 상쇄하는지 확인",
+        "hold": "인수 효과를 뺀 매출이 정체되면 낮은 PER만으로 추가하지 않음"
+      }
+    },
+    "196170": {
+      "name": "알테오젠",
+      "financialAsOf": "2026-11-25T09:39:14",
+      "priceAsOf": "2026-11-25T09:39:10",
+      "price": 165200,
+      "marketCap": 8839156177600,
+      "period": "2026 Q3",
+      "scope": "CFS",
+      "annualRevenueGrowth": 109.9,
+      "revenueGrowth": 144.4,
+      "opGrowth": 195.8,
+      "ownerNetGrowth": null,
+      "opMargin": 65.9,
+      "marginDelta": 11.5,
+      "netMargin": 35.2,
+      "debtToEquity": null,
+      "base": null,
+      "actualPer": null,
+      "shareCountAsOf": "2025 FY",
+      "receipts": [],
+      "scenarios": [],
+      "notes": [
+        "최신 재무와 주식수 기준 기간 차이 확인",
+        "양의 이익 기준 또는 가격 자료 부족: 필요 이익 역산 보류"
+      ],
+      "checkpoint": {
+        "check": "마일스톤과 구분해 실제 상업화 로열티 인식액과 반복성을 확인",
+        "hold": "일회성 기술료나 아직 확정되지 않은 로열티만으로 필요한 이익을 채우지 않음"
+      }
+    },
+    "206640": {
+      "name": "바디텍메드",
+      "financialAsOf": "2026-11-25T09:39:14",
+      "priceAsOf": "2026-11-25T09:39:10",
+      "price": 9620,
+      "marketCap": 224590165020,
+      "period": "2026 Q3",
+      "scope": "CFS",
+      "annualRevenueGrowth": 17.3,
+      "revenueGrowth": 20.1,
+      "opGrowth": 35.2,
+      "ownerNetGrowth": null,
+      "opMargin": 18.6,
+      "marginDelta": 2.1,
+      "netMargin": 4.1,
+      "debtToEquity": null,
+      "base": null,
+      "actualPer": null,
+      "shareCountAsOf": "2025 FY",
+      "receipts": [],
+      "scenarios": [],
+      "notes": [
+        "최신 재무와 주식수 기준 기간 차이 확인",
+        "양의 이익 기준 또는 가격 자료 부족: 필요 이익 역산 보류"
+      ],
+      "checkpoint": {
+        "check": "진단 장비 설치 증가가 반복 카트리지 매출 증가로 이어지는지 확인",
+        "hold": "설치만 늘고 시약 판매 또는 영업이익률이 둔화되면 보류"
+      }
+    },
+    "207940": {
+      "name": "삼성바이오로직스",
+      "financialAsOf": "2026-11-25T09:39:14",
+      "priceAsOf": "2026-11-25T09:39:10",
+      "price": 1300000,
+      "marketCap": 60178236300000,
+      "period": "2026 Q3",
+      "scope": "CFS",
+      "annualRevenueGrowth": 0.2,
+      "revenueGrowth": -10.2,
+      "opGrowth": -12.2,
+      "ownerNetGrowth": null,
+      "opMargin": 42.9,
+      "marginDelta": -1,
+      "netMargin": 26.2,
+      "debtToEquity": null,
+      "base": null,
+      "actualPer": null,
+      "shareCountAsOf": "2025 FY",
+      "receipts": [],
+      "scenarios": [],
+      "notes": [
+        "분기 매출 역성장",
+        "최신 재무와 주식수 기준 기간 차이 확인",
+        "양의 이익 기준 또는 가격 자료 부족: 필요 이익 역산 보류"
+      ],
+      "checkpoint": {
+        "check": "신규 수주, 5공장 가동 및 매출 기여를 확인하고 분할 전후 비교 범위를 대조",
+        "hold": "분할·연결 범위가 달라 실적 비교가 성립하지 않으면 성장률 사용 보류"
+      }
+    },
+    "214150": {
+      "name": "클래시스",
+      "financialAsOf": "2026-11-25T09:39:14",
+      "priceAsOf": "2026-11-25T09:39:10",
+      "price": 21550,
+      "marketCap": 1411646951450,
+      "period": "2026 Q3",
+      "scope": "CFS",
+      "annualRevenueGrowth": 38.6,
+      "revenueGrowth": 0,
+      "opGrowth": -28.2,
+      "ownerNetGrowth": null,
+      "opMargin": 32.5,
+      "marginDelta": -12.8,
+      "netMargin": 7.1,
+      "debtToEquity": null,
+      "base": null,
+      "actualPer": null,
+      "shareCountAsOf": "2025 FY",
+      "receipts": [],
+      "scenarios": [],
+      "notes": [
+        "분기 영업이익률 3%p 이상 하락",
+        "최신 재무와 주식수 기준 기간 차이 확인",
+        "양의 이익 기준 또는 가격 자료 부족: 필요 이익 역산 보류"
+      ],
+      "checkpoint": {
+        "check": "장비 설치 증가 이후 소모품 매출이 함께 늘고 지역별 재주문이 이어지는지 확인",
+        "hold": "장비 매출만 앞서고 소모품 성장이나 마진이 둔화되면 보류"
+      }
+    },
+    "214450": {
+      "name": "파마리서치",
+      "financialAsOf": "2026-11-25T09:39:14",
+      "priceAsOf": "2026-11-25T09:39:10",
+      "price": 272500,
+      "marketCap": 2831179080000,
+      "period": "2026 Q3",
+      "scope": "CFS",
+      "annualRevenueGrowth": 53.2,
+      "revenueGrowth": 26.7,
+      "opGrowth": 1.2,
+      "ownerNetGrowth": null,
+      "opMargin": 36.5,
+      "marginDelta": -9.2,
+      "netMargin": 17.6,
+      "debtToEquity": null,
+      "base": null,
+      "actualPer": null,
+      "shareCountAsOf": "2025 FY",
+      "receipts": [],
+      "scenarios": [],
+      "notes": [
+        "분기 영업이익률 3%p 이상 하락",
+        "최신 재무와 주식수 기준 기간 차이 확인",
+        "양의 이익 기준 또는 가격 자료 부족: 필요 이익 역산 보류"
+      ],
+      "checkpoint": {
+        "check": "리쥬란 해외 허가·초도 출하·재주문을 구분해 실제 의료기기 수출 매출 확인",
+        "hold": "허가는 났지만 반복 주문 증거가 없거나 수출 증가에도 마진 하락이 이어지면 보류"
+      }
+    },
+    "251970": {
+      "name": "펌텍코리아",
+      "financialAsOf": "2026-11-25T09:39:14",
+      "priceAsOf": "2026-11-25T09:39:10",
+      "price": 76500,
+      "marketCap": 948600000000,
+      "period": "2026 Q3",
+      "scope": "CFS",
+      "annualRevenueGrowth": 10.2,
+      "revenueGrowth": 26.7,
+      "opGrowth": 64,
+      "ownerNetGrowth": null,
+      "opMargin": 20.3,
+      "marginDelta": 4.6,
+      "netMargin": 0,
+      "debtToEquity": null,
+      "base": null,
+      "actualPer": null,
+      "shareCountAsOf": "2025 FY",
+      "receipts": [],
+      "scenarios": [],
+      "notes": [
+        "최신 재무와 주식수 기준 기간 차이 확인",
+        "양의 이익 기준 또는 가격 자료 부족: 필요 이익 역산 보류"
+      ],
+      "checkpoint": {
+        "check": "신공장 가동률 상승과 고객 주문 증가가 영업이익으로 이어지는지 확인",
+        "hold": "증설 고정비를 신규 주문으로 흡수하지 못하면 보류"
+      }
+    },
+    "257720": {
+      "name": "실리콘투",
+      "financialAsOf": "2026-11-25T09:39:14",
+      "priceAsOf": "2026-11-25T09:39:10",
+      "price": 28000,
+      "marketCap": 1836135056000,
+      "period": "2026 Q3",
+      "scope": "CFS",
+      "annualRevenueGrowth": 61.4,
+      "revenueGrowth": 41.7,
+      "opGrowth": 10.4,
+      "ownerNetGrowth": null,
+      "opMargin": 16.4,
+      "marginDelta": -4.7,
+      "netMargin": 2.1,
+      "debtToEquity": null,
+      "base": null,
+      "actualPer": null,
+      "shareCountAsOf": "2025 FY",
+      "receipts": [],
+      "scenarios": [],
+      "notes": [
+        "분기 영업이익률 3%p 이상 하락",
+        "최신 재무와 주식수 기준 기간 차이 확인",
+        "양의 이익 기준 또는 가격 자료 부족: 필요 이익 역산 보류"
+      ],
+      "checkpoint": {
+        "check": "북미·유럽 성장과 재고·매출채권이 매출보다 과하게 늘지 않는지 확인",
+        "hold": "재고·매출채권이 매출보다 빠르게 불어나는 흐름이 지속되면 재점검"
+      }
+    },
+    "267260": {
+      "name": "HD현대일렉트릭",
+      "financialAsOf": "2026-11-25T09:39:14",
+      "priceAsOf": "2026-11-25T09:39:10",
+      "price": 373500,
+      "marketCap": 13463604922500,
+      "period": "2026 Q3",
+      "scope": "CFS",
+      "annualRevenueGrowth": 22.8,
+      "revenueGrowth": 18.5,
+      "opGrowth": 15.1,
+      "ownerNetGrowth": null,
+      "opMargin": 24.1,
+      "marginDelta": -0.7,
+      "netMargin": 15.6,
+      "debtToEquity": null,
+      "base": null,
+      "actualPer": null,
+      "shareCountAsOf": "2025 FY",
+      "receipts": [],
+      "scenarios": [],
+      "notes": [
+        "최신 재무와 주식수 기준 기간 차이 확인",
+        "양의 이익 기준 또는 가격 자료 부족: 필요 이익 역산 보류"
+      ],
+      "checkpoint": {
+        "check": "북미 신규수주와 수주잔고의 실제 매출 전환, 전력기기 마진을 함께 확인",
+        "hold": "수주를 채우더라도 단가 하락이나 비용 증가로 이익률이 꺾이면 보류"
+      }
+    },
+    "278470": {
+      "name": "에이피알",
+      "financialAsOf": "2026-11-25T09:39:14",
+      "priceAsOf": "2026-11-25T09:39:10",
+      "price": 287000,
+      "marketCap": 10742597985000,
+      "period": "2026 Q3",
+      "scope": "CFS",
+      "annualRevenueGrowth": 111.3,
+      "revenueGrowth": 100.3,
+      "opGrowth": 67.1,
+      "ownerNetGrowth": null,
+      "opMargin": 20.8,
+      "marginDelta": -4.1,
+      "netMargin": 14.3,
+      "debtToEquity": null,
+      "base": null,
+      "actualPer": null,
+      "shareCountAsOf": "2025 FY",
+      "receipts": [],
+      "scenarios": [],
+      "notes": [
+        "분기 영업이익률 3%p 이상 하락",
+        "최신 재무와 주식수 기준 기간 차이 확인",
+        "양의 이익 기준 또는 가격 자료 부족: 필요 이익 역산 보류"
+      ],
+      "checkpoint": {
+        "check": "미국 화장품·디바이스 매출 확대가 반복되고 마케팅비를 감당하는지 확인",
+        "hold": "매출 성장보다 마케팅비가 더 빨리 늘고 마진이 떨어지면 보류"
+      }
+    },
+    "000660": {
+      "name": "SK하이닉스",
+      "financialAsOf": "2026-11-25T09:39:14",
+      "priceAsOf": "2026-11-25T09:39:10",
+      "price": 1076000,
+      "marketCap": 783330544740000,
+      "period": "2026 Q3",
+      "scope": "CFS",
+      "annualRevenueGrowth": 46.8,
+      "revenueGrowth": 327.9,
+      "opGrowth": 632.1,
+      "ownerNetGrowth": null,
+      "opMargin": 79.7,
+      "marginDelta": 33.1,
+      "netMargin": 38,
+      "debtToEquity": null,
+      "base": null,
+      "actualPer": null,
+      "shareCountAsOf": "2025 FY",
+      "receipts": [],
+      "scenarios": [],
+      "notes": [
+        "최신 재무와 주식수 기준 기간 차이 확인",
+        "양의 이익 기준 또는 가격 자료 부족: 필요 이익 역산 보류"
+      ],
+      "checkpoint": {
+        "check": "HBM·서버 DRAM 판매 확대가 실제 매출과 이익으로 이어지는지 확인",
+        "hold": "메모리 가격과 영업이익률이 함께 꺾이면 피크 이익으로 PER을 계산하지 않음"
+      }
+    },
+    "003230": {
+      "name": "삼양식품",
+      "financialAsOf": "2026-11-25T09:39:14",
+      "priceAsOf": "2026-11-25T09:39:10",
+      "price": 1225000,
+      "marketCap": 9227943375000,
+      "period": "2026 Q3",
+      "scope": "CFS",
+      "annualRevenueGrowth": 36.1,
+      "revenueGrowth": 25.3,
+      "opGrowth": 49.9,
+      "ownerNetGrowth": null,
+      "opMargin": 24.8,
+      "marginDelta": 4.1,
+      "netMargin": 11.3,
+      "debtToEquity": null,
+      "base": null,
+      "actualPer": null,
+      "shareCountAsOf": "2025 FY",
+      "receipts": [],
+      "scenarios": [],
+      "notes": [
+        "최신 재무와 주식수 기준 기간 차이 확인",
+        "양의 이익 기준 또는 가격 자료 부족: 필요 이익 역산 보류"
+      ],
+      "checkpoint": {
+        "check": "해외 매출 증가가 밀양2공장 증산과 함께 이어지는지 확인",
+        "hold": "해외 성장 둔화와 재고 증가가 겹치면 증설 효과를 재산정"
+      }
+    },
+    "062040": {
+      "name": "산일전기",
+      "financialAsOf": "2026-11-25T09:39:14",
+      "priceAsOf": "2026-11-25T09:39:10",
+      "price": 96100,
+      "marketCap": 2925783720000,
+      "period": "2026 Q3",
+      "scope": "CFS",
+      "annualRevenueGrowth": 50.3,
+      "revenueGrowth": 10,
+      "opGrowth": 4.6,
+      "ownerNetGrowth": null,
+      "opMargin": 30.5,
+      "marginDelta": -1.6,
+      "netMargin": 28.1,
+      "debtToEquity": null,
+      "base": null,
+      "actualPer": null,
+      "shareCountAsOf": "2025 FY",
+      "receipts": [],
+      "scenarios": [],
+      "notes": [
+        "최신 재무와 주식수 기준 기간 차이 확인",
+        "양의 이익 기준 또는 가격 자료 부족: 필요 이익 역산 보류"
+      ],
+      "checkpoint": {
+        "check": "수주잔고 증가가 아니라 신규수주·매출 전환·영업이익률을 함께 확인",
+        "hold": "수주가 매출로 전환돼도 신규수주 또는 마진이 꺾이면 보류"
+      }
+    },
+    "064760": {
+      "name": "티씨케이",
+      "financialAsOf": "2026-11-25T09:39:14",
+      "priceAsOf": "2026-11-25T09:39:10",
+      "price": 156200,
+      "marketCap": 1746224779200,
+      "period": "2026 Q3",
+      "scope": "OFS",
+      "annualRevenueGrowth": 9.3,
+      "revenueGrowth": 38.9,
+      "opGrowth": 35,
+      "ownerNetGrowth": null,
+      "opMargin": 27.4,
+      "marginDelta": -0.8,
+      "netMargin": 20.9,
+      "debtToEquity": null,
+      "base": null,
+      "actualPer": null,
+      "shareCountAsOf": "2025 FY",
+      "receipts": [],
+      "scenarios": [],
+      "notes": [
+        "최신 재무와 주식수 기준 기간 차이 확인",
+        "양의 이익 기준 또는 가격 자료 부족: 필요 이익 역산 보류"
+      ],
+      "checkpoint": {
+        "check": "SiC 소모품 매출 회복이 반복 주문과 가동률 상승으로 연결되는지 확인",
+        "hold": "고객사 투자 지연으로 매출 회복이 한 분기에 그치면 보류"
+      }
+    },
+    "053800": {
+      "name": "안랩",
+      "financialAsOf": "2026-11-25T09:39:14",
+      "priceAsOf": "2026-11-25T09:39:10",
+      "price": 138000,
+      "marketCap": 1535457828000,
+      "period": "2026 Q3",
+      "scope": "CFS",
+      "annualRevenueGrowth": 2.7,
+      "revenueGrowth": 23.1,
+      "opGrowth": 38.7,
+      "ownerNetGrowth": null,
+      "opMargin": 13.8,
+      "marginDelta": 1.6,
+      "netMargin": 9.5,
+      "debtToEquity": null,
+      "base": null,
+      "actualPer": null,
+      "shareCountAsOf": "2025 FY",
+      "receipts": [],
+      "scenarios": [],
+      "notes": [
+        "최신 재무와 주식수 기준 기간 차이 확인",
+        "양의 이익 기준 또는 가격 자료 부족: 필요 이익 역산 보류"
+      ],
+      "checkpoint": {
+        "check": "구독형 보안 매출과 대형 계약을 구분하고 반복 매출 성장 확인",
+        "hold": "대형 프로젝트가 매출 증가의 대부분이고 마진이 떨어지면 보류"
+      }
+    },
+    "018290": {
+      "name": "브이티",
+      "financialAsOf": "2026-11-25T09:39:14",
+      "priceAsOf": "2026-11-25T09:39:10",
+      "price": 10820,
+      "marketCap": 378070687160,
+      "period": "2026 Q3",
+      "scope": "CFS",
+      "annualRevenueGrowth": 1.3,
+      "revenueGrowth": 25,
+      "opGrowth": 22.5,
+      "ownerNetGrowth": null,
+      "opMargin": 10.8,
+      "marginDelta": -0.2,
+      "netMargin": 5.4,
+      "debtToEquity": null,
+      "base": null,
+      "actualPer": null,
+      "shareCountAsOf": "2025 FY",
+      "receipts": [],
+      "scenarios": [],
+      "notes": [
+        "최신 재무와 주식수 기준 기간 차이 확인",
+        "양의 이익 기준 또는 가격 자료 부족: 필요 이익 역산 보류"
+      ],
+      "checkpoint": {
+        "check": "일본 외 지역 매출과 대표 제품 외 매출의 반복 성장 확인",
+        "hold": "할인·마케팅비 증가에도 지역별 매출이 개선되지 않으면 보류"
+      }
+    },
+    "010120": {
+      "name": "LS ELECTRIC",
+      "financialAsOf": "2026-11-25T09:39:14",
+      "priceAsOf": "2026-11-25T09:39:10",
+      "price": 113200,
+      "marketCap": 3396000000000,
+      "period": "2026 Q3",
+      "scope": "CFS",
+      "annualRevenueGrowth": 9.1,
+      "revenueGrowth": 54.4,
+      "opGrowth": 131.7,
+      "ownerNetGrowth": null,
+      "opMargin": 12.4,
+      "marginDelta": 4.1,
+      "netMargin": 7.6,
+      "debtToEquity": null,
+      "base": null,
+      "actualPer": null,
+      "shareCountAsOf": "2025 FY",
+      "receipts": [],
+      "scenarios": [],
+      "notes": [
+        "최신 재무와 주식수 기준 기간 차이 확인",
+        "양의 이익 기준 또는 가격 자료 부족: 필요 이익 역산 보류"
+      ],
+      "checkpoint": {
+        "check": "북미 배전·변압기 수주가 매출로 전환되고 신규 수주가 이어지는지 확인",
+        "hold": "신규 수주 둔화와 전력 사업 마진 하락이 겹치면 추가 보류"
+      }
+    },
+    "058470": {
+      "name": "리노공업",
+      "financialAsOf": "2026-11-25T09:39:14",
+      "priceAsOf": "2026-11-25T09:39:10",
+      "price": 45650,
+      "marketCap": 3479070952500,
+      "period": "2026 Q3",
+      "scope": "OFS",
+      "annualRevenueGrowth": 33.9,
+      "revenueGrowth": -14.6,
+      "opGrowth": -18.3,
+      "ownerNetGrowth": null,
+      "opMargin": 47.7,
+      "marginDelta": -2.1,
+      "netMargin": 27.4,
+      "debtToEquity": null,
+      "base": null,
+      "actualPer": null,
+      "shareCountAsOf": "2025 FY",
+      "receipts": [],
+      "scenarios": [],
+      "notes": [
+        "분기 매출 역성장",
+        "최신 재무와 주식수 기준 기간 차이 확인",
+        "양의 이익 기준 또는 가격 자료 부족: 필요 이익 역산 보류"
+      ],
+      "checkpoint": {
+        "check": "고부가 테스트 소켓 매출이 늘고 신공장 가동 비용을 흡수하는지 확인",
+        "hold": "고객 개발 지연과 영업이익률 하락이 함께 나타나면 보류"
+      }
+    },
+    "051360": {
+      "name": "토비스",
+      "financialAsOf": "2026-11-25T09:39:14",
+      "priceAsOf": "2026-11-25T09:39:10",
+      "price": 10230,
+      "marketCap": 161910803340,
+      "period": "2026 Q3",
+      "scope": "CFS",
+      "annualRevenueGrowth": 2.7,
+      "revenueGrowth": -47.8,
+      "opGrowth": -55.6,
+      "ownerNetGrowth": null,
+      "opMargin": 8.6,
+      "marginDelta": -1.5,
+      "netMargin": 0.1,
+      "debtToEquity": null,
+      "base": null,
+      "actualPer": null,
+      "shareCountAsOf": "2025 FY",
+      "receipts": [],
+      "scenarios": [],
+      "notes": [
+        "분기 매출 역성장",
+        "최신 재무와 주식수 기준 기간 차이 확인",
+        "양의 이익 기준 또는 가격 자료 부족: 필요 이익 역산 보류"
+      ],
+      "checkpoint": {
+        "check": "카지노·전장 사업별 매출과 이익을 같은 사업 범위로 확인",
+        "hold": "분할이나 사업 범위 변경이 있으면 전년 동기 수치부터 다시 대조"
+      }
+    }
+  }
+}

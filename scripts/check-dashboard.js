@@ -21,6 +21,9 @@ const required = [
   "renderEventRadar",
   "investmentDecision",
   "currentGrowthSelection",
+  "renderPurchaseComparison",
+  "renderPurchaseSnapshot",
+  "renderPositionPlan",
   "AI 결론"
 ];
 const missing = required.filter((item) => !html.includes(item));
@@ -83,5 +86,16 @@ for (const item of selection.items || []) {
   if (typeof item.currentFinancialPass !== "boolean") throw new Error(`${item.code}: invalid current financial pass flag`);
 }
 
-console.log(JSON.stringify({ script: "ok", requiredMarkers: required.length, decisionRecords: records.length, financialRecords: financialRecords.length, valuationRecords: valuationRecords.length, eventRecords: eventRecords.length, automatedDecisions: decisionRecords.length, currentSelections: (selection.items || []).length, target }, null, 2));
+const purchase = JSON.parse(fs.readFileSync(path.join(path.dirname(target), "data", "purchase-review.json"), "utf8"));
+const embedded = html.match(/\/\* PURCHASE_REVIEW_START \*\/\s*const purchaseReview = ([\s\S]*?);\s*\/\* PURCHASE_REVIEW_END \*\//);
+if (!embedded || JSON.stringify(JSON.parse(embedded[1])) !== JSON.stringify(purchase)) throw new Error("Purchase review data differs from HTML");
+const purchaseRecords = Object.entries(purchase.companies || {});
+if (purchaseRecords.length !== records.length || records.some(([code]) => !purchase.companies[code])) throw new Error("Purchase review stock coverage mismatch");
+for (const [code, item] of purchaseRecords) {
+  if (!item.checkpoint?.check || !item.checkpoint?.hold || !Array.isArray(item.notes)
+    || item.receipts.some((receipt) => !/^\d{14}$/.test(receipt))
+    || ![0, 3].includes(item.scenarios.length)
+    || item.scenarios.some((s) => !(s.requiredNet > 0 && Number.isFinite(s.requiredCagr)))) throw new Error(`${code}: invalid purchase review`);
+}
+console.log(JSON.stringify({ script: "ok", requiredMarkers: required.length, decisionRecords: records.length, financialRecords: financialRecords.length, valuationRecords: valuationRecords.length, eventRecords: eventRecords.length, automatedDecisions: decisionRecords.length, currentSelections: (selection.items || []).length, purchaseRecords: purchaseRecords.length, target }, null, 2));
 

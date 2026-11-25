@@ -64,6 +64,12 @@ jobs:
       - name: Update current-price valuation snapshot
         run: node scripts/update-valuation-snapshot.js
 
+      - name: Build and apply purchase review
+        run: |
+          node --test scripts/test-purchase-review.js
+          node scripts/build-purchase-review.js
+          node scripts/apply-purchase-review.js
+
       - name: Build DART disclosure event radar
         run: node scripts/build-event-radar.js
 
