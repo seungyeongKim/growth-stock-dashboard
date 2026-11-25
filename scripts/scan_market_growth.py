@@ -36,6 +36,7 @@ MIN_MARGIN = 10
 MAX_MARGIN_DROP = -5
 CODE = re.compile(r"[0-9A-Z]{6}")
 RECEIPT = re.compile(r"\d{14}")
+CORP_CODE = re.compile(r"\d{8}")
 
 
 def fetch(url, params=None):
@@ -178,6 +179,47 @@ def dart_codes(key):
         except (RuntimeError, ValueError, BadZipFile, ET.ParseError) as error:
             print(f"OpenDART issuer map unavailable at {urlsplit(base).hostname}: {type(error).__name__}", flush=True)
     raise RuntimeError("Both official OpenDART identifier endpoints are unavailable")
+
+
+def filing_codes(key, annual_year, interim, today):
+    year = annual_year + 1
+    windows = [(dt.date(year, 2, 1), dt.date(year, 4, 30), "A001")]
+    if interim:
+        year, code, _ = interim
+        month = {"11013": 5, "11012": 8, "11014": 11}[code]
+        windows.append((dt.date(year, month, 1), dt.date(year, month + 1, 15), "A002" if code == "11012" else "A003"))
+
+    def collect(args):
+        market, (begin, end, filing_type) = args
+
+        def page(page_no):
+            payload = json.loads(fetch(DART + "/list.json", {
+                "crtfc_key": key, "bgn_de": begin.strftime("%Y%m%d"), "end_de": min(end, today).strftime("%Y%m%d"),
+                "corp_cls": market, "pblntf_detail_ty": filing_type, "page_count": 100, "page_no": page_no,
+            }))
+            if payload.get("status") == "013":
+                return {"total_page": 0, "list": []}
+            if payload.get("status") != "000" or not isinstance(payload.get("list"), list):
+                raise RuntimeError(f"OpenDART filing index failed: {payload.get('status')}")
+            return payload
+
+        first = page(1)
+        total_pages = int(first.get("total_page", 0))
+        if not 0 <= total_pages <= 90:
+            raise RuntimeError(f"Unexpected OpenDART filing page count: {total_pages}")
+        pages = [first, *parallel(page, range(2, total_pages + 1))]
+        return [row for item in pages for row in item["list"]]
+
+    tasks = [(market, window) for market in ("Y", "K") for window in windows]
+    filings = [row for batch in parallel(collect, tasks, workers=2) for row in batch]
+    codes = {}
+    for row in sorted(filings, key=lambda filing: filing.get("rcept_dt", "")):
+        ticker, corporate = row.get("stock_code") or "", row.get("corp_code") or ""
+        if CODE.fullmatch(ticker) and CORP_CODE.fullmatch(corporate):
+            codes[ticker] = corporate
+    if len(codes) < 2000:
+        raise RuntimeError(f"OpenDART filing-based company map incomplete: {len(codes)}")
+    return codes
 
 
 def period_plan(day):
@@ -371,7 +413,17 @@ def main():
         print(f"Upstream probe verified filings for {len(rows)} issuers and {len(quotes['stocks'])} quotes", flush=True)
         return
     print("Loading OpenDART identifiers", flush=True)
-    mappings = dart_codes(key)
+    if os.environ.get("GITHUB_ACTIONS") == "true":
+        mappings = filing_codes(key, annual_year, interim, now.date())
+        mapping_source = "OpenDART 정기공시 검색"
+    else:
+        try:
+            mappings = dart_codes(key)
+            mapping_source = "OpenDART 회사코드"
+        except RuntimeError:
+            mappings = filing_codes(key, annual_year, interim, now.date())
+            mapping_source = "OpenDART 정기공시 검색"
+    print(f"Loaded {len(mappings)} OpenDART issuer identifiers", flush=True)
     print("Loading KIND market listings", flush=True)
     markets = try_kind()
     used_kind = markets is not None
@@ -424,6 +476,7 @@ def main():
         "updatedAt": now.isoformat(timespec="seconds"),
         "markets": {market: len(rows) for market, rows in markets.items()},
         "universeSource": "KRX KIND" if used_kind else "네이버 증권 시장 목록 × OpenDART 상장회사 코드",
+        "mappingSource": mapping_source,
         "annualPeriod": f"{annual_year} FY", "recentPeriod": f"{interim[0]} {interim[2]} 누적" if interim else f"{annual_year} FY",
         "eligibleCount": len(eligible), "counts": dict(counts), "pricedPass": len(qualified),
         "outsideWatchlist": sum(not row["inWatchlist"] for row in items),
