@@ -3,24 +3,11 @@
   "reviewRule": "매주 최신 OpenDART 재무·현재 가격·최근 공시를 반영해 20개 관찰군의 심층 검토 순위를 다시 매긴다. 검증된 최신 전망치가 없으면 자동 매수 판단으로 승격하지 않는다.",
   "targets": [
     {
-      "code": "257720",
-      "name": "실리콘투",
-      "industry": "K뷰티 유통",
-      "group": "deep",
-      "priority": 1,
-      "reviewFocus": [
-        "지역별 매출",
-        "재고 회전",
-        "매출채권",
-        "영업현금흐름"
-      ]
-    },
-    {
       "code": "000660",
       "name": "SK하이닉스",
       "industry": "AI 메모리/HBM",
       "group": "deep",
-      "priority": 2,
+      "priority": 1,
       "reviewFocus": [
         "HBM ASP",
         "HBM4",
@@ -33,7 +20,7 @@
       "name": "삼양식품",
       "industry": "식품/글로벌 라면",
       "group": "deep",
-      "priority": 3,
+      "priority": 2,
       "reviewFocus": [
         "해외 매출",
         "밀양2공장",
@@ -46,7 +33,7 @@
       "name": "HD현대일렉트릭",
       "industry": "전력기기",
       "group": "deep",
-      "priority": 4,
+      "priority": 3,
       "reviewFocus": [
         "북미 수주",
         "수주 마진",
@@ -59,7 +46,7 @@
       "name": "바디텍메드",
       "industry": "진단기기",
       "group": "deep",
-      "priority": 5,
+      "priority": 4,
       "reviewFocus": [
         "설치 장비",
         "카트리지",
@@ -71,8 +58,8 @@
       "code": "192080",
       "name": "더블유게임즈",
       "industry": "게임",
-      "group": "watch",
-      "priority": 6,
+      "group": "deep",
+      "priority": 5,
       "reviewFocus": [
         "DTC",
         "아이게이밍",
@@ -85,7 +72,7 @@
       "name": "에이피알",
       "industry": "K뷰티 브랜드/뷰티 디바이스",
       "group": "watch",
-      "priority": 7,
+      "priority": 6,
       "reviewFocus": [
         "미국 매출",
         "마케팅비",
@@ -98,7 +85,7 @@
       "name": "산일전기",
       "industry": "변압기/전력기기",
       "group": "watch",
-      "priority": 8,
+      "priority": 7,
       "reviewFocus": [
         "수주잔고",
         "영업이익률",
@@ -111,12 +98,25 @@
       "name": "알테오젠",
       "industry": "바이오 플랫폼",
       "group": "watch",
-      "priority": 9,
+      "priority": 8,
       "reviewFocus": [
         "키트루다SC",
         "로열티",
         "마일스톤",
         "J-code"
+      ]
+    },
+    {
+      "code": "257720",
+      "name": "실리콘투",
+      "industry": "K뷰티 유통",
+      "group": "watch",
+      "priority": 9,
+      "reviewFocus": [
+        "지역별 매출",
+        "재고 회전",
+        "매출채권",
+        "영업현금흐름"
       ]
     },
     {
@@ -185,24 +185,11 @@
       ]
     },
     {
-      "code": "010120",
-      "name": "LS ELECTRIC",
-      "industry": "전력기기",
-      "group": "watch",
-      "priority": 15,
-      "reviewFocus": [
-        "신규수주",
-        "수주잔고",
-        "데이터센터",
-        "OPM 10%"
-      ]
-    },
-    {
       "code": "251970",
       "name": "펌텍코리아",
       "industry": "화장품 용기",
       "group": "watch",
-      "priority": 16,
+      "priority": 15,
       "reviewFocus": [
         "4공장",
         "고객 주문",
@@ -215,7 +202,7 @@
       "name": "리노공업",
       "industry": "반도체 테스트 소켓",
       "group": "watch",
-      "priority": 17,
+      "priority": 16,
       "reviewFocus": [
         "AI ASIC",
         "신공장 가동률",
@@ -228,12 +215,25 @@
       "name": "휴젤",
       "industry": "톡신/필러",
       "group": "watch",
-      "priority": 18,
+      "priority": 17,
       "reviewFocus": [
         "미국 직판",
         "국가별 매출",
         "판관비",
         "OPM 회복"
+      ]
+    },
+    {
+      "code": "010120",
+      "name": "LS ELECTRIC",
+      "industry": "전력기기",
+      "group": "watch",
+      "priority": 18,
+      "reviewFocus": [
+        "신규수주",
+        "수주잔고",
+        "데이터센터",
+        "OPM 10%"
       ]
     },
     {
@@ -263,5 +263,5 @@
       ]
     }
   ],
-  "selectionUpdatedAt": "2026-11-25T09:39:10"
+  "selectionUpdatedAt": "2026-11-25T10:43:43"
 }
