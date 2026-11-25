@@ -12990,7 +12990,7 @@ const purchaseReview = {
               · <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=${row.annualReceipt}" target="_blank" rel="noreferrer">연간 실적</a></td>
           </tr>`).join("") : '<tr><td colspan="7">통과 종목 없음</td></tr>'}</tbody>
         </table></div>
-        <div class="data-caption">재무 미확인 ${incomplete}개 · 재무 통과 후 시세 확인 불가 ${counts.quoteMissing || 0}개${scan.removed.length ? ` · 상위권 이탈: ${scan.removed.map(escapeListing).join(" · ")}` : ""}</div>
+        <div class="data-caption">목록: ${escapeListing(scan.universeSource || "—")} · 재무 미확인 ${incomplete}개 · 재무 통과 후 시세 확인 불가 ${counts.quoteMissing || 0}개${counts.issuerMissing ? ` · 업종·결산월 확인 불가 ${counts.issuerMissing}개` : ""}${scan.removed.length ? ` · 상위권 이탈: ${scan.removed.map(escapeListing).join(" · ")}` : ""}</div>
         <div class="data-caption">최근 2년 연속 매출 증가, 최근 연간·누적 매출 성장률 각각 10% 이상과 영업·순이익률 각각 10% 이상, 영업이익률 하락 5%p 미만. 금융·일부 지주·리츠·스팩·12월 외 결산 제외. OpenDART 확정 실적과 네이버 증권 시세 참고값으로 비교하며, PER 분모는 연간 총순이익입니다. 기존 회사별 리서치와 별도인 신규 검토 목록입니다.</div>
       `;
     }

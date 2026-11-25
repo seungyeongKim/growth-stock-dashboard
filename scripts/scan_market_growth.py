@@ -105,6 +105,40 @@ def listings(market):
     return rows
 
 
+def try_kind():
+    try:
+        return dict(zip(MARKETS, parallel(listings, list(MARKETS), workers=2)))
+    except (RuntimeError, UnicodeError) as error:
+        print(f"KIND unavailable: {error}. Trying Npay listings matched to OpenDART issuers.", flush=True)
+        return None
+
+
+def listed_from_quotes(quote_sets, mappings):
+    markets = {}
+    for market, quotes in zip(MARKETS, quote_sets):
+        rows = {}
+        for code, quote in quotes.items():
+            name = str(quote.get("stockName") or "").strip()
+            if code not in mappings or not name:
+                continue
+            excluded = "금융·지주·스팩 등" if re.search(r"스팩|기업인수목적|리츠", name) else None
+            rows[code] = {"code": code, "name": name, "industry": None, "market": market, "excluded": excluded}
+        if len(rows) < (650 if market == "KOSPI" else 1400):
+            raise RuntimeError(f"Listed issuer cross-check unexpectedly low: {market} {len(rows)}")
+        markets[market] = rows
+    return markets
+
+
+def verify_issuer(code, key):
+    data = json.loads(fetch(DART + "/company.json", {"crtfc_key": key, "corp_code": code}))
+    if data.get("status") != "000":
+        return None
+    month, industry = str(data.get("acc_mt", "")), str(data.get("induty_code", ""))
+    if not month.isdigit() or not industry.isdigit():
+        return None
+    return month == "12" and not industry.startswith(("64", "65", "66"))
+
+
 def dart_codes(key):
     raw = fetch(DART + "/corpCode.xml", {"crtfc_key": key})
     with ZipFile(io.BytesIO(raw)) as archive:
@@ -242,7 +276,7 @@ def financial_screen(annual, interim, report):
     }
 
 
-def market_prices(market, expected_codes):
+def market_prices(market, expected_codes=None):
     def page(i):
         result = json.loads(fetch(f"{NAVER}/{market}", {"page": i, "pageSize": PAGE_SIZE}))
         if result.get("stockListCategoryType") != market or result.get("page") != i or not isinstance(result.get("stocks"), list):
@@ -254,9 +288,12 @@ def market_prices(market, expected_codes):
     if not isinstance(total, int) or not 0 < total < 8000:
         raise RuntimeError(f"Npay market count invalid: {market}")
     pages = [first, *parallel(page, range(2, math.ceil(total / PAGE_SIZE) + 1))]
-    quotes = {row.get("itemCode"): row for block in pages for row in block["stocks"] if row.get("itemCode") in expected_codes}
-    if len(quotes) < len(expected_codes) * 0.85:
+    quotes = {row["itemCode"]: row for block in pages for row in block["stocks"]
+              if CODE.fullmatch(row.get("itemCode") or "") and (expected_codes is None or row["itemCode"] in expected_codes)}
+    if expected_codes is not None and len(quotes) < len(expected_codes) * 0.85:
         raise RuntimeError(f"Npay coverage unexpectedly low: {market} {len(quotes)}/{len(expected_codes)}")
+    if expected_codes is None and len(quotes) < total * 0.85:
+        raise RuntimeError(f"Npay page coverage unexpectedly low: {market} {len(quotes)}/{total}")
     return quotes
 
 
@@ -291,18 +328,25 @@ def main():
         raise SystemExit("DART_API_KEY is required; prior scan is unchanged.")
     now = dt.datetime.now(KST)
     annual_year, interim = period_plan(now.date())
-    print("Loading KIND market listings", flush=True)
-    markets = dict(zip(MARKETS, parallel(listings, list(MARKETS), workers=2)))
-    listings_by_code = {code: item for rows in markets.values() for code, item in rows.items()}
-    print(f"Loaded {len(listings_by_code)} listed issuers. Loading OpenDART identifiers", flush=True)
+    print("Loading OpenDART identifiers", flush=True)
     mappings = dart_codes(key)
     if args.probe:
+        print("Checking OpenDART financial batch", flush=True)
         rows = fetch_financials(key, [mappings["000660"], mappings["005930"]], annual_year, "11011")
+        print("Checking Npay market page", flush=True)
         quotes = json.loads(fetch(f"{NAVER}/KOSPI", {"page": 1, "pageSize": PAGE_SIZE}))
         if len(rows) < 2 or not quotes.get("stocks"):
             raise RuntimeError("Upstream sample has insufficient data")
         print(f"Upstream probe verified filings for {len(rows)} issuers and {len(quotes['stocks'])} quotes", flush=True)
         return
+    print("Loading KIND market listings", flush=True)
+    markets = try_kind()
+    used_kind = markets is not None
+    quote_sets = parallel(lambda market: market_prices(market, set(markets[market]) if used_kind else None), list(MARKETS), workers=2)
+    if not used_kind:
+        markets = listed_from_quotes(quote_sets, mappings)
+    listings_by_code = {code: item for rows in markets.values() for code, item in rows.items()}
+    quotes = {code: quote for market in quote_sets for code, quote in market.items()}
     watchlist = json.loads((ROOT / "data/growth-watchlist-20.json").read_text(encoding="utf-8"))
     known = {row["code"] for row in watchlist["targets"]}
     counts = Counter(item["excluded"] for item in listings_by_code.values() if item["excluded"])
@@ -318,9 +362,7 @@ def main():
     quarterly = fetch_financials(key, [mappings[code] for code in annual_pass], *interim[:2]) if interim and annual_pass else {}
     if interim and annual_pass and len(quarterly.keys() & set(annual_pass)) < len(annual_pass) * 0.6:
         raise RuntimeError("OpenDART interim coverage unexpectedly low")
-    print(f"Loaded {len(quarterly)} interim records. Collecting Npay market prices", flush=True)
-    quotes_by_market = parallel(lambda market: market_prices(market, set(markets[market])), list(markets), workers=2)
-    quotes = {code: quote for market in quotes_by_market for code, quote in market.items()}
+    print(f"Loaded {len(quarterly)} interim records. Ranking issuers with verifiable prices", flush=True)
     qualified = []
     for code, issuer in eligible.items():
         status, facts = financial_screen(annuals.get(code, {}), quarterly.get(code, {}), interim[1] if interim else None)
@@ -334,6 +376,13 @@ def main():
         rounded = {field: round(value, 2) if isinstance(value, float) else value for field, value in facts.items()}
         qualified.append({**{k: v for k, v in issuer.items() if k != "excluded"}, **rounded, **quote, "inWatchlist": code in known})
     qualified.sort(key=lambda row: (-row["score"], row["annualPer"], -row["marketCap"], row["code"]))
+    if not used_kind:
+        flags = parallel(lambda row: verify_issuer(mappings[row["code"]], key), qualified, workers=8)
+        counts["issuerMissing"] = flags.count(None)
+        counts["issuerExcluded"] = flags.count(False)
+        if qualified and flags.count(None) > len(flags) * 0.25:
+            raise RuntimeError("Too many issuers missing fiscal month or industry confirmation")
+        qualified = [row for row, flag in zip(qualified, flags) if flag]
     previous = json.loads(OUTPUT.read_text(encoding="utf-8")) if OUTPUT.exists() else {}
     former = {row["code"]: row["name"] for row in previous.get("items", [])}
     items = [{"rank": i, **row, "newInTop": row["code"] not in former} for i, row in enumerate(qualified[:RESULT_LIMIT], 1)]
@@ -341,6 +390,7 @@ def main():
     payload = {
         "updatedAt": now.isoformat(timespec="seconds"),
         "markets": {market: len(rows) for market, rows in markets.items()},
+        "universeSource": "KRX KIND" if used_kind else "네이버 증권 시장 목록 × OpenDART 상장회사 코드",
         "annualPeriod": f"{annual_year} FY", "recentPeriod": f"{interim[0]} {interim[2]} 누적" if interim else f"{annual_year} FY",
         "eligibleCount": len(eligible), "counts": dict(counts), "pricedPass": len(qualified),
         "outsideWatchlist": sum(not row["inWatchlist"] for row in items),
