@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-27T04:48:19",
+  "updatedAt": "2026-11-28T04:38:06",
   "sourcePolicy": "DART 공시 제목을 규칙 기반으로 분류한 보조 신호이며, 실제 영향은 공시 원문 확인이 필요하다.",
   "companies": {
     "145020": {
@@ -75,35 +75,26 @@
     "278470": {
       "code": "278470",
       "name": "에이피알",
-      "status": "주의",
-      "headline": "사업구조: 주요사항보고서(타법인주식및출자증권양수결정)",
-      "items": [
-        {
-          "date": "20261126",
-          "title": "주요사항보고서(타법인주식및출자증권양수결정)",
-          "receiptNo": "20261126000734",
-          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261126000734",
-          "category": "사업구조",
-          "severity": "주의",
-          "impact": "성장 논리와 자본배분 영향 확인"
-        },
-        {
-          "date": "20261126",
-          "title": "타법인주식및출자증권취득결정              ",
-          "receiptNo": "20261126800541",
-          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261126800541",
-          "category": "사업구조",
-          "severity": "주의",
-          "impact": "성장 논리와 자본배분 영향 확인"
-        }
-      ]
+      "status": "변화 없음",
+      "headline": "최근 수집 범위에서 주요 DART 공시 없음",
+      "items": []
     },
     "000660": {
       "code": "000660",
       "name": "SK하이닉스",
-      "status": "변화 없음",
-      "headline": "최근 수집 범위에서 주요 DART 공시 없음",
-      "items": []
+      "status": "정보",
+      "headline": "일반 공시: 풍문또는보도에대한해명(미확정)              ",
+      "items": [
+        {
+          "date": "20261127",
+          "title": "풍문또는보도에대한해명(미확정)              ",
+          "receiptNo": "20261127801094",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261127801094",
+          "category": "일반 공시",
+          "severity": "정보",
+          "impact": "원문 필요성 확인"
+        }
+      ]
     },
     "003230": {
       "code": "003230",
@@ -150,19 +141,9 @@
     "010120": {
       "code": "010120",
       "name": "LS ELECTRIC",
-      "status": "정보",
-      "headline": "일반 공시: 대규모기업집단현황공시[분기별공시(개별회사용)]",
-      "items": [
-        {
-          "date": "20261126",
-          "title": "대규모기업집단현황공시[분기별공시(개별회사용)]",
-          "receiptNo": "20261126000816",
-          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261126000816",
-          "category": "일반 공시",
-          "severity": "정보",
-          "impact": "원문 필요성 확인"
-        }
-      ]
+      "status": "변화 없음",
+      "headline": "최근 수집 범위에서 주요 DART 공시 없음",
+      "items": []
     },
     "051360": {
       "code": "051360",

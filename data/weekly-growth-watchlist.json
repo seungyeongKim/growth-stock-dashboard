@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-27T04:48:22",
+  "updatedAt": "2026-11-28T04:38:08",
   "cadence": "weekly",
   "rule": "매주 최신 OpenDART 재무·현재 가격·최근 공시를 반영해 20개 관찰군의 심층 검토 순위를 다시 매긴다. 검증된 최신 전망치가 없으면 자동 매수 판단으로 승격하지 않는다.",
   "sourcePolicy": "20개 관찰군은 최신 OpenDART 재무·최근 공시와 현재 가격 참고값으로 매주 재정렬한다. 자동 판단은 매수 추천이 아니며, 최신 전망치 출처가 없으면 매수 조건 충족으로 올리지 않는다.",
@@ -19,15 +19,22 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "1,055,000",
-        "changeRate": "2.43",
-        "volume": "3,417,741",
+        "price": "1,111,000",
+        "changeRate": "5.51",
+        "volume": "3,023,956",
         "note": "비공식 참고값"
       },
       "dart": {
         "ok": true,
-        "items": [],
-        "note": "최근 7일 신규 공시 없음"
+        "items": [
+          {
+            "date": "20261127",
+            "title": "풍문또는보도에대한해명(미확정)              ",
+            "receiptNo": "20261127801094",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261127801094"
+          }
+        ],
+        "note": "최근 7일 신규 공시 확인"
       },
       "reviewStatus": "심층 추적 유지",
       "reviewQuestion": "심층 추적 5종목에 계속 남길 만큼 논리가 강화됐나?"
@@ -47,9 +54,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "1,316,000",
-        "changeRate": "0.53",
-        "volume": "41,990",
+        "price": "1,302,000",
+        "changeRate": "-0.99",
+        "volume": "33,555",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -75,9 +82,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "389,500",
-        "changeRate": "1.70",
-        "volume": "98,121",
+        "price": "418,000",
+        "changeRate": "7.87",
+        "volume": "140,059",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -103,9 +110,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "9,860",
-        "changeRate": "0.82",
-        "volume": "36,822",
+        "price": "10,000",
+        "changeRate": "0.00",
+        "volume": "25,040",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -131,9 +138,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "57,700",
-        "changeRate": "0.17",
-        "volume": "26,391",
+        "price": "57,400",
+        "changeRate": "0.70",
+        "volume": "28,470",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -159,30 +166,17 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "324,000",
-        "changeRate": "10.96",
-        "volume": "572,727",
+        "price": "299,500",
+        "changeRate": "0.34",
+        "volume": "764,976",
         "note": "비공식 참고값"
       },
       "dart": {
         "ok": true,
-        "items": [
-          {
-            "date": "20261126",
-            "title": "주요사항보고서(타법인주식및출자증권양수결정)",
-            "receiptNo": "20261126000734",
-            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261126000734"
-          },
-          {
-            "date": "20261126",
-            "title": "타법인주식및출자증권취득결정              ",
-            "receiptNo": "20261126800541",
-            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261126800541"
-          }
-        ],
-        "note": "최근 7일 신규 공시 확인"
+        "items": [],
+        "note": "최근 7일 신규 공시 없음"
       },
-      "reviewStatus": "승격 검토",
+      "reviewStatus": "관찰 유지",
       "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
     },
     {
@@ -200,9 +194,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "94,500",
-        "changeRate": "-0.84",
-        "volume": "166,788",
+        "price": "103,100",
+        "changeRate": "8.87",
+        "volume": "228,537",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -228,9 +222,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "171,400",
-        "changeRate": "1.06",
-        "volume": "493,665",
+        "price": "188,100",
+        "changeRate": "10.45",
+        "volume": "718,243",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -256,9 +250,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "30,300",
-        "changeRate": "4.84",
-        "volume": "1,711,095",
+        "price": "30,400",
+        "changeRate": "2.70",
+        "volume": "996,999",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -284,9 +278,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "158,900",
-        "changeRate": "0.38",
-        "volume": "46,350",
+        "price": "175,800",
+        "changeRate": "11.34",
+        "volume": "61,605",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -312,9 +306,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "163,300",
-        "changeRate": "3.42",
-        "volume": "1,673,433",
+        "price": "174,000",
+        "changeRate": "5.78",
+        "volume": "1,391,368",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -340,9 +334,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "11,970",
-        "changeRate": "5.37",
-        "volume": "214,247",
+        "price": "12,370",
+        "changeRate": "4.83",
+        "volume": "218,623",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -368,9 +362,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "21,550",
-        "changeRate": "-1.60",
-        "volume": "465,264",
+        "price": "22,850",
+        "changeRate": "7.03",
+        "volume": "454,345",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -396,9 +390,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "274,000",
-        "changeRate": "-1.44",
-        "volume": "52,762",
+        "price": "279,000",
+        "changeRate": "3.14",
+        "volume": "77,723",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -424,9 +418,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "80,100",
-        "changeRate": "0.38",
-        "volume": "62,405",
+        "price": "78,000",
+        "changeRate": "-1.64",
+        "volume": "82,897",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -452,9 +446,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "47,100",
-        "changeRate": "2.95",
-        "volume": "493,265",
+        "price": "52,300",
+        "changeRate": "11.87",
+        "volume": "767,847",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -480,9 +474,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "209,000",
-        "changeRate": "-1.18",
-        "volume": "29,426",
+        "price": "210,000",
+        "changeRate": "0.96",
+        "volume": "30,578",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -508,24 +502,17 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "113,000",
-        "changeRate": "-1.14",
-        "volume": "379,993",
+        "price": "121,500",
+        "changeRate": "7.14",
+        "volume": "488,929",
         "note": "비공식 참고값"
       },
       "dart": {
         "ok": true,
-        "items": [
-          {
-            "date": "20261126",
-            "title": "대규모기업집단현황공시[분기별공시(개별회사용)]",
-            "receiptNo": "20261126000816",
-            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261126000816"
-          }
-        ],
-        "note": "최근 7일 신규 공시 확인"
+        "items": [],
+        "note": "최근 7일 신규 공시 없음"
       },
-      "reviewStatus": "승격 검토",
+      "reviewStatus": "관찰 유지",
       "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
     },
     {
@@ -543,9 +530,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "1,342,000",
-        "changeRate": "-1.54",
-        "volume": "46,873",
+        "price": "1,347,000",
+        "changeRate": "0.75",
+        "volume": "33,686",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -571,9 +558,9 @@
       "quote": {
         "ok": true,
         "source": "Naver Finance realtime",
-        "price": "10,560",
-        "changeRate": "0.57",
-        "volume": "3,043",
+        "price": "10,630",
+        "changeRate": "1.33",
+        "volume": "9,572",
         "note": "비공식 참고값"
       },
       "dart": {
@@ -585,5 +572,5 @@
       "reviewQuestion": "심층 추적 5종목으로 승격할 만한 새 근거가 생겼나?"
     }
   ],
-  "selectionUpdatedAt": "2026-11-27T04:48:22"
+  "selectionUpdatedAt": "2026-11-28T04:38:08"
 }
